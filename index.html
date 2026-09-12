@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f7f8fc" />
+  <meta name="description" content="跟着小白，一步一步完成 ChatGPT Plus 开通准备。根据你的情况安排步骤，自动保存进度。" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='19' fill='%236459d9'/%3E%3Cpath d='M20 32h24M32 20v24' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="./styles.css" />
+  <title>Plus 开通向导 · 跟着小白一步一步来</title>
+</head>
+<body>
+  <section class="access-gate" id="accessGate" aria-labelledby="accessTitle">
+    <div class="access-panel">
+      <div class="access-kicker"><span></span>访问前确认</div>
+      <h1 id="accessTitle">ChatGPT Plus 开通向导使用声明</h1>
+      <p class="access-lead">请先阅读并确认用途。未完成确认前，无法进入教程。</p>
+      <div class="legal-copy" role="document">
+        <p><strong>用途限制：</strong>本网站及本教程仅用于 ChatGPT Plus 开通流程的信息整理、学习与交流，不构成 OpenAI 或任何第三方的官方授权、承诺或代理服务。除 ChatGPT Plus 开通及相关学习交流外，其他使用目的均不在本网站服务范围内。</p>
+        <p><strong>免费声明：</strong>本网站向访问者免费提供，不收取教程费、咨询费或代办费，也不提供任何有偿代开、代充、代认证或账号服务。第三方平台可能产生费用、资格要求、价格变化或平台奖励，均以第三方页面和规则为准。</p>
+        <p><strong>风险与责任：</strong>本教程不构成法律、财务、税务、支付、网络服务或投资建议。用户应自行确认所在地区法律法规、OpenAI 及第三方平台条款，独立判断并承担因账户、网络、支付、身份核验、第三方服务变化或自行操作产生的风险和责任。</p>
+        <p><strong>信息安全：</strong>本网站不要求用户向本网站提交 ChatGPT 账号密码、验证码、支付信息、身份证件、人脸信息或其他敏感凭证。请勿向任何第三方泄露上述信息。</p>
+        <p><strong>继续使用即表示：</strong>你已阅读、理解并同意本声明，确认仅为 ChatGPT Plus 开通及相关学习交流使用，并接受自行判断、自行操作、自行承担责任；不同意或拟作其他用途，请立即停止访问。</p>
+      </div>
+      <div class="purpose-title">请选择本次访问用途</div>
+      <div class="purpose-grid" id="purposeGrid">
+        <button class="purpose-choice" type="button" data-purpose="chatgpt-plus">
+          <span class="purpose-icon">+</span>
+          <span><strong>仅用于 ChatGPT Plus</strong><small>我确认只将本教程用于 ChatGPT Plus 开通及相关学习交流。</small></span>
+        </button>
+        <button class="purpose-choice purpose-choice-danger" type="button" data-purpose="other">
+          <span class="purpose-icon">!</span>
+          <span><strong>其他用途</strong><small>不属于本网站服务范围，选择后将拒绝继续访问。</small></span>
+        </button>
+      </div>
+      <div class="consent-form" id="consentForm" hidden>
+        <label class="consent-check"><input type="checkbox" id="consentCheckbox" /><span>本人确认只使用本教程进行 ChatGPT Plus 开通及相关学习交流，不作任何其他用途，并同意上述全部声明。</span></label>
+        <label class="consent-input-label" for="consentInput">请完整输入以下确认文字：</label>
+        <p class="consent-phrase" id="consentPhrase">本人已阅读并同意本声明，仅将本教程用于ChatGPT Plus开通及相关学习交流，不用于任何其他用途，并自行承担相关使用责任。</p>
+        <input class="consent-input" id="consentInput" type="text" autocomplete="off" spellcheck="false" placeholder="请完整输入上面的文字" />
+        <button class="primary-button consent-submit" id="consentSubmit" type="button" disabled>本人确认，仅进入 ChatGPT Plus 向导</button>
+        <p class="consent-note">确认记录仅保存在当前浏览器本地，不会提交到本网站服务器；这不是法律意见，也不能替代专业法律审阅。</p>
+      </div>
+      <div class="access-denied" id="accessDenied" tabindex="-1" hidden>
+        <span class="denied-symbol">×</span>
+        <h2>访问已拒绝</h2>
+        <p>你选择的用途不属于本网站服务范围。页面不会继续加载教程，请关闭当前页面。</p>
+      </div>
+    </div>
+  </section>
+  <a class="skip-link" href="#stepCard">跳到当前步骤</a>
+  <div class="app-shell" id="appShell" hidden>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand"><span class="brand-mark" aria-hidden="true">+</span><span>Plus <span class="brand-name">开通向导</span></span><span class="brand-tag">互动教程</span></div>
+        <div class="header-actions">
+          <span class="save-status" id="saveStatus"><span class="status-dot"></span>进度自动保存</span>
+          <button class="ghost-button" id="resetButton" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10a9 9 0 1 1 2.6 8.4M3 4v6h6"/></svg><span>重新开始</span></button>
+        </div>
+      </div>
+    </header>
+    <main class="main-content">
+      <section class="welcome" aria-labelledby="pageTitle">
+        <div>
+          <p class="eyebrow"><span></span>让每一步，都更简单</p>
+          <h1 id="pageTitle">开通 Plus，<span>一步一步来。</span></h1>
+          <p class="welcome-copy">不用一次弄懂所有事。跟着小白，从适合你的第一步开始。</p>
+        </div>
+        <div class="welcome-note"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5v38M5 24h38M10.5 10.5l27 27m0-27-27 27"/></svg><span>按你的情况安排流程<br><strong>每次，只专注一件事</strong></span></div>
+      </section>
+      <details class="principle-card" id="principleCard">
+        <summary>
+          <span class="principle-icon" aria-hidden="true">₱</span>
+          <span class="principle-heading">
+            <span class="principle-title">充值 GPT Plus · 低价区网页直充</span>
+            <span class="principle-sub">开始前先看一眼原理：为什么只要 106 元，为什么稳定不封号</span>
+          </span>
+          <span class="principle-badge">低价区 106 元可购买 · 该渠道依然可用</span>
+          <span class="principle-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></span>
+        </summary>
+        <div class="principle-body">
+          <div class="principle-points">
+            <div class="principle-point">
+              <strong>原理：网页直充，菲律宾低价区结算</strong>
+              <p>在 ChatGPT 官网用<strong>自己的账号自己付款</strong>（网页直充），只是把网络切换到<strong>菲律宾低价区</strong>。Plus 官方标价 ₱1,100/月，账单地址填美国免税州免税后约 ₱982，折合人民币<strong>最低约 106 元/月</strong>，是目前最便宜的官方开通方式。</p>
+            </div>
+            <div class="principle-point">
+              <strong>为什么稳定、不封号</strong>
+              <p>这个方法赚的是<strong>地区定价的汇率差</strong>：账号、付款全程走 OpenAI 官方渠道，不找代充、不提供账号密码、不改账号任何信息。按教程正常操作使用，<strong>没有出现过因这套方法本身导致的封号记录</strong>。</p>
+            </div>
+            <div class="principle-point warn">
+              <strong>红线：一卡一号</strong>
+              <p>一张乐享卡<strong>只能绑定一个 GPT 账号</strong>。一卡多绑是明确的风控特征，轻则扣款失败，重则封号。要给第二个账号订阅，请另外开一张新卡。</p>
+            </div>
+            <div class="principle-point">
+              <strong>这张卡以后还能用</strong>
+              <p>乐享卡是国际通行的 Visa 虚拟卡，之后还可以用它充值 <strong>Claude、Gemini</strong> 等其他 AI 网站的会员，一卡多用，长期保留 3–5 美元余额防冻结即可。</p>
+            </div>
+          </div>
+          <div class="principle-shots">
+            <figure class="reference-figure">
+              <button class="image-trigger" type="button" data-image="./ph-subscribe-982.png" data-caption="免税后实付 PHP 982.14，折合约 106 元"><img class="reference-image" src="./ph-subscribe-982.png" alt="ChatGPT Plus 付款页：税额 0%，今日应付金额 PHP 982.14" width="889" height="838" loading="lazy" decoding="async"/><span class="zoom-label"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6M7 10h6m-3-3v6"/></svg>点击放大</span></button>
+              <figcaption class="image-caption">实付 ₱982.14 ≈ 106 元/月，价格以付款确认页为准</figcaption>
+            </figure>
+            <figure class="reference-figure">
+              <button class="image-trigger" type="button" data-image="./ph-plus-welcome.png" data-caption="付款成功，欢迎使用 ChatGPT Plus"><img class="reference-image" src="./ph-plus-welcome.png" alt="欢迎使用 ChatGPT Plus 开通成功弹窗" width="756" height="720" loading="lazy" decoding="async"/><span class="zoom-label"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6M7 10h6m-3-3v6"/></svg>点击放大</span></button>
+              <figcaption class="image-caption">付款成功即到账，欢迎页出现即开通完成</figcaption>
+            </figure>
+            <figure class="reference-figure principle-shot-wide">
+              <button class="image-trigger" type="button" data-image="./ph-settled.png" data-caption="卡账单结算示意：ChatGPT Plus 订阅扣款"><img class="reference-image" src="./ph-settled.png" alt="ChatGPT Plus 订阅结算示意" width="2170" height="725" loading="lazy" decoding="async"/><span class="zoom-label"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6M7 10h6m-3-3v6"/></svg>点击放大</span></button>
+              <figcaption class="image-caption">订阅结算示意，具体金额和状态以官方页面为准</figcaption>
+            </figure>
+          </div>
+        </div>
+      </details>
+      <section class="journey" aria-label="流程概览">
+        <ol class="phase-list" id="phaseList"></ol>
+        <div class="journey-progress">
+          <div class="progress-meta"><span id="progressLabel">先从了解你的账户开始</span><span class="progress-detail"><span id="progressCount">已完成 0 步</span><strong id="progressPercent">0%</strong></span></div>
+          <div class="progress-track" id="progressTrack" role="progressbar" aria-label="当前路线完成进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar" id="progressBar"></div></div>
+        </div>
+      </section>
+      <section class="content-grid">
+        <article class="step-card" id="stepCard" aria-labelledby="stepTitle" tabindex="-1"></article>
+        <aside class="coach-column" aria-label="小白提示">
+          <section class="coach-card">
+            <div class="coach-cover">
+              <div class="coach-title"><span class="coach-kicker">你的向导</span><h2>小白陪你走</h2><p>慢慢来，我们一步一步完成。</p></div>
+              <div class="mascot" aria-hidden="true">
+                <span class="mascot-spark spark-one">+</span><span class="mascot-spark spark-two">+</span>
+                <div class="mascot-antenna"></div><div class="mascot-body"><div class="mascot-face"><i></i><i></i><b></b></div></div><div class="mascot-foot foot-left"></div><div class="mascot-foot foot-right"></div><div class="mascot-shadow"></div>
+              </div>
+            </div>
+            <div class="coach-content">
+              <div class="tip-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6m-5 3h4M8 14a6 6 0 1 1 8 0c-1 .8-1 1.5-1 2H9c0-.5 0-1.2-1-2Z"/></svg>这一步的小提示</div>
+              <p id="coachText"></p>
+              <div class="handoff-row"><span>当前状态</span><span class="handoff-status" id="handoffStatus"></span></div>
+            </div>
+          </section>
+          <div class="save-note"><span class="save-note-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v16l-7-4-7 4V5a2 2 0 0 1 2-2Z"/><path d="m9 9 2 2 4-4"/></svg></span><div><strong id="saveNoteTitle">走到哪，就记到哪</strong><p id="saveNoteCopy">进度保存在当前浏览器，下次打开可以接着来。</p></div></div>
+        </aside>
+      </section>
+      <footer class="footer-note"><span>Plus 开通向导 <span class="footer-dot">·</span> 跟着小白，轻松一点</span><span>外部服务、价格、库存和资格以实际页面为准</span></footer>
+    </main>
+  </div>
+  <dialog class="reset-dialog" id="resetDialog" aria-labelledby="resetTitle" aria-describedby="resetDescription">
+    <form method="dialog"><span class="dialog-symbol" aria-hidden="true">↺</span><h2 id="resetTitle">重新开始这段旅程？</h2><p id="resetDescription">这会清除当前浏览器中的向导进度，从账户确认重新开始。</p><div class="dialog-actions"><button class="secondary-button" value="cancel" autofocus>继续当前步骤</button><button class="primary-button" id="confirmReset" value="reset">重新开始</button></div></form>
+  </dialog>
+  <dialog class="image-dialog" id="imageDialog" aria-labelledby="imageDialogCaption">
+    <div class="image-dialog-bar"><span id="imageDialogCaption"></span><button class="icon-button" id="closeImage" type="button" aria-label="关闭大图"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <div class="image-dialog-scroll"><img id="imageDialogImage" alt="" /></div>
+  </dialog>
+  <script src="./app.js"></script>
+  <script src="./ui.js"></script>
+</body>
+</html>
