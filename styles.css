@@ -150,6 +150,7 @@ h1 > span { color: var(--primary); }
 .secondary-button:hover:not(:disabled) { color: var(--primary); border-color: #b8b0ec; background: #faf9ff; }
 .secondary-button:disabled { color: #9698a4; background: #fcfcfd; }
 .button-row svg { width: 16px; height: 16px; }
+.button-group { display: inline-flex; align-items: center; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
 .button-hint { display: flex; align-items: center; gap: 7px; text-align: right; font-size: 11px; color: var(--muted); }
 .button-hint svg { width: 14px; height: 14px; }
 .coach-column { position: sticky; top: 24px; }
@@ -323,3 +324,10 @@ body:has(dialog[open]) { overflow: hidden; }
 }
 @media (max-width: 360px) { h1 { font-size: 25px; } .step-card { padding-inline: 16px; } .button-hint { max-width: 145px; } .coach-title p { max-width: 150px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+.key-panel { width: min(560px, 100%); }
+.key-row { display: flex; gap: 10px; }
+.key-row .consent-input { flex: 1; }
+.key-row .consent-input[aria-invalid="true"] { border-color: var(--danger); }
+.key-submit { flex-shrink: 0; min-height: 46px; }
+.key-error { color: var(--danger); font-size: 13px; font-weight: 600; margin: 12px 0 0; }
+@media (max-width: 520px) { .key-row { flex-direction: column; } .key-submit { width: 100%; } }

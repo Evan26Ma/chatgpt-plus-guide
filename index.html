@@ -4,13 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#f7f8fc" />
-  <meta name="description" content="跟着小白，一步一步完成 ChatGPT Plus 开通准备。根据你的情况安排步骤，自动保存进度。" />
+  <meta name="description" content="跟着喵喵AI，一步一步完成 ChatGPT Plus 开通准备。根据你的情况安排步骤，自动保存进度。" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='19' fill='%236459d9'/%3E%3Cpath d='M20 32h24M32 20v24' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="./styles.css" />
-  <title>Plus 开通向导 · 跟着小白一步一步来</title>
+  <title>Plus 开通向导 · 跟着喵喵AI一步一步来</title>
 </head>
 <body>
-  <section class="access-gate" id="accessGate" aria-labelledby="accessTitle">
+  <section class="access-gate" id="keyGate" aria-labelledby="keyTitle">
+    <div class="access-panel key-panel">
+      <div class="access-kicker"><span></span>喵喵AI · 访问验证</div>
+      <h1 id="keyTitle">请输入访问密钥</h1>
+      <p class="access-lead">本向导仅限受邀使用。输入访问密钥，验证通过后即可继续。</p>
+      <div class="key-row">
+        <input class="consent-input" id="keyInput" type="password" autocomplete="off" spellcheck="false" placeholder="输入访问密钥" aria-label="访问密钥" />
+        <button class="primary-button key-submit" id="keySubmit" type="button">验证密钥</button>
+      </div>
+      <p class="key-error" id="keyError" hidden>密钥不正确，请确认后重新输入。</p>
+      <p class="consent-note">验证通过后会记住当前浏览器，下次访问无需重复输入。</p>
+    </div>
+  </section>
+  <section class="access-gate" id="accessGate" hidden aria-labelledby="accessTitle">
     <div class="access-panel">
       <div class="access-kicker"><span></span>访问前确认</div>
       <h1 id="accessTitle">ChatGPT Plus 开通向导使用声明</h1>
@@ -64,7 +77,7 @@
         <div>
           <p class="eyebrow"><span></span>让每一步，都更简单</p>
           <h1 id="pageTitle">开通 Plus，<span>一步一步来。</span></h1>
-          <p class="welcome-copy">不用一次弄懂所有事。跟着小白，从适合你的第一步开始。</p>
+          <p class="welcome-copy">不用一次弄懂所有事。跟着喵喵AI，从适合你的第一步开始。</p>
         </div>
         <div class="welcome-note"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5v38M5 24h38M10.5 10.5l27 27m0-27-27 27"/></svg><span>按你的情况安排流程<br><strong>每次，只专注一件事</strong></span></div>
       </section>
@@ -107,7 +120,7 @@
               <figcaption class="image-caption">付款成功即到账，欢迎页出现即开通完成</figcaption>
             </figure>
             <figure class="reference-figure principle-shot-wide">
-              <button class="image-trigger" type="button" data-image="./ph-settled.png" data-caption="卡账单结算示意：ChatGPT Plus 订阅扣款"><img class="reference-image" src="./ph-settled.png" alt="ChatGPT Plus 订阅结算示意" width="2170" height="725" loading="lazy" decoding="async"/><span class="zoom-label"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6M7 10h6m-3-3v6"/></svg>点击放大</span></button>
+              <button class="image-trigger" type="button" data-image="./ph-settled.png" data-caption="卡账单结算示意：ChatGPT Plus 订阅扣款"><img class="reference-image" src="./ph-settled.png" alt="ChatGPT Plus 订阅结算示意（金额已作隐私处理）" width="2169" height="725" loading="lazy" decoding="async"/><span class="zoom-label"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6M7 10h6m-3-3v6"/></svg>点击放大</span></button>
               <figcaption class="image-caption">订阅结算示意，具体金额和状态以官方页面为准</figcaption>
             </figure>
           </div>
@@ -122,10 +135,10 @@
       </section>
       <section class="content-grid">
         <article class="step-card" id="stepCard" aria-labelledby="stepTitle" tabindex="-1"></article>
-        <aside class="coach-column" aria-label="小白提示">
+        <aside class="coach-column" aria-label="喵喵AI提示">
           <section class="coach-card">
             <div class="coach-cover">
-              <div class="coach-title"><span class="coach-kicker">你的向导</span><h2>小白陪你走</h2><p>慢慢来，我们一步一步完成。</p></div>
+              <div class="coach-title"><span class="coach-kicker">你的向导</span><h2>喵喵AI陪你走</h2><p>慢慢来，我们一步一步完成。</p></div>
               <div class="mascot" aria-hidden="true">
                 <span class="mascot-spark spark-one">+</span><span class="mascot-spark spark-two">+</span>
                 <div class="mascot-antenna"></div><div class="mascot-body"><div class="mascot-face"><i></i><i></i><b></b></div></div><div class="mascot-foot foot-left"></div><div class="mascot-foot foot-right"></div><div class="mascot-shadow"></div>
@@ -140,7 +153,7 @@
           <div class="save-note"><span class="save-note-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v16l-7-4-7 4V5a2 2 0 0 1 2-2Z"/><path d="m9 9 2 2 4-4"/></svg></span><div><strong id="saveNoteTitle">走到哪，就记到哪</strong><p id="saveNoteCopy">进度保存在当前浏览器，下次打开可以接着来。</p></div></div>
         </aside>
       </section>
-      <footer class="footer-note"><span>Plus 开通向导 <span class="footer-dot">·</span> 跟着小白，轻松一点</span><span>外部服务、价格、库存和资格以实际页面为准</span></footer>
+      <footer class="footer-note"><span>Plus 开通向导 <span class="footer-dot">·</span> 跟着喵喵AI，轻松一点</span><span>外部服务、价格、库存和资格以实际页面为准</span></footer>
     </main>
   </div>
   <dialog class="reset-dialog" id="resetDialog" aria-labelledby="resetTitle" aria-describedby="resetDescription">

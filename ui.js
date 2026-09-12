@@ -25,14 +25,18 @@ const phases = [
   { title: '准备支付方式', copy: '跟着图文完成准备', icon: 'card' },
   { title: '开通与后续', copy: '完成订阅及后续步骤', icon: 'circleCheck' }
 ];
-const phaseByStep = [0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3];
+const phaseByStep = [0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
 const imageSizes = {
   'binance-buy.jpg': [1907, 1329], 'binance-c2c.jpg': [1978, 1348], 'binance-withdraw.jpg': [1889, 1175],
   'ippure-reference.png': [683, 230], 'ph-node-reference.png': [1622, 970], 'ph-plus-pricing.png': [408, 717], 'roogoo-arrived.jpg': [2506, 1490],
   'roogoo-card-entry.png': [1137, 723], 'roogoo-deposit-menu.png': [1773, 887],
   'roogoo-enjoy-card.jpg': [1579, 1485], 'roogoo-enjoy-select.png': [860, 932],
   'ph-pay-vat.png': [1849, 1048], 'ph-billing-taxfree.png': [1302, 1208], 'ph-subscribe-982.png': [889, 838],
-  'ph-plus-welcome.png': [756, 720], 'ph-settled.png': [2170, 725]
+  'ph-plus-welcome.png': [756, 720], 'ph-settled.png': [2169, 725],
+  'ppt-roogoo-sumsub.png': [642, 744], 'ppt-roogoo-profile.png': [837, 837], 'ppt-roogoo-home.png': [2512, 1308], 'ppt-roogoo-cards.png': [567, 1279],
+  'ck-install.png': [1482, 1152], 'ck-accounts.png': [1919, 1200], 'ck-oauth.png': [1182, 1065], 'ck-switch.png': [1516, 978], 'ck-switch-run.png': [1365, 1155], 'ck-done.png': [1919, 1200],
+  'gm-download.png': [1980, 1107], 'gm-dashboard.png': [1950, 1047], 'gm-oauth.png': [900, 1085], 'gm-accounts.png': [2055, 1281], 'gm-proxy.png': [1875, 888], 'gm-apiinfo.png': [1869, 1086],
+  'gm-cherry.png': [1436, 1136], 'gm-connected.png': [1298, 1136], 'gm-fetch-failed.png': [1186, 793], 'gm-403.png': [2140, 886], 'gm-disabled.png': [1564, 734]
 };
 let storageAvailable = true;
 function loadState() {
@@ -72,8 +76,14 @@ const consentCheckbox = document.getElementById('consentCheckbox');
 const consentInput = document.getElementById('consentInput');
 const consentSubmit = document.getElementById('consentSubmit');
 const accessDenied = document.getElementById('accessDenied');
+const keyGate = document.getElementById('keyGate');
+const keyInput = document.getElementById('keyInput');
+const keySubmit = document.getElementById('keySubmit');
+const keyError = document.getElementById('keyError');
 const ACCESS_GRANTED_KEY = 'plusGuideAccessConsentV1';
 const ACCESS_DENIED_KEY = 'plusGuideAccessDeniedV1';
+const ACCESS_KEY_OK = 'plusGuideAccessKeyV1';
+const ACCESS_KEY = 'miaoai'; // 访问密钥，在此修改
 const CONSENT_PHRASE = '本人已阅读并同意本声明，仅将本教程用于ChatGPT Plus开通及相关学习交流，不用于任何其他用途，并自行承担相关使用责任。';
 
 function icon(name, className = '') {
@@ -94,6 +104,7 @@ function denyAccess() {
   consentForm.hidden = true;
   accessDenied.hidden = false;
   appShell.hidden = true;
+  keyGate.hidden = true;
   accessGate.hidden = false;
   accessDenied.focus({ preventScroll: true });
   document.title = '访问已拒绝 · Plus 开通向导';
@@ -108,11 +119,19 @@ function grantAccess() {
   appShell.hidden = false;
   render(true);
 }
-function initAccessGate() {
-  if (readAccessFlag(ACCESS_DENIED_KEY)) {
-    denyAccess();
-    return false;
+function checkAccessKey() {
+  if (keyInput.value.trim() === ACCESS_KEY) {
+    storeAccessFlag(ACCESS_KEY_OK, JSON.stringify({ version: 1, passedAt: new Date().toISOString() }));
+    keyGate.hidden = true;
+    if (initConsentGate()) render();
+    return;
   }
+  keyError.hidden = false;
+  keyInput.setAttribute('aria-invalid', 'true');
+  keyInput.focus();
+  keyInput.select();
+}
+function initConsentGate() {
   if (readAccessFlag(ACCESS_GRANTED_KEY)) {
     accessGate.hidden = true;
     appShell.hidden = false;
@@ -133,6 +152,27 @@ function initAccessGate() {
   consentInput.addEventListener('input', updateConsentButton);
   consentSubmit.addEventListener('click', grantAccess);
   return false;
+}
+function initAccessGate() {
+  if (readAccessFlag(ACCESS_DENIED_KEY)) {
+    denyAccess();
+    return false;
+  }
+  if (!readAccessFlag(ACCESS_KEY_OK)) {
+    appShell.hidden = true;
+    accessGate.hidden = true;
+    keyGate.hidden = false;
+    keySubmit.addEventListener('click', checkAccessKey);
+    keyInput.addEventListener('keydown', event => { if (event.key === 'Enter') checkAccessKey(); });
+    keyInput.addEventListener('input', () => {
+      keyError.hidden = true;
+      keyInput.removeAttribute('aria-invalid');
+    });
+    keyInput.focus();
+    return false;
+  }
+  keyGate.hidden = true;
+  return initConsentGate();
 }
 function save() {
   state.current = current;
@@ -242,6 +282,7 @@ function choose(value) {
   }
   const destination = current === 0 ? (value === 'existing' ? 1 : 3)
     : current === 1 ? (value === 'subscribed' ? 2 : 3)
+    : current === 15 ? (value === 'cockpit' ? 16 : 19)
     : 4;
   moveTo(destination);
 }
@@ -250,7 +291,17 @@ function complete() {
     moveTo(14);
     return;
   }
-  if (current >= 14) return;
+  if (current === 14) return;
+  if (current === 18 || current === 23) {
+    state[current] = true;
+    moveTo(14);
+    return;
+  }
+  if (current >= 15) {
+    state[current] = true;
+    moveTo(current + 1);
+    return;
+  }
   if (steps[current].kind === 'checks' && steps[current].checks.some((_, index) => !state.checks?.[index])) return;
   state[current] = true;
   moveTo(current === 4 ? (state[0] === 'new' ? 5 : 6) : current + 1);
@@ -281,11 +332,12 @@ function render(focus = false) {
     : step.kind === 'faq'
     ? `<a class="primary-button" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">打开 ChatGPT，开始使用${icon('external')}</a>`
     : `<button class="primary-button" id="nextButton" type="button">${escapeHtml(step.button || '确认并继续')}${icon('arrow')}</button>`;
-  card.innerHTML = `<div class="step-meta"><span class="step-number">${finished ? 'ALL DONE' : step.kind === 'faq' ? 'FAQ' : `STEP ${String(stepNumber).padStart(2, '0')}`}</span><span class="step-category">${finished ? '流程完成' : step.kind === 'faq' ? '常见问题' : phases[phaseByStep[current]].title}</span></div>${finished ? `<div class="completion"><div class="completion-symbol">${icon('check')}</div><h2 id="stepTitle">恭喜，完成这段旅程！</h2><p>准备工作已经完成，现在开始使用 ChatGPT Plus 吧。</p><a class="primary-button" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">打开 ChatGPT${icon('external')}</a></div>` : `<h2 id="stepTitle">${escapeHtml(step.title)}</h2><p class="step-intro">${escapeHtml(step.intro)}</p><div class="action-area">${body}</div>`}<div class="button-row"><button class="secondary-button" id="backButton" type="button"${current === 0 ? ' disabled' : ''}>${icon('back')}上一步</button>${finished ? `<button class="primary-button" id="nextButton" type="button">查看常见问题${icon('arrow')}</button>` : primary}</div>`;
+  card.innerHTML = `<div class="step-meta"><span class="step-number">${finished ? 'ALL DONE' : step.kind === 'faq' ? 'FAQ' : current >= 15 ? `AI ${String(current - 14).padStart(2, '0')}` : `STEP ${String(stepNumber).padStart(2, '0')}`}</span><span class="step-category">${finished ? '流程完成' : step.kind === 'faq' ? '常见问题' : current >= 15 ? '更多 AI 玩法' : phases[phaseByStep[current]].title}</span></div>${finished ? `<div class="completion"><div class="completion-symbol">${icon('check')}</div><h2 id="stepTitle">恭喜，完成这段旅程！</h2><p>准备工作已经完成，现在开始使用 ChatGPT Plus 吧。还想继续折腾？下面还有进阶玩法。</p><a class="primary-button" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">打开 ChatGPT${icon('external')}</a></div>` : `<h2 id="stepTitle">${escapeHtml(step.title)}</h2><p class="step-intro">${escapeHtml(step.intro)}</p><div class="action-area">${body}</div>`}<div class="button-row"><button class="secondary-button" id="backButton" type="button"${current === 0 ? ' disabled' : ''}>${icon('back')}上一步</button>${finished ? `<span class="button-group"><button class="secondary-button" id="bonusButton" type="button">更多 AI 玩法${icon('arrow')}</button><button class="primary-button" id="nextButton" type="button">查看常见问题${icon('arrow')}</button></span>` : primary}</div>`;
   coachText.textContent = step.coach;
   handoffStatus.className = `handoff-status${blocked ? ' blocked-state' : journeyDone ? ' complete-state' : ''}`;
   handoffStatus.innerHTML = `<span class="status-dot"></span>${blocked ? (current === 2 ? '等待订阅到期' : '未满足门槛') : journeyDone ? '已完成' : step.kind === 'choice' ? '等待选择' : '等待操作'}`;
   card.querySelector('#backButton').addEventListener('click', back);
+  card.querySelector('#bonusButton')?.addEventListener('click', () => moveTo(15));
   card.querySelectorAll('[data-choice]').forEach(button => button.addEventListener('click', () => choose(button.dataset.choice)));
   card.querySelector('#nextButton')?.addEventListener('click', complete);
   if (step.kind === 'checks') {

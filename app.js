@@ -59,9 +59,14 @@ const steps = [
     kind: 'links',
     links:[{label:'注册 Roogoo（官方注册链接）', url:'https://wap.roogoo.money/register'}],
     bullets:[
-      '复制优惠链接到浏览器打开，用任意邮箱注册账户密码。',
-      '进入「卡片 → 免费申请卡片」，完成实名认证：平台提供的认证方式都可以，身份证或护照均可，如实填写即可。',
-      '认证通过后先回首页，不要急着申请开卡——网站还没有余额，下一步先买 U。'
+      '复制官方注册链接到浏览器打开，用任意邮箱注册账户密码（图一）。',
+      '进入「设置」完成实名认证：选择 Sumsub 认证（审核快），身份证或护照均可，如实填写、照片拍清楚，不要用美颜或 AI 修图（图二）。',
+      '认证通过后先回首页，不要急着点「免费申请卡片」——网站还没有余额，下一步先买 U（图三）。'
+    ],
+    images:[
+      {src:'./ppt-roogoo-profile.png', alt:'Roogoo 设置页：实名认证显示待认证', caption:'图一 · 注册后进入设置页，实名认证一栏点进去'},
+      {src:'./ppt-roogoo-sumsub.png', alt:'实名认证弹窗：选择 Sumsub认证（审核快）', caption:'图二 · 选「Sumsub认证(审核快)」，身份证或护照均可'},
+      {src:'./ppt-roogoo-home.png', alt:'Roogoo 首页：免费申请卡片按钮，认证通过后先不要开卡', caption:'图三 · 认证通过回到首页：先别点「免费申请卡片」，下一步先买 U'}
     ],
     note:'身份证和人脸信息只提交给 Roogoo 官方平台；费用和资格以平台当前页面为准。',
     button:'实名已通过，继续'
@@ -115,15 +120,16 @@ const steps = [
     kind: 'links',
     bullets:[
       'Roogoo 首页点左侧「卡片」进入申请界面（图一）。',
-      '在「申请卡片」页选「乐享卡(Enjoy Card)」（图二），点「申请卡片」，从网站余额扣 10 USDT 作为首充。',
-      '审核约 10 分钟开通；卡内余额显示可能有几分钟延迟，刷新等待即可（图三）。',
+      '「申请卡片」页有多款卡，费率各不相同（图二）：只有美国发卡的乐享卡(Enjoy Card)支持 AI 订阅，无境卡不支持，千万别选错（图三）。',
+      '点「申请卡片」，从网站余额扣 10 USDT 作为首充；审核约 10 分钟开通，卡内余额显示可能有几分钟延迟，刷新等待即可（图四）。',
       '立刻保存卡号、有效期、安全码（CVV），付款时要填。',
       '从网站余额再向卡内充值，把卡内凑到约 19 U：约 16 U 付 Plus，3 U 余量。'
     ],
     images:[
       {src:'./roogoo-card-entry.png', alt:'Roogoo 首页：左侧「卡片」入口', caption:'图一 · Roogoo 首页：点左侧「卡片」进入申请界面'},
-      {src:'./roogoo-enjoy-select.png', alt:'申请卡片页：虚拟卡-消费分类下的乐享卡(Enjoy Card)被圈出', caption:'图二 · 申请卡片页：选「乐享卡(Enjoy Card)」（美国发卡，1% 交易费）'},
-      {src:'./roogoo-enjoy-card.jpg', alt:'乐享卡开通后界面：卡片余额待创建完成，点击刷新', caption:'图三 · 开卡后：「持卡人信息创建中」属正常，点「刷新」等余额显示'}
+      {src:'./ppt-roogoo-cards.png', alt:'申请卡片页：无境卡、乐享卡、随行卡三款卡的费率对比', caption:'图二 · 申请卡片页：三款卡费率对比，无境卡明确标注「不支持AI订阅」'},
+      {src:'./roogoo-enjoy-select.png', alt:'申请卡片页：虚拟卡-消费分类下的乐享卡(Enjoy Card)被圈出', caption:'图三 · 认准「乐享卡(Enjoy Card)」（美国发卡，1% 交易费）'},
+      {src:'./roogoo-enjoy-card.jpg', alt:'乐享卡开通后界面：卡片余额待创建完成，点击刷新', caption:'图四 · 开卡后：「持卡人信息创建中」属正常，点「刷新」等余额显示'}
     ],
     note:'余额不足时不要尝试扣款：会产生拒付费（20 美元账单约收 0.9 美元，也有反馈十几元的情况），成功扣款的手续费很少。新卡常留 3–5 U 防冻结。',
     button:'卡信息已保存，卡内约 19 U'
@@ -150,7 +156,7 @@ const steps = [
       {src:'./ph-pay-vat.png', alt:'付款页：选银行卡并填写卡号、有效期、安全码，右侧显示 12% VAT 合计 PHP 1,100', caption:'图三 · 付款页：选「银行卡」填卡信息，未免税前含 12% VAT、合计 ₱1,100'},
       {src:'./ph-billing-taxfree.png', alt:'账单地址填写示例：国家选美国并填写免税州地址', caption:'图四 · 账单地址：国家选美国，填写美国免税州地址示例'},
       {src:'./ph-subscribe-982.png', alt:'填完免税州地址后：税额 0%，今日应付金额 PHP 982.14，点击订阅', caption:'图五 · 免税后应付 ₱982.14 ≈ 106 元，核对无误点「订阅」'},
-      {src:'./ph-settled.png', alt:'乐享卡结算记录示意：ChatGPT Plus 订阅扣款', caption:'图六 · 成功开通与结算示意'}
+      {src:'./ph-settled.png', alt:'ChatGPT Plus 订阅结算示意（金额已作隐私处理）', caption:'图六 · 订阅成功与结算示意，金额已作隐私处理'}
     ],
     button:'订阅成功，已记录到期日'
   },
@@ -260,5 +266,149 @@ const steps = [
         ]
       }
     ]
+  },
+  {
+    title: '更多 AI 玩法（可选）',
+    intro: '主流程到这里就结束了。下面两个进阶教程相互独立，选一个想学的继续，另一个以后可以从完成页再进来。',
+    coach: '两个都不需要也没关系，点「上一步」回到完成页即可。',
+    kind: 'choice',
+    choices: [
+      {title:'CockpitTools：秒切 Codex 账号', copy:'A 账号额度用完时，一键切换到 B 账号，免去反复登录授权', value:'cockpit'},
+      {title:'Gemini 反代：额度变私人 API', copy:'把谷歌反重力额度做成私人中转站，给 Cherry Studio 等客户端使用', value:'gemini'}
+    ],
+    note:'两个教程只用看一个就点对应选项；做完最后一个步骤会自动带你回常见问题页。',
+    button:'确认并继续'
+  },
+  {
+    title: 'CockpitTools · 下载安装',
+    intro: '解决的问题：用 Codex 时 A 账号额度用完了，怎么快速切到 B 账号？CockpitTools 免去退出登录、重新授权的繁琐步骤。',
+    coach: '开源工具，GitHub 直接下载；也可以把链接发给 Codex 让它帮你装。',
+    kind: 'links',
+    links:[{label:'打开 CockpitTools 项目页（GitHub）', url:'https://github.com/jlcodes99/cockpit-tools'}],
+    bullets:[
+      '打开上方 GitHub 项目页，下载最新版本安装（图一）。',
+      '偷懒办法：把项目链接直接发给 Codex，让它「帮我安装这个工具到指定文件夹」，装完桌面和开始菜单都有快捷方式。'
+    ],
+    images:[
+      {src:'./ck-install.png', alt:'CockpitTools 安装完成界面：安装位置、启动程序与快捷方式', caption:'图一 · 安装完成：桌面和开始菜单均已创建快捷方式'}
+    ],
+    button:'安装完成，继续'
+  },
+  {
+    title: 'CockpitTools · 添加并授权账号',
+    intro: '把需要快速切换的 Codex 账号都加进账号池，每个账号完成一次 OAuth 授权即可。',
+    coach: '每个账号只要授权一次，之后切换就不需要再登录。',
+    kind: 'links',
+    bullets:[
+      '打开软件，左侧栏点「Codex」，点右上角「+」添加需要快速切换的账号（图一）。',
+      '在弹窗中点「在浏览器中打开」，登录该账号并完成 OpenAI OAuth 授权（图二）。',
+      '重复上一步，把所有要切换的账号都加进账号池。'
+    ],
+    images:[
+      {src:'./ck-accounts.png', alt:'CockpitTools 账号总览：点右上角 + 号添加账号', caption:'图一 · 账号总览：点「+」添加需要快速切换的账号'},
+      {src:'./ck-oauth.png', alt:'添加 Codex 账号弹窗：点「在浏览器中打开」完成 OAuth 授权', caption:'图二 · 点「在浏览器中打开」，登录账号完成授权'}
+    ],
+    button:'账号都加好了，继续'
+  },
+  {
+    title: 'CockpitTools · 一键切换账号',
+    intro: '日常使用只需要两个按钮：先「切换」，再「切换并启动」，工具会自动换号并重启 Codex。',
+    coach: '切换前确认目标账号还有额度，账号卡片上有用量和订阅有效期。',
+    kind: 'links',
+    bullets:[
+      'A 账号没额度时，点目标账号卡片下的「切换」按钮（图一）。',
+      '在启动预览里点「切换并启动」，等待加载完成（图二）。',
+      '程序会自动写入账号配置并重启 Codex，直接使用即可（图三）。同样的方法也适用于 Claude、Antigravity 等其他 Agent。'
+    ],
+    images:[
+      {src:'./ck-switch.png', alt:'账号池卡片下方的「切换」按钮', caption:'图一 · 点账号卡片下的「切换」'},
+      {src:'./ck-switch-run.png', alt:'Codex 启动预览弹窗：点右下角「切换并启动」', caption:'图二 · 启动预览里点「切换并启动」'},
+      {src:'./ck-done.png', alt:'实例启动完成：自动切换账号并重启 Codex 客户端', caption:'图三 · 加载完成自动重启 Codex，换号成功'}
+    ],
+    button:'完成，回常见问题'
+  },
+  {
+    title: 'Gemini 反代 · 下载安装 Antigravity Manager',
+    intro: '把谷歌反重力（Antigravity）账号里的 Gemini / Claude 额度，反代成你自己的私人 API 中转站：Base URL + API Key 直接给各种客户端用。',
+    coach: '同样是开源工具；安装路径尽量不要有中文，可以装在非 C 盘。',
+    kind: 'links',
+    links:[{label:'打开 AntigravityManager 项目页（GitHub）', url:'https://github.com/Draculabo/AntigravityManager'}],
+    bullets:[
+      '打开上方 GitHub 项目页，进 Releases 选择最新版本（图一）。',
+      'Windows 选 .exe installer 下载安装；也可以把项目链接直接发给 Codex 让它帮你装。'
+    ],
+    images:[
+      {src:'./gm-download.png', alt:'GitHub Releases 资产列表：选择对应平台的最新版本安装包', caption:'图一 · Releases 里选最新版本，Windows 选 win32-x64-setup.exe'}
+    ],
+    button:'安装完成，继续'
+  },
+  {
+    title: 'Gemini 反代 · 添加谷歌账号并授权',
+    intro: '打开软件后先把谷歌账号加进来。授权环节对网络要求高：需要干净的美区 IP 并开启 TUN（虚拟网卡）模式，否则无法授权。',
+    coach: '推荐第一种 OAuth 方式，浏览器点一下就完成。',
+    kind: 'links',
+    bullets:[
+      '双击打开软件，在仪表盘点右上角「添加账号」（图一）。',
+      '推荐方式一点「开始 OAuth 授权」，浏览器跳转谷歌登录页完成账号授权（图二）。',
+      '页面出现 Authorization Successful 字样即登录成功。'
+    ],
+    images:[
+      {src:'./gm-dashboard.png', alt:'Antigravity Manager 仪表盘：右上角「添加账号」按钮', caption:'图一 · 仪表盘右上角点「添加账号」'},
+      {src:'./gm-oauth.png', alt:'添加新账号弹窗：OAuth 授权为推荐方式，点「开始 OAuth 授权」', caption:'图二 · 点「开始 OAuth 授权」完成谷歌账号登录'}
+    ],
+    note:'添加账号失败或超时，基本都是网络环境不干净：换成干净的美区 IP 并开启 TUN 模式再试（群精华的美区 150 延迟 IP 亲测可用）。',
+    button:'授权成功，继续'
+  },
+  {
+    title: 'Gemini 反代 · 启用账号与反代服务',
+    intro: '账号加好后，把账号配额启用，再打开 API 反代服务的开关，就能拿到属于你的 API 密钥。',
+    coach: '账号池里有 403 / 502 报错就先处理，报错办法在最后一步。',
+    kind: 'links',
+    bullets:[
+      '点「账号管理」：账号池正常显示各模型额度、没有 403 / 502 等报错即为成功（图一）。',
+      '全选账号，点「启用」，开启账号反代配额。',
+      '点「API 反代」—「启用服务」，显示「服务运行中」即反代已开启，页面里就是你的 API 密钥（图二）。'
+    ],
+    images:[
+      {src:'./gm-accounts.png', alt:'账号管理页：账号池显示模型配额，全选后点启用', caption:'图一 · 账号管理：配额正常显示，全选点「启用」'},
+      {src:'./gm-proxy.png', alt:'API 反代服务配置：服务运行中，下方为 API 密钥', caption:'图二 · 「API 反代」启用服务后拿到 API 密钥'}
+    ],
+    note:'API 密钥等同账号权限，妥善保管，不要泄露给他人。',
+    button:'服务已开启，继续'
+  },
+  {
+    title: 'Gemini 反代 · 接入客户端使用',
+    intro: '任何需要 API 密钥的软件都能接入。配置只需要三样：Base URL、API Key、模型 ID，全部在「API 反代」界面（图一）。',
+    coach: '以 Cherry Studio 为例，Codex、Claude Code、酒馆等方法类似。',
+    kind: 'links',
+    bullets:[
+      '以 Cherry Studio 为例：依次点「设置」—「模型服务」—「添加」，供应商类型选 OpenAI，名称随意（图二）。',
+      'API 密钥填反代页面的密钥，API 地址填 http://127.0.0.1:8045/v1（端口以你页面显示为准）。',
+      '点「检测」测试连通性，出现「连接成功」和密钥右侧对号即导入成功（图三）。',
+      '开一轮新对话测试，能正常回复就大功告成。'
+    ],
+    images:[
+      {src:'./gm-apiinfo.png', alt:'API 反代界面：Base URL、API Key 与支持的模型 ID 列表', caption:'图一 · 三要素都在「API 反代」界面：地址、密钥、模型 ID'},
+      {src:'./gm-cherry.png', alt:'Cherry Studio 添加供应商：填 API 密钥与 API 地址', caption:'图二 · Cherry Studio：设置 → 模型服务 → 添加，填密钥和地址'},
+      {src:'./gm-connected.png', alt:'连接成功提示与新对话测试正常回复', caption:'图三 · 「连接成功」+ 对话测试通过即接入完成'}
+    ],
+    button:'测试通过，完成'
+  },
+  {
+    title: 'Gemini 反代 · 常见报错处理',
+    intro: '三种最常见的问题，对着现象处理即可。',
+    coach: '绝大多数报错都是网络或账号状态问题，按下面三条处理基本都能解决。',
+    kind: 'links',
+    bullets:[
+      '添加账号失败或超时（fetch failed）：网络环境不干净，换干净美区 IP 并开启 TUN 模式（图一）。',
+      '账号 403 报错要求验证：在手机上安装 Google 应用，登录需要验证的账号，用扫码方式完成验证（图二）。',
+      '反代一段时间后账号被禁用：多发生于长期未登录或刚获得 PRO（尤其学生认证）的账号；先用干净美区 IP 正常使用养 2–3 天再反代，或重新去 Gemini 网页登录验证（图三）。'
+    ],
+    images:[
+      {src:'./gm-fetch-failed.png', alt:'添加账号失败提示：fetch failed，需更换干净美区 IP 并开启 TUN', caption:'图一 · fetch failed：换干净美区 IP + TUN 模式'},
+      {src:'./gm-403.png', alt:'账号 403 需要账号验证，用手机 Google 应用扫码验证', caption:'图二 · 403 验证：手机 Google 应用扫码'},
+      {src:'./gm-disabled.png', alt:'账号管理页显示账号已被禁用，需要重新登录验证', caption:'图三 · 账号被禁用：养号 2–3 天或重新登录验证'}
+    ],
+    button:'完成，回常见问题'
   }
 ];
