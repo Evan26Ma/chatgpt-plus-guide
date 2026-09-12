@@ -33,10 +33,6 @@ const imageSizes = {
   'roogoo-enjoy-card.jpg': [1579, 1485], 'roogoo-enjoy-select.png': [860, 932],
   'ph-pay-vat.png': [1849, 1048], 'ph-billing-taxfree.png': [1302, 1208], 'ph-subscribe-982.png': [889, 838],
   'ph-plus-welcome.png': [756, 720], 'ph-settled.png': [2169, 725],
-  'ppt-roogoo-sumsub.png': [642, 744], 'ppt-roogoo-profile.png': [837, 837], 'ppt-roogoo-home.png': [2512, 1308], 'ppt-roogoo-cards.png': [567, 1279],
-  'ck-install.png': [1482, 1152], 'ck-accounts.png': [1919, 1200], 'ck-oauth.png': [1182, 1065], 'ck-switch.png': [1516, 978], 'ck-switch-run.png': [1365, 1155], 'ck-done.png': [1919, 1200],
-  'gm-download.png': [1980, 1107], 'gm-dashboard.png': [1950, 1047], 'gm-oauth.png': [900, 1085], 'gm-accounts.png': [2055, 1281], 'gm-proxy.png': [1875, 888], 'gm-apiinfo.png': [1869, 1086],
-  'gm-cherry.png': [1436, 1136], 'gm-connected.png': [1298, 1136], 'gm-fetch-failed.png': [1186, 793], 'gm-403.png': [2140, 886], 'gm-disabled.png': [1564, 734]
 };
 let storageAvailable = true;
 function loadState() {

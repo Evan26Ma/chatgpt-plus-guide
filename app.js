@@ -63,11 +63,6 @@ const steps = [
       '进入「设置」完成实名认证：选择 Sumsub 认证（审核快），身份证或护照均可，如实填写、照片拍清楚，不要用美颜或 AI 修图（图二）。',
       '认证通过后先回首页，不要急着点「免费申请卡片」——网站还没有余额，下一步先买 U（图三）。'
     ],
-    images:[
-      {src:'./ppt-roogoo-profile.png', alt:'Roogoo 设置页：实名认证显示待认证', caption:'图一 · 注册后进入设置页，实名认证一栏点进去'},
-      {src:'./ppt-roogoo-sumsub.png', alt:'实名认证弹窗：选择 Sumsub认证（审核快）', caption:'图二 · 选「Sumsub认证(审核快)」，身份证或护照均可'},
-      {src:'./ppt-roogoo-home.png', alt:'Roogoo 首页：免费申请卡片按钮，认证通过后先不要开卡', caption:'图三 · 认证通过回到首页：先别点「免费申请卡片」，下一步先买 U'}
-    ],
     note:'身份证和人脸信息只提交给 Roogoo 官方平台；费用和资格以平台当前页面为准。',
     button:'实名已通过，继续'
   },
@@ -127,7 +122,6 @@ const steps = [
     ],
     images:[
       {src:'./roogoo-card-entry.png', alt:'Roogoo 首页：左侧「卡片」入口', caption:'图一 · Roogoo 首页：点左侧「卡片」进入申请界面'},
-      {src:'./ppt-roogoo-cards.png', alt:'申请卡片页：无境卡、乐享卡、随行卡三款卡的费率对比', caption:'图二 · 申请卡片页：三款卡费率对比，无境卡明确标注「不支持AI订阅」'},
       {src:'./roogoo-enjoy-select.png', alt:'申请卡片页：虚拟卡-消费分类下的乐享卡(Enjoy Card)被圈出', caption:'图三 · 认准「乐享卡(Enjoy Card)」（美国发卡，1% 交易费）'},
       {src:'./roogoo-enjoy-card.jpg', alt:'乐享卡开通后界面：卡片余额待创建完成，点击刷新', caption:'图四 · 开卡后：「持卡人信息创建中」属正常，点「刷新」等余额显示'}
     ],
@@ -289,9 +283,6 @@ const steps = [
       '打开上方 GitHub 项目页，下载最新版本安装（图一）。',
       '偷懒办法：把项目链接直接发给 Codex，让它「帮我安装这个工具到指定文件夹」，装完桌面和开始菜单都有快捷方式。'
     ],
-    images:[
-      {src:'./ck-install.png', alt:'CockpitTools 安装完成界面：安装位置、启动程序与快捷方式', caption:'图一 · 安装完成：桌面和开始菜单均已创建快捷方式'}
-    ],
     button:'安装完成，继续'
   },
   {
@@ -303,10 +294,6 @@ const steps = [
       '打开软件，左侧栏点「Codex」，点右上角「+」添加需要快速切换的账号（图一）。',
       '在弹窗中点「在浏览器中打开」，登录该账号并完成 OpenAI OAuth 授权（图二）。',
       '重复上一步，把所有要切换的账号都加进账号池。'
-    ],
-    images:[
-      {src:'./ck-accounts.png', alt:'CockpitTools 账号总览：点右上角 + 号添加账号', caption:'图一 · 账号总览：点「+」添加需要快速切换的账号'},
-      {src:'./ck-oauth.png', alt:'添加 Codex 账号弹窗：点「在浏览器中打开」完成 OAuth 授权', caption:'图二 · 点「在浏览器中打开」，登录账号完成授权'}
     ],
     button:'账号都加好了，继续'
   },
@@ -320,11 +307,6 @@ const steps = [
       '在启动预览里点「切换并启动」，等待加载完成（图二）。',
       '程序会自动写入账号配置并重启 Codex，直接使用即可（图三）。同样的方法也适用于 Claude、Antigravity 等其他 Agent。'
     ],
-    images:[
-      {src:'./ck-switch.png', alt:'账号池卡片下方的「切换」按钮', caption:'图一 · 点账号卡片下的「切换」'},
-      {src:'./ck-switch-run.png', alt:'Codex 启动预览弹窗：点右下角「切换并启动」', caption:'图二 · 启动预览里点「切换并启动」'},
-      {src:'./ck-done.png', alt:'实例启动完成：自动切换账号并重启 Codex 客户端', caption:'图三 · 加载完成自动重启 Codex，换号成功'}
-    ],
     button:'完成，回常见问题'
   },
   {
@@ -336,9 +318,6 @@ const steps = [
     bullets:[
       '打开上方 GitHub 项目页，进 Releases 选择最新版本（图一）。',
       'Windows 选 .exe installer 下载安装；也可以把项目链接直接发给 Codex 让它帮你装。'
-    ],
-    images:[
-      {src:'./gm-download.png', alt:'GitHub Releases 资产列表：选择对应平台的最新版本安装包', caption:'图一 · Releases 里选最新版本，Windows 选 win32-x64-setup.exe'}
     ],
     button:'安装完成，继续'
   },
@@ -352,10 +331,6 @@ const steps = [
       '推荐方式一点「开始 OAuth 授权」，浏览器跳转谷歌登录页完成账号授权（图二）。',
       '页面出现 Authorization Successful 字样即登录成功。'
     ],
-    images:[
-      {src:'./gm-dashboard.png', alt:'Antigravity Manager 仪表盘：右上角「添加账号」按钮', caption:'图一 · 仪表盘右上角点「添加账号」'},
-      {src:'./gm-oauth.png', alt:'添加新账号弹窗：OAuth 授权为推荐方式，点「开始 OAuth 授权」', caption:'图二 · 点「开始 OAuth 授权」完成谷歌账号登录'}
-    ],
     note:'添加账号失败或超时，基本都是网络环境不干净：换成干净的美区 IP 并开启 TUN 模式再试（群精华的美区 150 延迟 IP 亲测可用）。',
     button:'授权成功，继续'
   },
@@ -368,10 +343,6 @@ const steps = [
       '点「账号管理」：账号池正常显示各模型额度、没有 403 / 502 等报错即为成功（图一）。',
       '全选账号，点「启用」，开启账号反代配额。',
       '点「API 反代」—「启用服务」，显示「服务运行中」即反代已开启，页面里就是你的 API 密钥（图二）。'
-    ],
-    images:[
-      {src:'./gm-accounts.png', alt:'账号管理页：账号池显示模型配额，全选后点启用', caption:'图一 · 账号管理：配额正常显示，全选点「启用」'},
-      {src:'./gm-proxy.png', alt:'API 反代服务配置：服务运行中，下方为 API 密钥', caption:'图二 · 「API 反代」启用服务后拿到 API 密钥'}
     ],
     note:'API 密钥等同账号权限，妥善保管，不要泄露给他人。',
     button:'服务已开启，继续'
@@ -387,11 +358,6 @@ const steps = [
       '点「检测」测试连通性，出现「连接成功」和密钥右侧对号即导入成功（图三）。',
       '开一轮新对话测试，能正常回复就大功告成。'
     ],
-    images:[
-      {src:'./gm-apiinfo.png', alt:'API 反代界面：Base URL、API Key 与支持的模型 ID 列表', caption:'图一 · 三要素都在「API 反代」界面：地址、密钥、模型 ID'},
-      {src:'./gm-cherry.png', alt:'Cherry Studio 添加供应商：填 API 密钥与 API 地址', caption:'图二 · Cherry Studio：设置 → 模型服务 → 添加，填密钥和地址'},
-      {src:'./gm-connected.png', alt:'连接成功提示与新对话测试正常回复', caption:'图三 · 「连接成功」+ 对话测试通过即接入完成'}
-    ],
     button:'测试通过，完成'
   },
   {
@@ -403,11 +369,6 @@ const steps = [
       '添加账号失败或超时（fetch failed）：网络环境不干净，换干净美区 IP 并开启 TUN 模式（图一）。',
       '账号 403 报错要求验证：在手机上安装 Google 应用，登录需要验证的账号，用扫码方式完成验证（图二）。',
       '反代一段时间后账号被禁用：多发生于长期未登录或刚获得 PRO（尤其学生认证）的账号；先用干净美区 IP 正常使用养 2–3 天再反代，或重新去 Gemini 网页登录验证（图三）。'
-    ],
-    images:[
-      {src:'./gm-fetch-failed.png', alt:'添加账号失败提示：fetch failed，需更换干净美区 IP 并开启 TUN', caption:'图一 · fetch failed：换干净美区 IP + TUN 模式'},
-      {src:'./gm-403.png', alt:'账号 403 需要账号验证，用手机 Google 应用扫码验证', caption:'图二 · 403 验证：手机 Google 应用扫码'},
-      {src:'./gm-disabled.png', alt:'账号管理页显示账号已被禁用，需要重新登录验证', caption:'图三 · 账号被禁用：养号 2–3 天或重新登录验证'}
     ],
     button:'完成，回常见问题'
   }
