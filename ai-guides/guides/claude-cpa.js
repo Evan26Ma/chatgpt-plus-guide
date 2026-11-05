@@ -1,0 +1,174 @@
+window.AI_GUIDE = {
+  index: '08',
+  slug: 'claude-cpa',
+  title: 'Claude Desktop 接入 CPA 三方 API',
+  subtitle: '桌面端也能用别的模型',
+  phases: [
+    { title: '装好客户端', copy: '安装并登录' },
+    { title: '开开发者模式', copy: '打开隐藏开关' },
+    { title: '填三方 API', copy: '地址 + 密钥' },
+    { title: '选模型开聊', copy: '验证与排错' }
+  ],
+  inputs: [
+    { key: 'cpaUrl', label: 'CPA 中转地址', short: 'CPA 地址', placeholder: 'https://cpa.你的域名', hint: '你自建或购买的中转站地址，照对方给的原样填（一般不带 /v1）。', example: 'https://cpa.example.com' },
+    { key: 'cpaKey', label: 'CPA 密钥', short: 'CPA 密钥', placeholder: '你的中转站密钥', hint: '中转站发给你的访问密钥，相当于账号权限，别外借。', example: 'sk-cpa-9f3c1a7b' }
+  ],
+  steps: [
+    {
+      phase: 0,
+      kind: 'info',
+      short: '这篇在做什么',
+      title: '这篇教程，是让 Claude 桌面端走你自己的中转站',
+      intro: 'Claude 桌面端自带一个开发者模式，开启后可以填入第三方的 API 地址和密钥。填上你的 CPA 中转站之后，右下角的模型选择器里就会出现中转站提供的模型，可以像平时一样对话。',
+      facts: [
+        ['要准备', '一台 Windows 或 macOS 电脑'],
+        ['要准备', '一个已经搭好的 CPA 中转站地址'],
+        ['要准备', '中转站发的密钥'],
+        ['大概要多久', '装软件加配置，20 分钟内']
+      ],
+      bullets: [
+        '整个配置都在软件的图形界面里完成，不用改文件、不用敲命令。',
+        '密钥只在你的电脑和中转站之间传递，别贴在群里。',
+        '如果你的中转站里没有 Claude 系列模型，可以改走 DeepSeek 方案（用 cc-switch，见另一篇）。'
+      ],
+      note: '中转站的可用模型、额度和并发由它自己决定；请遵守上游服务条款。',
+      coach: '思路很简单：装客户端 → 开开发者模式 → 填地址和密钥 → 选模型。',
+      button: '看明白了，开始'
+    },
+    {
+      phase: 0,
+      kind: 'inputs',
+      short: '填我的参数',
+      title: '第 1 步：填入你的中转站地址和密钥',
+      intro: '这两个值会在后面的配置页里用到，填一次，下面就自动替换好了。',
+      coach: '地址照抄对方给的，不要自己加 /v1 或结尾斜杠。',
+      seeAlso: [
+        { title: '01 搭建个人 AI 中转网关（CLIProxyAPI）', url: './01-cli-proxy-api.html', why: '手上没有 CPA 地址？这个网关就是「自建 CPA」，先把它搭起来', icon: 'key' }
+      ],
+      button: '保存，继续'
+    },
+    {
+      phase: 0,
+      kind: 'task',
+      short: '安装客户端',
+      title: '第 2 步：安装并登录 Claude 桌面端',
+      intro: '去官网下载桌面端安装包，正常安装、正常登录。',
+      links: [{ label: '打开 Claude 官网下载页', url: 'https://claude.ai/download' }],
+      bullets: [
+        '按你的系统下载对应版本（Windows / macOS），双击安装。',
+        '安装完成后打开软件，用你自己的账号登录。',
+        '能正常打开对话界面，这一步就完成了。'
+      ],
+      coach: '这一步不用做任何特殊设置，就是普通的装软件 + 登录。',
+      button: '客户端装好了'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '开开发者模式',
+      title: '第 3 步：打开开发者模式',
+      intro: '三方 API 的配置入口平时是藏起来的，需要手动打开开发者模式。',
+      bullets: [
+        '打开 Claude 的设置（Settings）。',
+        '进入 Help → Troubleshooting。',
+        '找到 Enable Developer（开发者模式）并打开它。',
+        '打开之后，设置里会多出开发者相关的选项，下一步就在那里配置。'
+      ],
+      note: '开发者模式只是把「自定义 API 地址」这个入口放出来，不会改变软件本身的用法。',
+      coach: '路径记一下：设置 → Help → Troubleshooting → Enable Developer。',
+      button: '开发者模式已打开'
+    },
+    {
+      phase: 2,
+      kind: 'task',
+      short: '填三方 API',
+      title: '第 4 步：填入中转站地址和密钥',
+      intro: '在开发者选项里找到三方 API 配置，按下面四项填好。',
+      facts: [
+        ['Credential kind', 'Static API key（静态密钥）'],
+        ['URL', '{{ cpaUrl }}'],
+        ['Key', '{{ cpaKey }}'],
+        ['保存', '点 Apply Changes']
+      ],
+      bullets: [
+        'Credential kind 一定要选 Static API key，不要选别的类型。',
+        'URL 填你的中转站地址，原样复制，不要自己补 /v1。',
+        'Key 填中转站发给你的密钥，注意首尾不要带空格。',
+        '点 Apply Changes 保存；保存后通常不需要重启。'
+      ],
+      warn: '密钥等于账号权限：只填在你自己的电脑上，不要发给任何人，也不要贴进截图里分享。',
+      coach: '四项里最容易错的是 Credential kind，先把它选对再填地址。',
+      button: '配置已保存'
+    },
+    {
+      phase: 3,
+      kind: 'task',
+      short: '选模型开聊',
+      title: '第 5 步：在模型选择器里选模型，开始对话',
+      intro: '回到主界面，右下角的模型选择器里会列出中转站提供的模型，选一个开始聊天。',
+      bullets: [
+        '点右下角的模型选择器，选择 claude 系列或中转站里的其它模型。',
+        '发一句简单的话，能正常回复就说明配置成功了。',
+        '换模型就在同一个下拉框里切换，不用重新配置。'
+      ],
+      note: '如果列表里没有 Claude 模型，说明你的中转站号池里没有这类模型；可以改走 DeepSeek 方案（cc-switch 那篇）。',
+      coach: '到这一步，你的 Claude 桌面端已经用上了中转站的模型。',
+      button: '能正常对话了，完成'
+    },
+    {
+      phase: 3,
+      kind: 'task',
+      short: '排错',
+      title: '第 6 步：两个常见问题，对着现象处理',
+      intro: '配置成功后如果遇到下面两种情况，按对应办法处理就行。',
+      bullets: [
+        '没自动配好 127.0.0.1 回程：表现是配完仍然连不上或报错。处理办法是重置应用，然后重新走一遍上面的配置流程。',
+        '断连、而且服务商在国外：说明网络链路不稳。打开代理的 TUN 模式（虚拟网卡）再试，让软件的网络请求都走代理。'
+      ],
+      note: '改了配置后如果行为没变化，先彻底退出软件再重新打开，避免旧配置还在生效。',
+      coach: '这两个问题覆盖了绝大多数「配了但用不了」的情况。',
+      seeAlso: [
+        { title: '美国住宅 IP 向导（家宽静态住宅）', url: 'https://ip.plus-guide.fun/', why: '一直断连、换节点也没用，说明出口 IP 被风控了——换成住宅出口更稳', icon: 'globe' }
+      ],
+      button: '没问题，完成'
+    },
+    {
+      phase: 3,
+      kind: 'done',
+      short: '完成与问答',
+      title: '搞定，桌面端已经接上你的中转站',
+      intro: '开发者模式打开了、三方 API 填好了、模型也能正常对话。以后想换模型，直接在右下角切换即可。',
+      seeAlso: [
+        { title: '09 Claude Desktop 接入 DeepSeek API', url: './09-claude-deepseek.html', why: '号池里没有 Claude 模型，或者想直接用官方 DeepSeek 接口', icon: 'chip' }
+      ],
+      doneGroups: [
+        {
+          title: '收尾：这几件事只有你能做',
+          items: [
+            '确认密钥只保存在你自己的电脑上，没有出现在任何截图或聊天记录里',
+            '把中转站地址和可用模型记在笔记里，以后换电脑直接用',
+            '如果中转站密钥轮换过，记得回来更新这里的 Key'
+          ]
+        }
+      ],
+      faqGroups: [
+        {
+          label: '配置',
+          items: [
+            { q: '找不到 Enable Developer 这个开关？', a: '检查软件版本是否较新：开发者模式是较新版本才有的入口。先在设置里找 Help → Troubleshooting，没有的话把客户端更新到最新版再找。' },
+            { q: 'URL 到底要不要带 /v1？', a: '照你的中转站给你的写法原样填。多数中转站给的就是不带 /v1 的根地址，自己加反而可能 404。' },
+            { q: '保存后没反应 / 没生效？', a: '先彻底退出软件再打开（不是关窗口）。还不行就重置应用，重新走一遍配置流程。' }
+          ]
+        },
+        {
+          label: '使用与排错',
+          items: [
+            { q: '模型列表是空的？', a: '说明中转站那边没有可用模型或密钥没权限。先去中转站面板确认它有可用渠道，并确认这个密钥能用。' },
+            { q: '对话中断、报网络错误？', a: '多数是链路问题：打开代理的 TUN 模式再试；如果中转站在国外而你在国内，保持稳定的代理连接，别频繁切节点。' },
+            { q: '能用这个方式登录官方账号吗？', a: '不能混用。填了三方 API 就是走三方；想回官方，把三方配置清掉、重置应用，重新登录即可。' }
+          ]
+        }
+      ]
+    }
+  ]
+};

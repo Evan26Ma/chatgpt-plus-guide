@@ -1,0 +1,30 @@
+[Unit]
+Description=Private tutorial suggestions for Plus Guide
+After=network.target
+
+[Service]
+Type=simple
+DynamicUser=true
+StateDirectory=plus-guide-suggestions
+StateDirectoryMode=0700
+ExecStart=/usr/bin/python3 -B /opt/plus-guide-suggestions/server.py
+Restart=on-failure
+RestartSec=3
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/plus-guide-suggestions
+RestrictAddressFamilies=AF_UNIX AF_INET
+CapabilityBoundingSet=
+LockPersonality=true
+MemoryMax=64M
+CPUQuota=10%
+TasksMax=32
+LimitNOFILE=128
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

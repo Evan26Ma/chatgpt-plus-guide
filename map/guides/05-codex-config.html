@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="VPS 上配置 Codex 接入自建中转站：让服务器上的 Codex 走自己的网关。每一步配截图，跟着做就行。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#6459d9">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='18' fill='%236459d9' stroke='%231a1830' stroke-width='4'/%3E%3Cpath d='M20 24h24M20 32h24M20 40h14' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>VPS 上配置 Codex 接入自建中转站 · Plus Guide</title>
+<link rel="preload" href="../assets/pg-heading-900.woff2?v=c11862cc4b" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/g-guide.css?v=74702c1566">
+</head>
+<!--
+  G 风格教程页外壳。由 ai-guides/_src/build.py --g 生成，不要直接改生成后的页面：
+  样式改 ai-guides/assets/g-guide.css，交互改 ai-guides/assets/g-engine.js，
+  这个外壳改 ai-guides/assets/g-page.html，内容改 ai-guides/guides/<slug>.js。
+-->
+<body>
+<div id="guideShell">
+<a class="skip" href="#stepTitle">跳到当前步骤</a>
+<header class="top">
+  <div class="top-in">
+    <a class="mark" id="homeLink" href="../" aria-label="Plus Guide 首页">plus<i>.</i>guide</a>
+    <span class="crumb"><span class="cat"><a id="catLink" href="../"></a> / </span><b id="guideTitle">VPS 上配置 Codex 接入自建中转站</b></span>
+    <div class="top-actions">
+      <a class="btn btn-sm" id="allLink" href="../#tutorials" aria-label="全部教程"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>全部教程</span></a>
+    </div>
+  </div>
+</header>
+
+<details class="mobile-toc" id="mobileToc">
+  <summary><span id="mProgText">第 1 步</span><span class="track" aria-hidden="true"><span class="fill" id="mFill" style="display:block"></span></span><span>步骤</span></summary>
+  <nav class="toc" id="mToc" aria-label="本篇步骤"></nav>
+</details>
+
+<div class="layout">
+  <aside class="side" aria-label="本篇步骤">
+    <div class="side-inner">
+      <div class="prog">
+        <div class="prog-row"><span>进度</span><b id="progText">第 1 步</b></div>
+        <div class="track" role="progressbar" id="progBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="教程进度"><div class="fill" id="fill"></div></div>
+      </div>
+      <nav class="toc first" id="toc" aria-label="步骤目录"></nav>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="main-in">
+
+      <article class="step" id="step" aria-live="polite"><h1 id="stepTitle" tabindex="-1">VPS 上配置 Codex 接入自建中转站</h1><p class="intro">正在加载内容……如果这行字一直在，说明页面脚本没跑起来，刷新一次试试。</p></article>
+    </div>
+  </main>
+
+  <aside class="rail" aria-label="帮助">
+    <div class="rail-inner">
+      <section class="box box-coach" id="coachBox">
+        <span class="tag" aria-hidden="true"><span class="sticker">小提示</span></span>
+        <h2>这一步的小提示</h2>
+        <p id="coach"></p>
+      </section>
+      <section class="box box-help">
+        <span class="tag" aria-hidden="true"><span class="sticker">别硬扛</span></span>
+        <h2>卡住了？</h2>
+        <p>进群说明教程名、做到第几步和报错，截图先遮住邮箱、密码和验证码。</p>
+        <a class="btn btn-ink btn-sm" href="https://t.me/+_lOsXtUCD9MxNzY1" target="_blank" rel="noopener noreferrer">打开 Telegram 群</a>
+        <details><summary>扫码进群</summary><img src="../ai-group-qr.png?v=5c146bd70c" alt="AI 交流群二维码" width="200" height="200" loading="lazy"></details>
+      </section>
+      <section class="box">
+        <h2>本机记录</h2>
+        <p class="save" id="saveStatus"><i aria-hidden="true"></i>进度自动保存在这个浏览器</p>
+        <div class="reset-row" id="resetRow"><button class="btn btn-sm" type="button" id="resetBtn">重新开始</button></div>
+      </section>
+    </div>
+  </aside>
+</div>
+</div>
+
+<main class="access" id="accessPanel" hidden></main>
+<dialog class="gate-dialog" id="gateDialog" aria-labelledby="gateTitle" aria-describedby="gateLead"></dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog class="img-dialog" id="imgDialog" aria-labelledby="imgCaption">
+  <div class="img-bar"><span id="imgCaption"></span><button class="btn btn-sm" type="button" id="imgClose">关闭</button></div>
+  <div class="img-scroll"><img id="imgFull" alt=""></div>
+</dialog>
+
+<script>
+window.AI_GUIDE_SLUG = 'codex-config';
+window.AI_GUIDE = {category: "tools",
+  index: '05',
+  slug: 'codex-config',
+  title: 'VPS 上配置 Codex 接入自建中转站',
+  subtitle: '让服务器上的 Codex 走自己的网关',
+  phases: [
+    { title: '准备参数', copy: '地址、密钥、模型名' },
+    { title: '写配置', copy: '建目录、改 config.toml' },
+    { title: '验证', copy: '跑一次、排错' }
+  ],
+  inputs: [
+    { key: 'baseUrl', label: '中转站 Base URL', short: 'Base URL', placeholder: 'https://你的网关地址/v1', hint: '填你中转站的接口地址，通常以 /v1 结尾（自建网关就是 http://IP:端口/v1 或你的域名）。', example: 'http://1.2.3.4:8317/v1' },
+    { key: 'modelName', label: '要用的模型名', short: '模型名', placeholder: '例如 gpt-5 / deepseek-chat', hint: '填你中转站里真实存在的模型名；写错会返回模型不存在。', example: 'deepseek-chat' }
+  ],
+  steps: [
+    {
+      phase: 0,
+      kind: 'info',
+      short: '这篇在做什么',
+      title: '这篇教程，是让服务器上的 Codex 走你自己的中转站',
+      intro: '在服务器上给 Codex 写一份配置，把它要调用的模型指向你的自建中转站。配好之后，服务器上的 Codex 就不再依赖官方登录，而是按你中转站的模型清单来工作。',
+      facts: [
+        ['服务器', '一台 VPS，需要 root 权限（也就是能直接改系统文件）'],
+        ['要准备', '中转站的 Base URL + 一个可用的访问密钥'],
+        ['还要准备', '要用的模型名（在中转站面板能看到）'],
+        ['大概要多久', '十分钟内能配完并验证']
+      ],
+      bullets: [
+        '整篇只需要两件事：建一个配置目录、写一个配置文件。',
+        '访问密钥不进配置文件，而是放进环境变量——这样配置文件被看到也不会泄漏密钥。',
+        '下一步填一次 Base URL 和模型名，下面的配置会自动替换成你的值。'
+      ],
+      note: '密钥只保存在服务器上你自己账号的环境变量里；不要把它写进会同步、会分享的地方。',
+      coach: '这一步的目标很单纯：让 Codex 知道「去哪调」和「用什么模型」。',
+      button: '看明白了，开始'
+    },
+    {
+      phase: 0,
+      kind: 'inputs',
+      short: '填我的参数',
+      title: '第 1 步：填入中转站地址和模型名',
+      intro: '这两个值会直接写进后面的配置文件，填一次就行。',
+      coach: 'Base URL 末尾的 /v1 保留；模型名照抄中转站面板里的写法。',
+      seeAlso: [
+        { title: '01 搭建个人 AI 中转网关（CLIProxyAPI）', url: './01-cli-proxy-api.html', why: '还没有中转站就先搭一个，配好再回来填这里的地址', icon: 'key' },
+        { title: '02 搭建商业化 AI 中转站（New-API）', url: './02-new-api.html', why: '用的是别人的中转站？看这篇怎么拿 Base URL 和令牌', icon: 'server' }
+      ],
+      button: '保存，继续'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '建目录',
+      title: '第 2 步：以 root 登录服务器，建配置目录',
+      intro: 'Codex 的配置放在当前用户主目录下的 .codex 里。先建目录，确认路径没问题。',
+      code: [
+        {
+          lang: 'bash',
+          caption: '登录服务器后执行',
+          text: ['ssh root@你的服务器IP', '', 'mkdir -p ~/.codex', 'ls -la ~/.codex   # 能看到这个目录就是建好了']
+        }
+      ],
+      bullets: [
+        '用 root 登录（或者你的管理员账号，命令前加 sudo）。',
+        'mkdir -p 的好处是目录已存在也不会报错。',
+        '要注意：配置文件属于哪个用户，Codex 就用那个用户跑——别用 root 配好、却用普通用户运行。'
+      ],
+      coach: '目录名是固定的 .codex，位置就在当前用户的主目录下。',
+      button: '目录建好了'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '写 config.toml',
+      title: '第 3 步：编辑 ~/.codex/config.toml',
+      intro: '把下面的模板粘进去，重点确认两处：model 填你要用的模型名，base_url 填你的中转站地址。',
+      code: [
+        {
+          lang: 'bash',
+          caption: '打开编辑器',
+          text: ['nano ~/.codex/config.toml', '# 粘贴下面的内容；Ctrl+O 回车保存，Ctrl+X 退出']
+        },
+        {
+          lang: 'toml',
+          caption: 'config.toml 模板（字段以 Codex 官方文档和你中转站的说明为准）',
+          text: [
+            '# 默认使用的模型',
+            'model = "{{ modelName }}"',
+            '',
+            '# 默认走哪个供应商（和下面小节的名字对应）',
+            'model_provider = "myproxy"',
+            '',
+            '[model_providers.myproxy]',
+            'name = "自建中转"',
+            'base_url = "{{ baseUrl }}"',
+            '# 接口协议按中转站要求选：responses 或 chat',
+            'wire_api = "responses"',
+            '# 密钥从环境变量读取，不写进本文件',
+            'env_key = "MYPROXY_API_KEY"'
+          ]
+        }
+      ],
+      bullets: [
+        'model 换成你中转站里真实存在的模型名。',
+        'base_url 换成你的中转站地址（上面已经替换成你填的值）。',
+        'wire_api 按中转站说明选：支持 Responses 接口就填 responses，只支持 Chat Completions 就填 chat。填错通常表现为调用报错或返回格式异常。',
+        '密钥不写进配置文件，而是设成环境变量，下一步会给你命令。'
+      ],
+      agentPrompt: {
+        title: '不想手改？把这段发给 AI 助手',
+        intro: '在服务器上直接问 Codex（或你用的其它助手），把下面这段发给它即可。',
+        text: '我在这台 VPS 上要配置 Codex 走自建中转站，配置文件是 ~/.codex/config.toml。\n请帮我：\n1. 创建或修改这个文件，模型名用 {{ modelName }}\n2. 供应商地址 base_url 用 {{ baseUrl }}\n3. 密钥不要写进文件，改成从环境变量 MYPROXY_API_KEY 读取，并把导出命令写进 shell 的启动文件里\n4. 改完帮我检查 TOML 格式是否正确、并说明怎么验证配置生效\n如果这台机器上已经有一份配置，请先备份再改。',
+        hint: '把这段发给助手时，顺便告诉它你的 shell 是 bash 还是 zsh，它会写对启动文件。'
+      },
+      coach: '两个必改项（模型名、地址）+ 一个要按说明选的项（wire_api），其余照抄。',
+      button: '配置文件写好了'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '设置密钥环境变量',
+      title: '第 4 步：把密钥放进环境变量',
+      intro: '配置文件读的是环境变量里的密钥。把导出命令写进 shell 的启动文件，登录后自动生效。',
+      code: [
+        {
+          lang: 'bash',
+          caption: '把密钥写进当前用户的 shell 配置（bash 用户）',
+          text: [
+            'echo \'export MYPROXY_API_KEY="换成你的中转站密钥"\' >> ~/.bashrc',
+            'source ~/.bashrc',
+            '',
+            '# 确认已经生效（只会显示变量名，不会回显真实内容）',
+            'printenv MYPROXY_API_KEY > /dev/null && echo "密钥已设置"'
+          ],
+          note: '用 zsh 的话把 ~/.bashrc 换成 ~/.zshrc。'
+        }
+      ],
+      bullets: [
+        '把命令里「换成你的中转站密钥」替换成你真实的密钥，再执行。',
+        '环境变量名要和配置文件里 env_key 填的完全一致（默认 MYPROXY_API_KEY）。',
+        '不要把密钥写进 config.toml，也不要提交到任何仓库里。'
+      ],
+      warn: '执行带真实密钥的命令后，终端历史里会留下痕迹。更稳的做法是用编辑器打开 ~/.bashrc 手动加一行，改完在别的终端验证。',
+      coach: '密钥放环境变量，是这一步唯一要记住的原则。',
+      button: '密钥设置好了'
+    },
+    {
+      phase: 2,
+      kind: 'task',
+      short: '验证',
+      title: '第 5 步：跑一次，确认走的是你的中转站',
+      intro: '启动 Codex，发一句简单的话。能正常回复，说明配置生效。',
+      bullets: [
+        '运行 codex，随便问一句话，看是否有正常回复。',
+        '也可以在中转站后台看用量日志：出现刚才那次请求，就百分百确认走的是你的中转站。',
+        '报 404：检查 base_url 是否重复加了 /v1。',
+        '报鉴权失败（401 / 403）：检查环境变量里的密钥是否完整、有没有多余空格，以及是否和配置文件里的名字一致。',
+        '报模型不存在：检查 model 是否和你中转站里的模型名完全一致（大小写也要对）。'
+      ],
+      note: '改完配置如果没生效，重新开一个终端会话再试——环境变量是在登录时加载的。',
+      coach: '「后台出现这次请求」是最硬的证据，比看输出更可靠。',
+      button: '验证通过，完成'
+    },
+    {
+      phase: 2,
+      kind: 'done',
+      short: '完成与问答',
+      title: '搞定，服务器上的 Codex 已经走你自己的中转站',
+      intro: '配置、密钥、验证都完成了。以后换模型，只要改 config.toml 里的 model 一行，再重启 Codex。',
+      seeAlso: [
+        { title: '10 自托管 AI 对话面板（OpenWebUI）', url: './10-openwebui.html', why: '同一个网关，再接一个网页版入口', icon: 'grid' },
+        { title: '美国住宅 IP 向导（家宽静态住宅）', url: 'https://ip.plus-guide.fun/', why: '上游频繁限流、提示风控，可能是这台服务器的出口 IP 不干净', icon: 'globe' }
+      ],
+      doneGroups: [
+        {
+          title: '收尾：这几件事只有你能做',
+          items: [
+            '确认密钥只存在于服务器环境变量里，没有出现在配置文件和聊天记录中',
+            '确认已经备份过 ~/.codex/config.toml（改错时能一键还原）',
+            '把用到的模型名记下来，换模型时直接用'
+          ]
+        }
+      ],
+      faqGroups: [
+        {
+          label: '配置与生效',
+          items: [
+            { q: '改完配置要重启 Codex 吗？', a: '要。配置文件在启动时读取，改完先退出再重新运行 codex；如果改的是环境变量，重新开一个终端会话更稳妥。' },
+            { q: 'wire_api 到底填哪个？', a: '看你的中转站支持哪种接口：支持 Responses 就填 responses，只支持 Chat Completions 就填 chat。不确定时先试 responses，报错或返回异常就换 chat。' },
+            { q: '为什么密钥要放环境变量？', a: '因为配置文件经常被同步、被复制、被贴出来求助；环境变量只在你的服务器账号里，配置文件被看到也不会连带泄漏密钥。' }
+          ]
+        },
+        {
+          label: '排错',
+          items: [
+            { q: '报 404 找不到接口？', a: '先看 base_url：末尾只保留一个 /v1，重复写成 /v1/v1 就是典型的 404 来源；其次是确认中转站本身在跑（浏览器打开它的地址看看）。' },
+            { q: '报鉴权失败？', a: '确认三件事：密钥复制完整（首尾没有空格）、环境变量已加载（用 printenv 检查）、配置文件里的 env_key 名字和环境变量名一模一样。' },
+            { q: '一直连不上、超时？', a: '确认服务器能访问中转站：curl -I 你的中转站地址 看有没有响应。如果中转站在另一台机器，检查端口放行；如果是域名，检查解析和证书。' }
+          ]
+        }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../assets/g-engine.js?v=42c616d414" defer></script>
+</body>
+</html>

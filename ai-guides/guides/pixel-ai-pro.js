@@ -1,0 +1,711 @@
+window.AI_GUIDE = {
+  "index": "29",
+  "slug": "pixel-ai-pro",
+  "title": "Google AI Pro 六个月会员领取",
+  "subtitle": "从准备账号到取消续费，一步一步走",
+  "allowDirectNavigation": true,
+  "inputs": [],
+  "phases": [
+    {
+      "title": "准备账号",
+      "copy": "先看地区、家庭组和订阅"
+    },
+    {
+      "title": "卡片与验证器",
+      "copy": "准备好卡，开启两步验证"
+    },
+    {
+      "title": "完成认证",
+      "copy": "买积分、兑换、拿到链接"
+    },
+    {
+      "title": "领取试用",
+      "copy": "绑卡并订阅六个月会员"
+    },
+    {
+      "title": "收尾设置",
+      "copy": "改密码、换验证器、关续费"
+    },
+    {
+      "title": "后续使用",
+      "copy": "家庭共享、反重力与常见问题"
+    }
+  ],
+  "steps": [
+    {
+      "phase": 0,
+      "kind": "info",
+      "short": "开始前先看",
+      "title": "先准备好这三样，再开始操作",
+      "intro": "这篇带你领 Google AI Pro 六个月会员，从准备账号、完成 Pixel 认证，到绑卡订阅、改回密码和取消自动续费，一步一步走。中间需要改区或者办虚拟卡的地方，我都把对应教程放好了，点开补完再回来接着走。",
+      "facts": [
+        [
+          "领到什么",
+          "Google AI Pro 六个月会员（含 5 TB 云空间，可在反重力编辑器里用 Gemini 4 Argon、Claude Opus 5.5 等模型，也能开家庭共享）。"
+        ],
+        [
+          "要准备什么",
+          "一个注册满一年以上的 Google 老号（非中国大陆地区、当前无订阅、没加家庭组），以及一张 Visa 或 Mastercard。"
+        ],
+        [
+          "工具成本",
+          "后面用到的第三方认证工具是 15 元／次；我不认识工具作者，纯做教程分享。"
+        ]
+      ],
+      "links": [
+        {
+          "label": "Google 官方：Pixel 优惠活动页",
+          "url": "https://support.google.com/pixelphone/answer/13529884?hl=zh-Hans"
+        }
+      ],
+      "warn": "必须用老号（最好注册一年以上），新注册的号过不了认证！另外尽量用自己的老小号来操作，不要用主力重要大号；后面认证时需要填密码和两步验证密钥，领完我们再把密码和验证器全部换掉。",
+      "coach": "先把符合要求的老号和卡准备好，再去买认证积分。",
+      "button": "准备好了，开始第一步"
+    },
+    {
+      "phase": 0,
+      "kind": "task",
+      "short": "准备谷歌老号",
+      "title": "登录准备用来上车的 Google 老号",
+      "intro": "打开 Gmail，登录你准备用来领会员的 Google 老号。学生认证提示无资格、或者之前没通过的老号也可以用。",
+      "warn": "这里必须使用 Google 老号，最好是注册一年以上的账号，刚注册的新号不要拿来跑，会被工具拦截且不退积分。",
+      "links": [
+        {
+          "label": "打开 Gmail 邮箱",
+          "url": "https://mail.google.com/"
+        }
+      ],
+      "bullets": [
+        "点右上角头像，确认当前登录的就是你要上车的那个老号（最好注册满一年以上）。",
+        "后面检查地区、开两步验证、打开领取链接，全程都用这同一个账号。"
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-02-1.webp',
+          "alt": "Gmail 右上角的账号头像入口",
+          "caption": "先看右上角头像，确认当前登录的谷歌老号。"
+        }
+      ],
+      "coach": "用注册一年以上的老小号上车，重要主号留在后面进家庭组共享权益。",
+      "button": "老号已登录，下一步"
+    },
+    {
+      "phase": 0,
+      "kind": "task",
+      "short": "检查账号地区",
+      "title": "检查账号归属地区是不是非中国大陆",
+      "intro": "在 Gmail 右上角点头像，点弹窗下方的“服务条款”，查看“国家／地区版本”。只要显示的不是中国大陆，一般都没问题。",
+      "seeAlsoPosition": "before",
+      "seeAlso": [
+        {
+          "title": "显示中国大陆？打开谷歌账号改区教程",
+          "url": "https://map.plus-guide.fun/guides/21-google-region.html",
+          "why": "按步骤提交关联地区更改申请，改成美国等支持地区。",
+          "icon": "globe"
+        }
+      ],
+      "bullets": [
+        "点右上角头像 → 点“服务条款”。",
+        "找到页面里的“国家／地区版本”，确认不是中国大陆。",
+        "如果显示中国大陆，点“常见问题解答” → “提交关联国家或地区更改请求”，地区选美国、原因选其他，把下面的英文理由粘进去提交。"
+      ],
+      "code": [
+        {
+          "lang": "text",
+          "caption": "改区申请理由（需要改区时直接复制）",
+          "text": "I need to use Gemini for my daily work responsibilities. Could you please assist me in changing my account region to the United States? Thank you for your time and support."
+        }
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-03-1.webp',
+          "alt": "Google 服务条款里的国家地区版本字段",
+          "caption": "看“国家／地区版本”这一行，确保不是中国大陆。"
+        }
+      ],
+      "coach": "已经是美国、香港、台湾、日本、新加坡等支持地区的账号，直接过这一步。",
+      "button": "地区没问题，下一步"
+    },
+    {
+      "phase": 0,
+      "kind": "task",
+      "short": "检查家庭组",
+      "title": "确认账号没有加入别人的家庭组",
+      "intro": "点右上角头像 →“管理您的 Google 账号”，再点左侧的“家人”。上车前账号不能处于任何家庭组里。",
+      "links": [
+        {
+          "label": "打开 Google 账号管理",
+          "url": "https://myaccount.google.com/"
+        }
+      ],
+      "bullets": [
+        "在账号管理左侧菜单点“家人”。",
+        "页面显示“设置家人群组”，说明当前没加入任何家庭组，可以直接继续。",
+        "如果已经在某个家庭组里，先退出家庭组再往下走。"
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-04-1.webp',
+          "alt": "Google 家人群组页面中的设置家人群组入口",
+          "caption": "看到“设置家人群组”，说明当前账号没有加入任何家庭组。"
+        }
+      ],
+      "coach": "先把旧家庭组退掉；等领完会员，你可以自己建家庭组拉大号。",
+      "button": "没在家庭组，下一步"
+    },
+    {
+      "phase": 0,
+      "kind": "task",
+      "short": "检查订阅与付款",
+      "title": "检查“钱包和订阅”，确保当前无订阅",
+      "intro": "点左侧的“钱包和订阅”，确认这个账号当前没有任何付款方式和正在生效的订阅服务。",
+      "bullets": [
+        "如果里面已经有绑好的旧付款方式，先删掉。",
+        "确认当前没有任何 Google One 订阅；已经上车了学生认证或其他会员的号，不要拿来跑这个流程。"
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-05-1.webp',
+          "alt": "Google 账号的钱包和订阅概览",
+          "caption": "确保没有付款方式，也没有正在生效的订阅。"
+        }
+      ],
+      "coach": "用无订阅状态的账号最稳。",
+      "button": "已确认无订阅，下一步"
+    },
+    {
+      "phase": 1,
+      "kind": "task",
+      "short": "准备付款卡",
+      "title": "准备一张 Visa 或 Mastercard",
+      "intro": "一会儿领六个月免费试用时，需要绑定一张 Visa 或 Mastercard 做验证。国内银行发的双币／外币卡、或者虚拟卡都可以。",
+      "seeAlsoPosition": "before",
+      "seeAlso": [
+        {
+          "title": "手头还没有卡？先看 Roogoo 虚拟卡开卡教程",
+          "url": "https://map.plus-guide.fun/guides/15-roogoo-card.html",
+          "why": "从注册、实名到开出虚拟卡，办好后再回来继续。",
+          "icon": "card"
+        }
+      ],
+      "facts": [
+        [
+          "什么时候绑",
+          "现在先把卡准备好，等拿到领取链接、点“开始试用”时再绑上去。"
+        ],
+        [
+          "会扣钱吗",
+          "绑卡时可能会临时预授权 1 美元验证真卡，验证完会退回；六个月试用本身是 0 元。"
+        ]
+      ],
+      "coach": "已经有可用 Visa / Mastercard 的朋友，直接点下一步。",
+      "button": "卡准备好了，下一步"
+    },
+    {
+      "phase": 1,
+      "kind": "task",
+      "short": "进入两步验证",
+      "title": "打开“安全性与登录”，进入两步验证",
+      "intro": "回到 Google 账号管理，点左侧“安全性与登录”，找到“两步验证”点进去，按提示输入账号密码。",
+      "links": [
+        {
+          "label": "打开 Google 安全性与登录",
+          "url": "https://myaccount.google.com/security"
+        }
+      ],
+      "bullets": [
+        "点左侧“安全性与登录” → 点“两步验证”。",
+        "输入密码验证后，往下滑找到“身份验证器”。"
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-07-1.webp',
+          "alt": "Google 安全性与登录页面中的两步验证入口",
+          "caption": "在“安全性与登录”里点开“两步验证”。"
+        }
+      ],
+      "coach": "接下来我们要拿到一串两步验证密钥，给后面的认证工具用。",
+      "button": "已找到身份验证器"
+    },
+    {
+      "phase": 1,
+      "kind": "task",
+      "short": "获取验证器密钥",
+      "title": "点“无法扫描”，复制并保存验证器密钥",
+      "intro": "点进“身份验证器”，点“设置身份验证器”（以前设过的点“更改身份验证器”）。弹出二维码后，点下面的“无法扫描？”。",
+      "bullets": [
+        "在二维码弹窗点“无法扫描？”，页面会显示一串英文和数字组成的身份验证器密钥。",
+        "把这串密钥全选复制，先粘贴到电脑记事本里保存好，后面认证要用。",
+        "切记保留好这串密钥，先别关掉 Google 这个弹窗。"
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-08-1.webp',
+          "alt": "Google 设置身份验证器窗口与无法扫描入口",
+          "caption": "点二维码下方的“无法扫描？”，把出现的密钥复制到记事本保存。"
+        }
+      ],
+      "coach": "这里复制出来的长串字符就是后面要填的 2FA 密钥。",
+      "button": "密钥已保存到记事本"
+    },
+    {
+      "phase": 1,
+      "kind": "task",
+      "short": "完成验证器绑定",
+      "title": "生成 6 位验证码，完成身份验证器绑定",
+      "intro": "打开 `2fa.cn`（或者用手机验证器 App），把刚复制的密钥粘进去拿到 6 位数字验证码，再回 Google 弹窗填进去点“验证”。",
+      "links": [
+        {
+          "label": "打开在线验证码工具：2fa.cn",
+          "url": "https://2fa.cn/"
+        }
+      ],
+      "bullets": [
+        "在 Google 密钥弹窗点“下一页”，进入输入 6 位验证码的界面。",
+        "去 `2fa.cn` 粘贴刚才那串密钥，点“提交”，复制下方生成的 6 位数字。",
+        "回到 Google 页面粘贴 6 位数字，点“验证”完成绑定。"
+      ],
+      "coach": "绑定完成后，点左上角返回两步验证页面。",
+      "button": "身份验证器已绑好"
+    },
+    {
+      "phase": 1,
+      "kind": "task",
+      "short": "确认开启两步验证",
+      "title": "确认两步验证处于“已启用”状态",
+      "intro": "返回两步验证页面往下滑，确保两步验证是打开状态（按钮显示“停用两步验证”就代表已经开着；如果显示“启用两步验证”就点一下打开）。",
+      "bullets": [
+        "确认底部按钮显示为“停用两步验证”。",
+        "再返回“安全性与登录”，检查“两步验证”一栏显示“已启用”。"
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-10-1.webp',
+          "alt": "Google 安全页显示两步验证已启用",
+          "caption": "确认“两步验证”显示为“已启用”，前期准备就全部做完了。"
+        }
+      ],
+      "coach": "到这里账号准备工作就做完了，下面去拿 Pixel 领取链接。",
+      "button": "两步验证已开启，下一步"
+    },
+    {
+      "phase": 2,
+      "kind": "task",
+      "short": "购买认证积分",
+      "title": "去商城购买一次 One.IDKey 认证积分",
+      "intro": "打开 `pksto.com`，先点“注册账号”设置用户名和密码注册登录。进去后选“One.IDKey积分（Pixel、GPT Plus/Pro）”，价格是 15 元一次，点“立即购买”，支持支付宝付款。",
+      "links": [
+        {
+          "label": "打开认证积分商城：pksto.com",
+          "url": "https://pksto.com/"
+        }
+      ],
+      "bullets": [
+        "首次进入先注册一个商城账号并登录。",
+        "点开“One.IDKey积分（Pixel、GPT Plus/Pro）”，点“立即购买”。",
+        "选支付宝完成付款。"
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-11-1.webp',
+          "alt": "One.IDKey积分商品详情与Pixel规格",
+          "caption": "选择 One.IDKey 积分，点“立即购买”。"
+        }
+      ],
+      "coach": "如果你自己有其他免费 Pixel 认证渠道，也可以直接用自己的渠道。",
+      "button": "已付款，去拿卡密"
+    },
+    {
+      "phase": 2,
+      "kind": "task",
+      "short": "复制卡密并跳转",
+      "title": "点“查看”复制卡密，前往认证网站",
+      "intro": "付款完成后会自动跳到订单页。点订单里的“查看”，复制弹出来的卡密，然后点下面的“点我前往兑换地址”进入 One.IDkey 认证网页。",
+      "links": [
+        {
+          "label": "直达认证网页：one.idkey.cc",
+          "url": "https://one.idkey.cc/"
+        }
+      ],
+      "bullets": [
+        "在订单页点“查看”，把购买到的卡密复制下来。",
+        "点弹窗里的“点我前往兑换地址”（或直接打开 `one.idkey.cc`）。"
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-12-1.webp',
+          "alt": "订单里的卡密查看窗口与兑换地址入口",
+          "caption": "复制弹窗里的卡密，再点“点我前往兑换地址”。"
+        }
+      ],
+      "coach": "复制完卡密直接跳过去兑换积分。",
+      "button": "已复制卡密并打开认证网"
+    },
+    {
+      "phase": 2,
+      "kind": "task",
+      "short": "注册并兑换积分",
+      "title": "在认证网页注册登录，兑换 Pixel 积分",
+      "intro": "进入 `one.idkey.cc` 后，这个网站需要单独注册一个账号。点右上角“登录” →“注册”，注册并登录后，点页面上的“兑换积分”。",
+      "bullets": [
+        "注册并登录 One.IDkey 认证网账号。",
+        "找到“兑换积分”，粘贴刚才复制的卡密，点“批量兑换”。",
+        "提示“+1 Pixel”兑换成功后关掉弹窗，上方会显示 Pixel 积分为 1。"
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-13-1.webp',
+          "alt": "卡密兑换成功后显示加一Pixel积分",
+          "caption": "粘贴卡密点“批量兑换”，拿到 1 个 Pixel 积分。"
+        }
+      ],
+      "coach": "看到上方 Pixel 显示 1，就可以开始填号认证了。",
+      "button": "积分已兑换，下一步"
+    },
+    {
+      "phase": 2,
+      "kind": "task",
+      "short": "填写账号开始认证",
+      "title": "填入小号邮箱、密码和两步验证密钥，点开始认证",
+      "intro": "在左侧 Pixel 认证区域，按顺序填好三项信息，然后点“开始认证”。",
+      "facts": [
+        [
+          "Google账号邮箱",
+          "填你准备好的那个 Google 小号邮箱。"
+        ],
+        [
+          "密码",
+          "填这个 Google 小号的登录密码。"
+        ],
+        [
+          "2FA密钥",
+          "从记事本复制刚才保存的那串两步验证密钥粘进去（填长串密钥，不是 6 位数字验证码）。"
+        ]
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-14-1.webp',
+          "alt": "Pixel认证表单中的Google邮箱密码和2FA原始密钥字段",
+          "caption": "填好邮箱、密码和记事本里的两步验证密钥，点“开始认证”。"
+        }
+      ],
+      "coach": "点完开始认证会显示处理中，耐心等它跑完就行。",
+      "button": "已点开始认证"
+    },
+    {
+      "phase": 2,
+      "kind": "task",
+      "short": "复制领取链接",
+      "title": "等待认证成功，复制生成的领取链接",
+      "intro": "大概等 5 分钟左右，页面会弹出“成功认证！”，点“OK”，然后在右侧执行日志下方复制生成的专属领取链接。",
+      "bullets": [
+        "弹出“成功认证！”后点“OK”。",
+        "在右侧结果区点一下领取链接，把它复制下来。"
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-15-1.webp',
+          "alt": "认证工具显示成功认证结果",
+          "caption": "看到“成功认证！”点 OK，复制右侧生成的领取链接。"
+        }
+      ],
+      "coach": "接下来回到登录了同一个 Google 小号的浏览器里打开这个链接。",
+      "button": "领取链接已复制"
+    },
+    {
+      "phase": 3,
+      "kind": "task",
+      "short": "打开优惠点试用",
+      "title": "新开网页打开领取链接，点“开始试用”",
+      "intro": "回到刚才已经登录好那个 Google 小号的浏览器，新开一个标签页粘贴打开领取链接。页面会显示“特别优惠（适合 Pixel 11 Pro）”和“免费畅享 6 个月 Google AI Pro”，直接点“开始试用”。",
+      "bullets": [
+        "确认右上角头像还是刚才那个 Google 小号。",
+        "看到“免费畅享 6 个月 Google AI Pro”和“US$0/月（为期 6 个月）”，点“开始试用”。"
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-16-1.webp',
+          "alt": "Google One显示六个月GoogleAIPro试用和开始试用按钮",
+          "caption": "确认显示免费畅享 6 个月 Google AI Pro，点“开始试用”。"
+        }
+      ],
+      "coach": "点完开始试用，就会弹出绑定付款方式的窗口。",
+      "button": "已点开始试用"
+    },
+    {
+      "phase": 3,
+      "kind": "task",
+      "short": "绑定银行卡",
+      "title": "点“添加卡”，填好卡号和美国免税州邮编",
+      "intro": "在弹出的 Google Play 窗口里点“添加卡”，填入你的 Visa 或 Mastercard 卡片信息。邮政编码填一个美国免税州邮编（比如俄勒冈州波特兰的 `97201`），然后点“保存卡”。",
+      "seeAlsoPosition": "before",
+      "seeAlso": [
+        {
+          "title": "需要看虚拟卡开卡步骤？点这里打开 Roogoo 教程",
+          "url": "https://map.plus-guide.fun/guides/15-roogoo-card.html",
+          "why": "新标签页打开，看完直接回到这一步填卡。",
+          "icon": "card"
+        }
+      ],
+      "code": [
+        {
+          "lang": "text",
+          "caption": "可直接复制的美国免税州邮编（Oregon 波特兰）",
+          "text": "97201"
+        }
+      ],
+      "bullets": [
+        "点“添加卡”，填写卡号、有效期、CVV 安全码。",
+        "地区／邮编填美国免税州邮编（例如 `97201`），点“保存卡”。",
+        "绑卡时可能会临时扣 1 美元又马上退回，用来验证是真卡。"
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-17-1.webp',
+          "alt": "Google Play要求添加付款方式并显示添加卡入口",
+          "caption": "点“添加卡”，填写 Visa 或 Mastercard 以及免税州邮编。"
+        }
+      ],
+      "coach": "保存完卡片如果没直接跳确认框，把页面刷新一下，再点一次“开始试用”。",
+      "button": "卡片已保存，下一步"
+    },
+    {
+      "phase": 3,
+      "kind": "task",
+      "short": "确认并点订阅",
+      "title": "核对“免费试用 6 个月”，点“订阅”完成上车",
+      "intro": "刷新页面后再次点“开始试用”，核对弹窗里写着“开始日期：今天 · 免费试用 6 个月”，确认没问题就点右下角的“订阅”。",
+      "bullets": [
+        "确认写着“免费试用 6 个月”，且在到期日前取消就不需要支付任何费用。",
+        "点“订阅”；如果接着弹出“开启备用付款方式？”，不用的话直接关掉或忽略。",
+        "看到“您的新会员已生效”，就说明已经成功上车了！"
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-18-1.webp',
+          "alt": "GooglePlay最终确认页中的免费试用后续价格取消日期和订阅按钮",
+          "caption": "确认显示“免费试用 6 个月”，点右下角“订阅”。"
+        },
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-18-2.webp',
+          "alt": "GoogleOne提示您的新会员已生效",
+          "caption": "出现“您的新会员已生效”，6 个月 Google AI Pro 就到手了。"
+        }
+      ],
+      "coach": "领完先别急着关页面，接下来两步非常重要：把密码和验证器换掉，再关掉自动续费。",
+      "button": "已订阅生效，去做安全收尾"
+    },
+    {
+      "phase": 4,
+      "kind": "task",
+      "short": "修改账号密码",
+      "title": "收尾第一步：立刻修改 Google 账号密码",
+      "intro": "因为刚才认证时把密码和验证器密钥交出去了，上车后第一件事就是把它们全换掉。先去 Google 账号管理 →“安全性与登录” →“密码”，把登录密码改掉。",
+      "links": [
+        {
+          "label": "打开 Google 安全性与登录",
+          "url": "https://myaccount.google.com/security"
+        }
+      ],
+      "bullets": [
+        "点右上角头像 →“管理您的 Google 账号” → 左侧“安全性与登录”。",
+        "往下滑点“密码”，输入原密码后，设置一个全新的密码并点“更改密码”。"
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-19-1.webp',
+          "alt": "Google更改密码的设置表单",
+          "caption": "输入新密码，点“更改密码”。"
+        }
+      ],
+      "coach": "改完密码紧接着去换两步验证密钥，两样都换完才彻底安全。",
+      "button": "密码已修改，下一步"
+    },
+    {
+      "phase": 4,
+      "kind": "task",
+      "short": "更换验证器密钥",
+      "title": "收尾第二步：更换身份验证器，让旧密钥失效",
+      "intro": "回到“安全性与登录” →“两步验证” →“身份验证器”，点“更改身份验证器应用”，用自己手机上的验证器 App 扫码绑定新的密钥。",
+      "bullets": [
+        "点开“两步验证” → 往下滑点“身份验证器”。",
+        "点“更改身份验证器应用”，用自己手机上的身份验证器扫码（或生成新密钥），点“下一步”。",
+        "输入手机上的 6 位验证码点“验证”，看到显示“添加时间：刚刚”，旧密钥就彻底作废了。"
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-20-1.webp',
+          "alt": "Google身份验证器页面显示添加时间刚刚",
+          "caption": "显示“添加时间：刚刚”，说明验证器密钥已经换成新的了。"
+        }
+      ],
+      "coach": "到这里账号安全信息就全部换新了，之前记事本里的旧密钥可以删掉。",
+      "button": "验证器已更换，下一步"
+    },
+    {
+      "phase": 4,
+      "kind": "task",
+      "short": "取消自动续费",
+      "title": "收尾第三步：取消自动续费，白用整整半年",
+      "intro": "最后去把自动续费关掉，避免半年后到期自动扣费。取消后完全不影响这 6 个月的正常使用。",
+      "links": [
+        {
+          "label": "打开 Google 钱包和订阅",
+          "url": "https://myaccount.google.com/payments-and-subscriptions"
+        }
+      ],
+      "bullets": [
+        "点左侧“钱包和订阅” → 点“订阅（Google One）”。",
+        "点进去后再点一次“Google One”，点“取消订阅” → 再次点“取消订阅”。",
+        "弹出“您已成功退订”点确定，这半年就可以安心使用了。"
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-21-1.webp',
+          "alt": "GooglePlay取消订阅确认窗口",
+          "caption": "点右下角“取消订阅”完成二次确认。"
+        },
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-21-2.webp',
+          "alt": "GooglePlay订阅已取消并保留结束日期",
+          "caption": "状态变成“已取消”，但会一直保留到半年后的到期日。"
+        }
+      ],
+      "coach": "核心流程到这里就全部做完了！后面两步是家庭组共享和反重力编辑器的玩法。",
+      "button": "已取消续费，看看进阶玩法"
+    },
+    {
+      "phase": 5,
+      "kind": "task",
+      "short": "开启家庭共享",
+      "title": "进阶福利①：开启家庭共享，拉最多 5 个号一起用",
+      "intro": "Pixel 认证领出来的 Google AI Pro 支持家庭共享。回到 Google 账号首页，可以看到“您的 Google AI Pro 方案支持家庭共享”，最多能邀请 5 名成员共享 AI 权益和 5 TB 空间。",
+      "links": [
+        {
+          "label": "打开 Google 账号首页",
+          "url": "https://myaccount.google.com/"
+        }
+      ],
+      "bullets": [
+        "在账号首页找到家庭共享卡片，点“开始共享”。",
+        "你可以把自己的大号、或者朋友家人的账号拉进来一起用 AI Pro 会员。"
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-22-1.webp',
+          "alt": "Google账号首页展示方案支持家庭共享与开始共享按钮",
+          "caption": "点“开始共享”，最多可以邀请 5 名成员一起用。"
+        }
+      ],
+      "coach": "这样小号上车、大号进家庭组享受权益，既安全又省心。",
+      "button": "了解了，看反重力编辑器"
+    },
+    {
+      "phase": 5,
+      "kind": "task",
+      "short": "使用反重力编辑器",
+      "title": "进阶福利②：登录反重力编辑器，用 Argon 和 Opus 5.5",
+      "intro": "用 Pixel 认证上车的账号登录 Google 反重力编辑器（Antigravity），可以直接使用学生认证没有的 Gemini 4 Argon，以及 Claude Opus 5.5、Claude Sonnet 5.5 等模型。",
+      "links": [
+        {
+          "label": "打开 Google Antigravity 官网",
+          "url": "https://antigravity.google/"
+        }
+      ],
+      "bullets": [
+        "下载安装反重力编辑器，点“Sign in with Google”登录刚上车的账号。",
+        "首次登录如果弹出二维码要求手机验证：安卓手机确保装有谷歌套件，苹果手机确保装有 YouTube，并且手机和电脑连同一个网络（保持上网 IP 一致）。",
+        "用手机相机扫码，在手机弹窗点“继续”，电脑端就登录成功了。"
+      ],
+      "images": [
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-23-1.webp',
+          "alt": "Google Antigravity 官方网站入口",
+          "caption": "从官网下载安装 Google Antigravity，用刚上车的谷歌号登录。"
+        },
+        {
+          "src": '@embed-image:assets/pixel-ai-pro/step-23-2.webp',
+          "alt": "Antigravity模型选择菜单",
+          "caption": "登录后在模型列表里就能选 Gemini 4 Argon、Claude Opus 5.5 等模型了。"
+        }
+      ],
+      "coach": "手机扫码验证时，记得保证手机和电脑走同一个节点 IP。",
+      "button": "全部看完了，完成教程"
+    },
+    {
+      "phase": 5,
+      "kind": "done",
+      "short": "完成与常见问题",
+      "title": "恭喜，Google AI Pro 六个月会员全部搞定！",
+      "intro": "到这里从上车、改密改验证器，到关续费、开家庭共享和登录反重力就全部走完了。半年到期后如果活动还在，还可以换个新小号再按这篇走一遍。",
+      "doneGroups": [
+        {
+          "title": "最后检查一遍这三件事",
+          "items": [
+            "已经把 Google 小号的登录密码改成了新密码。",
+            "已经在两步验证里更换了身份验证器，让刚才交出去的旧密钥失效。",
+            "已经在 Google Play 订阅里点完取消订阅，显示“已取消”且保留半年有效期。"
+          ]
+        }
+      ],
+      "seeAlso": [
+        {
+          "title": "谷歌账号改区教程",
+          "url": "https://map.plus-guide.fun/guides/21-google-region.html",
+          "why": "需要把其他账号改到支持地区时查看。",
+          "icon": "globe"
+        },
+        {
+          "title": "Roogoo 虚拟卡开卡教程",
+          "url": "https://map.plus-guide.fun/guides/15-roogoo-card.html",
+          "why": "还没有 Visa / Mastercard 卡片时按这篇开卡。",
+          "icon": "card"
+        },
+        {
+          "title": "返回全部教程目录",
+          "url": "https://map.plus-guide.fun/",
+          "why": "查看其他 AI 订阅与工具教程。",
+          "icon": "grid"
+        }
+      ],
+      "faqGroups": [
+        {
+          "label": "账号与认证",
+          "items": [
+            {
+              "q": "刚注册的新号能用吗？",
+              "a": "不能！必须用老号，最好是注册一年以上的 Google 账号。新号去跑认证会被风控拦截，而且不退积分。"
+            },
+            {
+              "q": "学生认证提示“无资格”的账号能用吗？",
+              "a": "可以。只要是注册满一年以上的老号、当前没有正在生效的订阅、不在别人的家庭组里，学生认证没资格或没通过的号都能上车。"
+            },
+            {
+              "q": "为什么建议用小号操作？",
+              "a": "因为第三方认证工具需要填账号密码和两步验证密钥。用小号上车、上车后立刻改密码换验证器，再通过家庭共享把权益分给主号，最稳妥。"
+            },
+            {
+              "q": "填 2FA 密钥时填什么？",
+              "a": "填在 Google 二维码界面点“无法扫描？”复制出来的那串长密钥，不要填 6 位数的动态验证码。"
+            }
+          ]
+        },
+        {
+          "label": "续费与反重力",
+          "items": [
+            {
+              "q": "取消自动续费之后，会员会马上失效吗？",
+              "a": "不会。上车后立刻取消订阅，这 6 个月依然可以正常使用，只是到期后不会自动扣费。"
+            },
+            {
+              "q": "反重力首次登录要手机扫码，需要注意什么？",
+              "a": "安卓装好谷歌套件，苹果装好 YouTube，扫码前确保手机和电脑用的是同一个网络（上网 IP 相同），用手机自带相机扫就行。"
+            }
+          ]
+        }
+      ],
+      "coach": "以后需要复查哪一步，直接点右侧步骤目录就能跳过去。"
+    }
+  ],
+  "category": "account"
+};

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="认识 AI：它为什么会回答问题：弄懂提示词、上下文与 Token，再做一次能核对的练习。每一步配截图，跟着做就行。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#6459d9">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='18' fill='%236459d9' stroke='%231a1830' stroke-width='4'/%3E%3Cpath d='M20 24h24M20 32h24M20 40h14' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>认识 AI：它为什么会回答问题 · Plus Guide</title>
+<link rel="preload" href="../assets/pg-heading-900.woff2?v=c11862cc4b" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/g-guide.css?v=74702c1566">
+</head>
+<!--
+  G 风格教程页外壳。由 ai-guides/_src/build.py --g 生成，不要直接改生成后的页面：
+  样式改 ai-guides/assets/g-guide.css，交互改 ai-guides/assets/g-engine.js，
+  这个外壳改 ai-guides/assets/g-page.html，内容改 ai-guides/guides/<slug>.js。
+-->
+<body>
+<div id="guideShell">
+<a class="skip" href="#stepTitle">跳到当前步骤</a>
+<header class="top">
+  <div class="top-in">
+    <a class="mark" id="homeLink" href="../" aria-label="Plus Guide 首页">plus<i>.</i>guide</a>
+    <span class="crumb"><span class="cat"><a id="catLink" href="../"></a> / </span><b id="guideTitle">认识 AI：它为什么会回答问题</b></span>
+    <div class="top-actions">
+      <a class="btn btn-sm" id="allLink" href="../#tutorials" aria-label="全部教程"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>全部教程</span></a>
+    </div>
+  </div>
+</header>
+
+<details class="mobile-toc" id="mobileToc">
+  <summary><span id="mProgText">第 1 步</span><span class="track" aria-hidden="true"><span class="fill" id="mFill" style="display:block"></span></span><span>步骤</span></summary>
+  <nav class="toc" id="mToc" aria-label="本篇步骤"></nav>
+</details>
+
+<div class="layout">
+  <aside class="side" aria-label="本篇步骤">
+    <div class="side-inner">
+      <div class="prog">
+        <div class="prog-row"><span>进度</span><b id="progText">第 1 步</b></div>
+        <div class="track" role="progressbar" id="progBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="教程进度"><div class="fill" id="fill"></div></div>
+      </div>
+      <nav class="toc first" id="toc" aria-label="步骤目录"></nav>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="main-in">
+
+      <article class="step" id="step" aria-live="polite"><h1 id="stepTitle" tabindex="-1">认识 AI：它为什么会回答问题</h1><p class="intro">正在加载内容……如果这行字一直在，说明页面脚本没跑起来，刷新一次试试。</p></article>
+    </div>
+  </main>
+
+  <aside class="rail" aria-label="帮助">
+    <div class="rail-inner">
+      <section class="box box-coach" id="coachBox">
+        <span class="tag" aria-hidden="true"><span class="sticker">小提示</span></span>
+        <h2>这一步的小提示</h2>
+        <p id="coach"></p>
+      </section>
+      <section class="box box-help">
+        <span class="tag" aria-hidden="true"><span class="sticker">别硬扛</span></span>
+        <h2>卡住了？</h2>
+        <p>进群说明教程名、做到第几步和报错，截图先遮住邮箱、密码和验证码。</p>
+        <a class="btn btn-ink btn-sm" href="https://t.me/+_lOsXtUCD9MxNzY1" target="_blank" rel="noopener noreferrer">打开 Telegram 群</a>
+        <details><summary>扫码进群</summary><img src="../ai-group-qr.png?v=5c146bd70c" alt="AI 交流群二维码" width="200" height="200" loading="lazy"></details>
+      </section>
+      <section class="box">
+        <h2>本机记录</h2>
+        <p class="save" id="saveStatus"><i aria-hidden="true"></i>进度自动保存在这个浏览器</p>
+        <div class="reset-row" id="resetRow"><button class="btn btn-sm" type="button" id="resetBtn">重新开始</button></div>
+      </section>
+    </div>
+  </aside>
+</div>
+</div>
+
+<main class="access" id="accessPanel" hidden></main>
+<dialog class="gate-dialog" id="gateDialog" aria-labelledby="gateTitle" aria-describedby="gateLead"></dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog class="img-dialog" id="imgDialog" aria-labelledby="imgCaption">
+  <div class="img-bar"><span id="imgCaption"></span><button class="btn btn-sm" type="button" id="imgClose">关闭</button></div>
+  <div class="img-scroll"><img id="imgFull" alt=""></div>
+</dialog>
+
+<script>
+window.AI_GUIDE_SLUG = 'ai-basics';
+window.AI_GUIDE = {category: "tools",
+  index: '16',
+  slug: 'ai-basics',
+  title: '认识 AI：它为什么会回答问题',
+  subtitle: '弄懂提示词、上下文与 Token，再做一次能核对的练习',
+  phases: [
+    { title: '先懂概念', copy: 'AI、训练与推理、对话基本单位' },
+    { title: '学会核对', copy: '概率生成、适用任务与使用边界' },
+    { title: '安全练习', copy: '给材料、限定任务、检查依据' }
+  ],
+  inputs: [],
+  steps: [
+    {
+      phase: 0,
+      kind: 'info',
+      short: 'AI 与 LLM',
+      title: '先分清 AI 和大语言模型',
+      intro: '人工智能（AI）是让计算机完成理解、生成、识别或决策等任务的技术总称，不只有聊天机器人。大语言模型（LLM）是其中一类模型，主要根据输入文字生成文字，可以协助改写、总结、解释和编写代码。',
+      facts: [
+        ['普通对话在做什么', '你提供消息和背景，模型生成一个可能的回答'],
+        ['表达流畅不等于', '像人一样经历过这些事，或每句话都有可靠依据'],
+        ['开始前准备', '一个你有权使用的 AI 对话入口，以及一段公开、无隐私的短文'],
+        ['功能与费用', '是否需要注册、可用模型与功能，以具体产品的当前官方页面为准']
+      ],
+      bullets: ['第一次不用追求“完美提示词”，先学会描述任务和检查结果。', '不要把密码、身份证号、密钥或公司内部材料交给来源不明的服务。'],
+      coach: '先把 AI 当作需要清楚指令和人工核对的助手，而不是自动给出权威答案的机器。',
+      button: '理解基本概念'
+    },
+    {
+      phase: 0,
+      kind: 'task',
+      short: '训练与推理',
+      title: '你聊天时，通常是在推理，不是在训练',
+      intro: '训练是开发方用大量数据和计算调整模型参数，让模型学到语言与知识中的模式。推理是训练好的模型根据这次输入生成回答；你在对话框里发消息，主要是在使用推理能力。',
+      facts: [
+        ['训练', '调整模型参数的过程，通常由模型开发方进行'],
+        ['推理', '模型读取当前输入并生成回答的过程'],
+        ['贴入资料', '可作为当前对话的参考，不等于模型永久学会或记住'],
+        ['记忆能力', '能否保存、个性化或跨会话记忆，取决于具体产品和设置']
+      ],
+      bullets: ['纠正一次回答通常是在影响当前对话，不是立刻修改模型的底层参数。', '不要对 AI 说“记住这个密码”；敏感信息不应靠对话记忆来保管。'],
+      coach: '一句话记住：训练塑造模型，推理使用模型，当前对话提供临时背景。',
+      button: '分清训练与推理'
+    },
+    {
+      phase: 0,
+      kind: 'task',
+      short: '三个关键词',
+      title: '提示词、上下文和 Token，各自管一件事',
+      intro: '提示词是你给模型的任务说明；上下文是本轮可以参考的信息；Token 是模型处理和计量文本的单位。三者相关，但不是同一个概念。',
+      facts: [
+        ['提示词 Prompt', '写清要做什么、依据什么、输出成什么样'],
+        ['上下文 Context', '可能包含对话历史、系统说明、上传内容和工具结果，范围由产品决定'],
+        ['Token', '可以是一个字、词或片段，不严格等于汉字数或单词数'],
+        ['容量与费用', '输入和输出都会占用上下文；用量与费用规则以服务商说明为准']
+      ],
+      bullets: ['对话变长后，较早内容可能超出处理范围；重要要求可以在当前消息里简要重申。', '减少无关材料能降低干扰，但不要为了省 Token 删掉关键要求和依据。'],
+      coach: '好提示词先追求任务明确，不是越长越专业。',
+      button: '三个词已分清'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '为什么不能全信',
+      title: '模型生成可能答案，不是在颁发权威结论',
+      intro: '语言模型根据学到的模式生成较可能的后续内容，因此可能出现事实错误、过时信息、虚构来源或误解要求。语气自信不能作为真实性证明。',
+      checks: [
+        '日期、价格、政策、版本和引用等内容，我会打开原始来源核对',
+        '我会区分原文明确写出的内容与模型自己的推断',
+        '医疗、法律、财务和账号安全等重要事项，我会查官方资料或咨询合格专业人士',
+        '上传资料前，我会检查内容是否敏感，并查看产品的数据使用说明'
+      ],
+      note: '让 AI 标注不确定性可以帮助检查，但“我很确定”仍不是事实已经核实的证明。',
+      coach: 'AI 可以帮你找思路和整理材料，最终核验仍要回到可靠来源。',
+      button: '核对原则已确认'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '选对任务',
+      title: '先让 AI 做擅长的事，重要决定留给自己',
+      intro: '解释概念、起草改写、整理结构、总结你提供的材料、头脑风暴和辅助编程，都适合从 AI 开始。最终事实核验、价值取舍、对外承诺和高风险决定，需要保留人工判断。',
+      bullets: ['可以给材料让它总结，但不要让它凭空给出“官方最新规定”。', '需要联网、读文件或执行操作时，先确认当前产品和账号确实支持；并非所有对话都有这些能力。', '未经核对，不直接发布内容、付款、删除文件或发送重要消息。', '把 AI 的草稿当作待审版本，尤其不要用虚构引用支撑正式结论。'],
+      tip: '一个好起点是“AI 起草，我核对”；不是“AI 决定，我负责后果”。',
+      coach: '任务越接近真实世界的影响，越需要明确的人工检查与确认。',
+      button: '知道怎么选任务'
+    },
+    {
+      phase: 1,
+      kind: 'checks',
+      short: '练习前确认',
+      title: '只用公开示例，不碰私人资料',
+      intro: '接下来的练习只处理教材里给出的短文，不需要联网、上传文件或调用工具。不同产品的输入框外观可能不同，但任务本身相同。',
+      checks: [
+        '我打开的是自己有凭使用的 AI 官方对话入口',
+        '这次只粘贴教程示例，没有密码、隐私或公司机密',
+        '我知道回答可以不同，会按原文核对，而不是寻找唯一标准措辞',
+        '我会先完成这个小练习，再决定是否尝试更复杂的功能'
+      ],
+      coach: '第一次只练“给材料、限定任务、检查结果”，这已经是最重要的基本功。',
+      button: '可以开始练习'
+    },
+    {
+      phase: 2,
+      kind: 'task',
+      short: '做一次安全练习',
+      title: '让 AI 按原文总结，并逐字指出依据',
+      intro: '把下面整段提示词发到对话入口。它同时给了材料和限制：只能依据短文，没有依据就明说，不补充外部知识。',
+      code: [{ lang: 'text', caption: '复制整段提示词（包含短文）', text: '请只依据下面的短文完成两件事：\n1. 用两句话概括；\n2. 列出短文中支持“阅读前要明确目的”的原句。\n如果短文没有提供依据，请直接说“没有依据”，不要补充外部知识。\n\n短文：\n阅读前先明确目的，能帮助我们决定读什么、读到什么程度。为了查一个日期而阅读，和为了理解整套方法而阅读，所需的时间与笔记方式不同。明确目的并不保证理解全部内容，但能减少无关信息的干扰。' }],
+      bullets: ['看概括是否只包含短文中的意思，有没有添加原文没有的原因或结论。', '看引用的原句是否确实出现在短文里。', '若回答不合格，补一句：“请删去原文没有的内容，并逐字引用依据。”'],
+      coach: '目标不是得到唯一标准答案，而是亲自走一遍提供材料、限定任务和核对结果。',
+      button: '已练习并核对'
+    },
+    {
+      phase: 2,
+      kind: 'done',
+      short: '完成与进阶',
+      title: '你已经掌握第一次对话的基本框架',
+      intro: '普通聊天主要是在做推理；提示词描述任务，上下文提供参考信息，Token 参与文本计量。模型会生成貌似合理但实际错误的内容，所以“给清楚任务”和“人工核对”要一起使用。',
+      doneGroups: [
+        { title: '你已经理解', items: ['AI 是技术总称，大语言模型是其中一类模型', '训练调整模型参数，推理根据当前输入生成回答', '提示词、上下文和 Token 分别对应任务说明、参考信息与文本计量', '流畅、自信的表达不等于事实可靠'] },
+        { title: '以后继续做', items: ['先给公开、低风险的小任务，再逐步扩大范围', '易变事实与引用查原始来源，重要事项保留人工判断', '使用联网、文件或工具功能前，先确认当前产品是否支持', '上传资料前检查敏感性以及产品的数据使用规则'] }
+      ],
+      faqGroups: [
+        { label: '第一次对话', items: [
+          { q: '提示词是不是越长越专业越好？', a: '不是。先写清任务、材料和输出形式，再根据结果补充约束。堆砌角色、形容词和无关要求，反而可能让重点不清。' },
+          { q: '为什么同一个问题会得到不同回答？', a: '模型生成具有一定概率性，模型版本、对话上下文和产品设置也可能不同。需要稳定结论时，应保存可靠来源并建立人工核验流程。' },
+          { q: 'AI 给出链接或书名，就能直接引用吗？', a: '不能。先打开原始来源，确认它真实存在、内容支持你的论点，并核对作者、日期和版本。' }
+        ] },
+        { label: '资料与记忆', items: [
+          { q: '把资料贴进对话，模型就重新训练了吗？', a: '通常不是。这主要是在当前对话中提供上下文。是否被保存、用于改进服务或跨会话记忆，要看产品的设置与政策。' },
+          { q: 'Token 少就一定更便宜、回答更好吗？', a: '都不是。Token 是文本计量单位，实际费用和能力还取决于模型、服务商规则与任务本身。精简无关内容有帮助，但不要删掉关键要求或依据。' }
+        ] }
+      ],
+      seeAlso: [
+        { title: 'Agent 入门：模型、工具与安全操作', url: './17-agent-basics.html', why: '想让 AI 不只是回答，还能按步骤处理任务时阅读', icon: 'grid' },
+        { title: 'Magpie 安装与模型切换', url: './12-magpie.html', why: '已经理解基础概念，想进一步管理 Agent 的模型来源时阅读', icon: 'terminal' },
+        { title: 'Muse 智能体邀请与使用', url: './04-muse-invite.html', why: '想了解具体智能体产品的注册与使用流程时阅读；功能和资格以官方页面为准', icon: 'globe' }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../assets/g-engine.js?v=42c616d414" defer></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" role="img" aria-labelledby="title desc">
+<title id="title">Grok Bot 远程开发连接示意图</title><desc id="desc">电脑和手机通过 Tailscale 连接云电脑里的 Orca，Claude Code 在云电脑里运行。更新可能中断会话，恢复任务负责重新启动服务。</desc>
+<rect width="920" height="460" rx="24" fill="#f7f8fc"/>
+<g font-family="Segoe UI,Microsoft YaHei,sans-serif" fill="#27304b">
+<text x="36" y="48" font-size="23" font-weight="700">你的设备连到云电脑，任务在云端执行</text>
+<text x="36" y="76" font-size="14" fill="#68718a">连接关系示意图 · 非产品截图</text>
+<rect x="36" y="112" width="190" height="92" rx="16" fill="white" stroke="#dedfee"/>
+<text x="60" y="148" font-size="21" font-weight="700">电脑 · Orca</text><text x="60" y="178" font-size="14" fill="#68718a">粘贴桌面配对链接</text>
+<rect x="36" y="226" width="190" height="92" rx="16" fill="white" stroke="#dedfee"/>
+<text x="60" y="262" font-size="21" font-weight="700">手机 · Orca</text><text x="60" y="292" font-size="14" fill="#68718a">扫描手机专用二维码</text>
+<rect x="294" y="168" width="180" height="94" rx="16" fill="#eeecff" stroke="#bdb5f0"/>
+<text x="324" y="207" font-size="22" font-weight="700" fill="#6459d9">Tailscale</text><text x="316" y="236" font-size="14">同一 tailnet · 访问规则</text>
+<rect x="542" y="112" width="342" height="254" rx="20" fill="white" stroke="#dedfee"/>
+<text x="566" y="148" font-size="21" font-weight="700">Grok Bot 云电脑</text>
+<rect x="566" y="170" width="294" height="64" rx="12" fill="#eeecff"/>
+<text x="588" y="198" font-size="19" font-weight="700" fill="#6459d9">Orca Remote Server</text><text x="588" y="221" font-size="13">6768 仅允许本机与 tailnet 访问</text>
+<rect x="566" y="260" width="294" height="74" rx="12" fill="#eaf6ef"/>
+<text x="588" y="291" font-size="19" font-weight="700" fill="#287b66">Claude Code + 项目文件</text><text x="588" y="317" font-size="13">安装与登录都在云电脑上完成</text>
+<g fill="none" stroke="#8d83d8" stroke-width="3"><path d="M226 158h32v57h36M226 272h32v-57M474 215h68"/><path d="m530 207 12 8-12 8M710 234v26m-7-10 7 10 7-10"/></g>
+<rect x="36" y="390" width="848" height="44" rx="12" fill="#fff2d8"/>
+<text x="56" y="418" font-size="15">平台更新可能打断任务；恢复服务后检查任务状态，重要代码另行备份。</text>
+</g></svg>

@@ -1,0 +1,198 @@
+window.AI_GUIDE = {
+  index: '07',
+  slug: 'swap-memory',
+  title: 'VPS 增大内存（SWAP）',
+  subtitle: '十分钟垫高内存',
+  phases: [
+    { title: '看现状', copy: '先看内存和 SWAP' },
+    { title: '创建 SWAP', copy: '建文件、启用' },
+    { title: '开机自动挂载', copy: '写进 fstab' },
+    { title: '验证', copy: '确认真的生效' }
+  ],
+  inputs: [
+    { key: 'swapSize', label: 'SWAP 大小', short: 'SWAP 大小', placeholder: '2G', hint: '一般设成物理内存的 1~2 倍：1G 内存就设 2G，2G 内存可以设 2G 或 4G。也要看硬盘剩余空间。', example: '2G' }
+  ],
+  steps: [
+    {
+      phase: 0,
+      kind: 'info',
+      short: '什么情况该加',
+      title: 'SWAP 是拿硬盘当内存，用来应急',
+      intro: '内存不够的时候，系统可以把一部分暂时不用的数据挪到硬盘上，腾出内存给正在跑的程序。SWAP 就是这块「硬盘上的备用内存」。',
+      facts: [
+        ['1 核 1G', '装完 Halo、WordPress、Memos 这类单个项目后，再想加一个就不够用了'],
+        ['2 核 2G', '跑几个 Docker 小项目，偶尔会顶到内存上限'],
+        ['2 核 2.5G', '多个容器同时运行，峰值时容易触发 OOM（进程被杀）'],
+        ['要准备什么', 'root 权限；硬盘有充足剩余空间'],
+        ['大概要多久', '十分钟以内']
+      ],
+      bullets: [
+        '典型场景：1G 内存的 VPS 搭完 Halo，还想再搭 memos 等项目，内存不够，但又不想升级配置。',
+        '加 SWAP 是应急手段：能让你把项目跑起来，但它是硬盘速度，比内存慢很多。',
+        '长期高负载、经常用满 SWAP 的话，正确做法还是升级内存。'
+      ],
+      note: 'SWAP 只解决「不够用」的燃眉之急；它不能提升速度，也不能替代真实内存。',
+      coach: '先把预期说清楚：这一步是「能跑起来」，不是「跑得更快」。',
+      button: '看明白了，开始'
+    },
+    {
+      phase: 0,
+      kind: 'inputs',
+      short: '定个大小',
+      title: '第 1 步：决定要加多少 SWAP',
+      intro: '经验值：SWAP 大小设成物理内存的 1~2 倍。同时要确认硬盘剩余空间够——SWAP 占的是硬盘。',
+      coach: '1G 内存填 2G 就行；不确定就跟着这个比例来。',
+      button: '保存，继续'
+    },
+    {
+      phase: 0,
+      kind: 'task',
+      short: '看当前内存',
+      title: '第 2 步：先看看现在的内存和 SWAP',
+      intro: '动手前先留一份「改造前」的记录：内存多少、SWAP 现在是多少。',
+      code: [
+        {
+          lang: 'bash',
+          caption: '查看内存与 SWAP 现状',
+          text: [
+            'free -h',
+            '',
+            '# 顺便看一眼硬盘剩余空间，确认放得下',
+            'df -h /'
+          ]
+        }
+      ],
+      bullets: [
+        'free -h 的输出里，Mem 那行是物理内存，Swap 那行就是当前的 SWAP。',
+        '如果 Swap 那行是 0B，说明这台机器还没启用 SWAP，加上去效果最明显。',
+        'df -h / 看根目录剩余空间：要建的 SWAP 文件不能超过剩余空间。'
+      ],
+      coach: '记住 Swap 那一行的数字，最后验证时还要再看一次。',
+      button: '看过了，继续'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '创建 SWAP',
+      title: '第 3 步：创建 SWAP 文件并启用',
+      intro: '四步：创建文件、收紧权限、格式化成 SWAP、启用。命令里的 {{ swapSize }} 已经是你填的大小。',
+      code: [
+        {
+          lang: 'bash',
+          caption: '创建 {{ swapSize }} 的 SWAP 并启用',
+          text: [
+            '# 1. 创建文件（大小按需调整）',
+            'fallocate -l {{ swapSize }} /swapfile',
+            '',
+            '# 2. 权限收紧：只有 root 能读写',
+            'chmod 600 /swapfile',
+            '',
+            '# 3. 格式化成 SWAP',
+            'mkswap /swapfile',
+            '',
+            '# 4. 启用',
+            'swapon /swapfile'
+          ],
+          note: '不是 root 用户的话，每条命令前加 sudo。'
+        }
+      ],
+      bullets: [
+        'fallocate 是直接分配空间，比 dd 快得多。',
+        'chmod 600 很重要：SWAP 里可能有内存里的敏感数据，不能让别人读到。',
+        'mkswap 会提示这是 SWAP 空间；swapon 之后它就立刻生效了，不用重启。'
+      ],
+      note: '如果 fallocate 报「不支持」，可以改用 dd if=/dev/zero of=/swapfile bs=1M count=2048 生成 2G 文件（按你的大小换算 count 值）。',
+      coach: '四条命令依次执行，任何一条报错都先停下来看报错内容。',
+      button: 'SWAP 已启用'
+    },
+    {
+      phase: 2,
+      kind: 'task',
+      short: '开机自动挂载',
+      title: '第 4 步：写进 fstab，重启后依然生效',
+      intro: '上面启用只在当次运行有效，重启就没了。把 SWAP 写进 /etc/fstab，开机自动挂载。',
+      code: [
+        {
+          lang: 'bash',
+          caption: '追加一行到 /etc/fstab',
+          text: [
+            'echo \'/swapfile none swap sw 0 0\' >> /etc/fstab',
+            '',
+            '# 看一眼确认写进去了',
+            'tail -n 3 /etc/fstab'
+          ]
+        }
+      ],
+      bullets: [
+        '这行的含义：把 /swapfile 当 swap 挂载，开机自动生效。',
+        '追加前先确认 /etc/fstab 里没有同名的旧行，避免重复。',
+        'fstab 写错会导致开机进不了系统，写完务必用 tail 复查一眼。'
+      ],
+      warn: 'fstab 是开机挂载表，写坏了机器可能起不来。只追加这一行、并立刻复查，是这条命令安全的前提。',
+      coach: '这一步之后，重启也不会丢——这才是「装好了」。',
+      button: 'fstab 已写好'
+    },
+    {
+      phase: 3,
+      kind: 'task',
+      short: '验证',
+      title: '第 5 步：验证 SWAP 真的生效',
+      intro: '再看一次 free -h：Swap 那一行应该有你设置的数值了。',
+      code: [
+        {
+          lang: 'bash',
+          caption: '验证',
+          text: ['free -h', '', '# 再看一眼 SWAP 的启用状态和优先级', 'swapon --show']
+        }
+      ],
+      bullets: [
+        'free -h 里 Swap 那行从 0B 变成了你设的大小，就成功了。',
+        'swapon --show 会列出正在使用的 SWAP 文件、大小和优先级。',
+        '想更保险一点，可以重启一次服务器再执行 free -h，确认开机自动挂载也正常。'
+      ],
+      tip: 'SWAP 是拿硬盘当内存，应急可以；长期高负载还是建议升级内存。SWAP 大小一般设为物理内存的 1~2 倍。',
+      coach: '看到 Swap 行有数字，这篇就完成了；重启后再确认一次更稳。',
+      seeAlso: [
+        { title: '01 搭建个人 AI 中转网关（CLIProxyAPI）', url: './01-cli-proxy-api.html', why: '内存腾出来了，装个中转网关用起来', icon: 'key' },
+        { title: '10 自托管 AI 对话面板（OpenWebUI）', url: './10-openwebui.html', why: '面板本身也吃内存，1 核 2G 起比较稳', icon: 'grid' }
+      ],
+      button: '验证通过，完成'
+    },
+    {
+      phase: 3,
+      kind: 'done',
+      short: '完成与问答',
+      title: '搞定，这台机器多了一层内存缓冲',
+      intro: 'SWAP 已经启用并且会开机自动挂载。再遇到内存峰值时，系统会先动用硬盘这一层，不至于立刻把进程杀掉。',
+      doneGroups: [
+        {
+          title: '收尾：这几件事只有你能做',
+          items: [
+            '重启一次服务器，确认开机后 Swap 那行依旧有数字',
+            '把这次改动的记录（改了 /swapfile 和 /etc/fstab）留在自己的运维笔记里',
+            '观察一段时间：如果 SWAP 长期被大量占用，就该考虑升级内存了'
+          ]
+        }
+      ],
+      faqGroups: [
+        {
+          label: '原理与取舍',
+          items: [
+            { q: '加了 SWAP 会变快吗？', a: '不会。SWAP 是硬盘空间，速度比内存慢很多。它的作用是「内存不够时不至于崩」，让程序能继续跑。真正的性能瓶颈还是内存本身。' },
+            { q: '会不会伤硬盘？', a: 'SSD 有写入寿命，频繁大量换入换出会加速消耗，正常使用不至于。如果 SWAP 长期被大量读写，说明内存确实不够用了，建议升级配置。' },
+            { q: '该设多大？', a: '常规做法是物理内存的 1~2 倍：1G 内存设 2G，2G 内存设 2G 或 4G。同时要看硬盘剩余空间，别把硬盘塞满。' },
+            { q: '什么时候说明 SWAP 也救不了了？', a: '当你发现 free 里 Swap 长期吃满、系统响应明显变慢、负载持续偏高，就说明应该换更大的内存，而不是继续加 SWAP。' }
+          ]
+        },
+        {
+          label: '调整与撤销',
+          items: [
+            { q: '想把 SWAP 调大一点？', a: '先关掉再重建：swapoff /swapfile，然后删掉旧文件、按新的大小重新 fallocate 一遍、再 swapon。（fstab 里那一行不用改。）' },
+            { q: '想彻底去掉 SWAP？', a: '三步：swapoff /swapfile 关闭；删掉 /etc/fstab 里那一行；rm /swapfile 删除文件。做完用 free -h 确认 Swap 已经归零。' },
+            { q: 'SWAP 被用满、系统很卡怎么办？', a: '先看是谁在吃内存（top 按内存排序），停掉不必要的容器或服务；然后考虑升级内存。也可以把 vm.swappiness 调低（例如 10），让系统更不情愿使用 SWAP——这是取舍，不是提升。' }
+          ]
+        }
+      ]
+    }
+  ]
+};

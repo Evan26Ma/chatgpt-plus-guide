@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Skill 入门：把一类任务的做法交给 AI 复用。每一步配截图，跟着做就行。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#6459d9">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='18' fill='%236459d9' stroke='%231a1830' stroke-width='4'/%3E%3Cpath d='M20 24h24M20 32h24M20 40h14' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>Skill 入门 · Plus Guide</title>
+<link rel="preload" href="../assets/pg-heading-900.woff2?v=c11862cc4b" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/g-guide.css?v=74702c1566">
+</head>
+<!--
+  G 风格教程页外壳。由 ai-guides/_src/build.py --g 生成，不要直接改生成后的页面：
+  样式改 ai-guides/assets/g-guide.css，交互改 ai-guides/assets/g-engine.js，
+  这个外壳改 ai-guides/assets/g-page.html，内容改 ai-guides/guides/<slug>.js。
+-->
+<body>
+<div id="guideShell">
+<a class="skip" href="#stepTitle">跳到当前步骤</a>
+<header class="top">
+  <div class="top-in">
+    <a class="mark" id="homeLink" href="../" aria-label="Plus Guide 首页">plus<i>.</i>guide</a>
+    <span class="crumb"><span class="cat"><a id="catLink" href="../"></a> / </span><b id="guideTitle">Skill 入门</b></span>
+    <div class="top-actions">
+      <a class="btn btn-sm" id="allLink" href="../#tutorials" aria-label="全部教程"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>全部教程</span></a>
+    </div>
+  </div>
+</header>
+
+<details class="mobile-toc" id="mobileToc">
+  <summary><span id="mProgText">第 1 步</span><span class="track" aria-hidden="true"><span class="fill" id="mFill" style="display:block"></span></span><span>步骤</span></summary>
+  <nav class="toc" id="mToc" aria-label="本篇步骤"></nav>
+</details>
+
+<div class="layout">
+  <aside class="side" aria-label="本篇步骤">
+    <div class="side-inner">
+      <div class="prog">
+        <div class="prog-row"><span>进度</span><b id="progText">第 1 步</b></div>
+        <div class="track" role="progressbar" id="progBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="教程进度"><div class="fill" id="fill"></div></div>
+      </div>
+      <nav class="toc first" id="toc" aria-label="步骤目录"></nav>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="main-in">
+
+      <article class="step" id="step" aria-live="polite"><h1 id="stepTitle" tabindex="-1">Skill 入门</h1><p class="intro">正在加载内容……如果这行字一直在，说明页面脚本没跑起来，刷新一次试试。</p></article>
+    </div>
+  </main>
+
+  <aside class="rail" aria-label="帮助">
+    <div class="rail-inner">
+      <section class="box box-coach" id="coachBox">
+        <span class="tag" aria-hidden="true"><span class="sticker">小提示</span></span>
+        <h2>这一步的小提示</h2>
+        <p id="coach"></p>
+      </section>
+      <section class="box box-help">
+        <span class="tag" aria-hidden="true"><span class="sticker">别硬扛</span></span>
+        <h2>卡住了？</h2>
+        <p>进群说明教程名、做到第几步和报错，截图先遮住邮箱、密码和验证码。</p>
+        <a class="btn btn-ink btn-sm" href="https://t.me/+_lOsXtUCD9MxNzY1" target="_blank" rel="noopener noreferrer">打开 Telegram 群</a>
+        <details><summary>扫码进群</summary><img src="../ai-group-qr.png?v=5c146bd70c" alt="AI 交流群二维码" width="200" height="200" loading="lazy"></details>
+      </section>
+      <section class="box">
+        <h2>本机记录</h2>
+        <p class="save" id="saveStatus"><i aria-hidden="true"></i>进度自动保存在这个浏览器</p>
+        <div class="reset-row" id="resetRow"><button class="btn btn-sm" type="button" id="resetBtn">重新开始</button></div>
+      </section>
+    </div>
+  </aside>
+</div>
+</div>
+
+<main class="access" id="accessPanel" hidden></main>
+<dialog class="gate-dialog" id="gateDialog" aria-labelledby="gateTitle" aria-describedby="gateLead"></dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog class="img-dialog" id="imgDialog" aria-labelledby="imgCaption">
+  <div class="img-bar"><span id="imgCaption"></span><button class="btn btn-sm" type="button" id="imgClose">关闭</button></div>
+  <div class="img-scroll"><img id="imgFull" alt=""></div>
+</dialog>
+
+<script>
+window.AI_GUIDE_SLUG = 'skill-basics';
+window.AI_GUIDE = {category: "tools",
+  index: '18',
+  slug: 'skill-basics',
+  title: 'Skill 入门',
+  subtitle: '把一类任务的做法交给 AI 复用',
+  phases: [
+    { title: '认识 Skill', copy: '不是模型，和其他功能分工不同' },
+    { title: '读懂示例', copy: '固定格式会议纪要与复用边界' },
+    { title: '纸上练习', copy: '无代码设计，按产品支持落地' }
+  ],
+  inputs: [],
+  steps: [
+    {
+      phase: 0,
+      kind: 'info',
+      short: 'Skill 不是模型',
+      title: '第 1 步：Skill 是任务说明包，不是模型',
+      intro: 'Skill（技能）可以理解为针对一类任务整理的可复用说明：告诉 AI 什么时候用、按什么流程做、输出成什么样。它帮助模型执行特定工作，不是 GPT、Claude 等模型本身，不会单独替换或升级模型。',
+      facts: [
+        ['任务说明', '适用场景、操作顺序、限制和输出要求'],
+        ['示例、模板与资源', '供模型参考的样例、固定格式或辅助资料'],
+        ['可选脚本', '产品允许时完成明确的重复操作；不是必备，也不代表脚本一定安全'],
+        ['本篇范围', '只讲概念与纸上练习，不要求安装、创建或修改任何文件']
+      ],
+      bullets: [
+        '例如，“整理会议记录”Skill 可以规定固定的摘要和行动项格式。',
+        '它不负责提供模型，也不保证每次都能获得真实的会议内容。'
+      ],
+      note: '不同 AI 产品对 Skill 的名称、目录、入口和支持范围可能不同，以所用产品的官方说明为准。',
+      coach: '先问“这个工具给模型增加了什么工作方法”，而不是“它是不是一个更强的模型”。',
+      button: '分清 Skill 与模型'
+    },
+    {
+      phase: 0,
+      kind: 'task',
+      short: '分清四种工具',
+      title: '第 2 步：提示词、项目指令、Skill 和定时任务',
+      intro: '它们都在影响任务，但分别解决不同问题，不必相互替代。',
+      facts: [
+        ['提示词（Prompt）', '这一次我要你做什么？用于当前对话中的一次性要求'],
+        ['项目指令', '在这个项目里一直遵守什么？用于长期背景、约定和边界'],
+        ['Skill', '遇到这类任务，按什么成熟方法做？用于复用流程和材料'],
+        ['定时任务', '什么时候自动开始一件事？负责到点或按计划触发，不等于任务执行方法']
+      ],
+      bullets: [
+        '它们可以配合：项目指令提供团队约定，Skill 提供会议纪要流程，当前提示词提供本次原始记录。',
+        '定时任务只负责何时启动。具体能否组合、如何触发，由产品实现决定。'
+      ],
+      coach: '先按“这次、这个项目、这类任务、什么时间”来区分。',
+      button: '四种分工已分清'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '看范围与材料',
+      title: '第 3 步：先看会议纪要 Skill 的触发范围与材料',
+      intro: '一个实用的“固定格式会议纪要”Skill，应写清楚：用户要求整理会议记录、转写稿或讨论要点时使用；不用于凭空补写没有发生的会议。',
+      facts: [
+        ['meeting-notes-template.md', '固定输出模板'],
+        ['example.md', '一份完整输入与输出示例，展示详略程度'],
+        ['summary-rules.md', '决议、待办和不确定信息的整理规则'],
+        ['可选文本清理脚本', '只在产品允许且本人审查过脚本时使用']
+      ],
+      bullets: [
+        '这些材料服务于任务，不是额外模型。',
+        'Skill 里即使写了“必须准确”，也不等于内容已经经过事实核验。'
+      ],
+      coach: '适用描述要具体到一类任务，不能写成“什么都能做”。',
+      button: '材料与边界看懂了'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '固定纪要格式',
+      title: '第 4 步：固定输出格式，保留未知信息',
+      intro: '模板约束呈现方式；原文没有提供的负责人、日期和结论，要保留“未明确”或“待确认”，不能猜。',
+      code: [{
+        lang: 'text',
+        caption: '固定格式会议纪要模板',
+        text: '会议主题：\n会议时间：未提供 / 原文时间\n参会人：未提供 / 原文名单\n\n一、结论摘要\n- 只写有原文依据的摘要。\n\n二、已确定事项\n- 结论：……\n\n三、行动项\n| 事项 | 负责人 | 截止时间 |\n| --- | --- | --- |\n| …… | 未明确 | 未明确 |\n\n四、待确认问题\n- ……'
+      }],
+      bullets: [
+        '原文“甲在周五前发报价，其他时间没定”，这一项只记录原文给出的负责人和“周五”。',
+        '不要把其他人、日期或决议猜出来。时间是否写明时区、行动项采用什么列，可按团队需要调整。'
+      ],
+      warn: '需本人提供真实且有权处理的会议材料，并核对摘要、负责人和截止时间；涉及隐私或公司资料时，先确认所用产品的数据规则。',
+      coach: '固定格式不等于补全未知信息。',
+      button: '模板看懂了'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '什么时候值得复用',
+      title: '第 5 步：比较临时提示词和可复用 Skill',
+      intro: '只对一次会议说“帮忙整理一下”，模型需要根据当前对话临时推断格式。把稳定流程整理成 Skill 后，同类任务可以重复沿用模板、示例和规则，减少每次重述。',
+      bullets: [
+        '临时、只发生一次的要求，直接写提示词即可。',
+        '所有任务都要遵守的项目背景，更适合放项目指令。',
+        '固定且反复出现的任务流程，才值得整理成 Skill。',
+        '需要定时执行时，还要产品另提供定时或自动化能力。',
+        '说明过长、示例互相矛盾或适用描述太宽，都可能降低可用性。先解决一种明确任务，再按反馈修改。'
+      ],
+      coach: 'Skill 不是越全越好，能稳定解决一种重复任务就有价值。',
+      button: '知道何时该用'
+    },
+    {
+      phase: 2,
+      kind: 'checks',
+      short: '无代码练习',
+      title: '第 6 步：在纸上设计自己的迷你 Skill',
+      intro: '不用打开特定软件，找一张纸或任意纯文本笔记，按下面清单完成设计。再拿一段自己编写的两三句虚拟讨论，人工按模板填一次，检查是否遗漏“待确认问题”。',
+      checks: [
+        '名称写为“固定格式会议纪要”',
+        '使用范围：用户给出讨论原文，并要求整理纪要时',
+        '边界：没有原文，或要求编造参会人、推断未说出的决定时不使用',
+        '资源采用第 4 步模板，暂不添加脚本',
+        '输出检查：分区完整，无依据的信息标“未提供”或“待确认”，不猜负责人和日期'
+      ],
+      note: '全程只设计说明，不安装、不运行脚本。这只是设计练习，不代表已经在任何产品中创建或启用 Skill。',
+      coach: '不上传敏感会议材料，也能完成这次练习。',
+      button: '练习已完成'
+    },
+    {
+      phase: 2,
+      kind: 'task',
+      short: '按产品支持落地',
+      title: '第 7 步：确认产品支持，再决定是否落地',
+      intro: '先查所用产品的当前官方文档：是否支持 Skills、支持哪种格式和目录、是否自动或手动选择、能否附带脚本、在哪些账号或客户端可用。不要把某个产品的路径和设置原样套到另一个产品。',
+      bullets: [
+        '没有 Skill 功能：把练习结果保存为普通提示词模板，也能手动复用。',
+        '有 Skill 功能：按该产品说明创建，先用无敏感信息的练习材料核对结果。',
+        '附带脚本：本人检查来源、代码、权限和确认机制；不会审脚本时，不添加脚本也能完成本篇练习。',
+        '团队使用：另确认共享范围、资料权限和维护责任人。'
+      ],
+      note: '本教程只解释通用思路，不宣称所有 AI 产品都支持同一种 Skill。',
+      coach: '先确认产品能力，再选择提示词模板或正式 Skill，不强行套路径。',
+      seeAlso: [
+        { title: '19 MCP 入门', url: './19-mcp-basics.html', why: '想区分“任务方法”与“外部工具和数据连接”时阅读', icon: 'plug' }
+      ],
+      button: '支持范围已确认'
+    },
+    {
+      phase: 2,
+      kind: 'done',
+      short: '完成与问答',
+      title: '第 8 步：能分清，也完成了一份迷你设计',
+      intro: 'Skill 是针对任务的说明与资源集合，不是模型；它与提示词、项目指令、定时任务分工不同；固定格式要靠明确模板和示例；实际入口与支持范围要看具体产品。',
+      doneGroups: [
+        { title: '收尾确认', items: ['已写出迷你 Skill 的名称、触发范围、边界和模板', '能区分无依据的信息与会议已经决定的事项', '知道脚本只是可选部分，运行前需要审查与授权', '没有为了做练习而向产品上传敏感会议材料'] },
+        { title: '练习范围', items: ['本篇为概念讲解与无代码设计练习', '未要求安装或启用 Skill，未声称完成任何产品内实测'] }
+      ],
+      faqGroups: [
+        { label: '概念与选择', items: [
+          { q: '装了 Skill 就换了更强的模型吗？', a: '不是。Skill 提供任务流程和辅助材料，模型仍由所用产品及当前选择决定。' },
+          { q: 'Skill 和 MCP 是一回事吗？', a: '不是。Skill 主要沉淀任务方法；MCP 是 AI 应用连接外部工具、数据和提示模板的开放协议。下一篇专门解释 MCP。' },
+          { q: '项目里已有指令，还需要 Skill 吗？', a: '看是否重复做同类任务。项目指令管长期约定，Skill 管特定任务的方法；不必为了概念齐全而重复维护相同内容。' }
+        ] },
+        { label: '使用与准确性', items: [
+          { q: '不会写代码能用吗？', a: '可以。本篇的会议纪要 Skill 只有说明和模板，不需要脚本；是否提供图形化创建入口则看具体产品。' },
+          { q: '用了固定模板，纪要就一定准确吗？', a: '不一定。模板只能约束呈现方式，原文质量、模型理解和人工核对仍然重要。' }
+        ] }
+      ],
+      seeAlso: [
+        { title: '12 Magpie 安装与模型切换', url: './12-magpie.html', why: '基础模型接入已跑通，想在 Magpie 进阶部分查看资源库、MCP 和 Skills 时阅读', icon: 'grid' }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../assets/g-engine.js?v=42c616d414" defer></script>
+</body>
+</html>

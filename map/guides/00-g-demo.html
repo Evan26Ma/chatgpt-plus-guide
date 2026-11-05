@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="谷歌账号注册：选电脑网页或手机 Gmail，一步一步注册。每一步配截图，跟着做就行。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#6459d9">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='18' fill='%236459d9' stroke='%231a1830' stroke-width='4'/%3E%3Cpath d='M20 24h24M20 32h24M20 40h14' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>谷歌账号注册 · Plus Guide</title>
+<link rel="preload" href="../assets/pg-heading-900.woff2?v=c11862cc4b" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/g-guide.css?v=74702c1566">
+</head>
+<!--
+  G 风格教程页外壳。由 ai-guides/_src/build.py --g 生成，不要直接改生成后的页面：
+  样式改 ai-guides/assets/g-guide.css，交互改 ai-guides/assets/g-engine.js，
+  这个外壳改 ai-guides/assets/g-page.html，内容改 ai-guides/guides/<slug>.js。
+-->
+<body>
+<div id="guideShell">
+<a class="skip" href="#stepTitle">跳到当前步骤</a>
+<header class="top">
+  <div class="top-in">
+    <a class="mark" id="homeLink" href="../" aria-label="Plus Guide 首页">plus<i>.</i>guide</a>
+    <span class="crumb"><span class="cat"><a id="catLink" href="../"></a> / </span><b id="guideTitle">谷歌账号注册</b></span>
+    <div class="top-actions">
+      <a class="btn btn-sm" id="allLink" href="../#tutorials" aria-label="全部教程"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>全部教程</span></a>
+    </div>
+  </div>
+</header>
+
+<details class="mobile-toc" id="mobileToc">
+  <summary><span id="mProgText">第 1 步</span><span class="track" aria-hidden="true"><span class="fill" id="mFill" style="display:block"></span></span><span>步骤</span></summary>
+  <nav class="toc" id="mToc" aria-label="本篇步骤"></nav>
+</details>
+
+<div class="layout">
+  <aside class="side" aria-label="本篇步骤">
+    <div class="side-inner">
+      <div class="prog">
+        <div class="prog-row"><span>进度</span><b id="progText">第 1 步</b></div>
+        <div class="track" role="progressbar" id="progBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="教程进度"><div class="fill" id="fill"></div></div>
+      </div>
+      <nav class="toc first" id="toc" aria-label="步骤目录"></nav>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="main-in">
+
+      <article class="step" id="step" aria-live="polite"><h1 id="stepTitle" tabindex="-1">谷歌账号注册</h1><p class="intro">正在加载内容……如果这行字一直在，说明页面脚本没跑起来，刷新一次试试。</p></article>
+    </div>
+  </main>
+
+  <aside class="rail" aria-label="帮助">
+    <div class="rail-inner">
+      <section class="box box-coach" id="coachBox">
+        <span class="tag" aria-hidden="true"><span class="sticker">小提示</span></span>
+        <h2>这一步的小提示</h2>
+        <p id="coach"></p>
+      </section>
+      <section class="box box-help">
+        <span class="tag" aria-hidden="true"><span class="sticker">别硬扛</span></span>
+        <h2>卡住了？</h2>
+        <p>进群说明教程名、做到第几步和报错，截图先遮住邮箱、密码和验证码。</p>
+        <a class="btn btn-ink btn-sm" href="https://t.me/+_lOsXtUCD9MxNzY1" target="_blank" rel="noopener noreferrer">打开 Telegram 群</a>
+        <details><summary>扫码进群</summary><img src="../ai-group-qr.png?v=5c146bd70c" alt="AI 交流群二维码" width="200" height="200" loading="lazy"></details>
+      </section>
+      <section class="box">
+        <h2>本机记录</h2>
+        <p class="save" id="saveStatus"><i aria-hidden="true"></i>进度自动保存在这个浏览器</p>
+        <div class="reset-row" id="resetRow"><button class="btn btn-sm" type="button" id="resetBtn">重新开始</button></div>
+      </section>
+    </div>
+  </aside>
+</div>
+</div>
+
+<main class="access" id="accessPanel" hidden></main>
+<dialog class="gate-dialog" id="gateDialog" aria-labelledby="gateTitle" aria-describedby="gateLead"></dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog class="img-dialog" id="imgDialog" aria-labelledby="imgCaption">
+  <div class="img-bar"><span id="imgCaption"></span><button class="btn btn-sm" type="button" id="imgClose">关闭</button></div>
+  <div class="img-scroll"><img id="imgFull" alt=""></div>
+</dialog>
+
+<script>
+window.AI_GUIDE_SLUG = 'g-demo';
+window.AI_GUIDE = {
+  index: '00',
+  slug: 'g-demo',
+  title: '谷歌账号注册',
+  subtitle: '选电脑网页或手机 Gmail，一步一步注册',
+  category: 'account',
+  phases: [
+    { title: '开始注册', copy: '选择电脑网页或手机 Gmail 入口' },
+    { title: '验证与检查', copy: '按提示验证，再核对账号' }
+  ],
+  inputs: [],
+  steps: [
+    {
+      phase: 0,
+      kind: 'info',
+      short: '开始前准备',
+      title: '先准备好，再选一种注册方式',
+      intro: '这篇只讲创建自己的 Google 个人账号。你可以用电脑网页，也可以从手机 Gmail App 进入注册。已有可正常登录的个人账号，通常不必重新注册。',
+      facts: [
+        ['需要准备', '能正常打开 Google 页面的设备、可接收验证提示的手机，以及安全保存密码的位置'],
+        ['手机注册', '可以从 Gmail App 进入，但不保证免手机号或免验证；界面会随系统和版本变化'],
+        ['账号地区', '注册完成不等于账号关联到某个国家，也不等于获得学生优惠资格'],
+        ['资料与密码', '只在 Google 官方页面填写；本教程不收集姓名、密码、手机号或验证码']
+      ],
+      note: 'Google 官方说明：为防止滥用，创建或登录账号时有时需要电话验证。截图是操作参考，不是免验证承诺。',
+      links: [{ label: 'Google 官方：账号验证说明', url: 'https://support.google.com/accounts/answer/114129?hl=zh-Hans' }],
+      coach: '先选方便操作的设备。遇到验证时，按自己的页面提示完成。',
+      button: '准备好了，选择注册方式'
+    },
+    {
+      phase: 0,
+      kind: 'choice',
+      short: '选择注册方式',
+      title: '你准备从哪里开始注册？',
+      intro: '两条路线都会回到 Google 的账号创建流程。选你手边方便使用的设备，不需要把两种方式都做一遍。',
+      choices: [
+        { value: 'web', title: '电脑网页注册', copy: '打开 Google 官方注册页，填写资料；出现扫码提示时，再用手机确认。', icon: 'globe', next: 2 },
+        { value: 'gmail', title: '手机 Gmail App 注册', copy: '安装官方 Gmail，依次找到添加账号和创建账号；配图按原帖拆成小步骤。', icon: 'phone', next: 2 }
+      ],
+      coach: '手机路线也可能要求短信验证，按当前提示继续。'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '按提示完成验证',
+      title: '看自己的页面：按要求验证，再确认条款',
+      intro: '手机 Gmail 路线和电脑路线都可能要求验证。按你当前看到的提示操作；没有出现某种验证，就不必为了对齐截图额外触发。',
+      facts: [
+        ['手机没有要求验证', '继续核对账号资料、条款和账号创建结果，不代表以后登录都免验证'],
+        ['要求短信或电话', '用自己能正常接收验证的号码，核对国家代码，再按官方提示完成'],
+        ['电脑出现二维码', '扫描自己电脑当前显示的二维码，在手机核对是本人操作后确认']
+      ],
+      bullets: [
+        '先看当前页面属于哪种情况，不要照着截图寻找本来没有出现的按钮。',
+        '电脑扫码时，核对设备、位置和时间，确认是本人发起，再点“Yes, continue”。',
+        '出现号码限制或收不到验证码时，按 Google 帮助处理；需要时稍后再试。',
+        '完成当前要求的验证后，阅读剩余提示与条款，直到账号创建完成。'
+      ],
+      images: [
+        { src: "../assets/guides/g-demo/desktop-qr.webp?v=0e74c8baf3", alt: '电脑上要求用手机扫描二维码完成 Google 注册验证', caption: '仅电脑扫码流程参考：扫描自己电脑当前显示的二维码。手机没有此提示时，无需另外找电脑扫码。' },
+        { src: "../assets/guides/g-demo/phone-confirm.webp?v=1e2d76eee6", alt: '手机上的 Google 验证确认页面和 Yes continue 按钮', caption: '仅扫码后的手机确认参考：核对是本人操作，再继续。', layout: 'phone' }
+      ],
+      note: '原电脑案例使用 +86 联通号码验证通过，但不代表所有号码都能通过。Gmail App 也不能保证跳过手机验证；是否要求验证、是否接受号码，以 Google 实际提示为准。',
+      links: [{ label: 'Google 官方：验证问题与号码提示', url: 'https://support.google.com/accounts/answer/114129?hl=zh-Hans' }],
+      coach: '不要扫描别人发来的注册二维码，也不要把自己的验证码转交给别人。',
+      button: '要求的验证和条款已完成'
+    },
+    {
+      phase: 1,
+      kind: 'checks',
+      short: '确认注册结果',
+      title: '确认账号已经创建完成',
+      intro: 'Google 页面显示账号创建完成后，检查登录和找回方式。这张清单记录的是你自己核对的结果。',
+      checks: [
+        '我能在 Google 官方页面登录，并确认完整邮箱地址',
+        '密码已经安全保存，不需要依靠聊天记录找回',
+        '注册要求的验证和条款确认已经完成',
+        '我知道账号注册、账号关联地区和学生优惠资格是不同的事情'
+      ],
+      seeAlso: [{ title: 'Google 账号管理', url: 'https://myaccount.google.com/', why: '按自己的情况添加恢复邮箱、恢复手机号和两步验证。' }],
+      tip: '进入账号安全设置，按自己的情况添加恢复邮箱、恢复手机号和两步验证，方便日后找回账号。',
+      coach: '只有自己能正常登录，才算注册结果确认完成。',
+      button: '已全部确认'
+    },
+    {
+      phase: 1,
+      kind: 'done',
+      short: '完成与问答',
+      title: '谷歌账号注册完成',
+      intro: '后续使用 Google 服务时，先核对当前登录邮箱。需要改区或了解 Gemini 学生优惠，再打开对应的独立教程。',
+      seeAlso: [
+        { title: '谷歌账号改区', url: './21-google-region.html', why: '需要更正账号关联地区时，查看单独的表单与结果核对流程。' },
+        { title: 'Gemini 学生优惠领取', url: './20-gemini-student.html#account-ready', why: '已有账号后，从账号准备继续检查优惠资格。' },
+        { title: '全部免费教程', url: '../', why: '回到目录，选择下一篇。' }
+      ],
+      faqGroups: [
+        { label: '注册与验证', items: [
+          { q: '已有 Google 账号，还需要重新注册吗？', a: '通常不需要。先确认原账号能正常登录，并满足你要使用的服务要求。不要把重新注册当成取得优惠资格的保证。' },
+          { q: '从 Gmail App 注册，一定不用手机号吗？', a: '不能保证。原帖分享的是一条手机注册入口，不代表所有设备和账号都免验证。Google 官方说明，创建或登录账号时有时需要电话验证；即使注册时没要求，之后也可能再次核验。' },
+          { q: '+86 手机号一定能验证吗？', a: '不能保证。原案例有 +86 联通号码验证通过的记录，但 Google 会根据当前流程决定是否接受号码或要求其他验证，以页面提示为准。' },
+          { q: '注册完成就有 Gemini 学生优惠吗？', a: '没有。账号创建、关联地区和优惠资格需要分别确认。学生优惠还需符合当期活动要求，并完成相应身份验证。' }
+        ] }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../assets/g-engine.js?v=42c616d414" defer></script>
+</body>
+</html>

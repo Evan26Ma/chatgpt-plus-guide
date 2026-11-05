@@ -1,0 +1,12 @@
+[Unit]
+Description=Update Philippines Plus price 每天早上4:00（北京时间）
+
+[Timer]
+OnCalendar=*-*-* 04:00:00 Asia/Shanghai
+AccuracySec=1s
+RandomizedDelaySec=0
+Persistent=false
+Unit=plus-guide-price.service
+
+[Install]
+WantedBy=timers.target

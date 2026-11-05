@@ -1,0 +1,930 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Plus Guide 免费教程导航：谷歌账号注册、ChatGPT Plus 开通、Gemini 学生优惠、海外支付方式、AI 工具和云端开发。每一步配截图，跟着做就行。">
+<link rel="canonical" href="https://map.plus-guide.fun/">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="Plus Guide">
+<meta property="og:title" content="免费教程导航 · Plus Guide">
+<meta property="og:description" content="账号订阅、AI 工具和云端开发，15 篇独立向导，选一篇跟着步骤做。">
+<meta property="og:url" content="https://map.plus-guide.fun/">
+<meta property="og:image" content="https://map.plus-guide.fun/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Plus Guide 免费教程导航，选一篇跟着步骤做">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="免费教程导航 · Plus Guide">
+<meta name="twitter:description" content="账号订阅、AI 工具和云端开发，15 篇独立向导。">
+<meta name="twitter:image" content="https://map.plus-guide.fun/og-image.png">
+<meta name="theme-color" content="#6459d9">
+<title>免费教程导航 · Plus Guide</title>
+<link rel="preload" href="./assets/pg-heading-900.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* ===== Plus Guide · G 风格（贴纸 + 深色描边）===== 说明见 DESIGN-G.md */
+@font-face{font-family:"PG Heading";src:url("./assets/pg-heading-900.woff2") format("woff2");font-weight:900;font-style:normal;font-display:swap}
+@font-face{font-family:"PG Mark";src:url("./assets/bricolage-800-sub.woff2") format("woff2");font-weight:800;font-style:normal;font-display:swap}
+:root{
+  color-scheme:light;
+  --ink:#1a1830;--text:#3d3a55;--muted:#5d5a75;--faint:#6b6885;
+  --violet:#6459d9;--violet-dark:#4f44c6;--green:#1fa971;
+  --paper:#fff;--soft:#faf9fe;--track:#f1eff9;
+  --lilac:#f1eeff;--mint:#eafbf3;--butter:#fff8d9;--sky:#eef5ff;--peach:#fff1e8;
+  --stk-yellow:#fff1a8;--stk-mint:#cff5e7;--stk-peach:#ffe0cc;--stk-lilac:#e9e5ff;--stk-sky:#e0ecff;
+  --line:2px solid var(--ink);--line-thin:1.5px solid var(--ink);
+  --r-card:24px;--r-big:36px;
+  --font:"PingFang SC","Microsoft YaHei UI","Microsoft YaHei","HarmonyOS Sans SC","Noto Sans SC",system-ui,sans-serif;
+  --font-head:"PG Heading",var(--font);
+  --font-mark:"PG Mark",ui-rounded,system-ui,sans-serif;
+  --ease-pop:cubic-bezier(.3,1.5,.5,1);--ease-out:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
+h1,h2,h3{font-family:var(--font-head);font-weight:900;margin:0}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
+.skip{position:absolute;left:16px;top:-80px;z-index:50;padding:10px 16px;background:#fff;border:var(--line);border-radius:999px;font-weight:700}.skip:focus{top:16px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.mark{font-family:var(--font-mark);font-weight:800;letter-spacing:-.02em;text-decoration:none}
+.mark i{font-style:normal;color:var(--violet)}
+.sticker{display:inline-block;border:var(--line-thin);border-radius:999px;padding:3px 12px;font-size:13px;font-weight:700;line-height:1.6;color:var(--ink);white-space:nowrap}
+.tilt-l{rotate:-5deg}.tilt-r{rotate:5deg}.tilt-l2{rotate:-3deg}.tilt-r2{rotate:3deg}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border:var(--line);border-radius:999px;background:#fff;color:var(--ink);font-weight:700;text-decoration:none;transition:translate .15s ease,box-shadow .15s ease}
+.btn:hover{translate:0 -2px;box-shadow:0 4px 0 var(--ink)}
+.btn:active{translate:0 2px;box-shadow:0 0 0 var(--ink)}
+.btn-violet{background:var(--violet);color:#fff}
+.btn-ink{background:var(--ink);color:#fff}
+
+/* header */
+.top .wrap{height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.top .mark{font-size:24px}
+.top nav{display:flex;align-items:center;gap:4px;font-size:15px}
+.top nav a:not(.btn){padding:10px 14px;border-radius:999px;text-decoration:none}
+.top nav a:not(.btn):hover{background:var(--track)}
+.top .btn{min-height:40px;padding:0 18px;font-size:15px}
+
+/* hero */
+.hero{padding-top:64px;padding-bottom:52px;text-align:center}
+.hero h1{font-size:clamp(52px,8.6vw,104px);line-height:1.05;letter-spacing:-.04em;margin-bottom:22px}
+.hero h1 span{display:block}
+.lead{margin:0 auto 34px;max-width:30em;font-size:19px;line-height:1.8;color:var(--muted)}
+.search{position:relative;width:min(540px,100%);margin:0 auto 28px}
+.search input{width:100%;height:60px;border:var(--line);border-radius:999px;background:#fff;padding:0 96px 0 26px;font-size:17px;outline-offset:3px}
+.search input::-webkit-search-cancel-button{display:none}
+.search input::placeholder{color:#8a87a2}
+.kbd{position:absolute;right:22px;top:50%;translate:0 -50%;display:flex;align-items:center;gap:6px;font-size:13px;color:var(--faint);pointer-events:none}
+.kbd kbd{font:inherit;font-weight:700;color:var(--ink);border:var(--line-thin);border-radius:6px;padding:0 7px;line-height:20px}
+.search:focus-within .kbd{display:none}
+.clear{position:absolute;right:10px;top:50%;translate:0 -50%;width:40px;height:40px;border:0;border-radius:50%;background:none;font-size:22px;line-height:1;color:var(--muted)}
+.clear:hover{background:var(--track);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:780px;margin:0 auto}
+.chips span{display:inline-block}
+.chip{border:var(--line-thin);border-radius:999px;padding:8px 18px;font-size:15px;font-weight:700;background:var(--stk-lilac);transition:rotate .3s var(--ease-pop),scale .3s var(--ease-pop)}
+.chip:hover{rotate:-8deg;scale:1.1}
+
+/* ticker */
+.ticker-clip{overflow:hidden;padding:14px 0;margin:-6px 0 50px}
+.ticker{border-block:var(--line);background:var(--stk-yellow);overflow:hidden;rotate:-1deg;scale:1.03}
+.ticker-track{display:flex;width:max-content;padding:12px 0}
+.ticker-track span{display:inline-flex;align-items:center;gap:22px;padding:0 22px;font-family:var(--font-head);font-weight:900;font-size:18px;white-space:nowrap}
+.ticker-track svg{width:16px;height:16px;flex:none}
+
+/* start row */
+.start{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:20px;padding-bottom:56px}
+.panel{position:relative;border:var(--line);border-radius:var(--r-card);padding:28px;background:#fff}
+.panel-lilac{background:var(--lilac)}
+.panel .stk-top{position:absolute;top:-16px;right:28px}
+.resume{display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.resume small{display:block;font-size:14px;color:var(--faint);margin-bottom:6px}
+.resume strong{display:block;font-family:var(--font-head);font-weight:900;font-size:26px;letter-spacing:-.02em;margin-bottom:16px;line-height:1.3}
+.meter{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:700}
+.meter-track{flex:1;height:12px;border-radius:999px;background:var(--track);border:var(--line-thin);overflow:hidden}
+.meter-fill{display:block;height:100%;width:0;background:repeating-linear-gradient(-45deg,var(--violet) 0 8px,#7d73e6 8px 16px);transition:width 1.2s var(--ease-out)}
+.resume-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.resume-actions span{font-size:12px;color:var(--faint)}
+.resume-x{position:absolute;top:12px;right:12px;width:34px;height:34px;border:0;border-radius:50%;background:none;font-size:20px;color:var(--muted)}
+.resume-x:hover{background:var(--track);color:var(--ink)}
+.routes p.title{margin:0 0 18px;font-family:var(--font-head);font-weight:900;font-size:22px;letter-spacing:-.02em}
+.route{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.route+.route{margin-top:16px}
+.route>em{font-style:normal;font-size:13px;color:var(--muted);width:100%;margin-bottom:-2px}
+.route-step{display:inline-block}
+.route-step a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;background:#fff;border:var(--line-thin);border-radius:999px;padding:6px 14px 6px 6px;font-size:15px;font-weight:700}
+.route-step a:hover{background:var(--stk-yellow);color:var(--ink)}
+.route-step b{width:24px;height:24px;border-radius:50%;background:var(--violet);color:#fff;display:grid;place-items:center;font-size:12px}
+.route-g b{background:var(--green)}
+.dash{height:2px;width:24px;background:repeating-linear-gradient(90deg,var(--ink) 0 6px,transparent 6px 11px)}
+
+/* price note (内容由价格任务每天改写) */
+.wrap.price{margin-bottom:8px}
+.ph-plus-price-note{color:var(--faint)!important;margin:0!important}
+.ph-plus-price-note a{color:var(--violet-dark)}
+
+/* sticky bar */
+.bar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:var(--line);margin-bottom:8px}
+.bar .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding-top:12px;padding-bottom:12px}
+.mini{position:relative;flex:0 1 300px;min-width:200px}
+.mini input{width:100%;height:42px;border:var(--line);border-radius:999px;padding:0 16px 0 40px;font-size:15px;background:#fff}
+.mini input::-webkit-search-cancel-button{display:none}
+.mini svg{position:absolute;left:14px;top:50%;translate:0 -50%;width:17px;height:17px}
+.count{font-size:14px;color:var(--muted);white-space:nowrap}
+.count button{border:0;background:none;padding:0 0 0 8px;color:var(--violet-dark);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.filters{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.filter{height:40px;padding:0 15px;border:var(--line);border-radius:999px;background:#fff;font-size:14px;font-weight:700;transition:translate .15s ease,background .2s ease}
+.filter:hover{translate:0 -2px}
+.filter[aria-pressed=true]{background:var(--ink);color:#fff}
+.filter .n{margin-left:5px;font-weight:400;opacity:.75;font-variant-numeric:tabular-nums}
+
+/* sections & cards */
+.section{padding:40px 0 16px;scroll-margin-top:var(--bar,96px)}
+.section-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-bottom:26px}
+.section-head h2{font-size:36px;letter-spacing:-.03em}
+.section-head p{margin:0;font-size:15px;color:var(--faint)}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-flow:dense;gap:20px}
+.card{position:relative;display:flex;flex-direction:column;min-height:230px;overflow:hidden;text-decoration:none;color:var(--ink);background:#fff;border:var(--line);border-radius:var(--r-card);padding:26px 24px 22px;transition:translate .2s var(--ease-pop),box-shadow .2s ease}
+.card:hover{translate:0 -6px;box-shadow:0 6px 0 var(--ink);color:var(--ink)}
+.card:active{translate:0 -2px;box-shadow:0 2px 0 var(--ink)}
+.card.tall{grid-row:span 2}
+.t-lilac{background:var(--lilac)}.t-mint{background:var(--mint)}.t-butter{background:var(--butter)}.t-sky{background:var(--sky)}.t-peach{background:var(--peach)}
+.card-stk{position:absolute;top:16px;right:18px;transition:rotate .3s var(--ease-pop),scale .3s var(--ease-pop)}
+.card:hover .card-stk{rotate:-10deg;scale:1.12}
+.card-type{margin:0 0 10px;font-size:13px;color:var(--faint)}
+.card h3{font-size:21px;line-height:1.4;letter-spacing:-.02em;margin:0 0 10px}
+.card:has(.card-stk) h3{padding-right:64px}
+.card:has(.card-stk[data-wide]) h3{padding-right:0;margin-top:26px}
+.card.wide .desc,.card.wide .rec{max-width:40em}
+.card .desc{margin:0 0 16px;font-size:15px;line-height:1.8;color:var(--muted)}
+.card .rec{margin:-4px 0 10px;font-weight:700;color:var(--ink)}
+.card .prereq{margin:auto 0 0;font-size:13px;line-height:1.7;color:var(--faint)}
+.card .prereq b{font-weight:700;color:var(--text)}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;min-height:26px}
+.card-foot time{font-size:12px;color:var(--faint)}
+.seen{display:none;background:var(--stk-mint);font-size:12px;padding:1px 10px}
+.card.visited .seen{display:inline-block}
+.shot{display:block;width:100%;flex:1 1 0;min-height:200px;height:auto;margin:14px 0 -48px;border:var(--line-thin);border-radius:16px;object-fit:cover;object-position:top;transition:translate .35s var(--ease-out)}
+.card:hover .shot{translate:0 -16px}
+.card.tall .prereq{margin-top:0}
+.ask{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;text-align:left;min-height:200px;border:2px dashed var(--ink);border-radius:var(--r-card);background:#fff;padding:26px 24px;transition:translate .2s var(--ease-pop),box-shadow .2s ease}
+.ask:hover{translate:0 -6px;box-shadow:0 6px 0 var(--ink)}
+.ask strong{font-family:var(--font-head);font-weight:900;font-size:20px}
+.ask small{font-size:14px;line-height:1.7;color:var(--muted)}
+.wide{grid-column:span 2}
+mark{background:var(--stk-yellow);color:inherit;border-radius:4px;padding:0 2px;box-shadow:0 0 0 1px var(--ink) inset}
+
+/* empty */
+.empty{margin:24px 0 40px;padding:44px 24px;text-align:center;border:2px dashed var(--ink);border-radius:var(--r-big);background:var(--soft)}
+.empty h2{font-size:28px;margin:14px 0 6px}
+.empty p{margin:0 0 18px;color:var(--muted)}
+.empty .chips{margin-bottom:22px}
+.empty .chip{background:#fff}
+.empty-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+
+/* faq */
+.faq{background:var(--soft);border-block:var(--line);margin-top:56px}
+.faq .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px;padding-top:72px;padding-bottom:72px}
+.faq-q{display:inline-grid;place-items:center;width:56px;height:56px;border:var(--line-thin);border-radius:18px;background:var(--stk-lilac);font-family:var(--font-mark);font-weight:800;font-size:30px;margin-bottom:20px;rotate:-6deg}
+.faq h2{font-size:40px;line-height:1.2;letter-spacing:-.03em;margin-bottom:12px}
+.faq-intro{margin:0;font-size:16px;color:var(--muted)}
+.faq details{border-bottom:var(--line-thin)}
+.faq summary{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 4px;font-size:17px;font-weight:700;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.plus{flex:none;width:32px;height:32px;border:var(--line-thin);border-radius:50%;background:#fff;display:grid;place-items:center;font-size:20px;line-height:1;transition:rotate .25s ease,background .25s ease}
+.faq details[open] .plus{rotate:45deg;background:var(--stk-yellow)}
+.faq details p{margin:0 4px 20px;font-size:15px;line-height:1.85;color:var(--muted)}
+
+/* help */
+.help{padding-top:72px;padding-bottom:80px}
+.help-box{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:40px;align-items:center;background:var(--violet);color:#fff;border:var(--line);border-radius:var(--r-big);padding:48px 52px}
+.help h2{font-size:44px;line-height:1.2;letter-spacing:-.03em;margin-bottom:14px}
+.help p{margin:0 0 28px;font-size:17px;line-height:1.8;color:#ebe8ff;max-width:30em}
+.help-actions{display:flex;flex-wrap:wrap;gap:12px}
+.help .btn-line{background:transparent;color:#fff;border-color:#fff}
+.help .btn-line:hover{box-shadow:0 4px 0 #fff}
+.qr{margin:0;justify-self:center;rotate:4deg;background:#fff;border:var(--line);border-radius:22px;padding:14px 14px 10px;color:var(--ink)}
+.qr img{display:block;width:200px;height:200px;object-fit:contain;border-radius:12px}
+.qr figcaption{margin-top:8px;text-align:center;font-size:13px;font-weight:700}
+.qq{margin-top:22px;max-width:420px;background:#fff;color:var(--ink);border:var(--line);border-radius:20px;padding:4px 18px}
+.qq summary{cursor:pointer;padding:12px 0;font-weight:700;font-size:15px}
+.qq-body{display:flex;gap:16px;align-items:center;padding:4px 0 16px}
+.qq-body img{width:110px;height:110px;border:var(--line-thin);border-radius:12px}
+.qq-body p{margin:0;color:var(--text);font-size:14px;line-height:1.8}
+.qq-body b{user-select:all}
+
+footer.foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-bottom:110px;font-size:13px;line-height:1.8;color:var(--faint)}
+footer.foot .mark{font-size:16px;color:var(--ink)}
+footer.foot p{margin:0;max-width:52em}
+
+/* floating: suggestions (left) + support (right) */
+.float-btn{position:fixed;bottom:20px;z-index:40;display:flex;align-items:center;gap:8px;min-height:48px;padding:0 18px;border:var(--line);border-radius:999px;font-weight:700;font-size:15px;transition:translate .15s ease,box-shadow .15s ease}
+.float-btn:hover{translate:0 -2px;box-shadow:0 4px 0 var(--ink)}
+.float-btn svg{width:18px;height:18px}
+.suggest-launch{left:20px;background:#fff}
+.support-btn{right:20px;background:var(--violet);color:#fff}
+.support-btn i{font-style:normal;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#fff;color:var(--violet);font-size:13px;font-weight:900}
+.support-panel{position:fixed;right:20px;bottom:80px;z-index:41;width:280px;max-height:calc(100dvh - 104px);overflow:auto;background:#fff;border:var(--line);border-radius:24px;padding:20px;text-align:center;box-shadow:6px 6px 0 var(--ink)}
+.support-panel h3{font-size:18px;margin:0 0 6px}
+.support-panel p{margin:0 0 12px;font-size:13px;color:var(--muted)}
+.support-panel img{width:100%;border-radius:12px;border:var(--line-thin)}
+.support-panel .x,.dialog .x{position:absolute;top:10px;right:10px;width:34px;height:34px;border:0;border-radius:50%;background:none;font-size:22px;line-height:1;color:var(--muted)}
+.support-panel .x:hover,.dialog .x:hover{background:var(--track);color:var(--ink)}
+.support-panel .tg{display:inline-block;margin-top:12px;font-weight:700;color:var(--violet-dark)}
+.support-panel details{margin-top:14px;padding-top:12px;border-top:var(--line-thin);text-align:left;font-size:13px}
+.support-panel summary{cursor:pointer;font-weight:700;color:var(--violet-dark)}
+.support-panel details img{margin-top:10px;aspect-ratio:1;height:auto}
+.dialog{position:fixed;inset:auto auto 84px 20px;margin:0;width:min(440px,calc(100vw - 40px));max-height:calc(100dvh - 108px);overflow:auto;overscroll-behavior:contain;padding:24px;border:var(--line);border-radius:24px;background:#fff;color:var(--ink);box-shadow:6px 6px 0 var(--ink)}
+.dialog::backdrop{background:rgba(26,24,48,.25)}
+.dialog h2{font-size:22px;margin:0 36px 6px 0}
+.dialog .intro{font-size:14px;color:var(--text);margin:0 0 14px}
+.scope{position:relative;padding:14px;border:var(--line-thin);border-radius:16px;background:var(--butter);font-size:13px;display:grid;gap:3px}
+.scope span{color:var(--muted)}
+.scope button{justify-self:start;border:0;background:none;padding:4px 0 0;color:var(--violet-dark);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.field{display:grid;gap:6px;margin-top:14px;font-size:13px;font-weight:700}
+.field select,.field input,.field textarea{width:100%;border:var(--line-thin);border-radius:12px;background:#fff;font-size:15px;font-weight:400;line-height:1.6;padding:10px 12px}
+.field textarea{resize:vertical;min-height:112px}
+.meta{display:flex;justify-content:space-between;gap:12px;margin-top:7px;font-size:12px;line-height:1.7;color:var(--faint)}
+.honey{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.status{font-size:13px;color:#a33b32;margin:10px 0}.status:empty{display:none}
+.dialog .submit{width:100%;margin-top:14px}
+.dialog .submit:disabled{opacity:.6;cursor:wait}
+.private{font-size:12px;color:var(--faint);margin:10px 0 0;text-align:center}
+.done-box{padding:16px 0 4px}
+.done-box strong{display:inline-block;font-size:18px;margin-bottom:6px}
+.done-box p{color:var(--text);margin:8px 0;overflow-wrap:anywhere}
+
+/* ===== 动效：只在用户没要求减少动态效果时开启 ===== */
+@keyframes rise{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+@keyframes drop{0%{opacity:0;transform:translateY(-60px) scale(1.25)}55%{opacity:1;transform:translateY(6px) scale(.95)}75%{transform:translateY(-3px) scale(1.02)}100%{opacity:1;transform:none}}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -5px}}
+@keyframes wiggle{0%,100%{rotate:0deg}25%{rotate:-8deg}75%{rotate:8deg}}
+@keyframes march{to{background-position:22px 0}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes scroll{to{transform:translateX(-50%)}}
+@keyframes swing{0%,100%{rotate:5deg}50%{rotate:-1deg}}
+@keyframes fadein{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes popin{0%{opacity:0;transform:scale(.6)}70%{opacity:1;transform:scale(1.04)}100%{transform:none}}
+@media (prefers-reduced-motion:no-preference){
+  .in{animation:rise .8s var(--ease-out) both}
+  .d1{animation-delay:.08s}.d2{animation-delay:.2s}.d3{animation-delay:.34s}.d4{animation-delay:.44s}
+  .chip-drop{animation:drop .8s cubic-bezier(.3,1.2,.5,1) both,float 4.5s ease-in-out infinite}
+  .ticker-track{animation:scroll 40s linear infinite}
+  .ticker:hover .ticker-track{animation-play-state:paused}
+  .dash{animation:march .9s linear infinite}
+  .route-step a{animation:bob 2.4s ease-in-out infinite}
+  .stk-top>.sticker{animation:wiggle .6s ease 2s both}
+  .faq-q,.qr{animation:swing 5s ease-in-out infinite}
+  .faq details[open] p{animation:fadein .3s ease both}
+  .dialog[open],.support-panel:not([hidden]){animation:popin .28s var(--ease-pop) both}
+  @supports (animation-timeline:view()){
+    .reveal{animation:rise linear both;animation-timeline:view();animation-range:entry 0% cover 22%}
+    .pop{animation:drop linear both;animation-timeline:view();animation-range:entry 0% cover 18%}
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important}
+}
+@media (forced-colors:active){.card,.panel,.btn,.filter{border-color:CanvasText}}
+
+/* responsive */
+@media (max-width:1000px){
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .start,.faq .wrap{grid-template-columns:1fr}
+  .faq .wrap{gap:20px}
+  .filters{margin-left:0}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .top .wrap{height:64px}.top .mark{font-size:21px}
+  .top nav a:not(.btn){display:none}
+  .hero{padding-top:36px;padding-bottom:36px}
+  .lead{font-size:16px;margin-bottom:24px}
+  .search input{height:54px;font-size:16px;padding-right:56px}
+  .kbd{display:none}
+  .chips{gap:8px}.chip{padding:6px 14px;font-size:14px}
+  .ticker-clip{margin-bottom:30px}
+  .panel{padding:22px 18px}
+  .dash{display:none}
+  .wrap.price{margin-top:8px}
+  .bar .wrap{gap:8px}
+  .mini{flex:1 1 100%}
+  .filters{flex-wrap:nowrap;overflow-x:auto;margin-right:-16px;padding-right:16px;scrollbar-width:none;width:100%}
+  .filters::-webkit-scrollbar{display:none}
+  .filter{flex:none}
+  .cards{grid-template-columns:1fr;gap:14px}
+  .card.tall,.wide{grid-row:auto;grid-column:auto}
+  .card{min-height:0;padding:22px 20px 18px}
+  .shot{flex:none;height:200px;min-height:0}
+  .section-head h2{font-size:30px}
+  .faq h2,.help h2{font-size:32px}
+  .help-box{grid-template-columns:1fr;padding:32px 22px}
+  .float-btn span{display:none}
+  .float-btn{padding:0 14px}
+  .suggest-launch{left:12px;bottom:12px}.support-btn{right:12px;bottom:12px}
+  .support-panel{right:12px;bottom:72px;width:min(280px,calc(100vw - 24px))}
+  .dialog{left:12px;bottom:72px;width:calc(100vw - 24px);padding:20px}
+  .field input,.field textarea,.field select{font-size:16px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#tutorials">跳到教程列表</a>
+
+<header class="top">
+  <div class="wrap in">
+    <a class="mark" href="./" aria-label="Plus Guide 首页">plus<i>.</i>guide</a>
+    <nav aria-label="站点">
+      <a href="#tutorials">全部教程</a>
+      <a href="#faq">常见问题</a>
+      <a class="btn btn-ink" href="#help">进群提问</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap" aria-labelledby="heroTitle">
+    <h1 id="heroTitle"><span class="in d1">别慌，</span><span class="in d2">跟着做就行。</span></h1>
+    <p class="lead in d3">开 ChatGPT Plus、领 Gemini 学生优惠、注册谷歌账号……15 篇免费教程，每一步都配截图，做完一步再看下一步。</p>
+    <div class="search in d4" role="search">
+      <label class="sr" for="search">搜索教程</label>
+      <input id="search" type="search" placeholder="想搞定什么？" autocomplete="off" enterkeyhint="search">
+      <span class="kbd" aria-hidden="true">按 <kbd>/</kbd> 搜索</span>
+      <button type="button" class="clear" id="clearHero" aria-label="清空搜索" hidden>&times;</button>
+    </div>
+    <div class="chips" aria-label="大家常搜">
+      <span class="tilt-l"><button type="button" class="chip chip-drop" data-q="ChatGPT Plus" style="animation-delay:.6s,1.6s">ChatGPT Plus</button></span>
+      <span class="tilt-r2"><button type="button" class="chip chip-drop" data-q="学生优惠" style="background:var(--stk-yellow);animation-delay:.7s,1.9s">Gemini 学生优惠</button></span>
+      <span class="tilt-l2"><button type="button" class="chip chip-drop" data-q="谷歌" style="background:var(--stk-mint);animation-delay:.8s,2.2s">谷歌账号</button></span>
+      <span class="tilt-r"><button type="button" class="chip chip-drop" data-q="支付宝" style="background:var(--stk-peach);animation-delay:.9s,2.5s">付不了款</button></span>
+      <span class="tilt-l"><button type="button" class="chip chip-drop" data-q="Claude" style="background:var(--stk-sky);animation-delay:1s,2.8s">Claude 防封</button></span>
+      <span class="tilt-r2"><button type="button" class="chip chip-drop" data-q="Codex" style="animation-delay:1.1s,3.1s">Codex 切号</button></span>
+    </div>
+  </section>
+
+  <div class="ticker-clip" aria-hidden="true">
+    <div class="ticker"><div class="ticker-track" id="ticker"></div></div>
+  </div>
+
+  <section class="start wrap" aria-label="从哪开始">
+    <div class="panel resume reveal" id="resumeCard">
+      <button type="button" class="resume-x" id="resumeX" aria-label="不再显示上次看到" hidden>&times;</button>
+      <div>
+        <small id="resumeLabel">还没开始？</small>
+        <strong id="resumeTitle">先看「海外支付方式」</strong>
+        <div class="meter"><span class="meter-track" role="img" id="meterLabel" aria-label="已看过 0 篇，共 15 篇"><span class="meter-fill" id="meterFill"></span></span><span id="meterText">看过 0 / 15 篇</span></div>
+      </div>
+      <div class="resume-actions">
+        <a class="btn btn-violet" id="resumeLink" href="./guides/15-roogoo-card.html">开始看</a>
+        <span>记录只存在这个浏览器</span>
+      </div>
+    </div>
+    <div class="panel panel-lilac routes reveal">
+      <span class="stk-top tilt-r" aria-hidden="true"><span class="sticker" style="background:var(--stk-yellow);font-size:14px">第一次来看这里</span></span>
+      <p class="title">按这两条路走，基本不会绕弯</p>
+      <div class="route">
+        <em>想用 ChatGPT</em>
+        <span class="route-step tilt-l2"><a href="./guides/15-roogoo-card.html"><b>1</b>海外支付方式</a></span>
+        <span class="dash" aria-hidden="true"></span>
+        <span class="route-step tilt-r2"><a href="./guides/17-plus.html" style="animation-delay:.3s"><b>2</b>ChatGPT Plus 开通</a></span>
+      </div>
+      <div class="route route-g">
+        <em>想用 Gemini</em>
+        <span class="route-step tilt-r2"><a href="./guides/28-google-account.html" style="animation-delay:.15s"><b>1</b>谷歌账号注册</a></span>
+        <span class="dash" aria-hidden="true"></span>
+        <span class="route-step tilt-l2"><a href="./guides/21-google-region.html" style="animation-delay:.45s"><b>2</b>谷歌账号改区</a></span>
+        <span class="dash" aria-hidden="true"></span>
+        <span class="route-step tilt-r2"><a href="./guides/20-gemini-student.html" style="animation-delay:.75s"><b>3</b>Gemini 学生优惠</a></span>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap price">
+<!-- ph-plus-price:start --><p class="ph-plus-price-note" style="font-size:13px;line-height:1.8;color:#636980;margin:12px 0 18px">菲律宾 Plus 月付参考：免税 ₱982.14，约 ¥102.55；含税标价 ₱1100.00。<a href="https://gptsub.linusx.dev/" target="_blank" rel="noopener noreferrer">来源 GPTSub</a> · 更新于 2026-11-03 04:00（北京时间），每天 04:00 查询一次。人民币为汇率折算，实际税费与扣款以官方结账页为准。</p><!-- ph-plus-price:end -->
+  </div>
+
+  <div id="barSentinel" aria-hidden="true"></div>
+  <section class="bar" id="bar" aria-label="查找教程">
+    <div class="wrap">
+      <div class="mini">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
+        <label class="sr" for="search2">在列表里搜索</label>
+        <input id="search2" type="search" placeholder="搜索教程" autocomplete="off" enterkeyhint="search">
+      </div>
+      <span class="count" id="count" role="status" aria-live="polite">共 15 篇，挑一篇开始</span>
+      <div class="filters" role="group" aria-label="按主题筛选">
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">全部<span class="n" data-n="all"></span></button>
+        <button class="filter" type="button" data-filter="account" aria-pressed="false">账号与订阅<span class="n" data-n="account"></span></button>
+        <button class="filter" type="button" data-filter="tools" aria-pressed="false">AI 工具<span class="n" data-n="tools"></span></button>
+        <button class="filter" type="button" data-filter="coding" aria-pressed="false">云端开发<span class="n" data-n="coding"></span></button>
+      </div>
+    </div>
+  </section>
+
+  <div id="tutorials" class="wrap">
+    <section class="section" data-section="account" id="account" aria-labelledby="h-account">
+      <div class="section-head reveal">
+        <h2 id="h-account">账号与订阅</h2>
+        <span class="tilt-l"><span class="sticker pop" style="background:var(--stk-yellow);font-size:14px" data-count="account">8 篇</span></span>
+        <p>开通、付款和网络准备</p>
+      </div>
+      <div class="cards">
+        <a class="card wide t-lilac reveal" href="./guides/15-roogoo-card.html" data-keywords="免费教程 海外支付方式 国外AI 基础 推荐 Roogoo 虚拟卡 Visa 国内银行卡 支付宝 微信 风控 支付 乐享卡 付不了款">
+          <span class="card-stk tilt-r"><span class="sticker" style="background:var(--stk-yellow)">先看这篇</span></span>
+          <p class="card-type">支付准备</p>
+          <h3 data-hl>海外支付方式</h3>
+          <p class="rec" data-hl>一切的国外AI教程的基础</p>
+          <p class="desc" data-hl>受海外 AI 平台的支付限制和风控影响，支付宝、微信及部分国内银行卡可能无法正常付款，可开通一张虚拟卡作为支付方式。</p>
+          <div class="card-foot"><span class="sticker seen">看过</span></div>
+        </a>
+        <a class="card tall reveal" href="./guides/17-plus.html" data-keywords="免费教程 ChatGPT GPT Plus 菲律宾 订阅 付款 免税 网页直充">
+          <span class="card-stk tilt-l" data-wide><span class="sticker" style="background:var(--stk-lilac)">约 102.55 元/月</span></span>
+          <p class="card-type">账号开通</p>
+          <h3 data-hl>ChatGPT Plus 开通</h3>
+          <p class="desc" data-hl>菲律宾区官方网页直充，约 102.55 元/月。按账户情况分支，从付款、免税地址到生效检查。</p>
+          <p class="prereq"><b>开始前：</b>自己的 ChatGPT 账号和可用支付方式</p>
+          <div class="card-foot"><span class="sticker seen">看过</span></div>
+          <img class="shot" src="./assets/shot-plus-pricing.webp" alt="" width="900" height="900" loading="lazy" decoding="async">
+        </a>
+        <a class="card tall t-sky reveal" href="./guides/20-gemini-student.html" data-keywords="免费教程 Gemini Google 谷歌 账号 改区 地区 学生优惠 SheerID 学生认证 12个月 YouTube Premium 9美元 721天">
+          <span class="card-stk tilt-r"><span class="sticker" style="background:var(--stk-mint)">新</span></span>
+          <p class="card-type">学生优惠</p>
+          <h3 data-hl>Gemini 学生优惠领取</h3>
+          <p class="desc" data-hl>准备好 Google 账号后，检查地区与优惠资格，完成 SheerID 验证、领取免费 Pro，再按需升级。</p>
+          <p class="prereq"><b>开始前：</b>已有可登录的 Google 账号，符合当期活动资格</p>
+          <div class="card-foot"><span class="sticker seen">看过</span><time datetime="2026-11-01">更新 2026-11-01</time></div>
+          <img class="shot" src="./assets/shot-gemini-offer.webp" alt="" width="900" height="900" loading="lazy" decoding="async">
+        </a>
+        <a class="card reveal" href="./guides/28-google-account.html" data-keywords="免费教程 谷歌 Google Gmail App 手机注册 电脑网页 添加账号 创建 个人账号 邮箱 姓名 生日 密码 二维码 +86 验证">
+          <span class="card-stk tilt-l"><span class="sticker" style="background:var(--stk-mint)">新</span></span>
+          <p class="card-type">账号注册</p>
+          <h3 data-hl>谷歌账号注册</h3>
+          <p class="desc" data-hl>可选电脑网页或手机 Gmail App 注册，跟着截图添加账号、填写资料，再按提示完成验证和账号检查。</p>
+          <p class="prereq"><b>开始前：</b>可用的电脑浏览器或官方 Gmail App，以及接收验证提示的手机</p>
+          <div class="card-foot"><span class="sticker seen">看过</span><time datetime="2026-11-01">更新 2026-11-01</time></div>
+        </a>
+        <a class="card t-mint reveal" href="./guides/21-google-region.html" data-keywords="免费教程 谷歌 Google 账号 改区 地区 国家 关联地区 免税州 俄勒冈 表单 美国">
+          <span class="card-stk tilt-r"><span class="sticker" style="background:var(--stk-mint)">新</span></span>
+          <p class="card-type">账号准备</p>
+          <h3 data-hl>谷歌账号改区</h3>
+          <p class="desc" data-hl>账号关联地区不是美国时，走官方表单提交改区：IP 复查、免税州、原因勾选，等邮件生效。</p>
+          <p class="prereq"><b>开始前：</b>可登录的本人 Google 账号和教程要求的网络环境</p>
+          <div class="card-foot"><span class="sticker seen">看过</span><time datetime="2026-10-25">更新 2026-10-25</time></div>
+        </a>
+        <a class="card t-butter reveal" href="./guides/29-pixel-ai-pro.html" data-keywords="免费教程 Google 谷歌 AI Pro Gemini 六个月 会员 领取 Pixel 认证 老号 两步验证 取消续费 反重力 Antigravity 家庭共享">
+          <span class="card-stk tilt-l"><span class="sticker" style="background:var(--stk-mint)">新</span></span>
+          <p class="card-type">会员领取</p>
+          <h3 data-hl>Google AI Pro 六个月会员</h3>
+          <p class="desc" data-hl>用注册一年以上的谷歌老号完成 Pixel 认证，拿到领取链接后绑卡订阅六个月会员，再改密码、换验证器、取消自动续费。</p>
+          <p class="prereq"><b>开始前：</b>谷歌老号（最好注册一年以上）、Visa 或 Mastercard，以及 15 元认证积分</p>
+          <div class="card-foot"><span class="sticker seen">看过</span><time datetime="2026-11-03">更新 2026-11-03</time></div>
+        </a>
+        <a class="card reveal" href="./guides/13-claude-account-env.html" data-keywords="免费教程 Claude 账号 封号 防封 设备位置 时区 线路 代理 TUN 分流 DNS WebRTC 邮件追踪器 KYC 支付 虚拟卡">
+          <p class="card-type">环境配置</p>
+          <h3 data-hl>Claude 账号环境配置</h3>
+          <p class="desc" data-hl>从设备位置、出口线路到代理痕迹、身份与支付，按顺序把整套环境对齐一遍。</p>
+          <p class="prereq"><b>开始前：</b>可登录的 Claude 账号，能核对设备与网络设置</p>
+          <div class="card-foot"><span class="sticker seen">看过</span></div>
+        </a>
+        <a class="card wide t-peach reveal" href="https://ip.plus-guide.fun/" data-tutorial="ip-guide" data-keywords="免费教程 家宽 住宅 IP 静态 稳定 纯净 马甲 Webshare 配置 自查 AI 提示词">
+          <p class="card-type">住宅出口</p>
+          <h3 data-hl>家宽 IP：给代理套个住宅马甲</h3>
+          <p class="desc" data-hl>给已有代理套个稳定、静态、纯净的马甲。保留住宅 IP 购买与检测，配置、自查各一段 AI 提示词。</p>
+          <p class="prereq"><b>开始前：</b>电脑已有可用代理；IP 质量以实际检测为准</p>
+          <div class="card-foot"><span class="sticker seen">看过</span></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" data-section="tools" id="tools" aria-labelledby="h-tools">
+      <div class="section-head reveal">
+        <h2 id="h-tools">AI 工具</h2>
+        <span class="tilt-r"><span class="sticker pop" style="background:var(--stk-mint);font-size:14px" data-count="tools">6 篇</span></span>
+        <p>模型管理、智能体、本地 API 与项目迁移</p>
+      </div>
+      <div class="cards">
+        <a class="card tall t-lilac reveal" href="./guides/12-magpie.html" data-keywords="免费教程 Magpie yetone 模型 网关 订阅 API Claude Codex Context 上下文 路由">
+          <p class="card-type">模型管理</p>
+          <h3 data-hl>Magpie 安装与模型切换</h3>
+          <p class="desc" data-hl>添加 API 或订阅来源，给 AI 工具选择模型，检查用量和上下文占用。</p>
+          <p class="prereq"><b>开始前：</b>可用的模型 API 或受支持的订阅来源</p>
+          <div class="card-foot"><span class="sticker seen">看过</span></div>
+          <img class="shot" src="./assets/shot-magpie-picker.webp" alt="" width="900" height="900" loading="lazy" decoding="async">
+        </a>
+        <a class="card reveal" href="./guides/04-muse-invite.html" data-keywords="免费教程 Muse 智能体 邀请 奖励">
+          <p class="card-type">智能体</p>
+          <h3 data-hl>Muse 智能体邀请与使用</h3>
+          <p class="desc" data-hl>完成注册、兑换邀请奖励，了解使用入口与需要本人确认的操作。</p>
+          <p class="prereq"><b>开始前：</b>年满 18 岁、收信邮箱和可完成预授权的银行卡</p>
+          <div class="card-foot"><span class="sticker seen">看过</span></div>
+        </a>
+        <a class="card t-mint reveal" href="./guides/26-chatgpt-account-switch.html" data-keywords="免费教程 ChatGPT OpenAI CockpitTools Codex 多账号 账号切换 OAuth 登录 额度 切号">
+          <p class="card-type">账号切换</p>
+          <h3 data-hl>ChatGPT / Codex 账号切换</h3>
+          <p class="desc" data-hl>用 CockpitTools 添加并授权自己的 ChatGPT 账号，一键切换 Codex 登录，核对目标账号的额度。</p>
+          <p class="prereq"><b>开始前：</b>需要切换的本人 OpenAI 账号和 Codex 客户端</p>
+          <div class="card-foot"><span class="sticker seen">看过</span><time datetime="2026-10-31">更新 2026-10-31</time></div>
+        </a>
+        <a class="card wide reveal" href="./guides/16-antigravity.html" data-keywords="免费教程 Antigravity 反重力 Gemini 本地 API 反代 OpenAI 兼容 OAuth">
+          <p class="card-type">本地 API</p>
+          <h3 data-hl>Antigravity 本地 API</h3>
+          <p class="desc" data-hl>把 Antigravity Tools 接成本地 OpenAI 兼容接口，给客户端和编辑器调用。</p>
+          <p class="prereq"><b>开始前：</b>可用的 Antigravity 账号与本地运行环境</p>
+          <div class="card-foot"><span class="sticker seen">看过</span></div>
+        </a>
+        <a class="card t-butter reveal" href="./guides/14-claude-to-codex.html" data-keywords="免费教程 Claude Codex 封号 数据迁移 备份 导出 导入 会话 记忆 项目 交接">
+          <p class="card-type">数据迁移</p>
+          <h3 data-hl>Claude 被封后迁移到 Codex</h3>
+          <p class="desc" data-hl>按数据来源备份项目与记录，导入 Codex，补齐记忆并核对接手结果。</p>
+          <p class="prereq"><b>开始前：</b>原项目文件、可导出的记录和 Codex 使用环境</p>
+          <div class="card-foot"><span class="sticker seen">看过</span></div>
+        </a>
+        <a class="card wide t-sky reveal" href="./guides/27-gemini-proxy.html" data-keywords="免费教程 Gemini Google 谷歌 账号管理 多账号 Antigravity Manager 反重力 反代 API Cherry Studio">
+          <p class="card-type">账号管理与本地 API</p>
+          <h3 data-hl>Gemini 账号管理与反代</h3>
+          <p class="desc" data-hl>用 Antigravity Manager 添加谷歌账号、启用反代服务，将 Gemini 接入 Cherry Studio 等客户端。</p>
+          <p class="prereq"><b>开始前：</b>可授权的本人 Google 账号和一个 API 客户端</p>
+          <div class="card-foot"><span class="sticker seen">看过</span><time datetime="2026-10-31">更新 2026-10-31</time></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" data-section="coding" id="coding" aria-labelledby="h-coding">
+      <div class="section-head reveal">
+        <h2 id="h-coding">云端开发</h2>
+        <span class="tilt-l2"><span class="sticker pop" style="background:var(--stk-sky);font-size:14px" data-count="coding">1 篇</span></span>
+        <p>在服务器上运行编码工具</p>
+      </div>
+      <div class="cards">
+        <a class="card wide t-sky reveal" href="./guides/11-grok-orca.html" data-keywords="免费教程 Grok Bot Orca Tailscale Claude Code 远程 手机 云电脑">
+          <p class="card-type">远程会话</p>
+          <h3 data-hl>Grok Bot 云电脑运行 Claude Code</h3>
+          <p class="desc" data-hl>通过 Orca 和 Tailscale 从电脑、手机连接云端会话，配置更新后的恢复。</p>
+          <p class="prereq"><b>开始前：</b>支持云电脑的 Grok 账号和 Claude Code 使用资格</p>
+          <div class="card-foot"><span class="sticker seen">看过</span></div>
+        </a>
+        <button class="ask reveal" type="button" data-suggest-new>
+          <span class="tilt-l"><span class="sticker" style="background:var(--stk-peach)">还缺什么？</span></span>
+          <strong>想看的教程这里没有</strong>
+          <small>留个建议，说说你想搞定什么。涉及 VPN 的内容不提供教学。</small>
+        </button>
+      </div>
+    </section>
+
+    <section class="empty" id="empty" hidden>
+      <span class="tilt-r"><span class="sticker" style="background:var(--stk-peach);font-size:14px">没找到</span></span>
+      <h2>这个词没有对应的教程</h2>
+      <p>换个说法试试，或者看看大家常搜的：</p>
+      <div class="chips" aria-label="常用关键词">
+        <span class="tilt-l2"><button type="button" class="chip" data-q="ChatGPT">ChatGPT</button></span>
+        <span class="tilt-r2"><button type="button" class="chip" data-q="Gemini">Gemini</button></span>
+        <span class="tilt-l2"><button type="button" class="chip" data-q="虚拟卡">虚拟卡</button></span>
+        <span class="tilt-r2"><button type="button" class="chip" data-q="Claude">Claude</button></span>
+        <span class="tilt-l2"><button type="button" class="chip" data-q="Codex">Codex</button></span>
+      </div>
+      <div class="empty-actions">
+        <button class="btn btn-ink" type="button" id="clearAll">查看全部教程</button>
+        <button class="btn" type="button" data-suggest-new>提个新教程建议</button>
+      </div>
+    </section>
+  </div>
+
+  <section class="faq" id="faq" aria-labelledby="faqTitle">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="faq-q" aria-hidden="true">?</span>
+        <h2 id="faqTitle">开始前，<br>你可能想问</h2>
+        <p class="faq-intro">先弄清要准备什么，再进对应的教程。</p>
+      </div>
+      <div>
+        <details class="reveal"><summary>教程是免费的吗？还会产生哪些费用？<span class="plus" aria-hidden="true">+</span></summary><p>本站教程免费阅读。模型订阅、虚拟卡、服务器及其他第三方服务可能收费；是否开通、价格和续费规则，以对应平台当前页面为准。</p></details>
+        <details class="reveal"><summary>第一次来，应该从哪篇开始？<span class="plus" aria-hidden="true">+</span></summary><p>按眼前的任务选：开通订阅或准备支付，先看“账号与订阅”；配置模型、管理账号或迁移记录，看“AI 工具”；需要在服务器运行编码工具，看“云端开发”。卡片里的“开始前”列出了主要准备条件。</p></details>
+        <details class="reveal"><summary>手机可以操作吗？需要准备电脑吗？<span class="plus" aria-hidden="true">+</span></summary><p>手机可以阅读全部教程。涉及安装桌面工具、配置本地接口或迁移项目的步骤，通常需要电脑；云端开发还需要可登录的服务器。进入教程后，先看准备步骤再开始。</p></details>
+        <details class="reveal"><summary>“看过”和“上次看到”会上传我的记录吗？<span class="plus" aria-hidden="true">+</span></summary><p>这两项记录只保存在当前浏览器的本地存储中，不会上传到本站服务器。它们表示你打开过哪篇教程；教程内的步骤进度由各篇独立保存。换浏览器、清除网站数据或使用无痕模式后，记录可能不再保留。</p></details>
+        <details class="reveal"><summary>价格、资格或软件界面与教程不同，怎么办？<span class="plus" aria-hidden="true">+</span></summary><p>第三方活动、价格和软件界面可能变化，以官方当前说明和自己账号显示的结果为准。不要为了照搬教程填写不实资料；先核对资格、版本与完整报错，再决定是否继续。</p></details>
+        <details class="reveal"><summary>做到一半卡住了，去哪里问？<span class="plus" aria-hidden="true">+</span></summary><p>看页面下方的交流群二维码，或点右下角的帮助入口。提问时说明教程名称、做到哪一步、软件版本和报错；截图先遮住邮箱、密钥、验证码和支付信息。</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="help wrap" id="help" aria-labelledby="helpTitle">
+    <div class="help-box reveal">
+      <div>
+        <h2 id="helpTitle">做到一半卡住了？<br>进群问就行。</h2>
+        <p>提问时说清教程名、做到第几步、软件版本和报错。截图前先遮住邮箱、密钥、验证码和支付信息。</p>
+        <div class="help-actions">
+          <a class="btn" href="https://t.me/+_lOsXtUCD9MxNzY1" target="_blank" rel="noopener noreferrer">打开 Telegram 群</a>
+        </div>
+        <details class="qq">
+          <summary>备用联系方式：QQ</summary>
+          <div class="qq-body">
+            <a href="./backup-qq-qr.webp" target="_blank" rel="noopener noreferrer" aria-label="查看备用 QQ 联系二维码大图（新窗口）"><img src="./backup-qq-qr.webp" alt="备用联系方式：爱吃大白饭，QQ 2788439541 的好友二维码" width="930" height="930" loading="lazy" decoding="async"></a>
+            <p>爱吃大白饭<br>QQ：<b>2788439541</b><br>扫码添加好友，点二维码看大图。</p>
+          </div>
+        </details>
+      </div>
+      <figure class="qr">
+        <img src="./ai-group-qr.png?v=20261020tg" alt="AI 交流群二维码" width="200" height="200" loading="lazy" decoding="async">
+        <figcaption>扫码进群</figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span class="mark">plus<i>.</i>guide</span>
+    <p>教程免费阅读；第三方平台、服务器和订阅可能收费。服务条件、价格及可用功能以对应平台为准。</p>
+  </div>
+</footer>
+
+<!-- 教程建议（左下） -->
+<button class="float-btn suggest-launch" id="suggestionLaunch" type="button" aria-haspopup="dialog" aria-controls="suggestionDialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M4 4h16v12H9l-5 4V4Z"/><path d="M8 8h8M8 12h5"/></svg><span>教程建议</span></button>
+<dialog class="dialog" id="suggestionDialog" aria-labelledby="suggestionTitle" aria-describedby="suggestionIntro">
+  <button class="x" id="suggestionClose" type="button" aria-label="关闭建议区">&times;</button>
+  <h2 id="suggestionTitle">一起把教程做得更好</h2>
+  <p class="intro" id="suggestionIntro">哪篇教程需要优化？还想看什么新教程？把建议留在这里。</p>
+  <div class="scope"><strong>涉及 VPN 的内容不提供教学。</strong><span>操作和配置有问题，请进群询问。</span><button type="button" id="suggestionGroup">去右下角群里问问题</button></div>
+  <form id="suggestionForm">
+    <label class="field"><span>建议类型</span><select id="suggestionCategory" name="category"><option value="improve">优化现有教程</option><option value="new">想看新教程</option></select></label>
+    <label class="field" id="suggestionTutorialField"><span>哪篇教程需要优化？</span><select id="suggestionTutorial" name="tutorial" required><option value="">请选择一篇教程</option></select></label>
+    <label class="field" id="suggestionTopicField" hidden><span>你想看什么教程？</span><input id="suggestionTopic" name="title" type="text" minlength="2" maxlength="80" autocomplete="off" placeholder="例如：如何整理 AI 对话记录" disabled></label>
+    <label class="field"><span id="suggestionMessageLabel">哪里不清楚，建议怎样改？</span><textarea id="suggestionMessage" name="message" rows="5" minlength="10" maxlength="1500" required placeholder="写下具体步骤、需要补充的内容，或你希望完成的事情。至少 10 个字。"></textarea></label>
+    <div class="meta"><span>不需要留下联系方式，请勿填写密码、验证码或密钥。</span><span id="suggestionCount">0 / 1500</span></div>
+    <label class="honey" aria-hidden="true">网站<input name="website" id="suggestionWebsite" type="text" tabindex="-1" autocomplete="off"></label>
+    <p class="status" id="suggestionStatus" role="status" aria-live="polite"></p>
+    <button class="btn btn-violet submit" id="suggestionSubmit" type="submit">提交建议</button>
+    <p class="private">建议仅供站点维护者查看，不会公开展示。</p>
+  </form>
+  <div class="done-box" id="suggestionSuccess" role="status" hidden><span class="sticker tilt-l" style="background:var(--stk-mint)">收到啦</span><br><strong>建议已收到，谢谢你。</strong><p>会用于后续优化与选题，不代表一定采纳或即时答复。</p><p id="suggestionReference"></p><button type="button" class="btn" id="suggestionAgain">再提一条建议</button></div>
+</dialog>
+
+<!-- 交流群（右下） -->
+<button class="float-btn support-btn" id="supportBtn" type="button" aria-label="交流群与备用联系方式" aria-expanded="false" aria-controls="supportPanel"><i aria-hidden="true">?</i><span>有不会的？点这里</span></button>
+<div class="support-panel" id="supportPanel" hidden>
+  <button class="x" id="supportClose" type="button" aria-label="关闭">&times;</button>
+  <h3>有不会的，扫码进群问</h3>
+  <p>AI 交流群，操作和配置上遇到问题都可以进群问。</p>
+  <img src="./ai-group-qr.png?v=20261020tg" alt="AI 交流群二维码" loading="lazy" decoding="async">
+  <a class="tg" href="https://t.me/+_lOsXtUCD9MxNzY1" target="_blank" rel="noopener noreferrer">打开 Telegram 交流群</a>
+  <details>
+    <summary>备用联系方式：QQ</summary>
+    <p style="margin:10px 0 0;color:var(--ink)">爱吃大白饭<br>QQ：<b style="user-select:all">2788439541</b></p>
+    <a href="./backup-qq-qr.webp" target="_blank" rel="noopener noreferrer" aria-label="查看备用 QQ 联系二维码大图（新窗口）"><img src="./backup-qq-qr.webp" alt="备用联系方式：爱吃大白饭，QQ 2788439541 的好友二维码" width="930" height="930" loading="lazy" decoding="async"></a>
+  </details>
+</div>
+
+<script>
+/* ===== 教程列表：搜索、筛选、高亮、网址状态、看过记录 ===== */
+(() => {
+  const $ = id => document.getElementById(id);
+  const inputs = [$('search'), $('search2')];
+  const countEl = $('count'), bar = $('bar');
+  const filters = [...document.querySelectorAll('[data-filter]')];
+  const sections = [...document.querySelectorAll('[data-section]')];
+  const cards = [...document.querySelectorAll('.card')];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  };
+  let category = 'all';
+  const total = cards.length;
+
+  // 篇数
+  sections.forEach(sec => {
+    const n = sec.querySelectorAll('.card').length;
+    const el = document.querySelector(`[data-n="${sec.dataset.section}"]`); if (el) el.textContent = n;
+    const stk = document.querySelector(`[data-count="${sec.dataset.section}"]`); if (stk) stk.textContent = n + ' 篇';
+  });
+  document.querySelector('[data-n="all"]').textContent = total;
+
+  // 滚动条里的教程名
+  const ticker = $('ticker');
+  const star = '<svg viewBox="0 0 24 24" fill="#6459d9" stroke="#1a1830" stroke-width="1.5"><path d="M12 2l2.6 6.9L22 12l-7.4 3.1L12 22l-2.6-6.9L2 12l7.4-3.1z"/></svg>';
+  const names = cards.map(c => c.querySelector('h3').textContent.replace(/：.*/, ''));
+  ticker.innerHTML = names.concat(names).map(n => `<span>${n.replace(/[<&]/g, '')}${star}</span>`).join('');
+
+  // 记下原文，搜索时高亮
+  const hlEls = cards.flatMap(c => [...c.querySelectorAll('[data-hl]')]);
+  hlEls.forEach(el => { el.dataset.raw = el.textContent; });
+  function highlight(words) {
+    const pattern = words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+    hlEls.forEach(el => {
+      const raw = el.dataset.raw;
+      if (!pattern) { el.textContent = raw; return; }
+      const frag = document.createDocumentFragment();
+      let end = 0;
+      for (const m of raw.matchAll(new RegExp(pattern, 'gi'))) {
+        frag.append(document.createTextNode(raw.slice(end, m.index)));
+        const mark = document.createElement('mark'); mark.textContent = m[0]; frag.append(mark);
+        end = m.index + m[0].length;
+      }
+      frag.append(document.createTextNode(raw.slice(end)));
+      el.replaceChildren(frag);
+    });
+  }
+
+  function query() { return inputs[0].value; }
+  function setQuery(value, from) { inputs.forEach(i => { if (i !== from) i.value = value; }); }
+
+  function refresh(fromUser) {
+    const q = query().trim();
+    const words = q.toLocaleLowerCase().split(/\s+/).filter(Boolean);
+    let count = 0;
+    sections.forEach(section => {
+      let visible = 0;
+      section.querySelectorAll('.card').forEach(card => {
+        const text = ([...card.querySelectorAll('[data-hl]')].map(el => el.dataset.raw).join(' ') + ' ' + card.dataset.keywords).toLocaleLowerCase();
+        card.hidden = !(category === 'all' || category === section.dataset.section) || !words.every(w => text.includes(w));
+        if (!card.hidden) visible++;
+      });
+      section.hidden = visible === 0;
+      count += visible;
+    });
+    highlight(words);
+    const filtered = count !== total;
+    countEl.innerHTML = filtered ? `找到 ${count} 篇<button type="button" id="resetInline">清除</button>` : `共 ${total} 篇，挑一篇开始`;
+    if (filtered) $('resetInline').addEventListener('click', resetAll);
+    $('empty').hidden = count > 0;
+    $('clearHero').hidden = !q;
+    filters.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === category)));
+    const url = new URL(location.href);
+    q ? url.searchParams.set('q', q) : url.searchParams.delete('q');
+    url.hash = category === 'all' ? '' : category;
+    history.replaceState(null, '', url.pathname + url.search + url.hash);
+    if (fromUser) {
+      const top = $('tutorials').getBoundingClientRect().top + scrollY - bar.offsetHeight - 8;
+      if (scrollY > top || fromUser === 'jump') scrollTo({ top, behavior: reduce.matches ? 'auto' : 'smooth' });
+    }
+  }
+  function resetAll() { setQuery(''); category = 'all'; refresh(true); inputs[1].focus({ preventScroll: true }); }
+
+  inputs.forEach(input => {
+    input.addEventListener('input', () => { setQuery(input.value, input); refresh(input === inputs[1]); });
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && input.value) { e.preventDefault(); setQuery(''); refresh(); }
+      if (e.key === 'Enter') { e.preventDefault(); refresh('jump'); const first = cards.find(c => !c.hidden); if (first && input.value.trim()) setTimeout(() => first.focus({ preventScroll: true }), reduce.matches ? 0 : 450); }
+    });
+  });
+  filters.forEach(b => b.addEventListener('click', () => { category = b.dataset.filter; refresh(true); }));
+  document.querySelectorAll('[data-q]').forEach(b => b.addEventListener('click', () => { setQuery(b.dataset.q); category = 'all'; refresh('jump'); }));
+  $('clearHero').addEventListener('click', () => { setQuery(''); refresh(); inputs[0].focus(); });
+  $('clearAll').addEventListener('click', resetAll);
+
+  // 按 / 开始搜索：首屏的大搜索框还在视野里就用它，否则用吸顶栏
+  document.addEventListener('keydown', e => {
+    if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName) || document.querySelector('dialog[open]')) return;
+    e.preventDefault();
+    const heroVisible = inputs[0].getBoundingClientRect().bottom > 0;
+    const target = heroVisible ? inputs[0] : inputs[1];
+    target.focus(); target.select();
+  });
+
+  // 吸顶栏：记录高度，给分区标题留位置
+  const setBar = () => document.documentElement.style.setProperty('--bar', bar.offsetHeight + 16 + 'px');
+  setBar(); addEventListener('resize', setBar);
+
+  // 看过记录 + 上次看到
+  const savedSeen = store.get('pg-seen');
+  const seen = savedSeen && typeof savedSeen === 'object' && !Array.isArray(savedSeen) ? savedSeen : {};
+  function updateSeen() {
+    let n = 0;
+    cards.forEach(c => { const v = !!seen[c.getAttribute('href')]; c.classList.toggle('visited', v); if (v) n++; });
+    $('meterText').textContent = `看过 ${n} / ${total} 篇`;
+    $('meterLabel').setAttribute('aria-label', `已看过 ${n} 篇，共 ${total} 篇`);
+    requestAnimationFrame(() => { $('meterFill').style.width = Math.round(n / total * 100) + '%'; });
+    const last = store.get('pg-last');
+    const lastCard = cards.find(c => c.getAttribute('href') === last);
+    const showResume = lastCard && !store.get('pg-resume-off');
+    $('resumeX').hidden = !showResume;
+    if (showResume) {
+      $('resumeLabel').textContent = '上次看到';
+      $('resumeTitle').textContent = lastCard.querySelector('h3').dataset.raw;
+      $('resumeLink').href = last;
+      $('resumeLink').textContent = '接着看';
+    } else {
+      $('resumeLabel').textContent = n ? '想接着看哪篇？' : '还没开始？';
+      $('resumeTitle').textContent = '先看「海外支付方式」';
+      $('resumeLink').href = './guides/15-roogoo-card.html';
+      $('resumeLink').textContent = '开始看';
+    }
+  }
+  function remember(href) {
+    seen[href] = Date.now();
+    store.set('pg-seen', seen); store.set('pg-last', href); store.set('pg-resume-off', false);
+    updateSeen();
+  }
+  cards.forEach(c => {
+    c.addEventListener('click', () => remember(c.getAttribute('href')));
+    c.addEventListener('auxclick', e => { if (e.button === 1) remember(c.getAttribute('href')); });
+  });
+  document.querySelectorAll('.route-step a, #resumeLink').forEach(a => a.addEventListener('click', () => remember(a.getAttribute('href'))));
+  $('resumeX').addEventListener('click', () => { store.set('pg-resume-off', true); updateSeen(); });
+  addEventListener('pageshow', updateSeen);
+  updateSeen();
+
+  // 网址里的筛选状态
+  function restoreUrl() {
+    const params = new URLSearchParams(location.search), hash = location.hash.slice(1);
+    setQuery(params.get('q') || '');
+    category = filters.some(b => b.dataset.filter === hash) ? hash : 'all';
+    refresh();
+  }
+  addEventListener('hashchange', restoreUrl);
+  addEventListener('popstate', restoreUrl);
+  restoreUrl();
+
+  // 搜索框里自动打字的示例（减少动态效果时不播放）
+  const examples = ['领 Gemini 学生优惠', '开通 ChatGPT Plus', '支付宝付不了款', '注册谷歌账号', 'Codex 多账号切换'];
+  let w = 0, i = 0, back = false, wait = 6, timer = null;
+  function tick() {
+    const input = inputs[0];
+    if (document.activeElement === input || input.value) { input.placeholder = '想搞定什么？'; return; }
+    if (wait > 0) { wait--; return; }
+    const word = examples[w];
+    if (!back) { i++; if (i >= word.length) { back = true; wait = 18; } }
+    else { i--; if (i <= 0) { back = false; w = (w + 1) % examples.length; wait = 4; } }
+    input.placeholder = '试试：' + word.slice(0, i);
+  }
+  function syncTyping() { clearInterval(timer); if (!reduce.matches) timer = setInterval(tick, 95); else inputs[0].placeholder = '想搞定什么？'; }
+  reduce.addEventListener?.('change', syncTyping);
+  syncTyping();
+})();
+</script>
+<script>
+/* ===== 教程建议（接口与校验沿用现有版本）===== */
+(() => {
+  const $ = id => document.getElementById(id);
+  const launch = $('suggestionLaunch'), dialog = $('suggestionDialog'), form = $('suggestionForm');
+  const category = $('suggestionCategory'), tutorial = $('suggestionTutorial'), topic = $('suggestionTopic'), message = $('suggestionMessage');
+  const submit = $('suggestionSubmit'), status = $('suggestionStatus');
+  const vpn = /vpn|翻墙|科学上网|梯子|机场|代理节点|代理服务器|搭建代理|购买节点|节点购买/i;
+  let requestId = null, sending = false;
+  document.querySelectorAll('.card').forEach(card => {
+    const option = document.createElement('option');
+    option.value = card.dataset.tutorial || card.getAttribute('href').split('/').pop().replace(/\.html$/, '');
+    option.textContent = card.querySelector('h3').dataset.raw || card.querySelector('h3').textContent;
+    tutorial.append(option);
+  });
+  function syncCategory() {
+    const isNew = category.value === 'new';
+    $('suggestionTutorialField').hidden = isNew; tutorial.required = !isNew; tutorial.disabled = isNew;
+    $('suggestionTopicField').hidden = !isNew; topic.required = isNew; topic.disabled = !isNew;
+    $('suggestionMessageLabel').textContent = isNew ? '希望教程帮你完成什么？' : '哪里不清楚，建议怎样改？';
+    status.textContent = ''; requestId = null;
+  }
+  function changed() { requestId = null; status.textContent = ''; $('suggestionCount').textContent = `${message.value.length} / 1500`; }
+  function open(kind) {
+    $('supportClose').click();
+    if (kind && !form.hidden) { category.value = kind; syncCategory(); }
+    dialog.showModal(); launch.setAttribute('aria-expanded', 'true');
+  }
+  launch.addEventListener('click', () => open());
+  document.querySelectorAll('[data-suggest-new]').forEach(b => b.addEventListener('click', () => open('new')));
+  $('suggestionClose').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('close', () => { launch.setAttribute('aria-expanded', 'false'); launch.focus({ preventScroll: true }); });
+  $('suggestionGroup').addEventListener('click', () => { dialog.close(); const support = $('supportBtn'); if (support.getAttribute('aria-expanded') !== 'true') support.click(); $('supportClose').focus({ preventScroll: true }); });
+  category.addEventListener('change', syncCategory);
+  form.addEventListener('input', changed);
+  $('suggestionAgain').addEventListener('click', () => { form.reset(); $('suggestionSuccess').hidden = true; form.hidden = false; syncCategory(); changed(); category.focus(); });
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (sending || !form.reportValidity()) return;
+    if (message.value.trim().length < 10) { status.textContent = '请至少写 10 个字，方便了解你的建议。'; message.focus(); return; }
+    if (vpn.test((category.value === 'new' ? topic.value : '') + '\n' + message.value)) { status.textContent = '涉及 VPN 的内容不提供教学，请提交其他教程建议；操作问题请进右下角群询问。'; return; }
+    requestId ||= crypto.randomUUID();
+    const payload = { request_id: requestId, category: category.value, tutorial: tutorial.value, title: category.value === 'new' ? topic.value.trim() : '', message: message.value.trim(), website: $('suggestionWebsite').value };
+    sending = true; submit.disabled = true; submit.textContent = '正在提交…'; status.textContent = '';
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 12000);
+    try {
+      const response = await fetch('/api/suggestions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'PlusGuideSuggestions' }, body: JSON.stringify(payload), credentials: 'same-origin', redirect: 'error', signal: controller.signal });
+      const result = await response.json();
+      if (!response.ok || !result.ok) throw new Error(result.message || '暂时未能提交，请稍后重试。');
+      form.hidden = true; $('suggestionSuccess').hidden = false;
+      $('suggestionReference').textContent = '建议编号：' + result.reference;
+    } catch (error) {
+      status.textContent = error.name === 'AbortError' ? '连接有些慢，尚未确认提交结果。内容已保留，可以重试。' : error.message === 'Failed to fetch' ? '网络连接失败，内容已保留，请稍后重试。' : error.message || '暂时未能提交，内容已保留，请稍后重试。';
+    } finally { clearTimeout(timeout); sending = false; submit.disabled = false; submit.textContent = '提交建议'; }
+  });
+  syncCategory();
+})();
+</script>
+<script>
+/* ===== 交流群面板 ===== */
+(() => {
+  const btn = document.getElementById('supportBtn'), panel = document.getElementById('supportPanel'), close = document.getElementById('supportClose');
+  function open() { const s = document.getElementById('suggestionDialog'); if (s?.open) s.close(); panel.hidden = false; btn.setAttribute('aria-expanded', 'true'); }
+  function shut() { panel.hidden = true; btn.setAttribute('aria-expanded', 'false'); }
+  btn.addEventListener('click', () => panel.hidden ? open() : shut());
+  close.addEventListener('click', shut);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) { shut(); btn.focus(); } });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="搭建个人 AI 中转网关（CLIProxyAPI）：订阅额度变成 API。每一步配截图，跟着做就行。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#6459d9">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='18' fill='%236459d9' stroke='%231a1830' stroke-width='4'/%3E%3Cpath d='M20 24h24M20 32h24M20 40h14' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>搭建个人 AI 中转网关（CLIProxyAPI） · Plus Guide</title>
+<link rel="preload" href="../assets/pg-heading-900.woff2?v=c11862cc4b" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/g-guide.css?v=74702c1566">
+</head>
+<!--
+  G 风格教程页外壳。由 ai-guides/_src/build.py --g 生成，不要直接改生成后的页面：
+  样式改 ai-guides/assets/g-guide.css，交互改 ai-guides/assets/g-engine.js，
+  这个外壳改 ai-guides/assets/g-page.html，内容改 ai-guides/guides/<slug>.js。
+-->
+<body>
+<div id="guideShell">
+<a class="skip" href="#stepTitle">跳到当前步骤</a>
+<header class="top">
+  <div class="top-in">
+    <a class="mark" id="homeLink" href="../" aria-label="Plus Guide 首页">plus<i>.</i>guide</a>
+    <span class="crumb"><span class="cat"><a id="catLink" href="../"></a> / </span><b id="guideTitle">搭建个人 AI 中转网关（CLIProxyAPI）</b></span>
+    <div class="top-actions">
+      <a class="btn btn-sm" id="allLink" href="../#tutorials" aria-label="全部教程"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>全部教程</span></a>
+    </div>
+  </div>
+</header>
+
+<details class="mobile-toc" id="mobileToc">
+  <summary><span id="mProgText">第 1 步</span><span class="track" aria-hidden="true"><span class="fill" id="mFill" style="display:block"></span></span><span>步骤</span></summary>
+  <nav class="toc" id="mToc" aria-label="本篇步骤"></nav>
+</details>
+
+<div class="layout">
+  <aside class="side" aria-label="本篇步骤">
+    <div class="side-inner">
+      <div class="prog">
+        <div class="prog-row"><span>进度</span><b id="progText">第 1 步</b></div>
+        <div class="track" role="progressbar" id="progBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="教程进度"><div class="fill" id="fill"></div></div>
+      </div>
+      <nav class="toc first" id="toc" aria-label="步骤目录"></nav>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="main-in">
+
+      <article class="step" id="step" aria-live="polite"><h1 id="stepTitle" tabindex="-1">搭建个人 AI 中转网关（CLIProxyAPI）</h1><p class="intro">正在加载内容……如果这行字一直在，说明页面脚本没跑起来，刷新一次试试。</p></article>
+    </div>
+  </main>
+
+  <aside class="rail" aria-label="帮助">
+    <div class="rail-inner">
+      <section class="box box-coach" id="coachBox">
+        <span class="tag" aria-hidden="true"><span class="sticker">小提示</span></span>
+        <h2>这一步的小提示</h2>
+        <p id="coach"></p>
+      </section>
+      <section class="box box-help">
+        <span class="tag" aria-hidden="true"><span class="sticker">别硬扛</span></span>
+        <h2>卡住了？</h2>
+        <p>进群说明教程名、做到第几步和报错，截图先遮住邮箱、密码和验证码。</p>
+        <a class="btn btn-ink btn-sm" href="https://t.me/+_lOsXtUCD9MxNzY1" target="_blank" rel="noopener noreferrer">打开 Telegram 群</a>
+        <details><summary>扫码进群</summary><img src="../ai-group-qr.png?v=5c146bd70c" alt="AI 交流群二维码" width="200" height="200" loading="lazy"></details>
+      </section>
+      <section class="box">
+        <h2>本机记录</h2>
+        <p class="save" id="saveStatus"><i aria-hidden="true"></i>进度自动保存在这个浏览器</p>
+        <div class="reset-row" id="resetRow"><button class="btn btn-sm" type="button" id="resetBtn">重新开始</button></div>
+      </section>
+    </div>
+  </aside>
+</div>
+</div>
+
+<main class="access" id="accessPanel" hidden></main>
+<dialog class="gate-dialog" id="gateDialog" aria-labelledby="gateTitle" aria-describedby="gateLead"></dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog class="img-dialog" id="imgDialog" aria-labelledby="imgCaption">
+  <div class="img-bar"><span id="imgCaption"></span><button class="btn btn-sm" type="button" id="imgClose">关闭</button></div>
+  <div class="img-scroll"><img id="imgFull" alt=""></div>
+</dialog>
+
+<script>
+window.AI_GUIDE_SLUG = 'cli-proxy-api';
+window.AI_GUIDE = {category: "coding",
+  index: '01',
+  slug: 'cli-proxy-api',
+  title: '搭建个人 AI 中转网关（CLIProxyAPI）',
+  subtitle: '订阅额度变成 API',
+  phases: [
+    { title: '准备服务器', copy: '装好 Docker、填好参数' },
+    { title: '部署网关', copy: '写两个配置文件并启动' },
+    { title: '接入账号', copy: 'OAuth 或第三方 Key' },
+    { title: '客户端使用', copy: '接进 Codex 等工具' }
+  ],
+  inputs: [
+    { key: 'vpsIp', label: 'VPS 公网 IP', short: 'VPS IP', placeholder: '123.45.67.89', hint: '在 VPS 商家面板的实例详情里能看到，就是那串数字 IP。', example: '123.45.67.89' },
+    { key: 'secretKey', label: '管理面板密码（自己设）', short: '管理密码', placeholder: '自己设一个强密码', hint: '这个密码只用在你自己的服务器上，用来登录网关的管理面板。建议 16 位以上、含大小写字母和数字。', example: 'Panel-Pass-2026-7x3k' },
+    { key: 'apiKey', label: '客户端访问密钥（自己设）', short: '访问密钥', placeholder: '自己设一串密钥', hint: '以后各种客户端连你的网关时填这个。不要用配置模板里的公开示例值，自己起一个。', example: 'sk-mygw-9f3c1a7b' },
+    { key: 'gatewayDomain', label: '网关域名', short: '网关域名', optional: true, placeholder: 'gateway.你的域名.com', hint: '只有准备做 HTTPS（进阶步骤）才需要，没准备就留空。' }
+  ],
+  steps: [
+    {
+      phase: 0,
+      kind: 'info',
+      short: '这篇在做什么',
+      title: '这篇教程，是把你买的订阅额度变成 API',
+      intro: 'CLIProxyAPI 跑在你自己的 VPS 上，把各家 AI CLI 工具的订阅额度统一包装成 OpenAI 兼容接口。配好之后，Codex 之类的客户端只要连你的网关地址，就能用到那些额度，模型随你切。',
+      facts: [
+        ['要准备什么', '一台 VPS：1 核 1G 起、Ubuntu 22.04、有公网 IP'],
+        ['再准备什么', '要接入的账号：各家 CLI 会员（走 OAuth），或者第三方 API Key'],
+        ['可选', '一个域名：想做 HTTPS 访问时用，没有也能用'],
+        ['大概要多久', '顺利的话 30 分钟内能跑起来']
+      ],
+      bullets: [
+        '整篇教程只需要一台 VPS 和一个能敲命令的窗口（SSH），本地电脑不用装别的东西。',
+        '没装过 Docker、不会连服务器也没关系：下面的步骤会一条条给出命令，照着复制就行。',
+        '命令里凡是需要你自己填的（IP、密码、Key），下一步填一次，后面的内容会自动替换。'
+      ],
+      note: '网关只服务你自己的账号和额度，请遵守你所购买服务的使用条款；不要把网关开放给不相关的人使用。',
+      coach: '先把这篇要做的事看明白，再动手，比上来就敲命令省时间。',
+      button: '看明白了，开始'
+    },
+    {
+      phase: 0,
+      kind: 'inputs',
+      short: '填我的参数',
+      title: '先把你自己要用的信息填进来',
+      intro: '下面这些值只需要填一次，后面所有命令和配置文件都会自动换成你填的内容，复制出来就能直接粘贴。填错也没关系，随时可以回来改。',
+      coach: '密码和密钥自己起一个就行，不用去某个网站申请，只要够长、别人猜不到。',
+      hint: '填完点右边继续',
+      button: '保存，继续'
+    },
+    {
+      phase: 0,
+      kind: 'task',
+      short: '装 Docker',
+      title: '第 1 步：在服务器上装好 Docker',
+      intro: '用 SSH 工具连上你的 VPS（Windows 电脑可以用系统自带的终端，输入 ssh root@你的IP 回车，再按提示输入密码），然后依次执行下面的命令。',
+      code: [
+        {
+          lang: 'bash',
+          caption: '官方一键脚本安装 Docker 与 compose 插件',
+          text: ['curl -fsSL https://get.docker.com | sh', '', '# 两条命令都能看到版本号，就说明装好了', 'docker --version', 'docker compose version']
+        }
+      ],
+      bullets: [
+        '第一条命令会从 Docker 官方脚本安装 Docker 和 compose 插件，需要一两分钟，中途有输出滚动是正常的。',
+        '看到 docker compose version 打印出版本号（形如 v2.x.x），这一步就完成了。',
+        '如果你不是 root 用户，命令前加 sudo，例如 sudo docker --version。'
+      ],
+      links: [{ label: 'Docker 官方安装文档（Ubuntu）', url: 'https://docs.docker.com/engine/install/ubuntu/' }],
+      tip: '用官方一键脚本最省事，不用手动配软件源。',
+      coach: '装 Docker 只有这一条命令，装完这步就再也不用管服务器环境了。',
+      button: 'Docker 装好了，继续'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '写 config.yaml',
+      title: '第 2 步：创建目录，写好 config.yaml',
+      intro: '给网关建一个单独的目录，把配置文件放进去。重点只需要改三个地方，其余保持模板默认。',
+      code: [
+        {
+          lang: 'bash',
+          caption: '建目录并进入',
+          text: ['mkdir -p ~/cli-proxy-api', 'cd ~/cli-proxy-api', 'nano config.yaml   # 粘贴下面的内容，Ctrl+O 回车保存，Ctrl+X 退出']
+        },
+        {
+          lang: 'yaml',
+          caption: 'config.yaml 关键项（完整模板看官方 config.example.yaml）',
+          text: [
+            'port: 8317',
+            '',
+            '# 管理接口：登录管理面板用',
+            'remote-management:',
+            '  allow-remote: true            # 允许从公网打开管理面板',
+            '  secret-key: <{{ secretKey }}>   # 面板登录密码，第 1 步填过的那个',
+            '',
+            '# OAuth 凭据目录：Docker 部署保持默认，不要改',
+            'auth-dir: "~/.cli-proxy-api"',
+            '',
+            '# 客户端访问网关时带的密钥',
+            'api-keys:',
+            '  - <{{ apiKey }}>'
+          ],
+          note: 'YAML 只认空格缩进，不要用 Tab；错一位就会启动报错。'
+        }
+      ],
+      bullets: [
+        '在 ~/cli-proxy-api 目录里新建 config.yaml，把上面第二段内容粘进去。',
+        '改成你自己的三处：allow-remote 设为 true；secret-key 填你刚才设的管理密码；api-keys 换成你自己的访问密钥。',
+        '官方模板里自带的 3 行示例 api-keys 要删掉——那是公开示例，谁都能看到，不要拿来直接用。',
+        'auth-dir 在 Docker 部署时保持默认值，不用改。'
+      ],
+      agentPrompt: {
+        title: '不想手改？把这段发给 AI 助手',
+        intro: '把下面这段发给你在用的编程助手（Codex、Claude Code 等），让它帮你把配置文件改好。',
+        text: '我在自己的 VPS 上用 Docker 部署 CLIProxyAPI，工作目录是 ~/cli-proxy-api。\n请帮我生成这个目录下的 config.yaml，要求：\n1. port 保持 8317；auth-dir 保持默认 "~/.cli-proxy-api"（Docker 部署不改）\n2. remote-management.allow-remote 设为 true，管理密钥用我给你的那串密码\n3. api-keys 里只放我自己的密钥，不要保留任何官方示例值\n4. 只用空格缩进\n我给你的参数：\n- 管理密码：{{ secretKey }}\n- 客户端访问密钥：{{ apiKey }}\n生成后请顺便检查 YAML 缩进是否合法。',
+        hint: '密码和密钥只在你自己机器和服务器之间传递，别贴在公开的聊天窗口里。'
+      },
+      coach: '三个要点：开远程面板、设管理密码、换成自己的访问密钥。其余保持模板默认。',
+      button: 'config.yaml 写好了'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '写 compose 并启动',
+      title: '第 3 步：写 docker-compose.yml，启动服务',
+      intro: '用 compose 把容器跑起来。三个目录挂载是为了让配置、授权凭据和日志留在服务器上，容器重建也不会丢。',
+      code: [
+        {
+          lang: 'yaml',
+          caption: 'docker-compose.yml',
+          text: [
+            'services:',
+            '  cli-proxy-api:',
+            '    image: eceasy/cli-proxy-api:latest',
+            '    container_name: cli-proxy-api',
+            '    restart: unless-stopped',
+            '    ports:',
+            '      - "8317:8317"',
+            '    volumes:',
+            '      - ./config.yaml:/CLIProxyAPI/config.yaml',
+            '      - ./auths:/root/.cli-proxy-api',
+            '      - ./logs:/CLIProxyAPI/logs'
+          ]
+        },
+        {
+          lang: 'bash',
+          caption: '启动并看日志',
+          text: ['docker compose up -d', 'docker compose logs --tail=50 -f   # 看到正常启动的日志后，按 Ctrl+C 退出']
+        }
+      ],
+      bullets: [
+        '镜像用官方的 eceasy/cli-proxy-api，端口映射 8317（管理面板）。',
+        '三个卷各有用处：config.yaml 是配置；auths 存 OAuth 授权凭据（删了就要重新授权）；logs 存日志。',
+        'docker compose up -d 是后台启动；日志里没有报错、容器状态是 running 就成功了。'
+      ],
+      note: '镜像名、端口和挂载路径来自 CLIProxyAPI 官方 Docker 部署文档；官方若有更新，以官方文档为准。',
+      coach: '这三行挂载是这份配置的核心，照抄就行，只有镜像保持最新即可。',
+      seeAlso: [
+        { title: '07 VPS 增大内存（SWAP）', url: './07-swap-memory.html', why: '容器起不来、内存吃紧时，先用 SWAP 顶一阵', icon: 'server' }
+      ],
+      button: '容器跑起来了'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '打开管理面板',
+      title: '第 4 步：打开管理面板，用密码登录',
+      intro: '网关自带一个网页管理面板，登录用的就是你在 config.yaml 里设的那个管理密钥。',
+      links: [{ label: '打开管理面板（你的 VPS）', url: 'http://{{ vpsIp }}:8317/management.html' }],
+      bullets: [
+        '打开上面的地址，把「管理密码」填进去登录（不是访问密钥，是 secret-key 那一个）。',
+        '打不开先别急：多半是 VPS 安全组或系统防火墙没有放行 8317 端口，去商家面板放行一下再试。',
+        '地址是 http:// 开头、端口 8317、路径 /management.html，三个都不能少。'
+      ],
+      coach: '面板能打开，说明网关这一层完全通了；接下来才是往里接账号。',
+      button: '登录成功，继续'
+    },
+    {
+      phase: 2,
+      kind: 'choice',
+      short: '选接入方式',
+      title: '第 5 步：网关里接什么账号？',
+      intro: '两种来源可以只选一种，也可以以后再加另一种。先选你现在手上的那一种。',
+      coach: '有 CLI 会员选第一种；只有第三方 Key（比如 DeepSeek）选第二种。',
+      choices: [
+        { title: 'OAuth 授权（推荐）', copy: '我在 Grok、Antigravity 等 CLI 工具里有会员订阅', value: 'oauth', icon: 'key', next: 7 },
+        { title: '填第三方 API Key', copy: '我手上有第三方的 Key，比如 DeepSeek', value: 'third', icon: 'chip', next: 8 }
+      ],
+      hint: '选好会自动进对应的步骤'
+    },
+    {
+      phase: 2,
+      kind: 'task',
+      short: 'OAuth 授权',
+      title: '接入方式 A：给订阅账号做 OAuth 授权',
+      intro: '在管理面板里给 CLI 账号走一遍 OAuth 回调授权，授权完成后，这些账号的额度就能通过网关调用。',
+      bullets: [
+        '前提是你本人在对应的 CLI 工具里已经买过会员订阅（比如 Grok、Antigravity），没有订阅的话这一步做不了，改走方式 B。',
+        '在管理面板里找到 OAuth 授权入口，选择要接入的账号类型，按面板提示一步步走。',
+        '授权过程会打开一个新的登录页面，登录你自己的账号并确认授权，页面跳转成功即完成。',
+        '回到面板，能看到刚授权的账号出现在列表里，就说明这一路接好了。'
+      ],
+      note: '授权凭据会写进服务器的 auths 目录，等于账号权限——别把它复制、上传或分享给别人。',
+      coach: '这一步是「允许网关代表这个账号调用」，在你自己的浏览器里点几下就完成。',
+      seeAlso: [
+        { title: '美国住宅 IP 向导（家宽静态住宅）', url: 'https://ip.plus-guide.fun/', why: '授权反复失败、账号提示风控，多半是出口 IP 不干净，换住宅出口再授权', icon: 'globe' }
+      ],
+      button: '账号授权好了'
+    },
+    {
+      phase: 2,
+      kind: 'task',
+      short: '填第三方 Key',
+      title: '接入方式 B：填入第三方 API Key',
+      intro: '没有 CLI 会员也可以：直接把第三方平台的 Key 填进网关，一样能被客户端调用。下面以 DeepSeek 为例。',
+      bullets: [
+        '打开 DeepSeek 开放平台，注册账号，按提示完成实名认证。',
+        '充值一点余额（按自己的用量来，先充少量即可）。',
+        '在平台的密钥管理里创建一个 API Key，复制下来（一般只显示一次，记得马上存好）。',
+        '回到网关管理面板，把 Key 填进去并保存；确认这个 Key 能被正常调用。'
+      ],
+      links: [{ label: 'DeepSeek 开放平台', url: 'https://platform.deepseek.com/' }],
+      note: '第三方 Key 关联着你的预付款余额，别贴在公开场合；填在面板里就行，不用写进配置文件。',
+      coach: '方式 B 的好处是不用买会员订阅，花多少充多少。',
+      button: 'Key 填好并测试通过'
+    },
+    {
+      phase: 3,
+      kind: 'choice',
+      short: '要不要配域名',
+      title: '第 6 步：现在要给网关配域名和 HTTPS 吗？',
+      intro: '不配也能正常用（用 IP 加端口访问）。配了之后地址更好记，而且是加密连接，适合经常在外部网络使用的情况。',
+      coach: '刚开始用可以先跳过，以后随时回来补。',
+      choices: [
+        { title: '现在就配', copy: '我准备好了域名，想用 https 访问', value: 'yes', icon: 'globe', next: 10 },
+        { title: '先跳过', copy: '先用 IP 把流程跑通，域名以后再说', value: 'skip', icon: 'arrow', next: 11 }
+      ],
+      hint: '跳过也不会漏掉什么，后面的步骤照常'
+    },
+    {
+      phase: 3,
+      kind: 'task',
+      short: '域名 + HTTPS',
+      title: '进阶：给网关配域名与 HTTPS',
+      intro: '让网关通过 https://你的域名 访问，比 IP 加端口的明文地址更安全。',
+      bullets: [
+        '在你的域名服务商那里，把 {{ gatewayDomain }} 解析到你的 VPS 公网 IP（{{ vpsIp }}）。',
+        '在 VPS 上再起一个 Nginx Proxy Manager（或你熟悉的其它反向代理），把域名反代到本机的 8317 端口。',
+        '在代理面板里为这个域名申请证书，开启 HTTPS。',
+        '配好后，把客户端里的地址从 http://{{ vpsIp }}:8317/v1 换成 https://{{ gatewayDomain }}/v1。'
+      ],
+      note: '没有域名的话这一步直接跳过：用 IP 加端口一样能用，只是地址是明文的，别在不可信的网络里使用。',
+      coach: '反代这一步和别的网站配置原理一样：域名 → 服务器 → 8317 端口。',
+      button: 'HTTPS 配好了，继续'
+    },
+    {
+      phase: 3,
+      kind: 'task',
+      short: '接入 Codex',
+      title: '最后一步：把网关接进 Codex 客户端',
+      intro: '在你的 Codex 客户端里添加一个供应商，指向你的网关。之后就能在 Codex 里自由切换模型。',
+      facts: [
+        ['模式', '纯 API'],
+        ['Base URL', 'http://{{ vpsIp }}:8317/v1（配了域名就换成 https://{{ gatewayDomain }}/v1）'],
+        ['Key', '你在第 2 步设的访问密钥 {{ apiKey }}']
+      ],
+      bullets: [
+        '打开 Codex 客户端，添加上游供应商。',
+        '模式选「纯 API」，不要选官方登录那一类。',
+        'Base URL 填你网关的地址，注意末尾只保留一个 /v1。',
+        'Key 填你的访问密钥，保存后发一句话测试，能正常回复就成功了。'
+      ],
+      warn: '报 404 大多是 Base URL 重复加了 /v1；鉴权失败则检查 Key 是不是复制完整、有没有多出空格。',
+      coach: '配好这一处，以后想加别的客户端（比如 OpenWebUI）也是同样的三个值。',
+      button: '测试通过，完成'
+    },
+    {
+      phase: 3,
+      kind: 'done',
+      short: '完成与问答',
+      title: '恭喜，你的中转网关已经跑起来了',
+      intro: '订阅额度现在有了一个统一的 API 地址。需要别的客户端接入时，回来抄 Base URL 和密钥就行。',
+      seeAlso: [
+        { title: '05 在 VPS 上配置 Codex 接入中转站', url: './05-codex-config.html', why: '让服务器上的 Codex 也走这个网关', icon: 'terminal' },
+        { title: '10 自托管 AI 对话面板（OpenWebUI）', url: './10-openwebui.html', why: '接上网关，多一个网页版聊天入口', icon: 'grid' },
+        { title: '02 搭建商业化 AI 中转站（New-API）', url: './02-new-api.html', why: '要给多人用、要按令牌限量，就再加一层分发', icon: 'server' }
+      ],
+      doneGroups: [
+        {
+          title: '收尾：这几件事只有你能做',
+          items: [
+            '确认管理密码和访问密钥都保存在你自己的密码管理器里',
+            '如果用了 OAuth 授权，确认服务器上的 auths 目录没有被上传到任何公开仓库',
+            '把网关地址和密钥记下来，以后新增客户端直接填',
+            '（可选）想给多人用或对外提供一个站，去看 02 New-API 那篇'
+          ]
+        }
+      ],
+      faqGroups: [
+        {
+          label: '部署与启动',
+          items: [
+            { q: '容器起来了又反复重启怎么办？', a: '先在目录里执行 docker compose logs --tail=100 看报错。最常见的原因是 config.yaml 缩进不对：YAML 只认空格，混进 Tab 或某一级缩进错一位都会启动失败，逐行对一下空格即可。' },
+            { q: '管理面板打不开、一直转圈？', a: '按顺序检查：地址是不是 http://你的IP:8317/management.html；VPS 商家安全组放行了 8317 没有；系统防火墙（如 ufw）有没有拦。手机上打不开也先检查这三点。' },
+            { q: '1 核 1G 的 VPS 跑得动吗？', a: '网关本身很轻，1 核 1G 足够。如果同一台机器上还要跑别的容器、内存吃紧，可以先用 SWAP 顶一阵（见第 07 篇），长期还是建议升级内存。' }
+          ]
+        },
+        {
+          label: '接入与客户端',
+          items: [
+            { q: '客户端报 401 / 403？', a: '客户端里填的 Key 要和 config.yaml 里 api-keys 写的完全一致（注意别把管理密码当成访问密钥填进去）。改完配置记得 docker compose restart 让配置生效。' },
+            { q: '客户端报 404？', a: '九成是 Base URL 写错：末尾多加了 /v1 或少了 /v1。正确写法是 http://你的IP:8317/v1。' },
+            { q: 'OAuth 和第三方 Key 能同时用吗？', a: '可以。两种来源互不冲突，在面板里都能看到，客户端会按你选的模型去对应的来源调用。' }
+          ]
+        },
+        {
+          label: '安全',
+          items: [
+            { q: 'auths 目录可以备份到网盘或 Git 仓库吗？', a: '不行。里面的授权凭据等同于账号的调用权限，泄漏了别人就能用你的额度。要备份就放在只有你能访问的地方，也不要发给任何人。' },
+            { q: '能不能把网关分享给朋友用？', a: '不建议。额度、并发和账号规则都由上游决定，多人共用容易触发风控。要给多人用，正确做法是另搭一个 New-API 并单独管理令牌。' }
+          ]
+        }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../assets/g-engine.js?v=42c616d414" defer></script>
+</body>
+</html>

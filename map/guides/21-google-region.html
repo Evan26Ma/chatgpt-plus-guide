@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="谷歌账号改区：把账号关联地区改成美国。每一步配截图，跟着做就行。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#6459d9">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='18' fill='%236459d9' stroke='%231a1830' stroke-width='4'/%3E%3Cpath d='M20 24h24M20 32h24M20 40h14' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>谷歌账号改区 · Plus Guide</title>
+<link rel="preload" href="../assets/pg-heading-900.woff2?v=c11862cc4b" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/g-guide.css?v=74702c1566">
+</head>
+<!--
+  G 风格教程页外壳。由 ai-guides/_src/build.py --g 生成，不要直接改生成后的页面：
+  样式改 ai-guides/assets/g-guide.css，交互改 ai-guides/assets/g-engine.js，
+  这个外壳改 ai-guides/assets/g-page.html，内容改 ai-guides/guides/<slug>.js。
+-->
+<body>
+<div id="guideShell">
+<a class="skip" href="#stepTitle">跳到当前步骤</a>
+<header class="top">
+  <div class="top-in">
+    <a class="mark" id="homeLink" href="../" aria-label="Plus Guide 首页">plus<i>.</i>guide</a>
+    <span class="crumb"><span class="cat"><a id="catLink" href="../"></a> / </span><b id="guideTitle">谷歌账号改区</b></span>
+    <div class="top-actions">
+      <a class="btn btn-sm" id="allLink" href="../#tutorials" aria-label="全部教程"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>全部教程</span></a>
+    </div>
+  </div>
+</header>
+
+<details class="mobile-toc" id="mobileToc">
+  <summary><span id="mProgText">第 1 步</span><span class="track" aria-hidden="true"><span class="fill" id="mFill" style="display:block"></span></span><span>步骤</span></summary>
+  <nav class="toc" id="mToc" aria-label="本篇步骤"></nav>
+</details>
+
+<div class="layout">
+  <aside class="side" aria-label="本篇步骤">
+    <div class="side-inner">
+      <div class="prog">
+        <div class="prog-row"><span>进度</span><b id="progText">第 1 步</b></div>
+        <div class="track" role="progressbar" id="progBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="教程进度"><div class="fill" id="fill"></div></div>
+      </div>
+      <nav class="toc first" id="toc" aria-label="步骤目录"></nav>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="main-in">
+
+      <article class="step" id="step" aria-live="polite"><h1 id="stepTitle" tabindex="-1">谷歌账号改区</h1><p class="intro">正在加载内容……如果这行字一直在，说明页面脚本没跑起来，刷新一次试试。</p></article>
+    </div>
+  </main>
+
+  <aside class="rail" aria-label="帮助">
+    <div class="rail-inner">
+      <section class="box box-coach" id="coachBox">
+        <span class="tag" aria-hidden="true"><span class="sticker">小提示</span></span>
+        <h2>这一步的小提示</h2>
+        <p id="coach"></p>
+      </section>
+      <section class="box box-help">
+        <span class="tag" aria-hidden="true"><span class="sticker">别硬扛</span></span>
+        <h2>卡住了？</h2>
+        <p>进群说明教程名、做到第几步和报错，截图先遮住邮箱、密码和验证码。</p>
+        <a class="btn btn-ink btn-sm" href="https://t.me/+_lOsXtUCD9MxNzY1" target="_blank" rel="noopener noreferrer">打开 Telegram 群</a>
+        <details><summary>扫码进群</summary><img src="../ai-group-qr.png?v=5c146bd70c" alt="AI 交流群二维码" width="200" height="200" loading="lazy"></details>
+      </section>
+      <section class="box">
+        <h2>本机记录</h2>
+        <p class="save" id="saveStatus"><i aria-hidden="true"></i>进度自动保存在这个浏览器</p>
+        <div class="reset-row" id="resetRow"><button class="btn btn-sm" type="button" id="resetBtn">重新开始</button></div>
+      </section>
+    </div>
+  </aside>
+</div>
+</div>
+
+<main class="access" id="accessPanel" hidden></main>
+<dialog class="gate-dialog" id="gateDialog" aria-labelledby="gateTitle" aria-describedby="gateLead"></dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog class="img-dialog" id="imgDialog" aria-labelledby="imgCaption">
+  <div class="img-bar"><span id="imgCaption"></span><button class="btn btn-sm" type="button" id="imgClose">关闭</button></div>
+  <div class="img-scroll"><img id="imgFull" alt=""></div>
+</dialog>
+
+<script>
+window.AI_GUIDE_SLUG = 'google-region';
+window.AI_GUIDE = {category: "account",
+  index: '21',
+  slug: 'google-region',
+  title: '谷歌账号改区',
+  subtitle: '把账号关联地区改成美国',
+  phases: [
+    { title: '改区前', copy: '确认要不要改、环境先达标' },
+    { title: '提交申请', copy: '表单、免税州与提交' },
+    { title: '等生效', copy: '确认邮件与核对' }
+  ],
+  inputs: [],
+  steps: [
+    {
+      phase: 0,
+      kind: 'info',
+      short: '改区改的是什么',
+      title: '账号关联地区，跟着地区走的服务都看它',
+      intro: 'Google 账号有一个「关联地区」，会影响部分服务的资格、价格和内容展示。这篇用 Google 官方的「账号关联地区更改请求」表单，把关联地区不是美国的账号改成美国，示例里州选的是免税州俄勒冈。整个流程提交后要等几天才生效，不是即时改动。',
+      facts: [
+        ['需要准备', '能正常登录的 Google 个人账号、美国住宅 IP（家宽出口、原生、纯净度达标），以及几天的等待时间'],
+        ['什么时候需要', '账号关联地区不是美国，又要用按地区提供的服务或活动时，例如 Gemini 学生优惠'],
+        ['先讲清楚', '改区只改账号的关联地区，不等于获得当地身份或服务资格；学生等资格还要按对应服务的要求验证'],
+        ['内容来源', '按社群流传的实测流程与截图整理，示例账号是中国改美国；截图中的账号邮箱已打码']
+      ],
+      links: [{ label: '改区表单（Google 隐私权和条款）', url: 'https://policies.google.com/country-association-form' }],
+      warn: '本教程走的是 Google 官方表单，但是否批准、多久生效由 Google 决定；文中“一般几天收到邮件”是社区经验，不是官方承诺。',
+      coach: '先确认自己真的需要改区：账号关联地区已经是美国的，直接去做要办的事。',
+      button: '开始检查'
+    },
+    {
+      phase: 0,
+      kind: 'checks',
+      short: '开始前确认',
+      title: '这些条件先对一遍',
+      intro: '改区本身只有一页表单，但提交环境和等待时间容易出问题，先把这几条对齐。',
+      checks: [
+        '我要改的是自己的 Google 个人账号，并且现在能正常登录',
+        '我已经准备好美国住宅 IP：家宽出口、原生、纯净度达标',
+        '我知道提交后要等几天才生效，会提前安排时间',
+        '我理解改区不等于获得学生等服务的资格，资格还要按各服务要求验证'
+      ],
+      coach: '清单全部确认再往下走，避免提交到一半才发现 IP 不对或时间不够。',
+      button: '都已确认'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '先复查 IP',
+      title: '提交前，先确认 IP 还是美国住宅',
+      intro: '改区申请用目标地区的网络提交。示例流程里，提交改区前先用 IPPure 复查了一遍：美国、住宅、原生、极度纯净。',
+      links: [
+        { label: '打开 IPPure', url: 'https://ippure.com/' },
+        { label: 'Telegram 交流群（询问家宽 IP）', url: 'https://t.me/+_lOsXtUCD9MxNzY1' }
+      ],
+      images: [{ src: "../assets/guides/gemini-student/12-region-ippure.webp?v=ace4fc2eac", alt: 'IPPure 显示美国住宅原生 IP，极度纯净', caption: '提交改区前的 IP 检查：美国、住宅、原生、极度纯净。评级和出口以你自己的页面为准。' }],
+      bullets: [
+        '重点看三项：位置是美国、属性是住宅（家宽出口）、纯净度评级足够高。',
+        'IP 不达标时先解决网络再提交，不要用机房 IP 或污染严重的出口硬交。',
+        '需要美国家宽 IP，可以到 Telegram 交流群询问。'
+      ],
+      note: '截图是示例账号当时的检查结果，IP 和评级以你自己打开时的页面为准。',
+      coach: '这一步和《Gemini 学生优惠领取》第 1 步用同一个工具、同一个标准。',
+      button: 'IP 已确认'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '打开改区表单',
+      title: '登录账号，先看当前关联地区',
+      intro: '打开 Google 的账号关联地区更改表单，用要改区的账号登录。表单开头会回显这个账号当前关联的地区，示例账号是中国。',
+      links: [{ label: '账号关联地区更改请求表单', url: 'https://policies.google.com/country-association-form' }],
+      images: [{ src: "../assets/guides/gemini-student/13-region-form.webp?v=50691f24f7", alt: '改区表单开头写明当前关联地区为中国', caption: '表单开头会回显当前关联地区，示例账号是中国。' }],
+      bullets: [
+        '先确认页面右上角登录的就是你要改区的账号，别用错号。',
+        '表单开头写着“您目前登录的账号为…”和当前关联地区，先核对是不是预期。'
+      ],
+      coach: '一个账号一份申请；有多个账号要改，就分别登录、分别提交。',
+      button: '账号已确认'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '选国家与州',
+      title: '国家选美国，州填免税州',
+      intro: '第一问选目标地区：国家选美国。选了美区会多出一栏州，示例填的是免税州俄勒冈。',
+      images: [{ src: "../assets/guides/gemini-student/14-region-country.webp?v=c0d1ff8afe", alt: '国家选美国、州选俄勒冈州的改区表单', caption: '国家选美国；美区要再选一个州，示例用免税州俄勒冈。图中账号邮箱已打码。' }],
+      bullets: [
+        '国家选「美国」。',
+        '州优先填免税州：示例用的俄勒冈，蒙大拿、特拉华、新罕布什尔也是常见选择。',
+        '免税州对后面的账单地址更友好；按自己的实际需要选择。'
+      ],
+      note: '「美区填免税州」是社群流传的常见做法，官方没有指定必须选哪个州。',
+      coach: '俄勒冈是示例截图的选择，照着选最省事。',
+      button: '地区已选好'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '填原因并提交',
+      title: '原因随便勾几项，然后提交',
+      intro: '第二问是“为什么您的账号应与这个地区关联”，复选框随便勾几项就行。示例勾了三项：工作地/学习地和居住地分属不同的地区、经常旅行、经常使用虚拟专用网 (VPN)。填完点提交，页面会回显“您的请求已提交”和目标地区。',
+      images: [
+        { src: "../assets/guides/gemini-student/15-region-reason.webp?v=dec497c295", alt: '关联原因复选框勾了三项后准备提交', caption: '原因项按示例随便勾几项，就可以提交了。' },
+        { src: "../assets/guides/gemini-student/16-region-submit.webp?v=aa4289abd6", alt: '提交成功页面显示请求已提交，目标地区为美国俄勒冈州', caption: '提交后回显“您的请求已提交”和目标地区。' }
+      ],
+      bullets: [
+        '示例勾选的三项：我的工作地/学习地和居住地分属不同的地区、我经常旅行、我经常使用虚拟专用网 (VPN)。',
+        '点「提交」后，看到“您的请求已提交”和目标地区（示例是美国 - 俄勒冈州）才算提交成功。'
+      ],
+      coach: '提交成功页可以截图留档，几天后对照确认邮件更方便。',
+      button: '已提交'
+    },
+    {
+      phase: 2,
+      kind: 'task',
+      short: '等邮件、核生效',
+      title: '过几天收确认邮件，再核对地区',
+      intro: '提交后一般过几天会收到 Google 的改区确认邮件，账号关联地区才会变过来。生效后重新打开同一个表单页，看开头回显的地区是不是已经变成美国。',
+      bullets: [
+        '等待期间不要反复提交同一份申请；几天没动静，先检查垃圾邮件文件夹和登录的账号对不对。',
+        '收到确认邮件后，重新打开表单页核对当前关联地区。',
+        '地区生效后，再去做本来要办的事，例如 Gemini 学生优惠的资格检查。'
+      ],
+      links: [
+        { label: 'Gemini 学生优惠领取教程', url: 'https://map.plus-guide.fun/guides/20-gemini-student.html' },
+        { label: 'Roogoo 虚拟卡开卡教程', url: 'https://map.plus-guide.fun/guides/15-roogoo-card.html' }
+      ],
+      coach: '改区提前办：等邮件的这几天，正好把付款方式这些准备工作做完。',
+      button: '已核对，看收尾'
+    },
+    {
+      phase: 2,
+      kind: 'done',
+      short: '完成',
+      title: '改区申请已走完流程',
+      intro: '从复查 IP、提交表单到等邮件核对，这篇的流程到这里结束。账号里的实际地区和后续服务资格，以 Google 页面为准。',
+      coach: '把这篇 HTML 留着，下次给别的账号改区还能用。',
+      doneGroups: [
+        { title: '收尾确认', items: ['改区申请已提交，提交成功页或截图已留档', '收到 Google 的确认邮件', '表单页回显的关联地区已变成美国', '后续要做的事（如学生优惠验证）已经安排'] },
+        { title: '边界与口径', items: ['“一般几天收到邮件”是社区经验，不是官方时效承诺', '改区只改关联地区，不改变服务资格或身份；学生等资格按对应服务要求验证', '截图来自社群流传的实测示例，账号邮箱已打码；表单界面和选项以 Google 当前页面为准'] }
+      ],
+      faqGroups: [
+        { label: '生效与核对', items: [
+          { q: '多久能生效？', a: '社区经验是几天内收到确认邮件后生效，没有官方时效。等了一周还没动静，先检查垃圾邮件和登录的账号，再考虑重新提交。' },
+          { q: '在哪里核对改没改成功？', a: '重新打开 country-association-form 这个表单页，开头回显的就是当前关联地区。' },
+          { q: '能改回去或改成别的地区吗？', a: '仍走同一个表单，为目标地区重新提交一份申请，同样要等待生效。' }
+        ] },
+        { label: '资格与限制', items: [
+          { q: '改完美区就能领学生优惠吗？', a: '不能只靠改区。学生优惠还要完成对应的验证（如 SheerID 学生验证），完整流程见《Gemini 学生优惠领取》教程。' },
+          { q: '一定要选免税州吗？', a: '官方没有强制。示例和常见做法选免税州（俄勒冈、蒙大拿、特拉华、新罕布什尔），对账单地址更友好。' }
+        ] }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../assets/g-engine.js?v=42c616d414" defer></script>
+</body>
+</html>
