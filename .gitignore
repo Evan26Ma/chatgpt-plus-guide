@@ -1,0 +1,44 @@
+.DS_Store
+Thumbs.db
+
+# Python / test cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local environments and dependencies
+.venv/
+venv/
+node_modules/
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# 源素材（PDF / PPT 原件不入库，截图已抽入 dist/）
+*.pdf
+*.ppt
+*.pptx
+_assets_pptx/
+_assets_pdf/
+_ppt_extract/
+
+# 本地工具状态（Mimosa 扫描器会话状态）
+.mimosa/
+
+# 本地浏览器验证产物（Playwright MCP 截图 / 控制台日志）
+.playwright-mcp/
+
+# 二维码素材处理与部署校验的本地工作目录（源图、校验脚本、截图）
+_qrwork/
+
+# Generated automatically on the deployed free site
+site-version.json
+.site-version.json.tmp
+
+# Downloadable examples shipped with the PPT tutorial
+!ai-guides/assets/zcode-pptx/zcode-practice.pptx
+!ai-guides/assets/zcode-pptx/zcode-practice.pdf
+!map/guides/assets/zcode-pptx/zcode-practice.pptx
+!map/guides/assets/zcode-pptx/zcode-practice.pdf

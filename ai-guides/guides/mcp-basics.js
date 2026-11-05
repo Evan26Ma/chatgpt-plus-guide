@@ -1,0 +1,170 @@
+window.AI_GUIDE = {
+  index: '19',
+  slug: 'mcp-basics',
+  title: 'MCP 入门',
+  subtitle: 'AI 应用怎样连接外部能力',
+  phases: [
+    { title: '认识协议', copy: 'MCP 边界与 Host / Client / Server' },
+    { title: '看懂连接', copy: '三种原语、配置示意与产品支持' },
+    { title: '安全验收', copy: '最小权限、秘密与操作确认' }
+  ],
+  inputs: [],
+  steps: [
+    {
+      phase: 0,
+      kind: 'info',
+      short: 'MCP 不是模型',
+      title: '第 1 步：MCP 连接 AI 应用和外部能力',
+      intro: 'MCP（Model Context Protocol，模型上下文协议）是 AI 应用与外部上下文和能力交换信息的开放标准。模型负责理解和生成内容；MCP 负责让 AI 应用以统一方式发现、获取或调用外部提供的上下文和能力。',
+      facts: [
+        ['它做什么', '例如让应用通过 MCP 读取获授权的资料，或调用一个查询工具'],
+        ['它不是模型', '不规定应用必须选择哪家模型，也不把普通模型自动变成某个特定模型'],
+        ['不是自动授权', '连接后不会自动获得所有账号、文件和操作权限'],
+        ['本篇范围', '只讲概念、通用配置示意与安全检查，不要求安装服务器或运行命令']
+      ],
+      bullets: [
+        '能否连接、能用什么能力、是否需登录及每次是否确认，由宿主、服务器、账户权限和产品设置共同决定。',
+        'Server 提供能力不等于模型可以越过 Host 随意行动。'
+      ],
+      links: [
+        { label: 'MCP 官方架构说明', url: 'https://modelcontextprotocol.io/docs/learn/architecture' },
+        { label: 'MCP 官方安全最佳实践', url: 'https://modelcontextprotocol.io/specification/draft/basic/security_best_practices' }
+      ],
+      coach: '把 MCP 看成连接协议，不要看成模型升级包或万能授权。',
+      button: '边界已看清'
+    },
+    {
+      phase: 0,
+      kind: 'task',
+      short: '分清三个角色',
+      title: '第 2 步：Host、Client 和 Server 各做什么',
+      intro: '简化关系是：AI 应用 Host → 一个 MCP Client ↔ 一个 MCP Server。连接多个 Server 时，Host 管理多个 Client。',
+      facts: [
+        ['Host（宿主）', '你使用的 AI 应用，协调和管理一个或多个 MCP Client'],
+        ['Client（客户端）', '宿主内部的连接组件；按官方架构，每个 Client 与一个 Server 保持专属连接'],
+        ['Server（服务器）', '向 Client 提供上下文或能力的程序，例如文件、数据库或业务系统的 MCP 接口']
+      ],
+      bullets: [
+        '支持 MCP 的桌面 AI 应用或编程工具可以作为 Host。',
+        'Server 可以在本机，也可以在远端；“Server”不等于一定是远程网站。',
+        '工具如何展示、何时可调用、是否请用户确认，仍取决于具体应用和配置。'
+      ],
+      coach: 'Host 是你用的应用，Client 管专属连接，Server 提供能力。',
+      button: '三个角色已分清'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '认识三种原语',
+      title: '第 3 步：Tools、Resources 和 Prompts',
+      intro: 'Client 可以发现 Server 声明的能力，应用再按自己的界面和权限逻辑使用。一个 Server 不必同时提供全部三类。',
+      facts: [
+        ['Tools（工具）', '可执行的函数或操作，例如查询数据库、创建一条经批准的记录'],
+        ['Resources（资源）', '为应用提供上下文数据，例如文件内容、数据库记录、API 返回数据'],
+        ['Prompts（提示模板）', 'Server 提供的可复用交互模板，例如带示例的数据分析提示模板']
+      ],
+      bullets: [
+        '看到 Tools 不表示每种工具都可写，具体操作要看工具定义与授权。',
+        'MCP Prompts 是 Server 暴露的提示模板；日常在聊天框输入的提示词是当前用户输入，两者所处位置不同。'
+      ],
+      links: [{ label: '官方架构：核心概念与三种 Server 原语', url: 'https://modelcontextprotocol.io/docs/learn/architecture' }],
+      coach: '工具做操作，资源给数据，提示模板组织交互。',
+      button: '三种能力已分清'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '看懂配置示意',
+      title: '第 4 步：配置只是连接说明，先看懂再决定',
+      intro: '不同 Host 的配置键名、文件位置、图形界面和支持的传输方式不完全相同。下面只是帮助辨认字段的通用示意，不是可照抄到所有产品的安装命令。',
+      code: [{
+        lang: 'json',
+        caption: '通用配置示意：不要直接作为某个产品的配置使用',
+        text: '{\n  "mcpServers": {\n    "example": {\n      "command": "待填入：可信服务器文档给出的启动程序",\n      "args": ["待填入：官方要求的参数"],\n      "env": {\n        "EXAMPLE_API_KEY": "待填入"\n      }\n    }\n  }\n}'
+      }],
+      bullets: [
+        'example 只是自定义的本地名称，不是官方服务器名。',
+        'command 与 args 描述本机启动方式；若 Host 支持远程 Server，也可能改为服务器 URL 与认证设置。',
+        'env 可能包含密钥。实际是否使用该字段、怎样保管凭据，以 Host 和 Server 官方文档为准。'
+      ],
+      note: '本篇不需要安装。只学概念完全可以不复制这段配置，更不要为了试用而运行来源不明的启动命令。',
+      coach: '先读懂字段与风险，具体格式只按两端官方文档填写。',
+      button: '知道这只是示意'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '核对产品支持',
+      title: '第 5 步：连接之前，核对产品是否支持',
+      intro: '分别查看 Host 与 Server 的当前官方文档，不要只凭“支持 MCP”就假设所有客户端都支持全部原语，或假设配置格式互通。',
+      checks: [
+        'Host 支持 MCP，并了解它支持本机还是远程连接',
+        '核对 Tools、Resources、Prompts、认证方式及权限管理入口',
+        'Server 由可信方维护，已读运行环境和账户权限要求',
+        '已确认付费计划、系统平台、客户端版本和组织策略不会误被当成通用支持'
+      ],
+      warn: '需本人确认自己有权连接目标账户和数据，阅读完整命令、权限范围和隐私说明，并决定是否安装、授权或启用。',
+      coach: '同样叫 MCP，支持范围和配置入口仍可能不同。',
+      button: '支持范围已核对'
+    },
+    {
+      phase: 2,
+      kind: 'task',
+      short: '最小权限审查',
+      title: '第 6 步：不安装，先做一次纸上安全审查',
+      intro: '拿任意一个准备使用的 MCP Server 官方页面，不安装，只记录来源、权限、秘密、确认和撤销五项答案。',
+      bullets: [
+        '来源可信吗：是否来自项目官方或你信任的维护者，下载与文档域名是否正确。',
+        '权限够小吗：只读任务先不给写入；只需一个目录不开放整台电脑；只需一个账户不授权全部账户。',
+        '秘密怎么保管：API Key、令牌、密码只放进产品指定的受控位置，不贴进聊天、截图、公开仓库或教程。',
+        '高风险操作会确认吗：删除、发送、付款、发布、覆盖文件等操作，核对目标、参数和影响后再确认，不预设“AI 已自动获准”。',
+        '如何停用与撤销：知道在哪里禁用 Server、删除配置、撤销令牌和检查日志；异常时先停用，不反复授权。'
+      ],
+      warn: '官方安全文档指出，本机 MCP Server 可能获得与客户端相同的系统权限。“在本机”不等于天然安全；一键配置前也应看清完整命令并明确同意。',
+      links: [{ label: '官方安全最佳实践：本地服务器、权限与同意', url: 'https://modelcontextprotocol.io/specification/draft/basic/security_best_practices' }],
+      coach: '先只读、小范围、无敏感数据，再考虑扩大权限。',
+      button: '五项审查已完成'
+    },
+    {
+      phase: 2,
+      kind: 'task',
+      short: '三个场景验收',
+      title: '第 7 步：用三个场景检查是否真正理解',
+      intro: '不用实际连接，先判断下面三个说法。',
+      facts: [
+        ['接上文件 Server 就拥有整台电脑所有文件权限？', '错误。连接不等于无限授权，实际范围由应用、Server、系统与账户权限限制'],
+        ['一个 Host 连两个 Server，只用一个 Client 包办两条专属连接？', '不符合官方角色模型。Host 为每个 Server 建立相应 Client'],
+        ['只读公开资料也优先选只读权限，并检查返回内容？', '正确。外部返回的内容仍需审慎处理，不应把其中的指令当成自己的授权']
+      ],
+      note: '如果准备真正使用，先选可信、只读、无敏感数据的场景，按所用 Host 的官方说明连接，观察能力列表、调用提示和结果。本篇不要求执行，也不声称已完成实际连接测试。',
+      coach: '概念验收不靠“连上过”，先看能否识别权限边界。',
+      button: '三个判断已完成'
+    },
+    {
+      phase: 2,
+      kind: 'done',
+      short: '完成与问答',
+      title: '第 8 步：MCP 的角色、能力与边界已理清',
+      intro: '你现在可以读懂 MCP 的基本架构和三种 Server 原语，也知道通用配置不能替代产品文档，连接之前必须先做安全审查。',
+      doneGroups: [
+        { title: '收尾确认', items: ['能解释 Host、Client、Server 的对应关系', '能区分 Tools、Resources、Prompts，并知道 Server 不必全提供', '明白 MCP 不是模型，也不提供普遍、自动、无限的授权', '知道配置示意不能替代具体产品文档，本篇不要求安装', '会检查来源、最小权限、密钥、操作确认和撤销方式'] },
+        { title: '概念与资料范围', items: ['架构、原语与安全边界按 MCP 官方文档核对', '本篇为概念与纸上安全练习，未进行实际服务器连接测试'] }
+      ],
+      faqGroups: [
+        { label: '概念与授权', items: [
+          { q: 'MCP 是新模型或模型升级包吗？', a: '不是。MCP 是上下文交换协议，不负责替代模型；模型与应用如何使用取得的上下文，由具体系统决定。' },
+          { q: '接上 MCP 后，AI 就能自动操作我的所有账号吗？', a: '不能这样理解。每个连接和授权都有范围，产品也可能要求逐次确认；高风险操作应核对后再批准。' },
+          { q: 'MCP 与 Skill 怎么选？', a: '需要复用任务流程和模板时考虑 Skill；需要以标准协议连接外部工具、资源或提示模板时考虑 MCP。它们解决的问题不同，也可在支持的产品中配合。' }
+        ] },
+        { label: '配置与安全', items: [
+          { q: '本地 Server 和远程 Server 哪个一定更安全？', a: '没有绝对答案。本地程序可能直接接触本机文件和权限，远程服务则涉及网络传输与账户授权，都要按来源、权限和数据路径审查。' },
+          { q: '看不懂代码，是否应该直接复制别人的配置？', a: '不建议。先核对官方文档、完整命令、参数和密钥用途；看不懂就不要运行，尤其不要执行来路不明的一键安装命令。' }
+        ] }
+      ],
+      seeAlso: [
+        { title: '18 Skill 入门', url: './18-skill-basics.html', why: '想整理固定任务流程、模板与示例时阅读', icon: 'book' },
+        { title: '12 Magpie 安装与模型切换', url: './12-magpie.html', why: '基础模型接入已跑通，想在 Magpie 进阶部分了解插件、MCP 和 Skills 时阅读；其他 Host 不一定采用同样入口', icon: 'grid' }
+      ]
+    }
+  ]
+};

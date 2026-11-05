@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="AI 能做什么：六类任务与一个完整练习：可复制的中文提示词，加上人工验收。每一步配截图，跟着做就行。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#6459d9">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='18' fill='%236459d9' stroke='%231a1830' stroke-width='4'/%3E%3Cpath d='M20 24h24M20 32h24M20 40h14' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>AI 能做什么：六类任务与一个完整练习 · Plus Guide</title>
+<link rel="preload" href="../assets/pg-heading-900.woff2?v=c11862cc4b" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/g-guide.css?v=74702c1566">
+</head>
+<!--
+  G 风格教程页外壳。由 ai-guides/_src/build.py --g 生成，不要直接改生成后的页面：
+  样式改 ai-guides/assets/g-guide.css，交互改 ai-guides/assets/g-engine.js，
+  这个外壳改 ai-guides/assets/g-page.html，内容改 ai-guides/guides/<slug>.js。
+-->
+<body>
+<div id="guideShell">
+<a class="skip" href="#stepTitle">跳到当前步骤</a>
+<header class="top">
+  <div class="top-in">
+    <a class="mark" id="homeLink" href="../" aria-label="Plus Guide 首页">plus<i>.</i>guide</a>
+    <span class="crumb"><span class="cat"><a id="catLink" href="../"></a> / </span><b id="guideTitle">AI 能做什么：六类任务与一个完整练习</b></span>
+    <div class="top-actions">
+      <a class="btn btn-sm" id="allLink" href="../#tutorials" aria-label="全部教程"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>全部教程</span></a>
+    </div>
+  </div>
+</header>
+
+<details class="mobile-toc" id="mobileToc">
+  <summary><span id="mProgText">第 1 步</span><span class="track" aria-hidden="true"><span class="fill" id="mFill" style="display:block"></span></span><span>步骤</span></summary>
+  <nav class="toc" id="mToc" aria-label="本篇步骤"></nav>
+</details>
+
+<div class="layout">
+  <aside class="side" aria-label="本篇步骤">
+    <div class="side-inner">
+      <div class="prog">
+        <div class="prog-row"><span>进度</span><b id="progText">第 1 步</b></div>
+        <div class="track" role="progressbar" id="progBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="教程进度"><div class="fill" id="fill"></div></div>
+      </div>
+      <nav class="toc first" id="toc" aria-label="步骤目录"></nav>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="main-in">
+
+      <article class="step" id="step" aria-live="polite"><h1 id="stepTitle" tabindex="-1">AI 能做什么：六类任务与一个完整练习</h1><p class="intro">正在加载内容……如果这行字一直在，说明页面脚本没跑起来，刷新一次试试。</p></article>
+    </div>
+  </main>
+
+  <aside class="rail" aria-label="帮助">
+    <div class="rail-inner">
+      <section class="box box-coach" id="coachBox">
+        <span class="tag" aria-hidden="true"><span class="sticker">小提示</span></span>
+        <h2>这一步的小提示</h2>
+        <p id="coach"></p>
+      </section>
+      <section class="box box-help">
+        <span class="tag" aria-hidden="true"><span class="sticker">别硬扛</span></span>
+        <h2>卡住了？</h2>
+        <p>进群说明教程名、做到第几步和报错，截图先遮住邮箱、密码和验证码。</p>
+        <a class="btn btn-ink btn-sm" href="https://t.me/+_lOsXtUCD9MxNzY1" target="_blank" rel="noopener noreferrer">打开 Telegram 群</a>
+        <details><summary>扫码进群</summary><img src="../ai-group-qr.png?v=5c146bd70c" alt="AI 交流群二维码" width="200" height="200" loading="lazy"></details>
+      </section>
+      <section class="box">
+        <h2>本机记录</h2>
+        <p class="save" id="saveStatus"><i aria-hidden="true"></i>进度自动保存在这个浏览器</p>
+        <div class="reset-row" id="resetRow"><button class="btn btn-sm" type="button" id="resetBtn">重新开始</button></div>
+      </section>
+    </div>
+  </aside>
+</div>
+</div>
+
+<main class="access" id="accessPanel" hidden></main>
+<dialog class="gate-dialog" id="gateDialog" aria-labelledby="gateTitle" aria-describedby="gateLead"></dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog class="img-dialog" id="imgDialog" aria-labelledby="imgCaption">
+  <div class="img-bar"><span id="imgCaption"></span><button class="btn btn-sm" type="button" id="imgClose">关闭</button></div>
+  <div class="img-scroll"><img id="imgFull" alt=""></div>
+</dialog>
+
+<script>
+window.AI_GUIDE_SLUG = 'ai-capabilities';
+window.AI_GUIDE = {category: "tools",
+  index: '22',
+  slug: 'ai-capabilities',
+  title: 'AI 能做什么：六类任务与一个完整练习',
+  subtitle: '可复制的中文提示词，加上人工验收',
+  phases: [
+    { title: '常见任务（上）', copy: '学习、写作、检索与来源核对' },
+    { title: '常见任务（下）', copy: '表格、代码、受限自动化' },
+    { title: '完整小项目', copy: '选题、收集、整理、产出、检查' },
+    { title: '总结与问答', copy: '形成可复查的使用习惯' }
+  ],
+  inputs: [],
+  steps: [
+    {
+      phase: 0,
+      kind: 'info',
+      short: '学习',
+      title: '学习：让解释配合你的基础',
+      intro: '输入是一个陌生概念，以及你已有的基础。不要只发「给我讲讲」，而要说明需要怎样的解释和练习。方括号里的内容换成自己的材料。',
+      code: [{ lang: 'text', caption: '直接复制：学习提示词', text: '我在学习[主题]，目前只理解[已有基础]。请用中文解释[概念]：\n1. 先用一句话说明它解决什么问题；\n2. 用一个日常生活类比，再指出这个类比不准确的地方；\n3. 给一个最小例子，并标出容易误解的两点；\n4. 最后出三道由易到难的自测题，先不要给答案。\n不确定的知识请明确标注，不要编造出处。' }],
+      facts: [
+        ['预期输出', '分层解释、最小例子和三道自测题'],
+        ['人工验收', '类比不能代替严格定义；例子要能与教材或可靠资料对应；先自己答题，再让 AI 纠错'],
+        ['需要本人操作', '判断解释是否符合真实教材与自己的学习目标；医疗、法律、金融等专业结论另行咨询合格人员']
+      ],
+      coach: '把「我不懂什么、已经懂什么」说清楚，比追求复杂提示词更有用。',
+      button: '下一种：写作'
+    },
+    {
+      phase: 0,
+      kind: 'task',
+      short: '写作',
+      title: '写作：先定读者，再改自己的草稿',
+      intro: '输入是用途、读者、篇幅和必要事实。最好提供自己的提纲或草稿，避免 AI 凭空补出事实。',
+      code: [{ lang: 'text', caption: '直接复制：写作提示词', text: '请把我的草稿改成[用途]使用的中文短文，读者是[读者]，控制在[字数]以内。\n必须保留这些事实：[事实清单]。\n要求：开头直接说主题；删掉重复表达；不新增数据、案例或承诺；不写成夸张广告。\n请分两部分返回：①修改后的正文；②修改点清单。信息不足处写「待补充」，不要替我编。\n草稿如下：\n[粘贴不含敏感信息的草稿]' }],
+      facts: [
+        ['预期输出', '可继续编辑的正文，以及修改点清单'],
+        ['人工验收', '逐条对照事实，检查是否新增承诺、数字或案例；读一遍，确认符合自己的表达'],
+        ['需要本人操作', '正式对外发布、署名和发送由本人决定']
+      ],
+      coach: '让 AI 做编辑，而不是替你编经历、数据和观点。',
+      button: '下一种：检索整理'
+    },
+    {
+      phase: 0,
+      kind: 'task',
+      short: '检索整理',
+      title: '检索整理：把来源和结论分开验收',
+      intro: '输入是问题、范围和合格来源要求。是否真能联网、能打开哪些网站，要看当前产品配置；没有检索功能时，由你提供材料让它整理。',
+      code: [{ lang: 'text', caption: '直接复制：检索整理提示词', text: '请帮我整理[具体问题]，范围是[时间/地区/对象]。\n只使用我提供的材料，或在当前产品确实支持时使用可访问的公开来源。\n用表格返回：结论｜支持它的原文要点｜来源标题｜作者/机构｜发布日期｜可访问链接｜仍需核实之处。\n把「来源明确支持」和「你的推断」分开写；找不到就写「未找到」，不要编链接或引文。\n最后列出三个彼此不一致或证据不足的地方。\n材料或已查到的来源：\n[粘贴材料或链接]' }],
+      facts: [
+        ['预期输出', '带来源的证据表，以及证据不足或相互矛盾的清单'],
+        ['人工验收', '亲自打开重要来源，确认网页存在、原文支持结论、日期没有张冠李戴'],
+        ['需要本人操作', '最新政策、价格、资格等信息回到官方当前页面确认；搜索摘要和 AI 转述不能代替原文']
+      ],
+      warn: '链接写得像真的，不代表来源真实存在，更不代表它支持 AI 的结论。',
+      coach: '研究不是生成一段像答案的话，而是建立能回查的证据链。',
+      button: '进入表格练习'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '表格',
+      title: '表格：先用脱敏样例确认计算规则',
+      intro: '输入是脱敏后的列名、几行样例和计算规则。产品没有文件或代码功能时，可以粘贴小型 CSV 文本；不要为了测试上传整份敏感表。',
+      code: [{ lang: 'text', caption: '直接复制：表格提示词', text: '我有一个表格，列名是[列名]，每行代表[一行含义]。请按以下规则整理：\n1. 将[日期列]统一为 YYYY-MM-DD；\n2. 按[分类列]汇总[数值列]，并保留两位小数；\n3. 标出缺失值、重复行和无法判断的格式，不要自行补值；\n4. 返回处理规则、结果表和问题清单。\n先用我给的 5 行样例演示，等我确认规则后再处理更多数据。\n样例：\n[粘贴脱敏样例]' }],
+      facts: [
+        ['预期输出', '处理规则、汇总结果、缺失或重复等异常清单'],
+        ['人工验收', '用原始样例手算至少一行，核对总量、分类和异常数量；正式数据回到表格软件复算'],
+        ['需要本人操作', '脱敏，确认能否上传，并检查身份、账号、联系方式和机密字段没有混入样例']
+      ],
+      coach: '先五行、后全量：规则没确认前，不让它悄悄补值。',
+      button: '下一种：代码'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '代码',
+      title: '代码：小步生成，在隔离环境运行',
+      intro: '输入是运行环境、输入输出样例、限制条件和报错全文。先让 AI 只做一件小事，不要让它在真实重要目录里无约束改文件。',
+      code: [{ lang: 'text', caption: '直接复制：代码提示词', text: '请用[语言及版本]写一个最小脚本，功能是[具体功能]。\n运行环境：[操作系统/依赖情况]。\n输入示例：[示例]；期望输出：[示例]。\n只做这一件事，不联网，不删除或覆盖文件，不读取其他目录。\n请返回：①完整代码；②逐行解释关键逻辑；③运行命令；④正常、空输入和格式错误三组测试。\n如果需求有歧义，先列出假设，不要悄悄扩大功能。' }],
+      facts: [
+        ['预期输出', '最小代码、运行方法，以及正常和异常输入的测试用例'],
+        ['人工验收', '先读代码，在练习目录或隔离环境备份后运行；三组测试都检查，尤其是错误输入'],
+        ['需要本人操作', '密钥不写进代码或提示词；不懂的命令不直接运行；生产数据和对外发布交由有经验的人复核']
+      ],
+      coach: '代码能运行不等于逻辑正确，测试和权限边界要一起验。',
+      button: '下一种：自动化'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '自动化',
+      title: '自动化：AI 提方案，权限与确认由你定',
+      intro: '输入是一个重复、规则较明确的低风险流程。先写清触发条件、步骤、停止条件和人工确认点，不要一上来就执行。',
+      code: [{ lang: 'text', caption: '直接复制：自动化规划提示词', text: '我想半自动化这个重复流程：[描述流程]。\n请先不要生成执行指令，先输出：\n1. 流程步骤和每步所需输入；\n2. 哪些步骤适合固定规则，哪些步骤才需要 AI 判断；\n3. 可能失败的位置、日志要记什么、怎样停止和重跑；\n4. 哪些地方必须由我确认。\n要求：使用最小权限；不自动发送、发布、付款或删除；先生成预览，只有我确认后才进入下一步。' }],
+      facts: [
+        ['预期输出', '可审查的步骤、异常处理、日志与人工确认点'],
+        ['人工验收', '用假数据 dry run（只预览不执行），检查最小权限、日志、停止方式和重复运行结果'],
+        ['需要本人操作', '配置并保管凭据，批准发送、发布、付款或删除等动作，持续检查运行情况']
+      ],
+      seeAlso: [
+        { title: 'Agent 入门：让 AI 用工具完成任务', url: './17-agent-basics.html', why: '想了解多步任务怎样调用工具，以及权限与确认怎样设置时阅读', icon: 'grid' },
+        { title: '网页聊天、API 和智能体怎么选', url: './20-web-chat-comparison.html', why: '准备把练习放进合适的产品或工作流程时阅读', icon: 'book' }
+      ],
+      note: 'API 只是接口，智能体也不等于可靠的全自动员工。工具、流程、监控与责任仍需人管理。',
+      coach: '先预览、再确认、后执行；不可逆动作不交给 AI 自行决定。',
+      button: '开始做完整项目'
+    },
+    {
+      phase: 2,
+      kind: 'task',
+      short: '完整小项目',
+      title: '选题 → 收集 → 整理 → 产出 → 检查',
+      intro: '以「给完全没接触过 [公开主题] 的人做一页中文入门资料」为例。选公开、低风险主题，不选投资建议、诊断处方或他人隐私。',
+      facts: [
+        ['① 选题', '写清读者、一个具体问题和交付形式：3 个核心概念、1 个例子、3 条来源、2 个常见误区'],
+        ['② 收集', '用第 3 步提示词找至少三条可靠来源；记录标题、机构、日期、链接，以及它支持哪条内容'],
+        ['③ 整理', '只把允许使用的材料交给 AI，按「概念—解释—依据—待核实」做表；素材不足就补查'],
+        ['⑤ 检查', '逐条点回来源，核对数字、限定条件和链接；让目标读者试读，再修改并保存最终版']
+      ],
+      code: [{ lang: 'text', caption: '④ 产出：直接复制', text: '只根据我确认过的资料表，生成一页中文入门资料。\n结构：标题｜适合谁｜3 个核心概念｜1 个例子｜2 个常见误区｜来源列表。\n每条事实后标注对应来源编号；资料没有支持的句子不要写。\n语气平实，不使用「彻底掌握」「保证」等承诺，不编造读者收益。\n资料表：\n[粘贴你已核对的资料表]' }],
+      checks: [
+        '选题只聚焦一个问题，交付物包含约定的概念、例子、来源与误区',
+        '三条来源真实存在，并已亲自核对它们确实支持对应内容',
+        '事实与推断分开，例子没有误导，材料中没有敏感数据',
+        '能说明每条关键内容的来源，并已根据试读反馈修改最终版'
+      ],
+      coach: 'AI 自检不能替代你的验收；项目最后一定要回到原始来源。',
+      button: '项目已完成'
+    },
+    {
+      phase: 3,
+      kind: 'done',
+      short: '完成与问答',
+      title: '从真实、低风险、容易验收的任务开始',
+      intro: '六类提示词不必一次全用。每次只解决一个问题，保留好用提示词、原始材料、输出版本和人工检查结果。风险越高，越要增加来源核验、权限限制和专业人员复核。',
+      doneGroups: [
+        { title: '练习收尾', items: ['能为任务说明输入、输出和人工验收标准', '会区分 AI 生成内容与来源真正支持的内容', '代码、表格和自动化都经过小样例测试', '已亲自完成一个「选题 → 收集 → 整理 → 产出 → 检查」项目'] },
+        { title: '保持边界', items: ['不把流畅语气当作正确证据', '不上传不该外发的资料，不把密钥写进提示词', '不承诺 AI 可以独立经营、稳定获利或无需监督完成任务', '发送、发布、付款、删除和专业决策由本人确认'] }
+      ],
+      seeAlso: [
+        { title: '网页聊天、API 和智能体怎么选', url: './20-web-chat-comparison.html', why: '做练习前，按任务选择入口，并核对成本与数据边界', icon: 'book' },
+        { title: 'Magpie 安装与模型切换', url: './12-magpie.html', why: '准备给 Agent 管理模型来源并做实际任务验收时阅读', icon: 'chip' },
+        { title: 'Muse 智能体邀请与使用', url: './04-muse-invite.html', why: '了解具体智能体的网页操作，以及敏感步骤为什么要本人接管', icon: 'spark' }
+      ],
+      faqGroups: [
+        { label: '结果与验收', items: [
+          { q: '为什么同一提示词每次结果不同？', a: '生成结果可能变化，产品、模型、检索结果和上下文也会影响输出。重要任务要保存材料、版本和验收记录，不要依赖记忆中的一条「神提示词」。' },
+          { q: 'AI 说得很肯定，还需要核查吗？', a: '需要。语气不是证据。事实看原始来源，计算做复算，代码做测试，对外动作由本人确认。' },
+          { q: '有敏感文件，怎样练习？', a: '换成公开或虚构样例，先删去身份、账号、联系方式和机密字段。是否可上传还要看服务条款和组织规定。' }
+        ] },
+        { label: '练习与预期', items: [
+          { q: '它能替我全自动工作并赚钱吗？', a: '本篇不作这种承诺。AI 可以辅助部分环节，但需求、质量、责任、成本和风险仍要由人管理；收益取决于具体工作和市场，不是安装某个工具就会自动产生。' },
+          { q: '六个场景应该先练哪个？', a: '从你眼前真实、低风险、容易验收的任务开始。学习和写作最容易观察结果；代码和自动化需要更严格的权限与测试。' }
+        ] }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../assets/g-engine.js?v=42c616d414" defer></script>
+</body>
+</html>

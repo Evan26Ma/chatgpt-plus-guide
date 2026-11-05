@@ -1,0 +1,1466 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="VPS 自建线路：从一台服务器，到自己的常用线路。每一步配截图，跟着做就行。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#6459d9">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='18' fill='%236459d9' stroke='%231a1830' stroke-width='4'/%3E%3Cpath d='M20 24h24M20 32h24M20 40h14' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>VPS 自建线路 · Plus Guide</title>
+<link rel="preload" href="../assets/pg-heading-900.woff2?v=c11862cc4b" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/g-guide.css?v=74702c1566">
+</head>
+<!--
+  G 风格教程页外壳。由 ai-guides/_src/build.py --g 生成，不要直接改生成后的页面：
+  样式改 ai-guides/assets/g-guide.css，交互改 ai-guides/assets/g-engine.js，
+  这个外壳改 ai-guides/assets/g-page.html，内容改 ai-guides/guides/<slug>.js。
+-->
+<body>
+<div id="guideShell">
+<a class="skip" href="#stepTitle">跳到当前步骤</a>
+<header class="top">
+  <div class="top-in">
+    <a class="mark" id="homeLink" href="../" aria-label="Plus Guide 首页">plus<i>.</i>guide</a>
+    <span class="crumb"><span class="cat"><a id="catLink" href="../"></a> / </span><b id="guideTitle">VPS 自建线路</b></span>
+    <div class="top-actions">
+      <a class="btn btn-sm" id="allLink" href="../#tutorials" aria-label="全部教程"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>全部教程</span></a>
+    </div>
+  </div>
+</header>
+
+<details class="mobile-toc" id="mobileToc">
+  <summary><span id="mProgText">第 1 步</span><span class="track" aria-hidden="true"><span class="fill" id="mFill" style="display:block"></span></span><span>步骤</span></summary>
+  <nav class="toc" id="mToc" aria-label="本篇步骤"></nav>
+</details>
+
+<div class="layout">
+  <aside class="side" aria-label="本篇步骤">
+    <div class="side-inner">
+      <div class="prog">
+        <div class="prog-row"><span>进度</span><b id="progText">第 1 步</b></div>
+        <div class="track" role="progressbar" id="progBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="教程进度"><div class="fill" id="fill"></div></div>
+      </div>
+      <nav class="toc first" id="toc" aria-label="步骤目录"></nav>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="main-in">
+
+      <article class="step" id="step" aria-live="polite"><h1 id="stepTitle" tabindex="-1">VPS 自建线路</h1><p class="intro">正在加载内容……如果这行字一直在，说明页面脚本没跑起来，刷新一次试试。</p></article>
+    </div>
+  </main>
+
+  <aside class="rail" aria-label="帮助">
+    <div class="rail-inner">
+      <section class="box box-coach" id="coachBox">
+        <span class="tag" aria-hidden="true"><span class="sticker">小提示</span></span>
+        <h2>这一步的小提示</h2>
+        <p id="coach"></p>
+      </section>
+      <section class="box box-help">
+        <span class="tag" aria-hidden="true"><span class="sticker">别硬扛</span></span>
+        <h2>卡住了？</h2>
+        <p>进群说明教程名、做到第几步和报错，截图先遮住邮箱、密码和验证码。</p>
+        <a class="btn btn-ink btn-sm" href="https://t.me/+_lOsXtUCD9MxNzY1" target="_blank" rel="noopener noreferrer">打开 Telegram 群</a>
+        <details><summary>扫码进群</summary><img src="../ai-group-qr.png?v=5c146bd70c" alt="AI 交流群二维码" width="200" height="200" loading="lazy"></details>
+      </section>
+      <section class="box">
+        <h2>本机记录</h2>
+        <p class="save" id="saveStatus"><i aria-hidden="true"></i>进度自动保存在这个浏览器</p>
+        <div class="reset-row" id="resetRow"><button class="btn btn-sm" type="button" id="resetBtn">重新开始</button></div>
+      </section>
+    </div>
+  </aside>
+</div>
+</div>
+
+<main class="access" id="accessPanel" hidden></main>
+<dialog class="gate-dialog" id="gateDialog" aria-labelledby="gateTitle" aria-describedby="gateLead"></dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog class="img-dialog" id="imgDialog" aria-labelledby="imgCaption">
+  <div class="img-bar"><span id="imgCaption"></span><button class="btn btn-sm" type="button" id="imgClose">关闭</button></div>
+  <div class="img-scroll"><img id="imgFull" alt=""></div>
+</dialog>
+
+<script>
+window.AI_GUIDE_SLUG = 'vps';
+window.AI_GUIDE = {
+  "index": "19",
+  "title": "VPS 自建线路",
+  "subtitle": "从一台服务器，到自己的常用线路",
+  "ephemeralInputs": true,
+  "inputs": [
+    {
+      "key": "ip",
+      "label": "服务器公网 IPv4",
+      "short": "公网 IP",
+      "placeholder": "填写服务商后台显示的 IP",
+      "token": "YOUR_SERVER_IP",
+      "hint": "不要填本机 IP。可以暂时留空，先看教程。",
+      "numeric": true,
+      "pattern": "^(?:(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)$",
+      "error": "请填服务商给出的公网 IPv4，例如 203.0.113.10 这样的四段数字。"
+    },
+    {
+      "key": "alias",
+      "label": "以后登录用的名字（SSH 别名）",
+      "short": "SSH 别名",
+      "placeholder": "my-vps",
+      "default": "my-vps",
+      "token": "YOUR_SSH_ALIAS",
+      "hint": "字母开头，可用数字与连字符。",
+      "pattern": "^[A-Za-z][A-Za-z0-9-]{0,39}$",
+      "error": "字母开头，只用字母、数字和连字符，最长 40 个字符。"
+    },
+    {
+      "key": "user",
+      "label": "SSH 用户名",
+      "short": "用户名",
+      "placeholder": "root",
+      "default": "root",
+      "token": "YOUR_SSH_USER",
+      "hint": "部分镜像是 ubuntu，以后台为准。",
+      "pattern": "^[a-z_][a-z0-9_-]{0,31}$",
+      "error": "只用小写字母、数字、下划线和连字符。"
+    },
+    {
+      "key": "port",
+      "label": "SSH 端口",
+      "short": "端口",
+      "placeholder": "22",
+      "default": "22",
+      "token": "YOUR_SSH_PORT",
+      "numeric": true,
+      "hint": "有的商家使用随机端口。",
+      "pattern": "^(?:[1-9]\\d{0,3}|[1-5]\\d{4}|6[0-4]\\d{3}|65[0-4]\\d{2}|655[0-2]\\d|6553[0-5])$",
+      "error": "端口是 1 到 65535 之间的整数。"
+    },
+    {
+      "key": "timezone",
+      "label": "机房所在地时区",
+      "short": "时区",
+      "placeholder": "America/Los_Angeles",
+      "default": "America/Los_Angeles",
+      "token": "YOUR_TIMEZONE",
+      "hint": "按机房城市选，不按你所在的城市。常用：America/Los_Angeles（美西）、America/New_York（美东）、Asia/Hong_Kong、Asia/Tokyo、Asia/Singapore、Europe/Berlin、Europe/London，不确定填 Etc/UTC。",
+      "pattern": "^[A-Za-z]+(?:/[A-Za-z_+-]+){1,2}$",
+      "error": "用「洲/城市」格式，例如 Asia/Tokyo。"
+    },
+    {
+      "key": "quota",
+      "label": "每月流量（GB）",
+      "short": "月流量",
+      "placeholder": "1000",
+      "default": "1000",
+      "token": "MONTHLY_QUOTA_GB",
+      "numeric": true,
+      "hint": "只用于客户端显示，按套餐填写。",
+      "pattern": "^[1-9]\\d{0,6}$",
+      "error": "填写每月流量 GB，范围 1–1000000。"
+    },
+    {
+      "key": "resetDay",
+      "label": "每月流量重置日",
+      "short": "重置日",
+      "placeholder": "1",
+      "default": "1",
+      "token": "RESET_DAY",
+      "numeric": true,
+      "hint": "按商家计费周期填写，不确定先问客服。",
+      "pattern": "^(?:[1-9]|[12]\\d|3[01])$",
+      "error": "重置日填写 1–31。"
+    }
+  ],
+  "route": function (answers) {
+    // 选择题按 field 记答案；带 when 的步骤只在答案相符时出现；遇到还没答的选择题就停
+    const chosen = {};
+    const path = [];
+    for (let index = 0; index < this.steps.length; index++) {
+      const step = this.steps[index];
+      if (step.when && !step.when.values.includes(chosen[step.when.field])) continue;
+      path.push(index);
+      if (step.kind === 'choice') {
+        if (!answers[index]) return path;
+        chosen[step.field] = answers[index];
+      }
+    }
+    return path;
+  },
+  "phases": [
+    {
+      "title": "准备服务器",
+      "copy": "选购与登录信息"
+    },
+    {
+      "title": "配置服务器",
+      "copy": "选路线，完成部署"
+    },
+    {
+      "title": "连接与检查",
+      "copy": "导入订阅，确认出口"
+    },
+    {
+      "title": "AI 接口与维护",
+      "copy": "接入工具，日常检查"
+    }
+  ],
+  "steps": [
+    {
+      "id": "overview",
+      "phase": 0,
+      "short": "流程总览",
+      "title": "先看清这条线路怎么工作",
+      "intro": "你租用一台 VPS，让自己的设备通过它访问需要的服务。先了解要维护什么，再决定是否开始。",
+      "html": "<div class=\"facts\" role=\"img\" aria-label=\"手机或电脑连接自己的服务器，再由服务器连接网站和 AI\"><div class=\"fact\"><strong>你的设备</strong><small>导入订阅的客户端</small></div><div class=\"fact\"><strong>自己的 VPS</strong><small>节点、证书与接口</small></div><div class=\"fact\"><strong>网站与 AI</strong><small>按规则选择访问方式</small></div></div><h3>完成后会有这些东西</h3><p>服务器提供 Reality、TLS 两个节点；客户端用订阅地址取得节点与分流规则。符合规则的国内连接可以直连，需要代理的连接再经过服务器。</p><p>你还会得到 SSH 密钥登录、浏览器信任的 IP 证书，以及可选使用的 CLIProxyAPI 接口。接口里需要接入你自己的合规账号或供应商密钥。</p><p>整条路线分为准备、配置、连接检查、日常维护四个阶段。跟着当前这一步做，遇到问题可以随时打开帮助。</p><div class=\"note warn\"><span><b>先判断是否适合你</b>适合愿意为自己管理线路的人。服务器费用、下载条件、机房到你所在地的网络质量，都需要自己确认。配置验收通过，也不能保证任何国家、运营商或 AI 服务始终可用，更不能保证账号不会受到验证或限制。</span></div>",
+      "coach": "页面上的分钟数是操作时间参考，开通审核、下载和排错需要另留时间。",
+      "checks": [
+        "我理解这需要一台自己管理的 VPS",
+        "我知道连通性取决于本地网络、机房线路和目标服务的规则"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "准备工具，选择路线",
+      "hint": "约 3 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：你知道最终要得到什么，也愿意承担服务器的续费和维护。",
+      "index": 0
+    },
+    {
+      "id": "prepare-tools",
+      "phase": 0,
+      "short": "路线选择",
+      "title": "备齐工具，选择谁来操作",
+      "intro": "两条路线使用同一套上游脚本。你可以让能够执行命令的 AI 助手操作，也可以自己逐条运行。",
+      "html": "<h3>开始前准备</h3><ul><li>一台配置用电脑、稳定网络、能接收开通邮件的邮箱，以及服务商结账页支持的付款方式。</li><li>AI 路线需要能运行终端命令的 Claude Code 或 Codex，并具备当前可用的登录或 API 计费方式。普通网页聊天不会直接替你完成这套部署。</li><li>打算在 iPhone 或 iPad 上使用时，先确认目标地区的 App Store 能购买 Shadowrocket。安装与连接稍后处理。</li></ul><h3>先把费用分开看</h3><table><thead><tr><th>项目</th><th>需要确认什么</th></tr></thead><tbody><tr><td>VPS</td><td>套餐价格、税费、续费价、退款条件、流量和超额处理，以商家当前页面为准。</td></tr><tr><td>客户端</td><td>Clash Verge Rev、FlClash 为开源客户端；Shadowrocket 是付费 App，价格随商店和地区变化。</td></tr><tr><td>AI 助手与上游模型</td><td>助手的账号权限、订阅或 API 费用另算；CLIProxyAPI 不提供免费模型额度。</td></tr><tr><td>域名与证书</td><td>这套方案使用 IP 证书，不要求购买域名；证书软件不等于服务器服务免费。</td></tr></tbody></table><div class=\"note\"><span><b>如果你还缺其中一样</b>缺海外付款方式，先看虚拟卡教程；要开通 Plus 或订阅 AI，先走 Plus 向导；需要住宅 IP 或账号环境问题，进群说明。把前置条件补齐，再回来搭服务器会顺很多。</span></div>",
+      "coach": "这里的电脑系统是配置服务器所用的电脑；稍后还会单独选择需要连接的设备。",
+      "checks": [
+        "我有 Windows 或 Mac 电脑和可收信的邮箱",
+        "我能访问项目及客户端下载页",
+        "我已确认服务商接受的付款方式和后续费用"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "查看服务器选购条件",
+      "hint": "约 4 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：你已选好路线和配置电脑系统，并且能使用邮箱与付款方式。",
+      "links": [
+        {
+          "label": "海外虚拟卡：开卡与充值",
+          "url": "./15-roogoo-card.html",
+          "desc": "没有可用的海外付款方式时，先把卡准备好。"
+        },
+        {
+          "label": "ChatGPT Plus 开通向导",
+          "url": "./17-plus.html",
+          "desc": "确认账户状态、完成付款并检查是否生效。"
+        },
+        {
+          "label": "住宅 IP / 账号风控：进群咨询",
+          "url": "https://t.me/+_lOsXtUCD9MxNzY1",
+          "desc": "说明用途、设备数量和需要的地区，先判断方案再购买。"
+        }
+      ],
+      "index": 1
+    },
+    {
+      "id": "choose-route",
+      "field": "route",
+      "kind": "choice",
+      "phase": 0,
+      "short": "选择配置路线",
+      "title": "选择配置路线",
+      "intro": "你的选择会决定后面显示哪些步骤，随时可以回来改。",
+      "coach": "这里的电脑系统是配置服务器所用的电脑；稍后还会单独选择需要连接的设备。",
+      "choices": [
+        {
+          "title": "AI 帮我配置",
+          "copy": "已有可执行命令的 AI 助手，让它按上游脚本部署和验收。",
+          "value": "ai",
+          "icon": "spark"
+        },
+        {
+          "title": "我逐条运行命令",
+          "copy": "准备好终端，按页面顺序完成连接、部署和验收。",
+          "value": "manual",
+          "icon": "terminal"
+        }
+      ],
+      "index": 2
+    },
+    {
+      "id": "choose-os",
+      "field": "os",
+      "kind": "choice",
+      "phase": 0,
+      "short": "用哪台电脑配置服务器",
+      "title": "用哪台电脑配置服务器",
+      "intro": "你的选择会决定后面显示哪些步骤，随时可以回来改。",
+      "coach": "这里的电脑系统是配置服务器所用的电脑；稍后还会单独选择需要连接的设备。",
+      "choices": [
+        {
+          "title": "Windows",
+          "copy": "在 WSL 的 Ubuntu 终端中运行这套脚本。",
+          "value": "windows",
+          "icon": "grid"
+        },
+        {
+          "title": "Mac",
+          "copy": "使用系统终端；部署脚本由 bash 运行。",
+          "value": "mac",
+          "icon": "terminal"
+        }
+      ],
+      "index": 3
+    },
+    {
+      "id": "choose-server",
+      "phase": 0,
+      "short": "选购条件",
+      "title": "选一台符合条件的空白 VPS",
+      "intro": "先看系统、公网地址和套餐规则，再比较线路。优先新购空白机器并选择 Ubuntu 24.04。",
+      "html": "<h3>下单前逐项核对</h3><table><thead><tr><th>条件</th><th>选择建议</th></tr></thead><tbody><tr><td>系统</td><td>Ubuntu 24.04；上游支持 Ubuntu 22.04 以上和 Debian 12 以上。</td></tr><tr><td>虚拟化与地址</td><td>选择完整虚拟化的 VPS，例如 KVM，并有独立公网 IPv4；不要选只提供端口映射的 NAT 套餐。</td></tr><tr><td>规格</td><td>上游以 1 核、1 GB 内存作为入门参考。并发、额外应用和更新可能增加资源需求。</td></tr><tr><td>机房</td><td>核对你到该机房的线路，以及目标服务是否支持该地区；不保证某个城市一定可用。</td></tr><tr><td>流量</td><td>看清月额度、重置日期、单向或双向计费及超额处理，按实际用途估算。</td></tr><tr><td>控制面板</td><td>应能找到救援控制台、重装系统和账单信息；下单前了解退款与换 IP 条件。</td></tr></tbody></table><div class=\"note\"><span><b>不想自己挑机房或线路？</b>如果目的只是要一个固定地区的住宅出口，或者不确定该买哪家、哪个机房，先别急着下单。到群里说明用途和设备数量，确认方案再买，能少走一次退款流程。</span></div><h3>付款后怎么确认</h3><ul><li>登录商家后台，查看服务状态、系统版本和分配的 IPv4；开通邮件未到时也检查垃圾邮件。</li><li>按后台实际信息记录 SSH 用户、端口和初始登录方式。端口可能不是 22，用户也可能不是 root。</li><li>等待审核或开通较久时，通过商家的工单询问；本教程不承诺库存、开通速度或固定价格。</li></ul><div class=\"note warn\"><span><b>已有业务的服务器先停在这里</b>这套流程会配置防火墙、SSH、Nginx 和多个服务，不适合直接套在已有网站、数据库或其他业务的机器上。应另备空白 VPS。只有确认空白机器系统选错时，才考虑在商家后台重装；重装会清空磁盘并可能改变密码、指纹和端口。</span></div>",
+      "coach": "机房靠近你并不一定更快。应结合服务商的线路说明、测试条件和退换政策判断。",
+      "checks": [
+        "这是本次专用的空白服务器",
+        "系统为 Ubuntu 22.04+ 或 Debian 12+，优先 Ubuntu 24.04",
+        "机器有独立公网 IPv4，允许管理所需端口"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "整理这台服务器的信息",
+      "hint": "约 10 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：商家后台显示机器运行中，并满足本方案的系统与 IPv4 条件。",
+      "links": [
+        {
+          "label": "BandwagonHost 官网",
+          "url": "https://bandwagonhost.com/",
+          "desc": "直接查看当前套餐、库存和付款方式。"
+        },
+        {
+          "label": "DMIT 官网",
+          "url": "https://www.dmit.io/",
+          "desc": "比较机房、流量和服务条款，再决定是否购买。"
+        },
+        {
+          "label": "进群咨询住宅 IP 与线路选择",
+          "url": "https://t.me/+_lOsXtUCD9MxNzY1",
+          "desc": "说明使用地区、设备数量，以及现在是否已有可用线路。"
+        }
+      ],
+      "index": 4
+    },
+    {
+      "id": "record-server",
+      "phase": 0,
+      "short": "服务器资料",
+      "title": "填入公开参数，单独保存凭据",
+      "intro": "从服务商后台核对这台机器。这里填写地址和配置参数，密码、私钥与 API Key 放在你自己的安全位置。",
+      "html": "<h3>按机房所在地选时区</h3><table><thead><tr><th>机房位置</th><th>时区名称</th></tr></thead><tbody><tr><td>洛杉矶、圣何塞等美国西部</td><td>America/Los_Angeles</td></tr><tr><td>纽约等美国东部</td><td>America/New_York</td></tr><tr><td>香港</td><td>Asia/Hong_Kong</td></tr><tr><td>东京</td><td>Asia/Tokyo</td></tr><tr><td>新加坡</td><td>Asia/Singapore</td></tr><tr><td>暂时无法确认</td><td>Etc/UTC；确认机房后再调整。</td></tr></tbody></table><h3>流量参数不是购买证明</h3><p>月额度和重置日用于订阅中的用量显示，要以商家后台为准。上游未指定时默认显示 1000 GB，并推算重置日；默认数字不能说明你的套餐真的有这么多流量。计费方向或部署前已用量不同，后续还可能需要校准。</p><div class=\"note warn\"><span><b>秘密只交给本地登录过程</b>初始密码在你自己的终端提示中输入；私钥保留在本机。不要把密码、私钥、完整订阅地址或 Key 发到聊天、群聊、公开截图或代码仓库。公网 IP 不是密码，但和凭据一起分享会增加风险。</span></div>",
+      "coach": "SSH 别名用字母开头，只用英文字母、数字和连字符，并避开已有别名。",
+      "checks": [
+        "IP、SSH 用户与端口均来自服务商后台",
+        "我知道初始密码或私钥文件在哪里",
+        "月流量额度、重置日和时区已按实际套餐核对"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "准备本机终端",
+      "hint": "约 5 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：公开参数已核对，初始密码或私钥也有安全的本地保存位置。",
+      "kind": "inputs",
+      "index": 5
+    },
+    {
+      "id": "windows-shell",
+      "phase": 1,
+      "short": "Windows 环境",
+      "title": "Windows：用 WSL 打开 Ubuntu 终端",
+      "intro": "这套脚本使用 bash、ssh 等工具。把配置过程统一放在 WSL 中，后面就按同一套命令操作。",
+      "html": "<h3>只需准备一次</h3><ul><li>按原教程的 WSL 安装说明操作；需要重启时先保存工作。已装好 Ubuntu 的用户直接打开即可。</li><li>首次进入 Ubuntu 时创建本地用户并记住密码，按教程准备 git、unzip、curl 等工具。</li><li>从下一页开始，教程中的 bash 命令都在这个 Ubuntu 窗口运行。需要安装软件时先核对下载来源。</li></ul><h3>需要在 Windows 中查看当前 WSL 文件夹时</h3><pre><code>explorer.exe .</code></pre><p class=\"list-hint\">最后有一个点。它打开当前文件夹，后面可用来寻找本地导出的登录信息。</p>",
+      "coach": "WSL 的本地用户名和密码，与远端 VPS 的 SSH 用户和密码是两组不同的信息。",
+      "checks": [
+        "我打开的是 WSL 的 Ubuntu 终端",
+        "需要的工具已按安装说明准备好"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "进入所选配置路线",
+      "hint": "约 15 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：你能打开 WSL 的 Ubuntu 窗口，并在其中使用 bash、ssh、git、unzip 和 curl。",
+      "links": [
+        {
+          "label": "Microsoft 官方：安装 WSL",
+          "url": "https://learn.microsoft.com/zh-cn/windows/wsl/install",
+          "desc": "系统要求、安装方法、首次启动及用户设置。"
+        },
+        {
+          "label": "原教程：Windows 安装 WSL",
+          "url": "https://vps.xiaoxiaodong.ai/howto/windows-wsl/",
+          "desc": "安装、重启、首次创建用户和常见问题。"
+        }
+      ],
+      "when": {
+        "field": "os",
+        "values": [
+          "windows"
+        ]
+      },
+      "index": 6
+    },
+    {
+      "id": "mac-shell",
+      "phase": 1,
+      "short": "Mac 环境",
+      "title": "Mac：打开终端，确认基本工具",
+      "intro": "使用系统自带的终端。保持后续命令在同一个窗口中运行，减少目录和变量丢失的问题。",
+      "html": "<p>先选一个自己能找到的本地工作目录。下面命令只检查工具版本或位置；如果首次使用 git 触发系统的命令行开发者工具安装提示，完成安装后再检查。</p><h3>检查工具，不安装软件</h3><pre><code>bash --version\nssh -V\ngit --version\ncommand -v unzip curl</code></pre><p class=\"list-hint\">上游要求 OpenSSH 8.4 或更高版本。缺少工具时按系统或工具官方说明补齐。</p><div class=\"note\"><span><b>分清本机和远端</b>下载上游项目、启动 AI 助手、运行 remote.sh，都是从你这台 Mac 的终端发起。命令里的 SSH 别名才用于指向远端服务器。</span></div>",
+      "coach": "按 Command + 空格搜索「终端」。后面的脚本会显式使用 bash。",
+      "checks": [
+        "我能打开终端并粘贴命令",
+        "bash、ssh、git、unzip 和 curl 可用"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "进入所选配置路线",
+      "hint": "约 4 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：终端能使用所需工具，你也知道后续下载文件放在哪个本地目录。",
+      "when": {
+        "field": "os",
+        "values": [
+          "mac"
+        ]
+      },
+      "index": 7
+    },
+    {
+      "id": "ai-executor",
+      "phase": 1,
+      "short": "AI 工具",
+      "title": "准备一个能执行命令的 AI 助手",
+      "intro": "在配置用电脑上安装并登录 Claude Code 或 Codex，选一个当前可用的工具就够了。",
+      "html": "<h3>安装和登录以当前说明为准</h3><p>工具的套餐权益、安装方式和登录界面可能变化。打开下面的官方说明或原教程完成准备，再回到本页；普通网页聊天可以解释命令，但不足以直接执行这套流程。</p><div class=\"note\"><span><b>先确认它在哪里操作</b>让助手说明当前本地目录，并确认准备操作的是你填写的那台新 VPS。下载、读取项目后，才开始连接；其他服务器和现有 SSH 配置条目应保持独立。</span></div>",
+      "coach": "Windows 用户在刚准备好的 WSL 中使用本教程；Mac 用户在本机终端中使用。",
+      "checks": [
+        "我使用的是可执行终端命令的助手",
+        "我已核对该工具的当前账号权限、费用和地区要求"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "生成本次部署任务",
+      "hint": "约 8 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：助手已登录，能访问本地项目并在你授权的范围内运行终端命令。",
+      "links": [
+        {
+          "label": "Claude Code 官方安装说明",
+          "url": "https://code.claude.com/docs/en/setup",
+          "desc": "核对系统要求、安装和认证方式。"
+        },
+        {
+          "label": "Codex 官方仓库",
+          "url": "https://github.com/openai/codex",
+          "desc": "查看当前安装与使用说明。"
+        },
+        {
+          "label": "原教程：安装 Claude Code",
+          "url": "https://vps.xiaoxiaodong.ai/howto/install-claude-code/",
+          "desc": ""
+        },
+        {
+          "label": "原教程：安装 Codex",
+          "url": "https://vps.xiaoxiaodong.ai/howto/install-codex/",
+          "desc": ""
+        }
+      ],
+      "when": {
+        "field": "route",
+        "values": [
+          "ai"
+        ]
+      },
+      "index": 8
+    },
+    {
+      "id": "ai-deployment",
+      "phase": 1,
+      "short": "AI 部署",
+      "title": "把明确的部署任务交给 AI",
+      "intro": "复制下面生成的任务，让助手先读上游规则，再按顺序使用项目脚本。",
+      "html": "<h3>你需要参与的环节</h3><p>助手应先下载原项目并阅读 skills/xiaoxiaodong-vps/SKILL.md，核对本次目标；不要让它凭记忆另写安装命令。</p><p>密码提示出现后在本地终端输入，屏幕不显示字符是正常现象。Claude Code 的用户执行命令入口与 Codex 的交互方式不同，以当前工具提示为准。</p><p>让助手只报告阶段、失败原因和文件路径。订阅、面板密码及 Key 应通过保存步骤写入本地文件，避免出现在对话中。</p><div class=\"note warn\"><span><b>遇到已有服务或版本变更先暂停</b>目标不是空白机器、IP 核对不一致或脚本拒绝覆盖时，先核对原因。应保留上游固定的 3x-ui 3.8.5 与 Xray 26.7.28，不要为了追求新版直接替换；兼容性变化需要先用真实客户端测试。</span></div>",
+      "coach": "复制前核对 IP、SSH 用户、端口和别名。首次登录密码在终端里亲自输入。",
+      "checks": [
+        "助手已读取上游 SKILL.md 和本次目标参数",
+        "首次登录通过本地终端输入密码或使用本地私钥",
+        "阶段失败时会先查原因，再重跑对应阶段"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "检查部署结果与失败提示",
+      "hint": "约 12 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：助手逐阶段完成配置，并给出可核对的日志、验收结果和本地文件路径。",
+      "agentPrompt": {
+        "title": "本次服务器部署任务",
+        "intro": "先完整检查生成内容。上游版本发生变化时，应先比较变更，避免把旧教程与新脚本混用。",
+        "text": "请用“小小东 VPS”开源方案配置我新买的空白服务器。\n\n项目：https://github.com/nevertoday/xiaoxiaodong-vps\n本教程核对版本：14f96535d6d1093f3898f62f55ac147a3e0f32df\n请先将项目下载到本机，核对该版本并完整阅读 skills/xiaoxiaodong-vps/SKILL.md、设计与排错说明，使用项目中的脚本逐阶段操作和验收。若使用新版本，先说明与参考版的差异。\n\n服务器信息：\n- 公网 IPv4：{{ip}}\n- SSH 用户名：{{user}}\n- SSH 端口：{{port}}\n- 希望使用的 SSH 别名：{{alias}}\n- 机房时区：{{timezone}}\n- 每月流量（GB）：{{quota}}\n- 流量重置日：{{resetDay}}\n- 登录方式：让我在本机终端交互输入初始密码；如用密钥，我另行提供本机文件路径。\n\n只操作这台服务器。先确认系统满足要求、服务器 IP 正确、别名没有与现有 SSH 条目冲突；若发现已有网站、面板或其他业务，先停下告诉我，不要覆盖。\n不要让我把密码或私钥发进聊天，不要在命令参数或对话中输出密码、订阅和 Key。\n依照上游步骤配置证书、节点、订阅、AI 接口和维护。每个阶段完成后简短汇报；有失败先排错并重跑该阶段。\n全部验收项通过后，用 save --lang zh 保存本机登录信息，并告诉我文件路径、订阅导入方法及哪些检查仍需我在真实客户端完成。\n不要随意升级方案固定的 3x-ui 和 Xray 版本，也不要用自签名证书跳过申请失败。"
+      },
+      "when": {
+        "field": "route",
+        "values": [
+          "ai"
+        ]
+      },
+      "index": 9
+    },
+    {
+      "id": "manual-download",
+      "phase": 1,
+      "short": "下载方案",
+      "title": "手动路线：下载并固定上游版本",
+      "intro": "使用原仓库里的脚本。固定到本教程核对的提交，方便让命令、日志和排错说明保持一致。",
+      "html": "<h3>下载、切到核对版本，再进入脚本目录</h3><pre><code>git clone https://github.com/nevertoday/xiaoxiaodong-vps.git\ngit -C xiaoxiaodong-vps checkout 14f96535d6d1093f3898f62f55ac147a3e0f32df\ncd xiaoxiaodong-vps/skills/xiaoxiaodong-vps</code></pre><p class=\"list-hint\">逐条运行，上一条成功再继续。切到提交后提示 detached HEAD 是正常的版本定位状态。</p><h3>先读规则，再执行</h3><p>打开当前目录的 SKILL.md，重点阅读目标限制、秘密处理、固定版本和阶段失败的处理方式。后面命令都从这个目录运行；若关闭终端，重新进入该目录，并重新定义 R=scripts/local/remote.sh。</p>",
+      "coach": "在自己选定的本地工作目录运行；已有同名项目目录时先核对位置，不要覆盖。",
+      "checks": [
+        "我下载的是 nevertoday/xiaoxiaodong-vps 原仓库",
+        "我已进入 skills/xiaoxiaodong-vps 并阅读其中规则"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "建立本机密钥登录",
+      "hint": "约 4 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：当前目录位于项目的 skills/xiaoxiaodong-vps 中，提交与本教程核对版本一致。",
+      "links": [
+        {
+          "label": "本教程核对的上游操作规则",
+          "url": "https://github.com/nevertoday/xiaoxiaodong-vps/blob/14f96535d6d1093f3898f62f55ac147a3e0f32df/skills/xiaoxiaodong-vps/SKILL.md",
+          "desc": "浏览器也可阅读；这是待阅读的数据和规则文件。"
+        }
+      ],
+      "when": {
+        "field": "route",
+        "values": [
+          "manual"
+        ]
+      },
+      "index": 10
+    },
+    {
+      "id": "manual-connect",
+      "phase": 1,
+      "short": "首次连接",
+      "title": "建立 SSH 别名和密钥登录",
+      "intro": "连接脚本为这台服务器准备独立密钥，并建立一个方便记忆的 SSH 别名。",
+      "html": "<h3>初始密码登录：在提示中亲自输入</h3><pre><code>bash scripts/local/connect.sh --alias \"{{alias}}\" --host \"{{ip}}\" --port \"{{port}}\" --user \"{{user}}\" --password-prompt</code></pre><p class=\"list-hint\">商家提供密钥时，将 --password-prompt 换成 --key \"本地私钥或密钥 zip 的绝对路径\"，路径由你在本机填写。</p><h3>验证别名登录</h3><pre><code>ssh \"{{alias}}\"</code></pre><p class=\"list-hint\">确认登录的是目标机器，成功后输入 exit 回到本机，再继续后面的 remote.sh 命令。</p><h3>连接脚本保存了什么</h3><p>上游把本机密钥放在 ~/.ssh/xxd-vps/别名/，并先备份 ~/.ssh/config，再加入这台机器的 Host 配置。每台服务器应使用独立凭据；不要把别的服务器的私钥、身份信息或订阅直接复制过来。</p><div class=\"note warn\"><span><b>已有别名或连接失败时</b>别名已指向其他服务器就换一个新名字。密码、用户或端口有误时先回商家后台核对，连接成功后再进入部署；不要在尚未验证密钥登录时自行关闭密码登录。</span></div>",
+      "coach": "先核对目标 IP 和别名；首次连接遇到身份指纹提示时，应确认确实是自己的新服务器。",
+      "checks": [
+        "连接脚本成功完成密钥设置",
+        "ssh 别名指向本次新服务器",
+        "我知道新密钥的本地保存位置"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "按顺序运行部署阶段",
+      "hint": "约 5 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：连接脚本报告成功，使用别名能直接登录本次服务器。",
+      "when": {
+        "field": "route",
+        "values": [
+          "manual"
+        ]
+      },
+      "index": 11
+    },
+    {
+      "id": "manual-stages",
+      "phase": 1,
+      "short": "分阶段部署",
+      "title": "依次配置系统、节点和订阅",
+      "intro": "保持在本机脚本目录，每条命令成功后再运行下一条。这里的操作会修改远端专用 VPS。",
+      "html": "<h3>第一段：上传脚本，初始化并加固系统</h3><pre><code>R=scripts/local/remote.sh\nbash \"$R\" \"{{alias}}\" upload\nbash \"$R\" \"{{alias}}\" init --ip \"{{ip}}\" --alias \"{{alias}}\" --timezone \"{{timezone}}\" --quota-gb \"{{quota}}\" --reset-day \"{{resetDay}}\"\nbash \"$R\" \"{{alias}}\" base</code></pre><p class=\"list-hint\">init 核对 IP 与目标环境；base 配置时区、依赖、网络和防火墙，并关闭 SSH 密码登录。公开参数应先填完。</p><h3>第二段：签发证书，建立节点与订阅</h3><pre><code>bash \"$R\" \"{{alias}}\" cert\nbash \"$R\" \"{{alias}}\" xui\nbash \"$R\" \"{{alias}}\" sub</code></pre><p class=\"list-hint\">cert 申请浏览器信任的 IP 证书；xui 建立 Reality 与 TLS 节点；sub 生成客户端订阅与规则。</p><h3>第三段：安装接口和自动维护任务</h3><pre><code>bash \"$R\" \"{{alias}}\" cliproxy\nbash \"$R\" \"{{alias}}\" maint</code></pre><p class=\"list-hint\">按完整方案安装 CLIProxyAPI、更新和备份任务；不使用 AI 接口时，可以暂不向它添加账号。</p><div class=\"note warn\"><span><b>出现「停止：」就先处理原因</b>保留阶段名称与报错，核对上游排错说明，修复后只重跑对应阶段，再继续后面的命令。不要绕过校验，不要用自签名证书替代，也不要为普通报错直接重装机器。</span></div>",
+      "coach": "后续命令依赖变量 R；重新开终端后，需要先回到脚本目录并重新定义它。",
+      "checks": [
+        "upload、init、base 已完成",
+        "cert、xui、sub 已完成",
+        "cliproxy、maint 已完成"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "核对日志和固定版本",
+      "hint": "约 15 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：从 upload 到 maint 的各阶段均完成，准备进行完整验收。",
+      "when": {
+        "field": "route",
+        "values": [
+          "manual"
+        ]
+      },
+      "index": 12
+    },
+    {
+      "id": "deployment-review",
+      "phase": 1,
+      "short": "部署复核",
+      "title": "用阶段日志核对部署进度",
+      "intro": "进度文字只能说明脚本走到了哪里。还要看实际错误、版本和下一页的完整验收。",
+      "html": "<h3>把日志与用途对应起来</h3><table><thead><tr><th>阶段</th><th>需要确认的内容</th></tr></thead><tbody><tr><td>连接、upload、init、base</td><td>目标机器正确；密钥登录成功；系统、IP、安全设置检查完成。</td></tr><tr><td>cert</td><td>IP 证书由 Let’s Encrypt 签发，失败时先排查 TCP 80、安全组与地址。</td></tr><tr><td>xui、sub</td><td>节点和订阅已生成，订阅检查完成。</td></tr><tr><td>cliproxy、maint</td><td>接口服务、自动维护和备份任务已配置；模型账号稍后单独添加。</td></tr></tbody></table><div class=\"note warn\"><span><b>固定版本是兼容性要求</b>本次来源固定 3x-ui 3.8.5 和 Xray 26.7.28，上游记录过新版 Xray 与 Shadowrocket 的兼容问题。不要在面板里随手升级；升级前应核对新版方案，并在测试环境验证实际客户端。</span></div>",
+      "coach": "给别人看错误时，只保留阶段和原因，先遮住订阅、账号、Key 及其他敏感内容。",
+      "checks": [
+        "我没有忽略「停止：」或失败提示",
+        "证书申请成功，未用自签名证书替代",
+        "3x-ui 与 Xray 保持上游固定版本"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "完整验收并导出登录信息",
+      "hint": "约 4 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：没有未处理的阶段错误，固定版本也没有被随意替换。",
+      "links": [
+        {
+          "label": "上游排错说明",
+          "url": "https://github.com/nevertoday/xiaoxiaodong-vps/blob/14f96535d6d1093f3898f62f55ac147a3e0f32df/skills/xiaoxiaodong-vps/references/troubleshooting.md",
+          "desc": "按报错所属阶段处理，避免混用其他项目的一键脚本。"
+        }
+      ],
+      "index": 13
+    },
+    {
+      "id": "verify-save",
+      "phase": 1,
+      "short": "验收与保存",
+      "title": "完整验收，保存本地登录信息",
+      "intro": "先确认所有实际验收项通过，再导出订阅和账号。AI 路线可让助手执行这些步骤并报告结果。",
+      "html": "<h3>在本机脚本目录验收，成功后导出</h3><pre><code>R=scripts/local/remote.sh\nbash \"$R\" \"{{alias}}\" verify --full &amp;&amp;\n  bash \"$R\" \"{{alias}}\" save --lang zh</code></pre><p class=\"list-hint\">有 FAIL 就先修对应阶段，重新完整验收。不要仅凭看到某个总数就勾选通过。</p><h3>找到文件，但不要公开内容</h3><p>中文文件名为「我的服务器-别名-订阅和账号.md」。Mac 通常保存在桌面；没有桌面目录时保存在本机主目录，WSL 常见这种情况。最终位置以 save 输出的路径为准。</p><p>用本地文本编辑器打开，找到 Clash 订阅、Shadowrocket 订阅、3x-ui 面板和 CLIProxyAPI 的对应条目。订阅要复制整行，保持开头、端口和末尾路径完整。</p><h3>从你这台电脑检查服务器入口</h3><pre><code>curl -sS -o /dev/null -w '%{http_code}\\n' --max-time 10 \"https://{{ip}}:2096/\"</code></pre><p class=\"list-hint\">这套方案的根路径返回 404 可表示已建立 HTTPS 连接；它不证明订阅内容、节点或目标服务都正常。超时、证书报错和无法连接需要分别排查。</p><div class=\"note warn\"><span><b>这个文件包含全部凭据</b>把它当作密码文件保管，只用私人设备查看，并考虑保留加密备份。SSH 私钥也需要独立备份；服务器上的每日配置备份，不能替代本机密钥和登录信息的保管。</span></div>",
+      "coach": "上游曾用 34/34 展示结果；它是该版本示例，检查项总数以后可能变化。",
+      "checks": [
+        "本次 verify --full 的实际检查项全部 PASS",
+        "我知道登录信息文件的准确位置",
+        "已从配置电脑检查 HTTPS 2096 端口的连通性"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "选择要连接的设备",
+      "hint": "约 5 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：本次完整验收全部 PASS；你能找到登录信息文件，并已做本机连通性检查。",
+      "index": 14
+    },
+    {
+      "id": "choose-device",
+      "phase": 2,
+      "short": "客户端选择",
+      "title": "选设备，再取对应的订阅",
+      "intro": "现在选择实际要上网的设备。这和前面用于配置服务器的 Windows 或 Mac 是两回事。",
+      "html": "<h3>从本地登录信息文件取地址</h3><table><thead><tr><th>文件中的订阅名称</th><th>适用客户端</th></tr></thead><tbody><tr><td>Clash Verge Rev / OpenClash / Mihomo</td><td>Windows、Mac、Android，以及 OpenClash。</td></tr><tr><td>Shadowrocket（iPhone）</td><td>iPhone、iPad 上的 Shadowrocket。</td></tr></tbody></table><div class=\"note\"><span><b>配完一台，再换设备继续</b>复制订阅到自己设备的客户端里，完整走完出口、DNS 和 WebRTC 检查。之后回到这里切换设备，按相应客户端页再做一次。订阅地址可以授予线路访问权，应按秘密保管。</span></div>",
+      "coach": "一台服务器可由你授权的多台设备使用；每台设备都需要单独导入并实际测试。",
+      "checks": [
+        "我选择的是当前要连接的设备",
+        "我知道 Clash 与 Shadowrocket 的订阅格式不同"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "安装并连接客户端",
+      "hint": "约 2 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：你选好了当前设备，并知道该复制文件里的哪一种订阅。",
+      "index": 15
+    },
+    {
+      "id": "choose-device",
+      "field": "device",
+      "kind": "choice",
+      "phase": 2,
+      "short": "这次连接哪台设备",
+      "title": "这次连接哪台设备",
+      "intro": "你的选择会决定后面显示哪些步骤，随时可以回来改。",
+      "coach": "一台服务器可由你授权的多台设备使用；每台设备都需要单独导入并实际测试。",
+      "choices": [
+        {
+          "title": "Windows 电脑",
+          "copy": "Clash Verge Rev，使用 Clash 订阅。",
+          "value": "windows",
+          "icon": "grid"
+        },
+        {
+          "title": "Mac 电脑",
+          "copy": "Clash Verge Rev，使用 Clash 订阅。",
+          "value": "mac",
+          "icon": "terminal"
+        },
+        {
+          "title": "iPhone / iPad",
+          "copy": "Shadowrocket，使用专门的 Shadowrocket 订阅。",
+          "value": "ios",
+          "icon": "cursor"
+        },
+        {
+          "title": "Android 手机",
+          "copy": "FlClash，使用 Clash 订阅。",
+          "value": "android",
+          "icon": "cursor"
+        },
+        {
+          "title": "OpenWrt 路由器",
+          "copy": "已有 OpenClash 的进阶用户，使用 Clash 订阅。",
+          "value": "router",
+          "icon": "globe"
+        }
+      ],
+      "index": 16
+    },
+    {
+      "id": "desktop-client",
+      "phase": 2,
+      "short": "电脑客户端",
+      "title": "电脑：导入订阅，开启规则与 TUN",
+      "intro": "Windows 和 Mac 使用 Clash Verge Rev。下载正确安装包，再完成规则、虚拟网卡和 DNS 设置。",
+      "html": "<h3>常见安装包如何选</h3><table><thead><tr><th>目标设备</th><th>通常对应的文件名</th></tr></thead><tbody><tr><td>Intel / AMD 的 Windows 电脑</td><td>_x64-setup.exe</td></tr><tr><td>ARM Windows 电脑</td><td>_arm64-setup.exe</td></tr><tr><td>Apple 芯片 Mac</td><td>_aarch64.dmg</td></tr><tr><td>Intel 芯片 Mac</td><td>_x64.dmg</td></tr></tbody></table><h3>安装后按这个顺序设置</h3><ul><li>在「订阅」粘贴 Clash 订阅地址并导入，再点选新出现的订阅卡片。</li><li>进入「代理」，选择「规则」，确认有「别名-Reality」和「别名-TLS」。</li><li>在设置中打开「虚拟网卡模式」。需要服务模式时按提示安装，核实来源后授权系统权限。</li><li>Windows 打开虚拟网卡旁的设置并启用「严格路由」；Mac 不需要这项。</li><li>「DNS 覆写」保持关闭。IPv6 按当前网络是否有可用公网 IPv6 检测后决定；换网络后重新核对。</li><li>完全退出并重开浏览器。连接状态只是准备完成，下一页用真实浏览器请求验证。</li></ul>",
+      "coach": "认准 Clash Verge Rev。旧版 Clash for Windows 已停更，不适合本方案的订阅。",
+      "checks": [
+        "安装包来自 Clash Verge Rev 官方发布页",
+        "Clash 订阅已导入并选中，模式为「规则」",
+        "TUN 已启用，DNS 覆写关闭，IPv6 设置已按当前网络核对"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "用本机浏览器检查出口",
+      "hint": "约 10 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：订阅已选中，能看到 Reality 和 TLS 节点，客户端显示 TUN 已启用。",
+      "links": [
+        {
+          "label": "Clash Verge Rev 官方发布页",
+          "url": "https://github.com/clash-verge-rev/clash-verge-rev/releases",
+          "desc": "看发布说明与系统要求，按系统和芯片下载。"
+        },
+        {
+          "label": "原教程：TUN 与 IPv6 设置",
+          "url": "https://vps.xiaoxiaodong.ai/howto/clash-verge-tun/",
+          "desc": "包含当前网络 IPv6 检测、服务模式、严格路由和常见软件冲突。"
+        },
+        {
+          "label": "Windows 安装细节",
+          "url": "https://vps.xiaoxiaodong.ai/howto/clash-verge-windows/",
+          "desc": ""
+        },
+        {
+          "label": "Mac 安装细节",
+          "url": "https://vps.xiaoxiaodong.ai/howto/clash-verge-mac/",
+          "desc": ""
+        }
+      ],
+      "when": {
+        "field": "device",
+        "values": [
+          "windows",
+          "mac"
+        ]
+      },
+      "index": 17
+    },
+    {
+      "id": "ios-client",
+      "phase": 2,
+      "short": "iOS 客户端",
+      "title": "iPhone / iPad：添加 Shadowrocket 订阅",
+      "intro": "使用登录信息文件中的 Shadowrocket 专用订阅。先确认商店地区与购买条件，再添加 VPN 配置。",
+      "html": "<h3>购买前先核对</h3><p>上游说明中国区商店没有该 App，需要能购买它的其他地区 Apple 账号。请按自己的账号与商店政策处理；页面不提供固定价格或代购承诺。已有 App 的用户直接导入订阅。</p><h3>添加和连接</h3><ul><li>打开 Shadowrocket，点「+」，类型选择 Subscribe。</li><li>URL 填登录信息文件中的 Shadowrocket 订阅，写好备注并完成。</li><li>更新后确认出现 Reality、TLS 两个节点，先选中一个可连接的节点。</li><li>「全局路由」保持「配置」，按配置规则分流；打开首页连接开关。</li><li>首次连接按系统提示允许添加 VPN 配置，再用 Safari 打开下一页的检测网站。</li></ul><div class=\"note\"><span><b>看到 VPN 标志后继续验证</b>VPN 标志与延迟数字只说明客户端已建立或正在尝试连接。还要确认浏览器的实际出口；在 Wi-Fi 和蜂窝网络之间切换后，也应再测一次。</span></div>",
+      "coach": "Shadowrocket 为付费 App，价格和上架地区以你当前的 App Store 页面为准。",
+      "checks": [
+        "我确认 App 开发者是 Shadow Launch Technology Limited",
+        "导入的是 Shadowrocket 专用订阅",
+        "全局路由为「配置」，VPN 连接已开启"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "在 Safari 中检查出口",
+      "hint": "约 10 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：配置已选中，VPN 连接已开启，可以继续检查实际出口。",
+      "links": [
+        {
+          "label": "原教程：Shadowrocket",
+          "url": "https://vps.xiaoxiaodong.ai/howto/shadowrocket/",
+          "desc": ""
+        },
+        {
+          "label": "原教程：境外 Apple 账号准备",
+          "url": "https://vps.xiaoxiaodong.ai/howto/apple-id/",
+          "desc": "商店地区、付款和账号准备的参考入口。"
+        }
+      ],
+      "when": {
+        "field": "device",
+        "values": [
+          "ios"
+        ]
+      },
+      "index": 18
+    },
+    {
+      "id": "android-client",
+      "phase": 2,
+      "short": "安卓客户端",
+      "title": "Android：用 FlClash 导入 Clash 订阅",
+      "intro": "使用上游推荐的开源客户端，从项目发布页获取 APK，并按手机架构选择安装包。",
+      "html": "<h3>从安装到连接</h3><ul><li>下载官方 APK，按系统提示为本次安装授权。</li><li>在「配置」或「订阅」中新增 URL，填入 Clash 订阅地址并保存。</li><li>回到配置列表选中它，确认能看到两个节点。</li><li>模式选「规则」，打开启动开关，确认系统创建 VPN 连接的提示。</li><li>状态栏出现钥匙或 VPN 图标后，打开手机浏览器检查出口和 DNS。</li></ul><div class=\"note\"><span><b>版本界面可能不同</b>找「配置」「订阅」「URL」「规则」这些入口即可。遇到订阅错误先检查格式和地址完整性，再查网络；不要改用来路不明的旧版 Clash 安装包。</span></div>",
+      "coach": "大多数较新的手机使用 arm64-v8a；不确定时先核对设备架构和项目说明。",
+      "checks": [
+        "APK 来自 FlClash 官方发布页",
+        "Clash 订阅已导入并选中",
+        "客户端已启动，系统 VPN 权限已授予"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "在手机浏览器检查出口",
+      "hint": "约 8 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：Clash 订阅已选中，规则模式和 VPN 连接已开启。",
+      "links": [
+        {
+          "label": "FlClash 官方发布页",
+          "url": "https://github.com/chen08209/FlClash/releases",
+          "desc": "核对发行时间、系统要求和 APK 架构，常见文件名包含 android-arm64-v8a。"
+        },
+        {
+          "label": "原教程：安卓客户端",
+          "url": "https://vps.xiaoxiaodong.ai/howto/android/",
+          "desc": ""
+        }
+      ],
+      "when": {
+        "field": "device",
+        "values": [
+          "android"
+        ]
+      },
+      "index": 19
+    },
+    {
+      "id": "router-client",
+      "phase": 2,
+      "short": "路由器进阶",
+      "title": "路由器：在已有 OpenClash 中接入订阅",
+      "intro": "这页适用于已经安装 OpenWrt 和 OpenClash 的路由器，测试要在实际经过它上网的设备上完成。",
+      "html": "<div class=\"note warn\"><span><b>不要在这里开始刷路由器</b>刷机和安装 OpenClash 属于另一项准备工作，会影响全家的网络。没有相应经验时，可先改选电脑或手机客户端完成连接。</span></div><h3>在 OpenClash 中配置</h3><ul><li>在「配置订阅」中添加 Clash 订阅地址，关闭「在线订阅转换」，保留 Reality 参数。</li><li>更新订阅，在配置管理中选中它；使用支持 VLESS + Reality 的 Meta 内核。</li><li>按上游建议选择 fake-ip 增强模式并启动 OpenClash。</li><li>让测试设备通过该路由器上网，暂时关闭设备上其他重复代理，再做后续浏览器检查。</li><li>保留订阅入口，方便自动更新；只上传一份静态 YAML 会失去相应订阅更新与用量信息。</li></ul><h3>AI 网站很慢时再查 DNS 覆写</h3><p>上游记录了 OpenClash 覆写 DNS 行为与 AI 域名 nameserver-policy 冲突的情况，可能表现为查询超时。先记录当前设置，再按排错说明定位对应条目；不要直接删掉所有 DNS 规则。</p>",
+      "coach": "先备份路由器配置，并在不会影响他人上网的时间调整。",
+      "checks": [
+        "我已备份现有路由器配置",
+        "在线订阅转换关闭，使用 Meta 兼容内核",
+        "已选中订阅并启动，测试设备确实经过该路由器"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "用下游设备检查出口",
+      "hint": "约 15 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：OpenClash 使用原始 Clash 订阅启动，下游设备已准备好进行出口测试。",
+      "links": [
+        {
+          "label": "OpenClash 项目",
+          "url": "https://github.com/vernesong/OpenClash",
+          "desc": ""
+        },
+        {
+          "label": "原教程：OpenClash 操作与已知问题",
+          "url": "https://vps.xiaoxiaodong.ai/howto/openclash/",
+          "desc": ""
+        }
+      ],
+      "when": {
+        "field": "device",
+        "values": [
+          "router"
+        ]
+      },
+      "index": 20
+    },
+    {
+      "id": "check-exit",
+      "phase": 2,
+      "short": "出口检查",
+      "title": "在正在使用的设备上核对出口 IP",
+      "intro": "用这台设备的浏览器发起测试，比较页面里的出口 IPv4 与你的服务器地址。",
+      "html": "<h3>如何理解结果</h3><table><thead><tr><th>看到的情况</th><th>下一步</th></tr></thead><tbody><tr><td>出口等于 VPS IPv4</td><td>继续检查 DNS、WebRTC 和目标服务；这一项只确认本次请求。</td></tr><tr><td>出口仍是本地运营商地址</td><td>检查订阅是否选中、规则是否生效，以及 TUN 或移动端 VPN 是否启动。</td></tr><tr><td>出口是另一台服务器</td><td>排查其他 VPN、游戏加速器、客户端分组或路由器代理。</td></tr><tr><td>IP 对得上，但城市标签不同</td><td>地理数据库可能滞后；核对商家机房资料，不要只凭城市标签判失败。</td></tr></tbody></table><div class=\"note\"><span><b>出口对了，账号仍被要求验证？</b>IP 只是环境的一部分。设备位置、时区、登录历史、付款方式都可能影响账号判断。把页面提示和已经做过的步骤发到群里，先判断是哪一层的问题，不要连续重试。</span></div><h3>接着打开你真正要用的服务</h3><p>检测站的「Claude 出口」和信任评分是第三方测试信息，不能替代目标服务的真实访问与账号检查。机房 IP 也可能触发额外验证；以目标服务当前支持地区、账号权限和实际结果为准。</p>",
+      "coach": "服务器自己访问检测站，只能看到服务器出口，不能证明你的电脑或手机已经正确接入。",
+      "checks": [
+        "检测由当前设备的浏览器发起",
+        "检测请求的出口 IPv4 与我的 VPS 一致",
+        "我理解第三方评分和地区标签不代表账号服务的实际判定"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "继续检查 DNS",
+      "hint": "约 3 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：本次需要走代理的检测请求显示你的 VPS 公网 IPv4，且没有混入其他代理出口。",
+      "links": [
+        {
+          "label": "打开上游使用的出口检测页",
+          "url": "https://ip.net.coffee/claude/",
+          "desc": "在当前设备浏览器中查看，勿把带私人订阅的链接提交给检测站。"
+        },
+        {
+          "label": "账号环境与风控问题：进群咨询",
+          "url": "https://t.me/+_lOsXtUCD9MxNzY1",
+          "desc": ""
+        }
+      ],
+      "index": 21
+    },
+    {
+      "id": "check-dns",
+      "phase": 2,
+      "short": "DNS 检查",
+      "title": "确认需要代理的 DNS 查询走对了路",
+      "intro": "网页出口正确以后，再检查域名查询有没有绕过预期的分流。DNS 和网页连接不是同一个检查项。",
+      "html": "<h3>先判断检测的是哪类查询</h3><table><thead><tr><th>结果</th><th>怎样理解</th></tr></thead><tbody><tr><td>海外检测域名显示海外解析器</td><td>符合本方案的预期方向，继续看其他检查。</td></tr><tr><td>需要代理的测试显示本地运营商 DNS</td><td>核对订阅、TUN、DNS 覆写和其他代理是否干扰。</td></tr><tr><td>国内直连网站使用国内 DNS</td><td>可能是正常规则分流，不能单独据此判断泄露。</td></tr><tr><td>检测超时、没有结果</td><td>本项尚未确认；换网络或排错后重测。</td></tr></tbody></table><h3>异常时按顺序处理</h3><ul><li>在客户端更新订阅，确认当前选中的是更新后的那一份。</li><li>电脑确认 TUN 已启动、DNS 覆写关闭；Windows 再核对严格路由。</li><li>暂时关闭其他 VPN、加速器或重复代理，重新打开浏览器测试。</li><li>路由器用户核对 OpenClash 覆写的 DNS 设置，按对应排错说明处理。</li></ul>",
+      "coach": "访问国内直连网站时使用国内 DNS 可以是正常分流，判断时要看具体测试流量。",
+      "checks": [
+        "我看过当前设备的 DNS 检测结果",
+        "需要代理的测试没有意外使用本地运营商解析",
+        "我没有把检测失败或空白结果当作通过"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "继续检查 WebRTC",
+      "hint": "约 4 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：对需要代理的检测请求，DNS 结果符合预期；异常或无法检测的项目已记录并处理。",
+      "links": [
+        {
+          "label": "出口与 DNS 检测页",
+          "url": "https://ip.net.coffee/claude/",
+          "desc": ""
+        },
+        {
+          "label": "原教程：DNS 排查",
+          "url": "https://vps.xiaoxiaodong.ai/howto/dns-leak/",
+          "desc": ""
+        }
+      ],
+      "index": 22
+    },
+    {
+      "id": "check-webrtc",
+      "phase": 2,
+      "short": "WebRTC 检查",
+      "title": "保留 WebRTC 功能，检查它的公网出口",
+      "intro": "WebRTC 可用于网页视频和语音，也可能产生与普通网页连接不同的 UDP 请求，需要另外检查。",
+      "html": "<h3>看功能，也看公网地址</h3><table><thead><tr><th>现象</th><th>结论</th></tr></thead><tbody><tr><td>WebRTC 可用，公网地址为 VPS</td><td>这次 WebRTC 检测符合预期。</td></tr><tr><td>WebRTC 可用，但出现意外的本地公网地址</td><td>存在绕过预期出口的情况，需要检查客户端和路由。</td></tr><tr><td>功能被禁用、没有候选地址或页面报错</td><td>无法据此确认出口；可能受浏览器、权限、网络或扩展影响。</td></tr></tbody></table><h3>出现意外公网地址时</h3><ul><li>电脑先确认 TUN 已启用，更新订阅，再完全退出并重开浏览器。</li><li>Windows 核对严格路由；同时检查当前网络的 IPv6 是否正确纳入客户端处理。</li><li>撤销此前用于禁用 WebRTC 的扩展或设置，再检查正常功能与出口。</li><li>手机或路由器场景用实际设备浏览器测试；没有可用检测结果时记录限制，继续排查。</li></ul><div class=\"note\"><span><b>不要为单个检测结果改成全局</b>规则模式中，国内 STUN 等请求可能按规则直连，不同测试页可能显示不同结果。按检测域名、连接规则和公网地址一起分析；禁用 WebRTC 会影响视频语音，空白结果也不等于问题已解决。</span></div>",
+      "coach": "重点看公网候选地址。局域网地址或浏览器生成的 mDNS 名称，不等于公网地址泄露。",
+      "checks": [
+        "我检查了当前浏览器是否支持并启用 WebRTC",
+        "支持检测时，公网出口与预期一致",
+        "我没有把禁用功能或检测不到地址当作修复成功"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "切换备用节点再测一次",
+      "hint": "约 5 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：在支持检测的浏览器中确认公网出口；没有结果的情况仍标记为待确认。",
+      "links": [
+        {
+          "label": "BrowserLeaks：WebRTC 检测",
+          "url": "https://browserleaks.com/webrtc",
+          "desc": "查看 RTCPeerConnection 与 Public IP Address，电脑端优先使用这一项。"
+        },
+        {
+          "label": "原教程：WebRTC 排错",
+          "url": "https://vps.xiaoxiaodong.ai/howto/webrtc-leak/",
+          "desc": ""
+        }
+      ],
+      "index": 23
+    },
+    {
+      "id": "test-backup",
+      "phase": 2,
+      "short": "备用检查",
+      "title": "两个节点、两种网络各测一次",
+      "intro": "主节点能用以后，手动选择备用节点，再换一次网络。把实际可用条件记下来。",
+      "html": "<h3>做一轮可重复的检查</h3><ul><li>选 Reality，确认出口、DNS 和目标服务；再选 TLS 重复一次。</li><li>将 Wi-Fi 换成手机流量，或换一个独立网络，再检查连接。</li><li>需要多台设备时，每台都走一遍；不要把电脑结果直接当成手机结果。</li><li>最后选回日常使用的分组。上游订阅提供自动切换分组，也可以手动选择节点。</li></ul><div class=\"note warn\"><span><b>出行前留出处理时间</b>出发前检查剩余流量、续费日期、客户端和账号登录状态，并带好安全保存的恢复资料。当地网络仍可能限制这个 IP；备用节点不能替代另一台独立服务器的容灾能力。</span></div>",
+      "coach": "Reality 与 TLS 都在同一台 VPS 上；整台服务器或这个 IP 不通时，两个节点可能一起失效。",
+      "checks": [
+        "Reality 节点已实际访问目标服务",
+        "TLS 节点已实际访问目标服务",
+        "已换用另一种网络复测，或明确记录尚未完成的限制"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "了解可选的 AI 接口",
+      "hint": "约 6 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：你已分别验证两个节点，并知道当前网络下有哪些可用和不可用的情况。",
+      "links": [
+        {
+          "label": "原教程：出行前检查清单",
+          "url": "https://vps.xiaoxiaodong.ai/howto/travel-checklist/",
+          "desc": ""
+        }
+      ],
+      "index": 24
+    },
+    {
+      "id": "api-purpose",
+      "phase": 3,
+      "short": "可选接口",
+      "title": "先决定是否使用 AI 接口",
+      "intro": "CLIProxyAPI 已随完整方案安装，但刚装好没有上游账号。只需要线路时，可以跳过接下来的接口配置页。",
+      "html": "<h3>本地文件中这四项各有用途</h3><table><thead><tr><th>项目</th><th>用途</th></tr></thead><tbody><tr><td>管理中心</td><td>在自己的浏览器中打开的后台页面，通常为 https://服务器IP:8318/management.html。</td></tr><tr><td>管理中心登录 Key</td><td>只用于登录和管理后台，不填进普通模型客户端。</td></tr><tr><td>API 地址 / Base URL</td><td>模型工具连接入口，通常为 https://服务器IP:8318/v1。</td></tr><tr><td>API Key</td><td>客户端调用接口使用的密钥，与管理中心 Key 分开。</td></tr></tbody></table><div class=\"note warn\"><span><b>先核对账号政策，再授权</b>本教程沿用上游限制：不要把 Claude 消费者账号通过账号授权接入 CLIProxyAPI。其他供应商也要分别核对当前官方条款、接入方式、地区和模型权限。软件支持一种接口格式，不等于账号获准通过该方式调用。</span></div><h3>以后还可以回来</h3><p>只使用线路就选上面的「先只使用线路」。以后需要接口时，再从步骤目录返回这里。不要因服务已安装，就把不确定来源的账号、密钥或接口授权给它。</p>",
+      "coach": "API 软件免费，不代表模型免费。额度、账单、地区和使用政策仍属于你接入的上游服务。",
+      "checks": [
+        "我知道接口服务与模型额度的区别",
+        "我已选好本次是否配置 AI 接口"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "按选择继续",
+      "hint": "约 3 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：你已决定是否接入模型，并分清管理密钥和调用密钥。",
+      "links": [
+        {
+          "label": "先开通 ChatGPT Plus",
+          "url": "./17-plus.html",
+          "desc": "按当前账户状态完成开通，再回来添加接口。"
+        },
+        {
+          "label": "没有付款卡：虚拟卡教程",
+          "url": "./15-roogoo-card.html",
+          "desc": "开卡、充值和支付的步骤。"
+        },
+        {
+          "label": "账号或接口问题：进群咨询",
+          "url": "https://t.me/+_lOsXtUCD9MxNzY1",
+          "desc": "带上工具名称和错误原文，先说清楚卡在哪一层。"
+        }
+      ],
+      "index": 25
+    },
+    {
+      "id": "choose-api",
+      "field": "api",
+      "kind": "choice",
+      "phase": 3,
+      "short": "这次要配置 AI 接口吗",
+      "title": "这次要配置 AI 接口吗",
+      "intro": "你的选择会决定后面显示哪些步骤，随时可以回来改。",
+      "coach": "API 软件免费，不代表模型免费。额度、账单、地区和使用政策仍属于你接入的上游服务。",
+      "choices": [
+        {
+          "title": "继续配置 AI 接口",
+          "copy": "已有获准使用的上游账号或供应商 Key，继续添加并测试。",
+          "value": "yes",
+          "icon": "key"
+        },
+        {
+          "title": "先只使用线路",
+          "copy": "跳过账号接入和模型测试，直接看日常维护；以后可以回来补做。",
+          "value": "no",
+          "icon": "arrow"
+        }
+      ],
+      "index": 26
+    },
+    {
+      "id": "api-account",
+      "phase": 3,
+      "short": "添加上游",
+      "title": "在管理中心添加你有权使用的上游",
+      "intro": "用本地文件中的管理地址和管理 Key 登录，按实际权限选择账号授权或供应商 API Key。",
+      "html": "<h3>登录与添加</h3><ul><li>从本地文件打开「管理中心」，输入「管理中心登录 Key」，确认能看到服务版本和连接状态。</li><li>账号授权方式：进入 OAuth 登录，选择已确认允许的服务，打开其官方授权页并完成登录。</li><li>API 方式：在「AI 提供商」添加对应供应商，填入你自己的供应商密钥并保存。</li><li>回到认证文件或供应商列表，确认新增配置有效。菜单名称会随 CLIProxyAPI 版本变化。</li></ul><div class=\"note warn\"><span><b>localhost 回调打不开时</b>远端服务的授权流程有时会跳到本机无法打开的 localhost 地址。只按管理中心该次流程的提示，把完整回调地址提交回授权页面；回调可能包含一次性授权信息，不要发给助手、群聊或陌生页面。</span></div><h3>授权存在不代表调用成功</h3><p>后面还要查看模型列表，再发一次低用量请求验证。空列表、授权失效、套餐不支持或模型不可用，都需要分别核对；不要根据软件支持的名称猜测账号已经拥有该模型。</p>",
+      "coach": "仅使用自己有权管理的账号。浏览器里记住密钥的功能，也应限于自己的受信设备。",
+      "checks": [
+        "管理中心能正常连接",
+        "已添加获准使用的上游，或明确选择跳过",
+        "我没有把授权回调、认证文件或 Key 发进聊天"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "本机测试并接入模型工具",
+      "hint": "约 6 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：管理中心能看到有效的上游认证或供应商配置；不使用接口时可跳过。",
+      "links": [
+        {
+          "label": "原教程：登录管理中心",
+          "url": "https://vps.xiaoxiaodong.ai/howto/cpa-login/",
+          "desc": ""
+        },
+        {
+          "label": "原教程：添加账号或供应商",
+          "url": "https://vps.xiaoxiaodong.ai/howto/cpa-add-account/",
+          "desc": ""
+        }
+      ],
+      "when": {
+        "field": "api",
+        "values": [
+          "yes"
+        ]
+      },
+      "index": 27
+    },
+    {
+      "id": "api-test",
+      "phase": 3,
+      "short": "接口检查",
+      "title": "从本机列模型，再接到工具里",
+      "intro": "验证分两层：接口能列出模型，以及实际选用的模型能回答。所有测试都由你自己的电脑或客户端发起。",
+      "html": "<h3>在本机 bash 中检查模型列表</h3><pre><code>bash -c '\nread -r -s -p \"输入 API Key（仅本次使用）：\" CPA_TEST_KEY\nprintf \"\\n\"\ncurl --fail -sS --max-time 20 \\\n  -H \"Authorization: Bearer $CPA_TEST_KEY\" \\\n  \"https://{{ip}}:8318/v1/models\"\nunset CPA_TEST_KEY\n'</code></pre><p class=\"list-hint\">在自己的终端运行，Key 从本地文件取用。模型列表不保证每个模型均可调用；还要选一个有权限的模型实际请求。</p><h3>普通模型客户端的填法</h3><table><thead><tr><th>字段</th><th>填写方式</th></tr></thead><tbody><tr><td>服务类型</td><td>选择该工具支持的 OpenAI 兼容或自定义服务商。</td></tr><tr><td>Base URL</td><td>通常填 https://服务器IP:8318/v1；有些客户端会自动补 /v1，避免重复。</td></tr><tr><td>API Key</td><td>填本地文件中的 API Key，使用工具提供的安全配置入口。</td></tr><tr><td>模型</td><td>填写接口实际返回、你的上游有权使用的模型名称。</td></tr><tr><td>验证</td><td>发一条简短请求，检查回答、错误和上游用量。</td></tr></tbody></table><h3>按错误定位</h3><p>401 先检查 Key、空格与两个 Key 是否混用；连接失败先查 HTTPS 地址、8318 端口和本地网络。能连接却没有模型或生成报错，再查认证是否过期、供应商配置、模型权限及剩余额度。一次成功不代表后续调用免费或无限量。</p>",
+      "coach": "下面的 Key 在本地终端中不回显输入，命令文本里没有写入真实密钥。",
+      "checks": [
+        "使用的是 API Key，而非管理中心 Key",
+        "所选模型来自当前接口返回的列表",
+        "已完成一次实际请求，或明确选择跳过接口"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "建立日常维护习惯",
+      "hint": "约 5 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：能取得实际可用模型，并在工具中完成一条低用量请求；不使用接口时可跳过。",
+      "links": [
+        {
+          "label": "原教程：把接口接入模型工具",
+          "url": "https://vps.xiaoxiaodong.ai/howto/cpa-clients/",
+          "desc": "不同工具对地址、接口格式和模型能力要求不同，使用前再核对当前工具说明。"
+        }
+      ],
+      "when": {
+        "field": "api",
+        "values": [
+          "yes"
+        ]
+      },
+      "index": 28
+    },
+    {
+      "id": "daily-care",
+      "phase": 3,
+      "short": "日常维护",
+      "title": "日常维护：流量、续费和私钥",
+      "intro": "自动任务减少重复操作，账单、剩余流量、恢复凭据和异常告警仍需要自己关注。",
+      "html": "<h3>本次来源中的自动任务</h3><table><thead><tr><th>项目</th><th>上游配置的行为</th></tr></thead><tbody><tr><td>IP 证书</td><td>每 6 小时检查续期；仍需关注续期失败和端口可达性。</td></tr><tr><td>分流规则</td><td>每天刷新，客户端也需要更新订阅才能取得对应变化。</td></tr><tr><td>CLIProxyAPI 与管理中心</td><td>每 30 分钟检查更新，等待空闲切换，并在健康检查失败时回滚；不是永远无中断的保证。</td></tr><tr><td>配置备份</td><td>每天备份，保留 7 份；服务器内备份不能覆盖整机丢失风险。</td></tr><tr><td>3x-ui / Xray</td><td>固定在已核对版本，不自动升级。</td></tr></tbody></table><h3>你需要亲自处理</h3><ul><li>确认 SSH 密钥登录正常后，在商家后台改掉开通邮件中的 root 密码；救援控制台可能仍需要它。</li><li>把私钥、对应 SSH 配置和登录信息保存到受保护的位置；需要异地副本时使用加密备份。</li><li>关注账单、付款方式和到期提醒，确认旅行期间不会到期。</li><li>客户端用量和后台有偏差时，先核对总额度、重置日、单双向计费和部署前已用流量，再按上游方法校准。</li><li>保持日常分组和订阅更新。减少无必要的地区切换，同时遵守目标服务的账号与使用规则。</li></ul>",
+      "coach": "测速会消耗流量。用商家账单页面做最终依据，不要只看客户端进度条。",
+      "checks": [
+        "续费日期已记下，或已核对自动续费方式",
+        "已核对月流量、重置日和计费方向",
+        "SSH 私钥与登录信息有安全备份",
+        "我知道固定的节点组件不会自动升级"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "做一次只读体检",
+      "hint": "约 5 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：续费和恢复资料已有安排，你也知道哪些组件会自动更新。",
+      "links": [
+        {
+          "label": "原教程：root 密码与救援控制台",
+          "url": "https://vps.xiaoxiaodong.ai/howto/root-password-vnc/",
+          "desc": ""
+        },
+        {
+          "label": "原教程：流量显示、校准与更换 IP",
+          "url": "https://vps.xiaoxiaodong.ai/howto/traffic-and-ip/",
+          "desc": ""
+        }
+      ],
+      "index": 29
+    },
+    {
+      "id": "health-check",
+      "phase": 3,
+      "short": "只读体检",
+      "title": "先只读体检，确认后再修复",
+      "intro": "变慢、连不上或出行前都可以复核。先看报告，明确影响和修法后，再决定是否改配置。",
+      "html": "<h3>手动路线：使用现有工具副本检查</h3><pre><code>R=scripts/local/remote.sh\nbash \"$R\" \"{{alias}}\" verify --full</code></pre><p class=\"list-hint\">在本机原脚本目录运行。使用与已部署服务器匹配的工具版本；实际检查项全部 PASS 才算本轮通过。</p><h3>把工具更新和只读检查分开</h3><p>上游维护流程可能先更新本地仓库并 upload 工具副本。upload 会写入服务器的工具文件，因此不能把这整段都称为只读。需要更新工具时，先核对来源和变更，确认更新范围，再执行检查；修复也应单独说明。</p><div class=\"note\"><span><b>检查通过后仍要测客户端</b>服务器验收覆盖服务、证书、端口、订阅和安全设置等项目，不能替代你所在地的实际网络测试。仍要从使用设备复测出口、DNS、WebRTC 和目标服务。</span></div>",
+      "coach": "日志中不要展示订阅地址、密码和 Key。所有实际失败项都要说明，不能只报一个通过总数。",
+      "checks": [
+        "体检先检查，没有擅自修复或升级",
+        "我已查看全部实际 FAIL 项和影响",
+        "任何修复都在我确认范围后进行，并会重新验收"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "了解故障与换机恢复",
+      "hint": "约 5 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：你取得了本次检查结果；若有问题，已看清原因和待确认的修复动作。",
+      "agentPrompt": {
+        "title": "复制给 AI 的体检任务",
+        "intro": "明确要求只检查、报告原因，修复前再确认；固定版本和秘密处理要求仍然适用。",
+        "text": "请检查我按“小小东 VPS”方案搭建的服务器，SSH 别名是：{{alias}}。\n\n方案来源：https://github.com/nevertoday/xiaoxiaodong-vps\n本教程核对的参考版本：14f96535d6d1093f3898f62f55ac147a3e0f32df\n请先阅读方案的 SKILL.md 及“以后的复核和维护”说明，再核对服务器已部署的版本。\n\n本轮只做检查并报告结果。优先运行服务器现有工具的 verify --full；先说明检查命令及其影响。不要上传、安装、升级、重启、修改配置或更改防火墙。\n列出未通过的项目、依据、影响和建议修复步骤，等我明确同意后再修。\n不要在聊天中显示密码、私钥、订阅地址或任何 Key。"
+      },
+      "index": 30
+    },
+    {
+      "id": "recovery",
+      "phase": 3,
+      "short": "故障恢复",
+      "title": "故障、换 IP 与换电脑时这样恢复",
+      "intro": "先分清故障范围，保留正常工作的部分。涉及重装、换 IP 或凭据轮换时，先确认会影响哪些设备。",
+      "html": "<h3>按范围缩小问题</h3><table><thead><tr><th>现象</th><th>优先排查</th></tr></thead><tbody><tr><td>只有一个 Wi-Fi 连不上</td><td>换手机流量或其他运营商，比较本地网络到 VPS 的路径。</td></tr><tr><td>只有一个节点失败</td><td>切另一个节点并核对失败节点的服务、端口与证书。</td></tr><tr><td>多个网络、两个节点都失败</td><td>查商家运行状态、到期与流量，再做服务器体检；不能直接断定是 IP 被限制。</td></tr><tr><td>服务器检查正常，但部分地区仍不可达</td><td>结合多网络实测和商家反馈判断路由或 IP 限制，再考虑换 IP。</td></tr><tr><td>线路正常，只有模型工具报错</td><td>查 API Key、授权、接口格式、模型权限和上游用量。</td></tr></tbody></table><h3>发生变化时同步恢复</h3><ul><li>换 IP：按上游流程重新配置相关地址、证书与订阅，重新导出登录信息，在每台设备上替换旧订阅并完整测试。</li><li>换电脑：安全迁移 ~/.ssh/xxd-vps/别名/ 及 ~/.ssh/config 对应的那一段；保留新电脑原有配置，核对私钥权限。</li><li>私钥丢失：从商家救援控制台登录，重新添加可信电脑的密钥；不要为了方便长期恢复 SSH 密码登录。</li><li>登录信息丢失但 SSH 仍可用：通过原方案的 save --lang zh 重新导出，自己打开本地文件。</li><li>订阅泄露：轮换对应订阅身份并使旧地址失效，再给自有设备重新导入；泄露了 API Key 或管理 Key 时也要分别轮换。</li></ul><div class=\"note warn\"><span><b>普通报错先排错，重装前先确认</b>重装会清空磁盘并更换服务器身份。重装后遇到 SSH 指纹警告，应先从商家后台确认机器与新指纹，再按上游排错流程处理；不要直接清空整份 known_hosts 或照旧使用旧密码。</span></div>",
+      "coach": "服务器到期被删除后，原 IP 和服务器内备份都可能无法找回，续费与离机备份很重要。",
+      "checks": [
+        "我知道如何进入商家的救援控制台",
+        "我会先区分网络、节点、服务器和账号问题",
+        "换 IP 或凭据后会更新所有设备并重新测试"
+      ],
+      "checksTitle": "往下之前，确认一下",
+      "button": "完成本轮，按需回看",
+      "hint": "约 6 分钟 · 全部勾选后继续",
+      "tip": "做到这样，就可以了：你知道故障排查顺序，并准备了商家控制台和密钥恢复方式。",
+      "links": [
+        {
+          "label": "上游完整排错说明",
+          "url": "https://github.com/nevertoday/xiaoxiaodong-vps/blob/14f96535d6d1093f3898f62f55ac147a3e0f32df/skills/xiaoxiaodong-vps/references/troubleshooting.md",
+          "desc": ""
+        },
+        {
+          "label": "原教程：流量与换 IP",
+          "url": "https://vps.xiaoxiaodong.ai/howto/traffic-and-ip/",
+          "desc": ""
+        },
+        {
+          "label": "原教程：救援控制台",
+          "url": "https://vps.xiaoxiaodong.ai/howto/root-password-vnc/",
+          "desc": ""
+        }
+      ],
+      "index": 31
+    },
+    {
+      "id": "done",
+      "kind": "done",
+      "short": "完成",
+      "title": "线路搭好了",
+      "intro": "服务器、客户端和出口检查都走完了。以后按「日常维护」定期复核；遇到问题先跑一次只读健康检查。",
+      "doneGroups": [
+        {
+          "title": "你已经完成",
+          "items": [
+            "选购并登录自己的 VPS",
+            "按上游脚本完成部署与验收",
+            "客户端导入订阅，检查出口、DNS 与 WebRTC"
+          ]
+        },
+        {
+          "title": "以后记得",
+          "items": [
+            "留意续费价和流量重置日",
+            "升级前先看上游说明，不随意改固定版本",
+            "密码、私钥、订阅和 Key 不外传"
+          ]
+        }
+      ],
+      "seeAlso": [
+        {
+          "title": "原始中文教程",
+          "url": "https://vps.xiaoxiaodong.ai/",
+          "why": "事实来源与补充 how-to；在线内容可能已更新，注意与本地教程核对日期的差异。",
+          "icon": "book"
+        },
+        {
+          "title": "上游仓库：本次核对版本",
+          "url": "https://github.com/nevertoday/xiaoxiaodong-vps/tree/14f96535d6d1093f3898f62f55ac147a3e0f32df",
+          "why": "查看脚本、SKILL.md、排错说明和 MIT 许可证。本文独立改写，不承诺上游或商家为本教程背书。",
+          "icon": "book"
+        },
+        {
+          "title": "BandwagonHost 官网",
+          "url": "https://bandwagonhost.com/",
+          "why": "查看当前套餐、线路、账单与服务条款。",
+          "icon": "book"
+        },
+        {
+          "title": "DMIT 官网",
+          "url": "https://www.dmit.io/",
+          "why": "查看机房、库存、套餐和支持政策。",
+          "icon": "book"
+        },
+        {
+          "title": "Clash Verge Rev 官方发布",
+          "url": "https://github.com/clash-verge-rev/clash-verge-rev/releases",
+          "why": "Windows、Mac 电脑客户端，按芯片和系统选择安装包。",
+          "icon": "book"
+        },
+        {
+          "title": "FlClash 官方发布",
+          "url": "https://github.com/chen08209/FlClash/releases",
+          "why": "本教程 Android 路线使用的开源客户端。",
+          "icon": "book"
+        },
+        {
+          "title": "OpenClash 项目",
+          "url": "https://github.com/vernesong/OpenClash",
+          "why": "OpenWrt 路由器进阶配置参考。",
+          "icon": "book"
+        },
+        {
+          "title": "BrowserLeaks WebRTC 检测",
+          "url": "https://browserleaks.com/webrtc",
+          "why": "由使用设备的浏览器发起检测，结果需要结合客户端规则解释。",
+          "icon": "book"
+        },
+        {
+          "title": "内容来源：小小东 VPS（MIT）",
+          "url": "https://vps.xiaoxiaodong.ai/",
+          "why": "本篇依据其开源方案独立重组和改写，参考版本 14f96535d6d1，核对日期 2026-10-21。",
+          "icon": "book"
+        }
+      ],
+      "faqGroups": [
+        {
+          "label": "准备服务器",
+          "items": [
+            {
+              "q": "服务器、客户端和 AI 费用是一笔钱吗？",
+              "a": "分别计算。VPS 套餐与续费按商家当前价格；部分客户端免费，Shadowrocket 为付费 App，商店价格会变化。AI 助手和模型账号的订阅或 API 账单另算，CLIProxyAPI 不赠送额度。"
+            },
+            {
+              "q": "必须购买域名吗？只有 IPv6 的机器能用吗？",
+              "a": "本方案使用 IP 证书，不要求购买域名。教程要求独立公网 IPv4；只有 IPv6 或仅提供少量端口映射的 NAT 套餐不符合这里的前提。"
+            },
+            {
+              "q": "能在已有网站或数据库的 VPS 上直接安装吗？",
+              "a": "应另备空白 VPS。流程会调整 SSH、防火墙、Nginx 和多个服务，已有业务可能冲突。脚本拒绝覆盖时应核对原因；不要强行继续，也不要为迁就教程直接重装业务机器。"
+            },
+            {
+              "q": "服务商不是这两家，或者 SSH 端口不是 22，可以继续吗？",
+              "a": "商家名称不是硬性条件，系统、公网 IPv4、权限和网络条件才是重点。把后台显示的实际 SSH 用户与端口填入参数，不要强行套用 root / 22。"
+            },
+            {
+              "q": "没有 AI 付费账号，可以完整走完吗？",
+              "a": "可以。在路线选择中改为手动，按原仓库脚本完成连接和部署。Windows 先准备 WSL，Mac 使用终端；后续客户端、验收和维护要求相同。"
+            },
+            {
+              "q": "为什么要用可执行命令的 AI，普通网页聊天不够吗？",
+              "a": "网页聊天可以帮助理解步骤，实际部署还需要在本机下载仓库、连接服务器并运行脚本。AI 路线要求有这些能力的助手；如果你亲自执行它给出的命令，就应按手动路线核对全过程。"
+            }
+          ]
+        },
+        {
+          "label": "配置服务器",
+          "items": [
+            {
+              "q": "证书阶段失败，可以跳过或换自签名证书吗？",
+              "a": "先停在 cert 阶段，检查 IP、安全组及 TCP 80 的可达性，再按上游排错说明处理并重跑。不要跳过检查或用自签名证书代替浏览器信任的证书。"
+            },
+            {
+              "q": "必须看到 34/34 才算成功吗？",
+              "a": "34/34 是来源版本中的输出例子。应核对你实际运行的完整验收报告：所有应检查项目都为 PASS，有 FAIL 就说明原因并处理，不能凭固定数字判断。"
+            },
+            {
+              "q": "浏览器访问 2096 根路径返回 404，是安装坏了吗？",
+              "a": "按上游结构，根路径的 404 可以说明 HTTPS 已连通、证书校验已通过。它不代表订阅、两个节点或目标服务都正常；还要完成完整验收与设备侧测试。"
+            },
+            {
+              "q": "为什么不直接更新面板里的 3x-ui 和 Xray？",
+              "a": "来源固定 3x-ui 3.8.5 与 Xray 26.7.28，并记录过新版与 Shadowrocket 的兼容问题。应核对新版方案并测试客户端后再决定升级，不能因为看到更新按钮就直接更新。"
+            }
+          ]
+        },
+        {
+          "label": "连接与检查",
+          "items": [
+            {
+              "q": "导入订阅没有节点，应该先改服务器吗？",
+              "a": "先确认地址格式：电脑、Android、OpenClash 用 Clash 订阅，iPhone 的 Shadowrocket 用专用订阅。核对整行是否复制完整、是否选中配置，再检查设备到服务器的网络；格式或客户端错误不一定需要改服务器。"
+            },
+            {
+              "q": "为什么网页能用，WebRTC 仍出现本地公网 IP？",
+              "a": "普通网页连接和 WebRTC UDP 可能走不同路径。电脑先核对 TUN、严格路由和 IPv6，再重开浏览器测试；仅开系统代理并不保证 WebRTC 被接管。禁用功能或检测空白不能作为修复成功的证据。"
+            },
+            {
+              "q": "IPv6 应该一律打开还是关闭？",
+              "a": "按当前网络检测结果设置，并核对是否正确接管。上游详细 TUN 教程建议有公网 IPv6 时开启对应处理、没有时关闭，换网络后重测。某个开关的状态本身不能证明没有绕行，最终要看设备实测。"
+            },
+            {
+              "q": "DNS 页面出现国内解析器，就一定泄露了吗？",
+              "a": "先看测试请求是否本来应走代理。国内直连网站使用国内 DNS 可以是正常分流；需要代理的海外测试出现意外的本地 DNS，才应继续查订阅、DNS 覆写、TUN 和其他代理干扰。"
+            },
+            {
+              "q": "Reality 和 TLS 是两台独立备用服务器吗？",
+              "a": "它们是同一台 VPS 的两个节点，可应对部分协议或端口问题。整台机器停机、IP 不可达或线路中断时，两者可能一起失败。需要独立容灾时应另行准备其他服务器。"
+            }
+          ]
+        },
+        {
+          "label": "AI 接口与维护",
+          "items": [
+            {
+              "q": "CLIProxyAPI 能免费用模型，或接入 Claude 消费者账号吗？",
+              "a": "它只是接口中间层，额度和费用仍由你的上游账号承担。本教程遵循来源限制，不将 Claude 消费者账号通过账号授权接入该工具。其他供应商也需核对当前政策和允许的接入方式，不能仅看软件是否提供登录按钮。"
+            },
+            {
+              "q": "接口返回 401，或者模型列表为空，分别查什么？",
+              "a": "401 先查调用时是否用了 API Key、是否误填管理中心 Key、是否带了空格。列表为空或调用报错，再查上游认证、供应商设置、模型权限和额度。两种 Key 用途不同。"
+            },
+            {
+              "q": "OAuth 后跳到打不开的 localhost，要把网址发给 AI 吗？",
+              "a": "先保留页面，按管理中心该次授权流程的提示回填完整地址。回调可能带一次性授权信息，只交回发起流程的可信管理页面，避免进入聊天或公开截图。"
+            },
+            {
+              "q": "客户端显示 1000 GB，就代表套餐有 1 TB 吗？",
+              "a": "不代表。那可能只是默认显示参数。核对商家真实额度、重置日、单双向计费及本月已用量，再按上游方法校准；账单与停机规则以服务商后台为准。"
+            },
+            {
+              "q": "服务器全部 PASS，但我仍连不上怎么办？",
+              "a": "先比较不同本地网络和两个节点，再核对商家状态、流量及目标服务。服务器侧检查无法证明每条网络路径可达；多个网络均失败时，结合日志和商家反馈判断路由或 IP 限制，再考虑换 IP。"
+            },
+            {
+              "q": "换电脑、登录信息丢失或订阅泄露，能恢复吗？",
+              "a": "仍有 SSH 权限时，可以重新导出登录信息，并安全迁移私钥及对应 SSH 配置。私钥也丢失时从商家救援控制台恢复。订阅泄露需要轮换订阅并更新所有设备，不能只把旧地址从自己手机删掉。"
+            }
+          ]
+        },
+        {
+          "label": "名词解释",
+          "items": [
+            {
+              "q": "VPS",
+              "a": "从服务商租用、可远程管理的虚拟服务器。本教程把它作为你自己的线路出口和接口运行环境。"
+            },
+            {
+              "q": "公网 IPv4",
+              "a": "可从互联网访问的 IPv4 地址。本方案要求服务器有独立公网 IPv4，不使用仅有端口映射的 NAT 套餐。"
+            },
+            {
+              "q": "SSH",
+              "a": "加密的远程登录方式。它通过指定用户、地址和端口连接服务器，可用密码或密钥认证。"
+            },
+            {
+              "q": "root",
+              "a": "Linux 的最高权限用户。商家也可能提供其他有管理权限的用户，应按实际开通信息填写。"
+            },
+            {
+              "q": "SSH 密钥",
+              "a": "一对用于身份认证的密钥；公钥可放服务器，私钥留在自己的设备上并妥善备份，不能公开。"
+            },
+            {
+              "q": "SSH 别名",
+              "a": "写在本机 SSH 配置中的简短名称，用来关联一台服务器的地址、端口、用户和密钥。"
+            },
+            {
+              "q": "WSL",
+              "a": "Windows 上的 Linux 环境。本教程在其中的 Ubuntu 终端运行 bash 和相关工具，它与远端 VPS 是两套系统。"
+            },
+            {
+              "q": "节点",
+              "a": "客户端连接服务器的一组协议、地址、端口和认证参数。两个节点不一定是两台服务器。"
+            },
+            {
+              "q": "订阅",
+              "a": "客户端获取节点与规则的地址。持有完整地址通常就能取得相应线路信息，应按秘密保管。"
+            },
+            {
+              "q": "规则模式",
+              "a": "按域名、地址等规则选择直连或代理。它允许不同服务使用不同路径，需要结合实际规则理解检测结果。"
+            },
+            {
+              "q": "TUN / 虚拟网卡",
+              "a": "通过虚拟网络接口接管流量，再交给客户端处理和分流。是否正确工作需要用实际请求核对。"
+            },
+            {
+              "q": "DNS",
+              "a": "把域名转换为 IP 等记录的查询机制。DNS 查询与网页访问可能走不同路径，所以要单独检查。"
+            },
+            {
+              "q": "WebRTC",
+              "a": "浏览器用于实时音视频等功能的技术，可能通过 UDP 和 STUN 获取公网候选地址，与普通网页代理行为不同。"
+            },
+            {
+              "q": "IP 证书",
+              "a": "证书中直接包含服务器 IP 的 HTTPS 证书。本方案使用 Let’s Encrypt 签发的 IP 证书，因此无需购买域名。"
+            },
+            {
+              "q": "Reality / TLS 节点",
+              "a": "上游在同一台 VPS 上提供的两种连接节点，分别使用其配置的协议与证书方案，可手动切换测试。"
+            },
+            {
+              "q": "CLIProxyAPI",
+              "a": "把已获准使用的上游模型服务接到统一接口的中间层。它本身不提供模型额度，也不替代账号政策。"
+            },
+            {
+              "q": "Base URL",
+              "a": "模型工具连接的接口基础地址。客户端有时自动补路径，填写时要避免重复出现 /v1。"
+            },
+            {
+              "q": "API Key / 管理 Key",
+              "a": "API Key 用于模型请求，管理 Key 用于管理中心，两者用途分开。泄露后应按对应用途轮换。"
+            }
+          ]
+        }
+      ],
+      "index": 32
+    }
+  ],
+  "slug": "vps",
+  "category": "coding"
+};
+</script>
+<script src="../assets/g-engine.js?v=42c616d414" defer></script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="自托管 AI 对话面板（OpenWebUI）：一个属于自己的 ChatGPT。每一步配截图，跟着做就行。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#6459d9">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='18' fill='%236459d9' stroke='%231a1830' stroke-width='4'/%3E%3Cpath d='M20 24h24M20 32h24M20 40h14' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>自托管 AI 对话面板（OpenWebUI） · Plus Guide</title>
+<link rel="preload" href="../assets/pg-heading-900.woff2?v=c11862cc4b" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/g-guide.css?v=74702c1566">
+</head>
+<!--
+  G 风格教程页外壳。由 ai-guides/_src/build.py --g 生成，不要直接改生成后的页面：
+  样式改 ai-guides/assets/g-guide.css，交互改 ai-guides/assets/g-engine.js，
+  这个外壳改 ai-guides/assets/g-page.html，内容改 ai-guides/guides/<slug>.js。
+-->
+<body>
+<div id="guideShell">
+<a class="skip" href="#stepTitle">跳到当前步骤</a>
+<header class="top">
+  <div class="top-in">
+    <a class="mark" id="homeLink" href="../" aria-label="Plus Guide 首页">plus<i>.</i>guide</a>
+    <span class="crumb"><span class="cat"><a id="catLink" href="../"></a> / </span><b id="guideTitle">自托管 AI 对话面板（OpenWebUI）</b></span>
+    <div class="top-actions">
+      <a class="btn btn-sm" id="allLink" href="../#tutorials" aria-label="全部教程"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>全部教程</span></a>
+    </div>
+  </div>
+</header>
+
+<details class="mobile-toc" id="mobileToc">
+  <summary><span id="mProgText">第 1 步</span><span class="track" aria-hidden="true"><span class="fill" id="mFill" style="display:block"></span></span><span>步骤</span></summary>
+  <nav class="toc" id="mToc" aria-label="本篇步骤"></nav>
+</details>
+
+<div class="layout">
+  <aside class="side" aria-label="本篇步骤">
+    <div class="side-inner">
+      <div class="prog">
+        <div class="prog-row"><span>进度</span><b id="progText">第 1 步</b></div>
+        <div class="track" role="progressbar" id="progBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="教程进度"><div class="fill" id="fill"></div></div>
+      </div>
+      <nav class="toc first" id="toc" aria-label="步骤目录"></nav>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="main-in">
+
+      <article class="step" id="step" aria-live="polite"><h1 id="stepTitle" tabindex="-1">自托管 AI 对话面板（OpenWebUI）</h1><p class="intro">正在加载内容……如果这行字一直在，说明页面脚本没跑起来，刷新一次试试。</p></article>
+    </div>
+  </main>
+
+  <aside class="rail" aria-label="帮助">
+    <div class="rail-inner">
+      <section class="box box-coach" id="coachBox">
+        <span class="tag" aria-hidden="true"><span class="sticker">小提示</span></span>
+        <h2>这一步的小提示</h2>
+        <p id="coach"></p>
+      </section>
+      <section class="box box-help">
+        <span class="tag" aria-hidden="true"><span class="sticker">别硬扛</span></span>
+        <h2>卡住了？</h2>
+        <p>进群说明教程名、做到第几步和报错，截图先遮住邮箱、密码和验证码。</p>
+        <a class="btn btn-ink btn-sm" href="https://t.me/+_lOsXtUCD9MxNzY1" target="_blank" rel="noopener noreferrer">打开 Telegram 群</a>
+        <details><summary>扫码进群</summary><img src="../ai-group-qr.png?v=5c146bd70c" alt="AI 交流群二维码" width="200" height="200" loading="lazy"></details>
+      </section>
+      <section class="box">
+        <h2>本机记录</h2>
+        <p class="save" id="saveStatus"><i aria-hidden="true"></i>进度自动保存在这个浏览器</p>
+        <div class="reset-row" id="resetRow"><button class="btn btn-sm" type="button" id="resetBtn">重新开始</button></div>
+      </section>
+    </div>
+  </aside>
+</div>
+</div>
+
+<main class="access" id="accessPanel" hidden></main>
+<dialog class="gate-dialog" id="gateDialog" aria-labelledby="gateTitle" aria-describedby="gateLead"></dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog class="img-dialog" id="imgDialog" aria-labelledby="imgCaption">
+  <div class="img-bar"><span id="imgCaption"></span><button class="btn btn-sm" type="button" id="imgClose">关闭</button></div>
+  <div class="img-scroll"><img id="imgFull" alt=""></div>
+</dialog>
+
+<script>
+window.AI_GUIDE_SLUG = 'openwebui';
+window.AI_GUIDE = {category: "tools",
+  index: '10',
+  slug: 'openwebui',
+  title: '自托管 AI 对话面板（OpenWebUI）',
+  subtitle: '一个属于自己的 ChatGPT',
+  phases: [
+    { title: '部署面板', copy: 'Docker 起容器' },
+    { title: '接入中转', copy: '地址 + 密钥' },
+    { title: '开始使用', copy: '面板功能随便玩' },
+    { title: '进阶域名', copy: '可选，做 https 访问' }
+  ],
+  inputs: [
+    { key: 'vpsIp', label: 'VPS 公网 IP', short: 'VPS IP', placeholder: '123.45.67.89', hint: '在 VPS 商家面板的实例详情里能看到。', example: '123.45.67.89' },
+    { key: 'cpaUrl', label: '中转站地址', short: '中转地址', placeholder: 'https://你的网关地址/v1', hint: '你的 CPA 反代或自建网关地址，一般以 /v1 结尾。', example: 'http://1.2.3.4:8317/v1' },
+    { key: 'cpaKey', label: '中转站密钥', short: '中转密钥', placeholder: '你的访问密钥', hint: '中转站发的密钥，填进面板后由它代你调用。', example: 'sk-mygw-9f3c1a7b' },
+    { key: 'domain', label: '面板域名', short: '面板域名', optional: true, placeholder: 'chat.你的域名.com', hint: '只有做进阶的 HTTPS 步骤才需要，没准备就留空。' }
+  ],
+  steps: [
+    {
+      phase: 0,
+      kind: 'info',
+      short: '这是什么',
+      title: 'OpenWebUI 是一个开源的对话面板',
+      intro: '它开源、能自托管、可以扩展：支持任何 OpenAI 兼容接口（你自己的 CPA 反代、Ollama 本地模型等），自带账号管理、对话历史、图像生成、知识库和插件。最重要的是，数据 100% 在你自己的服务器上。',
+      facts: [
+        ['服务器', 'VPS 1 核 2G 起，已经装好 Docker'],
+        ['要准备', '一个中转站地址（比如你自建的网关）'],
+        ['要准备', '中转站的访问密钥'],
+        ['可选', '一个域名：想要 https 访问时用'],
+        ['大概要多久', '半小时内能跑起来']
+      ],
+      bullets: [
+        '它的定位是「前端面板」：模型从哪来？靠你接进去的中转站或本地模型。',
+        '所以最省事的组合是：先按另一篇搭好中转网关，再把这个面板接上去。',
+        '如果还没有中转站，也可以先部署面板，之后再填地址——只是那时候还不能对话。'
+      ],
+      note: '面板本身不提供模型额度；能不能用、能用什么模型，取决于你接进去的中转站。',
+      coach: '把关系理清：面板是界面，中转站是电源。先有电，灯才亮。',
+      button: '看明白了，开始'
+    },
+    {
+      phase: 0,
+      kind: 'inputs',
+      short: '填我的参数',
+      title: '第 1 步：把服务器和中转站信息填进来',
+      intro: '面板入口、要接入的地址和密钥都会自动替换成你填的内容。域名没有就留空。',
+      coach: '中转地址填到 /v1 为止；密钥就是你在中转站里用的那个。',
+      button: '保存，继续'
+    },
+    {
+      phase: 0,
+      kind: 'task',
+      short: '部署面板',
+      title: '第 2 步：用一条命令把面板跑起来',
+      intro: 'OpenWebUI 官方提供现成镜像，一条 docker 命令就能启动。数据存在一个命名卷里，容器重建也不会丢。',
+      code: [
+        {
+          lang: 'bash',
+          caption: '官方镜像，直接启动',
+          text: [
+            'docker run -d \\',
+            '  --name openwebui \\',
+            '  -p 3000:8080 \\',
+            '  -v openwebui-data:/app/backend/data \\',
+            '  --restart unless-stopped \\',
+            '  ghcr.io/open-webui/open-webui:main',
+            '',
+            '# 看一眼有没有起来',
+            'docker ps --filter name=openwebui'
+          ]
+        }
+      ],
+      bullets: [
+        '端口映射 3000 → 容器内的 8080，所以面板地址是 http://你的IP:3000。',
+        '数据卷 openwebui-data 存对话记录、账号和上传的文件，别随手删它。',
+        '第一次拉镜像会比较大，耐心等它下载完；docker ps 里状态 Up 就是好了。'
+      ],
+      links: [{ label: 'OpenWebUI 官方文档', url: 'https://docs.openwebui.com/' }],
+      note: '镜像标签用 main 会跟随官方最新构建；想要更稳，可以按官方文档换成固定版本标签。',
+      coach: '这条命令里有三个关键点：端口 3000、数据卷、开机自动重启。',
+      seeAlso: [
+        { title: '07 VPS 增大内存（SWAP）', url: './07-swap-memory.html', why: '1 核 1G 跑面板会紧张，先垫一层 SWAP 再装', icon: 'server' },
+        { title: '02 搭建商业化 AI 中转站（New-API）', url: './02-new-api.html', why: 'New-API 默认也用 3000 端口，同一台机器上要错开', icon: 'chip' }
+      ],
+      button: '容器起来了'
+    },
+    {
+      phase: 0,
+      kind: 'task',
+      short: '建管理员',
+      title: '第 3 步：第一次打开，创建管理员账号',
+      intro: '浏览器打开面板地址，第一个注册的账号就是管理员。',
+      links: [{ label: '打开你的面板', url: 'http://{{ vpsIp }}:3000' }],
+      bullets: [
+        '打开上面的地址，按页面提示创建账号——这个账号就是管理员。',
+        '密码设长一点：面板一旦放到公网，登录页是直接暴露的。',
+        '打不开先检查 VPS 安全组和系统防火墙有没有放行 3000 端口。'
+      ],
+      warn: '面板默认是「谁先注册谁是管理员」。建好之后如果还要对外开放，建议在设置里关掉公开注册，只给自己开账号。',
+      coach: '这一步顺手把「关闭公开注册」也定了，省得以后忘了。',
+      button: '管理员建好了'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '接入中转站',
+      title: '第 4 步：把中转站接进面板',
+      intro: '在面板设置里添加一个 OpenAI 兼容接口，填入你的地址和密钥，面板就能调用模型了。',
+      facts: [
+        ['Base URL', '{{ cpaUrl }}'],
+        ['API Key', '{{ cpaKey }}'],
+        ['保存位置', '设置 → 连接（Connections）→ 添加 OpenAI 兼容接口']
+      ],
+      bullets: [
+        '进入设置 → 连接，添加一个 OpenAI 兼容的连接（OpenAI API / OpenAI-compatible）。',
+        'Base URL 填 {{ cpaUrl }}，API Key 填你的中转站密钥。',
+        '保存后点测试 / 刷新模型列表：能列出模型，就说明接通了。',
+        '回到对话界面，左上角选择一个模型，发一句话验证。'
+      ],
+      note: '如果列表是空的：检查地址末尾是不是多加了 /v1、密钥有没有复制完整；也可以点一下刷新按钮重新拉取模型列表。',
+      coach: '面板这里只需要三个信息：地址、密钥、模型；前两个你填过了。',
+      seeAlso: [
+        { title: '01 搭建个人 AI 中转网关（CLIProxyAPI）', url: './01-cli-proxy-api.html', why: '还没有可接的地址？先用这篇搭一个网关，再回来填', icon: 'key' }
+      ],
+      button: '模型列表出来了'
+    },
+    {
+      phase: 2,
+      kind: 'task',
+      short: '开始使用',
+      title: '第 5 步：把面板用起来',
+      intro: '到这一步就有一个自己的对话面板了。除了聊天，还有几个值得试的功能。',
+      bullets: [
+        '像用 ChatGPT 一样对话：支持历史记录、多个会话，数据都在你自己服务器上。',
+        '图像生成：在设置里开启对应功能，接入图像模型后可以在对话里直接生成图片。',
+        '知识库：上传文档后，让模型基于你的资料回答（这就是常说的 RAG）。',
+        '插件与扩展：设置里可以安装和管理插件，扩展搜索、工具调用等能力。'
+      ],
+      tip: '建议顺手把「公开注册」关掉，并在设置里给自己固定一个默认模型，省得每次手动选。',
+      coach: '先跑通对话，再去玩知识库和插件；一次加太多功能容易乱。',
+      button: '用起来了，继续'
+    },
+    {
+      phase: 2,
+      kind: 'choice',
+      short: '要不要配域名',
+      title: '第 6 步：要做域名和 HTTPS 吗？',
+      intro: '只在局域网或自己临时用，可以直接 IP 访问。如果要在外面长期用、或者给别人用，建议配域名和证书。',
+      coach: '可以以后再做，面板本身已经能用了。',
+      choices: [
+        { title: '现在就配', copy: '我准备好了域名，想用 https 访问面板', value: 'yes', icon: 'globe', next: 7 },
+        { title: '先跳过', copy: '先用 IP 访问，够用了', value: 'skip', icon: 'arrow', next: 8 }
+      ],
+      hint: '跳过也不影响已经做好的部分'
+    },
+    {
+      phase: 3,
+      kind: 'task',
+      short: '域名 + HTTPS',
+      title: '进阶：用反向代理给面板配上域名',
+      intro: '思路和给中转站配域名一样：解析域名、反向代理到 3000 端口、申请证书。',
+      bullets: [
+        '把 {{ domain }} 解析到你的 VPS 公网 IP（{{ vpsIp }}）。',
+        '在 VPS 上装 Nginx Proxy Manager（或你熟悉的其它反向代理）。',
+        '新建代理：域名填 {{ domain }}，转发到本机 3000 端口。',
+        '为域名申请证书并开启 HTTPS、打开强制跳转。',
+        '配好后用 https://{{ domain }} 访问面板，原来的 IP 访问可以保留或关闭。'
+      ],
+      note: '反向代理要允许 WebSocket 和较长的超时时间，否则对话流式输出可能中断。',
+      coach: '域名 → 反代 → 3000 端口 → 证书，四步和别的网站一样。',
+      button: 'HTTPS 配好了，完成'
+    },
+    {
+      phase: 3,
+      kind: 'done',
+      short: '完成与问答',
+      title: '搞定，你有了一个自己的对话面板',
+      intro: '面板跑在你自己服务器上，接的是你自己的中转站，对话记录和上传的资料都不经过第三方面板服务。',
+      doneGroups: [
+        {
+          title: '收尾：这几件事只有你能做',
+          items: [
+            '确认已经在设置里关闭公开注册，只保留自己的账号',
+            '记下面板地址、管理员密码和中转站信息，存在密码管理器里',
+            '定个备份习惯：备份数据卷（docker volume）或容器里的 /app/backend/data 目录',
+            '如果面板放到公网，确认已经配好 HTTPS'
+          ]
+        }
+      ],
+      faqGroups: [
+        {
+          label: '部署',
+          items: [
+            { q: '1 核 2G 跑得动吗？', a: '面板本身能吃下；加上对话时的上下文处理，2G 是比较舒服的起点。1G 的机器跑起来会比较紧张，可以先用 SWAP 顶一阵，长期还是建议 2G 以上。' },
+            { q: '数据存在哪里？怎么备份？', a: '都在容器的 /app/backend/data 目录，命令里映射到了 openwebui-data 这个卷。备份就是把这一份数据打包；恢复时放回去再启动容器。' },
+            { q: '镜像太大、拉取很慢？', a: '第一次下载确实大，换一个网络环境或者晚点再试；也可以用 docker pull 单独先拉镜像，看进度。' },
+            { q: '想升级面板版本？', a: '拉新镜像、删掉旧容器、用同样的命令重建，数据在卷里不会丢——前提是那条 -v openwebui-data:/app/backend/data 别改。' }
+          ]
+        },
+        {
+          label: '接入与使用',
+          items: [
+            { q: '保存后模型列表是空的？', a: '先点刷新；还是空的话检查 Base URL（末尾只保留一个 /v1）和密钥；再去中转站确认它自己有可用模型。' },
+            { q: '对话报错或中途断开？', a: '多数是链路问题：确认面板能访问中转站（在服务器上 curl 一下地址）；如果套了反向代理，确认允许 WebSocket 和长超时。' },
+            { q: '知识库怎么用？', a: '在设置里开启文档上传，把资料传进去，然后在对话里选择该知识库提问。文件越多越慢，按需要传。' },
+            { q: '能不能多人一起用？', a: '可以，面板自带账号管理。但要注意：模型额度来自你的中转站，多一个人用就多一份消耗；对外开放前先在中转站侧设好限额。' }
+          ]
+        },
+        {
+          label: '安全',
+          items: [
+            { q: '直接放公网安全吗？', a: '不建议裸奔。至少做到：关掉公开注册、管理员用强密码、配 HTTPS；更稳妥的是只允许你自己的网络访问（安全组限制来源 IP）。' },
+            { q: '接进来的密钥安全吗？', a: '密钥保存在你服务器的面板数据库里，只在你自己的机器上。别把面板的管理员权限给别人，也别忘了定期轮换中转站密钥。' }
+          ]
+        }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../assets/g-engine.js?v=42c616d414" defer></script>
+</body>
+</html>

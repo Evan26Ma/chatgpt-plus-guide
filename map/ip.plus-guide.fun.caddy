@@ -1,0 +1,23 @@
+ip.plus-guide.fun {
+	root * /var/www/ip.plus-guide.fun
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		-Server
+	}
+
+	@documents path / /*.html
+	header @documents Cache-Control "no-store"
+	@code path /*.js /*.css
+	header @code Cache-Control "no-store"
+	@images path /*.png /*.jpg /*.webp
+	header @images Cache-Control "public, max-age=3600, must-revalidate"
+
+	redir /roogoo-card.html https://map.plus-guide.fun/guides/15-roogoo-card.html 308
+	file_server
+}

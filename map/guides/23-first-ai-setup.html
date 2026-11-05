@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="第一次体验 AI：下载、安装与 API 配置：豆包 / WorkBuddy / ZCode，选一款，跟着做就好。。每一步配截图，跟着做就行。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#6459d9">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='18' fill='%236459d9' stroke='%231a1830' stroke-width='4'/%3E%3Cpath d='M20 24h24M20 32h24M20 40h14' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>第一次体验 AI：下载、安装与 API 配置 · Plus Guide</title>
+<link rel="preload" href="../assets/pg-heading-900.woff2?v=c11862cc4b" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/g-guide.css?v=74702c1566">
+</head>
+<!--
+  G 风格教程页外壳。由 ai-guides/_src/build.py --g 生成，不要直接改生成后的页面：
+  样式改 ai-guides/assets/g-guide.css，交互改 ai-guides/assets/g-engine.js，
+  这个外壳改 ai-guides/assets/g-page.html，内容改 ai-guides/guides/<slug>.js。
+-->
+<body>
+<div id="guideShell">
+<a class="skip" href="#stepTitle">跳到当前步骤</a>
+<header class="top">
+  <div class="top-in">
+    <a class="mark" id="homeLink" href="../" aria-label="Plus Guide 首页">plus<i>.</i>guide</a>
+    <span class="crumb"><span class="cat"><a id="catLink" href="../"></a> / </span><b id="guideTitle">第一次体验 AI：下载、安装与 API 配置</b></span>
+    <div class="top-actions">
+      <a class="btn btn-sm" id="allLink" href="../#tutorials" aria-label="全部教程"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>全部教程</span></a>
+    </div>
+  </div>
+</header>
+
+<details class="mobile-toc" id="mobileToc">
+  <summary><span id="mProgText">第 1 步</span><span class="track" aria-hidden="true"><span class="fill" id="mFill" style="display:block"></span></span><span>步骤</span></summary>
+  <nav class="toc" id="mToc" aria-label="本篇步骤"></nav>
+</details>
+
+<div class="layout">
+  <aside class="side" aria-label="本篇步骤">
+    <div class="side-inner">
+      <div class="prog">
+        <div class="prog-row"><span>进度</span><b id="progText">第 1 步</b></div>
+        <div class="track" role="progressbar" id="progBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="教程进度"><div class="fill" id="fill"></div></div>
+      </div>
+      <nav class="toc first" id="toc" aria-label="步骤目录"></nav>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="main-in">
+
+      <article class="step" id="step" aria-live="polite"><h1 id="stepTitle" tabindex="-1">第一次体验 AI：下载、安装与 API 配置</h1><p class="intro">正在加载内容……如果这行字一直在，说明页面脚本没跑起来，刷新一次试试。</p></article>
+    </div>
+  </main>
+
+  <aside class="rail" aria-label="帮助">
+    <div class="rail-inner">
+      <section class="box box-coach" id="coachBox">
+        <span class="tag" aria-hidden="true"><span class="sticker">小提示</span></span>
+        <h2>这一步的小提示</h2>
+        <p id="coach"></p>
+      </section>
+      <section class="box box-help">
+        <span class="tag" aria-hidden="true"><span class="sticker">别硬扛</span></span>
+        <h2>卡住了？</h2>
+        <p>进群说明教程名、做到第几步和报错，截图先遮住邮箱、密码和验证码。</p>
+        <a class="btn btn-ink btn-sm" href="https://t.me/+_lOsXtUCD9MxNzY1" target="_blank" rel="noopener noreferrer">打开 Telegram 群</a>
+        <details><summary>扫码进群</summary><img src="../ai-group-qr.png?v=5c146bd70c" alt="AI 交流群二维码" width="200" height="200" loading="lazy"></details>
+      </section>
+      <section class="box">
+        <h2>本机记录</h2>
+        <p class="save" id="saveStatus"><i aria-hidden="true"></i>进度自动保存在这个浏览器</p>
+        <div class="reset-row" id="resetRow"><button class="btn btn-sm" type="button" id="resetBtn">重新开始</button></div>
+      </section>
+    </div>
+  </aside>
+</div>
+</div>
+
+<main class="access" id="accessPanel" hidden></main>
+<dialog class="gate-dialog" id="gateDialog" aria-labelledby="gateTitle" aria-describedby="gateLead"></dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog class="img-dialog" id="imgDialog" aria-labelledby="imgCaption">
+  <div class="img-bar"><span id="imgCaption"></span><button class="btn btn-sm" type="button" id="imgClose">关闭</button></div>
+  <div class="img-scroll"><img id="imgFull" alt=""></div>
+</dialog>
+
+<script>
+window.AI_GUIDE_SLUG = 'first-ai-setup';
+window.AI_GUIDE = {
+  "index": "23",
+  "slug": "first-ai-setup",
+  "category": "tools",
+  "title": "第一次体验 AI：下载、安装与 API 配置",
+  "subtitle": "豆包 / WorkBuddy / ZCode，选一款，跟着做就好。",
+  "names": {
+    "doubao": "豆包",
+    "workbuddy": "WorkBuddy",
+    "zcode": "ZCode"
+  },
+  "legacyStorageKeys": [
+    "plusGuideFirstAISetupV1"
+  ],
+  "migrateProgress": function migrateFirstAIProgress(value, key) {
+  if (key !== 'plusGuideFirstAISetupV1' || !value || typeof value !== 'object' || Array.isArray(value)) return {};
+  const byId = new Map(this.steps.map((step, index) => [step.id, index]));
+  const at = id => typeof id === 'string' ? byId.get(id) : undefined;
+  const indices = list => Array.isArray(list) ? list.map(at).filter(Number.isInteger) : [];
+  const history = indices(value.history).slice(-60);
+  const done = Object.fromEntries(indices(value.read).map(index => [index, true]));
+  let current = at(value.current) ?? 0;
+  const currentId = this.steps[current].id;
+  const route = ['doubao', 'workbuddy', 'zcode'].includes(value.route) ? value.route
+    : ['doubao', 'workbuddy', 'zcode'].find(name => currentId.startsWith(name + '-'));
+  let zpath = ['account', 'api'].includes(value.zpath) ? value.zpath : null;
+  if (!zpath && currentId.startsWith('zcode-api-')) zpath = 'api';
+  if (!zpath && currentId === 'zcode-account') zpath = 'account';
+  if (!zpath && route === 'zcode') {
+    const previous = [...history].reverse().map(index => this.steps[index].id);
+    const connection = previous.find(id => id.startsWith('zcode-api-') || id === 'zcode-account');
+    if (connection) zpath = connection === 'zcode-account' ? 'account' : 'api';
+  }
+  const answers = {};
+  if (route) answers[1] = route;
+  if (route === 'zcode' && zpath) answers[17] = zpath;
+  const checks = {};
+  this.steps.forEach((step, index) => {
+    if (step.checks?.length) checks[index] = step.checks.map((_, check) => value.checks?.[step.id + ':' + check] === true);
+  });
+  if (value.finishReached === true && route && (route !== 'zcode' || zpath)) {
+    done[route === 'doubao' ? 6 : route === 'workbuddy' ? 13 : 24] = true;
+  }
+  const visible = this.route(answers);
+  if (!visible.includes(current)) current = route ? 1 : 0;
+  return { current, history, done, answers, checks, ticks: {}, values: {} };
+},
+  "route": function firstAIRoute(answers) {
+  const route = answers[1];
+  const result = [0, 1];
+  if (route === 'doubao') return result.concat([2, 3, 4, 5, 6, 25]);
+  if (route === 'workbuddy') return result.concat([7, 8, 9, 10, 11, 12, 13, 25]);
+  if (route !== 'zcode') return result;
+  result.push(14, 15, 16, 17);
+  if (answers[17] === 'account') result.push(18);
+  else if (answers[17] === 'api') result.push(19, 20, 21);
+  else return result;
+  return result.concat([22, 23, 24, 25]);
+},
+  "phases": [
+    {
+      "title": "开始前",
+      "copy": "选择你的工具"
+    },
+    {
+      "title": "豆包",
+      "copy": "第一次具体提问"
+    },
+    {
+      "title": "WorkBuddy",
+      "copy": "完成办公任务"
+    },
+    {
+      "title": "ZCode",
+      "copy": "授权或 API，实际验证"
+    },
+    {
+      "title": "阅读收尾",
+      "copy": "保持人工核对"
+    }
+  ],
+  "steps": [
+    {
+      "id": "start",
+      "short": "选择起点",
+      "caption": "先选一款，不重复安装",
+      "title": "先选一款，跟着做就好",
+      "html": "<p>不用把三款软件都装一遍。选一款符合你当前需要的，每次只看一个操作，做完再继续。</p>\n<div class=\"box block\">\n<h3>开始前准备</h3>\n<ul>\n<li>一台 Windows 或 macOS 电脑；WorkBuddy 本篇以 Windows 10 及以上 x64 为例。</li>\n<li>能打开软件官方网站的网络，以及本人使用的账号。</li>\n<li>第一次体验<strong>不需要 API Key</strong>。只有想连接自己的模型服务时，才走 API 分支。</li>\n<li>不要准备真实密钥用于截图；API Key 只填进自己电脑的软件设置里。</li>\n</ul>\n</div>\n<div class=\"note tip\">\n<p><strong>作者推荐 ZCode</strong>：适合希望继续探索 AI 助手、项目文件和不同模型来源的读者。只想先聊一次，豆包更省事；主要处理办公任务，可以先试 WorkBuddy。</p>\n</div>",
+      "index": 0,
+      "phase": 0,
+      "kind": "info",
+      "next": 1,
+      "button": "选择我的第一款工具"
+    },
+    {
+      "id": "choose",
+      "short": "选择工具",
+      "caption": "豆包 / WorkBuddy / ZCode",
+      "title": "第 1 步：选一条适合你的路线",
+      "html": "\n<p>选定后，左侧目录只显示这条路线。选错了也可以回到本页重选，不影响软件里的账号和设置。</p>",
+      "index": 1,
+      "phase": 0,
+      "kind": "choice",
+      "choices": [
+        {
+          "title": "选择豆包",
+          "copy": "豆包 · 先聊起来：下载安装或直接用网页版，登录后完成第一次对话。不需要配置 API。",
+          "value": "doubao",
+          "icon": "spark",
+          "next": 2
+        },
+        {
+          "title": "选择 WorkBuddy",
+          "copy": "WorkBuddy · 做办公任务：登录后新建任务，让 AI 围绕材料整理结果；自己的模型 API 是可选分支。",
+          "value": "workbuddy",
+          "icon": "grid",
+          "next": 7
+        },
+        {
+          "title": "选择 ZCode",
+          "copy": "ZCode · 作者推荐：从安装、工作区到账号授权；再按需配置自己的模型 API，并完成一次实际验证。",
+          "value": "zcode",
+          "icon": "terminal",
+          "next": 14
+        }
+      ]
+    },
+    {
+      "id": "doubao-download",
+      "short": "下载豆包",
+      "caption": "官方网站或网页版",
+      "title": "豆包 · 打开官方下载页",
+      "html": "<p>打开 <a href=\"https://www.doubao.com/download/desktop\" target=\"_blank\" rel=\"noopener noreferrer\">豆包桌面版官方下载页</a>，点击页面对应电脑的下载按钮。只用官网提供的安装包，不使用下载站或来路不明的网盘转载包。</p>\n<figure class=\"shot\"><button  type=\"button\" aria-label=\"放大查看：豆包官方客户端下载页面\" data-cap=\"图 1 · 豆包官方下载页。页面样式和按钮可能更新，以当前官网为准。\" data-img=\"../assets/guides/first-ai/first-ai-doubao-home.webp?v=4b37bbc4f8\"><img src=\"../assets/guides/first-ai/first-ai-doubao-home.webp?v=4b37bbc4f8\" alt=\"豆包官方客户端下载页面\" loading=\"lazy\" decoding=\"async\"><span class=\"zoom\" aria-hidden=\"true\">点击放大</span></button><figcaption>图 1 · 豆包官方下载页。页面样式和按钮可能更新，以当前官网为准。</figcaption></figure>\n<p>不想安装也可以打开 <a href=\"https://www.doubao.com/\" target=\"_blank\" rel=\"noopener noreferrer\">豆包网页版</a>，登录后直接体验，后面的提问方法相同。</p>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 2,
+      "phase": 1,
+      "kind": "info",
+      "next": 3,
+      "entryAnswers": {
+        "1": "doubao"
+      }
+    },
+    {
+      "id": "doubao-install",
+      "short": "安装登录",
+      "caption": "看到对话输入框",
+      "title": "豆包 · 安装并登录",
+      "html": "<ol>\n<li>下载完成后，打开浏览器的下载目录。</li>\n<li>双击安装程序，按页面提示完成安装。</li>\n<li>启动豆包，按实际页面选择本人可用的登录方式。</li>\n<li>看到对话输入框，就说明这一步完成了。</li>\n</ol>\n<div class=\"note\">\n<p>不同系统的安装提示可能不同。遇到系统安全提示时，先核对安装包来源和开发者信息，不要为了安装而关闭整个系统的安全防护。</p>\n</div>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 3,
+      "phase": 1,
+      "kind": "info",
+      "next": 4,
+      "entryAnswers": {
+        "1": "doubao"
+      }
+    },
+    {
+      "id": "doubao-first",
+      "short": "第一次提问",
+      "caption": "给一个具体任务",
+      "title": "豆包 · 发出第一个具体任务",
+      "html": "<p>不要只发“你好”。复制下面这段，让 AI 给你一个能看见的结果：</p>\n<pre><code class=\"language-text\">我以前没有用过 AI。请用通俗的话告诉我，AI 可以帮我做哪 5 件日常事情。每件事给一个短例子，并用编号列表展示。\n</code></pre>\n<p>发送后检查：是不是五件事、例子是否能看懂、有没有按照编号列表输出。每次模型回答可能不同，不需要追求与别人的截图一模一样。</p>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 4,
+      "phase": 1,
+      "kind": "info",
+      "next": 5,
+      "entryAnswers": {
+        "1": "doubao"
+      }
+    },
+    {
+      "id": "doubao-refine",
+      "short": "补充要求",
+      "caption": "在同一个对话里修改",
+      "title": "豆包 · 在同一个对话里补充要求",
+      "html": "<p>第一次回答不满意，不用重新开对话，接着发送：</p>\n<pre><code class=\"language-text\">内容保留，但再简单一点。每条不超过 40 字，最后给我一个今天就能尝试的小任务。\n</code></pre>\n<p>以后可以按这个顺序补充要求：</p>\n<ul>\n<li><strong>背景</strong>：我为什么要做这件事。</li>\n<li><strong>材料</strong>：只根据哪段文字或哪个文件。</li>\n<li><strong>格式</strong>：要表格、清单、摘要还是草稿。</li>\n<li><strong>限制</strong>：字数多少，哪些内容不能猜。</li>\n</ul>\n<div class=\"note warn\">\n<p>日期、价格、政策和引用等内容要回到原始来源核对。不要上传密码、身份证号、API Key 或公司机密。</p>\n</div>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 5,
+      "phase": 1,
+      "kind": "info",
+      "next": 6,
+      "entryAnswers": {
+        "1": "doubao"
+      }
+    },
+    {
+      "id": "doubao-check",
+      "short": "完成核对",
+      "caption": "四项实际体验",
+      "title": "豆包 · 确认你已经完成第一次体验",
+      "html": "\n<p>勾选你实际完成的项目，再进入完成页。</p>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 6,
+      "phase": 1,
+      "kind": "checks",
+      "checks": [
+        "我从官方页面下载了客户端，或使用了官方网页版。",
+        "我已经登录并看到对话输入框。",
+        "我发送了一个具体任务，而不是只打招呼。",
+        "我补充了格式或字数要求，并检查了修改后的回答。"
+      ],
+      "checksTitle": "完成本路线前，逐项核对",
+      "button": "完成并查看收尾",
+      "hint": "按实际情况勾选后继续",
+      "next": 25,
+      "entryAnswers": {
+        "1": "doubao"
+      }
+    },
+    {
+      "id": "workbuddy-download",
+      "short": "下载 WorkBuddy",
+      "caption": "先确认 Windows 环境",
+      "title": "WorkBuddy · 检查系统并下载",
+      "html": "<p>先确认电脑是 <strong>Windows 10 或更新版本、x64</strong>。官方安装指南不支持 Windows 7、8、8.1；ARM64 设备以当前版本说明为准。</p>\n<p>打开 <a href=\"https://www.workbuddy.cn/\" target=\"_blank\" rel=\"noopener noreferrer\">WorkBuddy 官网</a>，选择“立即下载 → Windows”。</p>\n<figure class=\"shot\"><button  type=\"button\" aria-label=\"放大查看：WorkBuddy 官方网站首页\" data-cap=\"图 2 · WorkBuddy 官网。选择 Windows 版，安装步骤以当前向导为准。\" data-img=\"../assets/guides/first-ai/first-ai-workbuddy-home.webp?v=2a3949f437\"><img src=\"../assets/guides/first-ai/first-ai-workbuddy-home.webp?v=2a3949f437\" alt=\"WorkBuddy 官方网站首页\" loading=\"lazy\" decoding=\"async\"><span class=\"zoom\" aria-hidden=\"true\">点击放大</span></button><figcaption>图 2 · WorkBuddy 官网。选择 Windows 版，安装步骤以当前向导为准。</figcaption></figure>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 7,
+      "phase": 2,
+      "kind": "info",
+      "next": 8,
+      "entryAnswers": {
+        "1": "workbuddy"
+      }
+    },
+    {
+      "id": "workbuddy-install",
+      "short": "安装软件",
+      "caption": "按安装向导操作",
+      "title": "WorkBuddy · 按向导安装",
+      "html": "<ol>\n<li>双击下载的安装包。</li>\n<li>阅读并同意协议，点击“下一步”。</li>\n<li>不熟悉安装路径时保留默认位置。</li>\n<li>确认开始菜单文件夹，建议创建桌面快捷方式。</li>\n<li>核对后点击“安装”，完成后启动 WorkBuddy。</li>\n</ol>\n<p>本步完成标志是软件正常打开，<strong>不是模型已经配置成功</strong>。</p>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 8,
+      "phase": 2,
+      "kind": "info",
+      "next": 9,
+      "entryAnswers": {
+        "1": "workbuddy"
+      }
+    },
+    {
+      "id": "workbuddy-login",
+      "short": "登录账号",
+      "caption": "个人用户从个人入口",
+      "title": "WorkBuddy · 登录个人账号",
+      "html": "<ol>\n<li>在客户端点击“登录”。</li>\n<li>浏览器打开登录页后，阅读服务协议和隐私政策。</li>\n<li>使用微信扫码，或选择页面实际提供的手机号、邮箱、SSO 等方式。</li>\n<li>个人用户选择“个人登录方式”；企业版用户按企业入口登录。</li>\n<li>页面提示成功后返回客户端。</li>\n</ol>\n<p>只使用官方内置模型时，先不用配置 API Key。后续自定义模型产生的调用费用由对应服务商收取。</p>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 9,
+      "phase": 2,
+      "kind": "info",
+      "next": 10,
+      "entryAnswers": {
+        "1": "workbuddy"
+      }
+    },
+    {
+      "id": "workbuddy-task",
+      "short": "新建任务",
+      "caption": "写清目标、材料和限制",
+      "title": "WorkBuddy · 新建第一个 PC 端任务",
+      "html": "<p>返回客户端，点击“新建任务”，创建 PC 端任务。先用教程里的文字练习，不急着上传重要文件：</p>\n<pre><code class=\"language-text\">请帮我起草一份中文工作周报，分为“本周完成、遇到的问题、下周计划”三部分。材料里没有的数据不要编造，不确定的地方标记为“待确认”。本周完成：整理产品反馈、更新帮助文档。遇到的问题：有三条反馈需要进一步确认。下周计划：完成反馈复核并发布文档。\n</code></pre>\n<p>发送后等待任务执行。涉及文件操作时，先看清楚操作范围和结果，再允许它继续处理真实资料。</p>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 10,
+      "phase": 2,
+      "kind": "info",
+      "next": 11,
+      "entryAnswers": {
+        "1": "workbuddy"
+      }
+    },
+    {
+      "id": "workbuddy-output",
+      "short": "检查结果",
+      "caption": "产物与工作空间文件",
+      "title": "WorkBuddy · 找到生成的结果",
+      "html": "<p>在右侧窗口查看结果：</p>\n<ul>\n<li>目标文件通常在 <strong>“产物”</strong> 中。</li>\n<li>其他任务文件可在 <strong>“概览 → 工作空间文件”</strong> 中查看。</li>\n<li>移动端发送的任务需在 <strong>“助理”</strong> 中查看。</li>\n</ul>\n<p>打开结果，核对它有没有包含你给的三部分，以及有没有虚构数据。能打开并检查结果，比只看到“任务完成”更重要。</p>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 11,
+      "phase": 2,
+      "kind": "info",
+      "next": 12,
+      "entryAnswers": {
+        "1": "workbuddy"
+      }
+    },
+    {
+      "id": "workbuddy-api",
+      "short": "可选模型 API",
+      "caption": "不需要可直接跳过",
+      "title": "WorkBuddy · 可选：添加自己的模型 API",
+      "html": "<p>不想配置 API，可以跳过本页。需要时进入 <strong>设置 → 模型 → 添加自定义模型</strong>：</p>\n<ol>\n<li>选择实际购买服务的供应商；没有对应项时选择自定义 / Custom。</li>\n<li>填接口 URL、自己的 API Key 和准确的模型名称。</li>\n<li>标准供应商通常会自动填写地址和模型列表，按当前页面核对。</li>\n<li>保存后回到对话模型选择器，选中刚添加的模型。</li>\n<li>发送“请只回复：模型连接成功”，用实际回复验证。</li>\n</ol>\n<div class=\"note\">\n<p>普通 OpenAI 兼容服务通常保持“自定义协议”关闭，让软件处理标准 <code>/chat/completions</code> 路径。只有服务商明确要求完整特殊路径时才开启；开启后软件会直接使用填写的 URL。</p>\n</div>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 12,
+      "phase": 2,
+      "kind": "info",
+      "next": 13,
+      "entryAnswers": {
+        "1": "workbuddy"
+      }
+    },
+    {
+      "id": "workbuddy-check",
+      "short": "完成核对",
+      "caption": "任务结果已实际检查",
+      "title": "WorkBuddy · 完成核对",
+      "html": "\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 13,
+      "phase": 2,
+      "kind": "checks",
+      "checks": [
+        "我安装了与系统匹配的版本，并成功登录。",
+        "我新建了一个 PC 端任务，知道目标和限制要写清楚。",
+        "我在“产物”或工作空间文件里找到并检查了结果。",
+        "如果配置了 API，我已核对 URL、模型名、密钥和费用，并实际验证；未配置则可跳过此项。"
+      ],
+      "checksTitle": "完成本路线前，逐项核对",
+      "button": "完成并查看收尾",
+      "hint": "按实际情况勾选后继续",
+      "next": 25,
+      "entryAnswers": {
+        "1": "workbuddy"
+      }
+    },
+    {
+      "id": "zcode-download",
+      "short": "下载 ZCode",
+      "caption": "按系统与架构选择",
+      "title": "ZCode · 从官网选择正确版本",
+      "html": "<p>打开 <a href=\"https://zcode.z.ai/cn\" target=\"_blank\" rel=\"noopener noreferrer\">ZCode 官网</a>，点击下载，或进入“查看全部下载”选择版本。</p>\n<figure class=\"shot\"><button  type=\"button\" aria-label=\"放大查看：ZCode 官方首页和 Windows 下载入口\" data-cap=\"图 3 · ZCode 官方下载入口。版本号会更新，按自己的系统架构选择。\" data-img=\"../assets/guides/first-ai/first-ai-zcode-home.webp?v=0a8ea207e9\"><img src=\"../assets/guides/first-ai/first-ai-zcode-home.webp?v=0a8ea207e9\" alt=\"ZCode 官方首页和 Windows 下载入口\" loading=\"lazy\" decoding=\"async\"><span class=\"zoom\" aria-hidden=\"true\">点击放大</span></button><figcaption>图 3 · ZCode 官方下载入口。版本号会更新，按自己的系统架构选择。</figcaption></figure>\n<ul>\n<li>普通 Windows x64 电脑：选 <strong>Windows x64</strong>。</li>\n<li>Windows ARM 设备：选 <strong>ARM64</strong>。</li>\n<li>Apple 芯片 Mac：选 <strong>Apple Silicon</strong>。</li>\n<li>Intel 芯片 Mac：选 <strong>Intel</strong>。</li>\n</ul>\n<p>不确定 Windows 架构时，先在系统信息中查看“系统类型”，不要随便选一个安装包。</p>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 14,
+      "phase": 3,
+      "kind": "info",
+      "next": 15,
+      "entryAnswers": {
+        "1": "zcode"
+      }
+    },
+    {
+      "id": "zcode-install",
+      "short": "安装启动",
+      "caption": "Windows / macOS",
+      "title": "ZCode · 安装并启动",
+      "html": "<p><strong>Windows</strong>：双击 <code>.exe</code> 安装程序，按向导完成安装，再从开始菜单或桌面快捷方式启动。</p>\n<p><strong>macOS</strong>：打开 <code>.dmg</code>，把 ZCode 拖入“应用程序 / Applications”，再从启动台打开。</p>\n<p>首次设置页选择“开始使用 ZCode”。数据迁移可以跳过；它只用于导入受支持的旧记录，不是首次体验的必要条件。</p>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 15,
+      "phase": 3,
+      "kind": "info",
+      "next": 16,
+      "entryAnswers": {
+        "1": "zcode"
+      }
+    },
+    {
+      "id": "zcode-workspace",
+      "short": "练习工作区",
+      "caption": "先选一个新的空文件夹",
+      "title": "ZCode · 新建一个练习工作区",
+      "html": "<p>选择一个项目目录作为工作区。第一次建议在容易找到的位置新建一个空文件夹，例如 <code>AI-Practice</code>，不要直接选择存有重要资料或大量私人文件的目录。</p>\n<p>工作区是 AI 这次处理文件的主要范围。后续让它读取或修改文件前，仍要看清操作内容；重要文件先备份。</p>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 16,
+      "phase": 3,
+      "kind": "info",
+      "next": 17,
+      "entryAnswers": {
+        "1": "zcode"
+      }
+    },
+    {
+      "id": "zcode-connect",
+      "short": "选择连接方式",
+      "caption": "授权或 API，不必都做",
+      "title": "ZCode · 选择连接方式",
+      "html": "<p>没有可用模型时，在欢迎页选择连接方式；已经进入应用时，点击 <strong>输入框中的模型名称 → 管理模型 → 设置 → 模型设置</strong>。</p>\n\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 17,
+      "phase": 3,
+      "kind": "choice",
+      "entryAnswers": {
+        "1": "zcode"
+      },
+      "choices": [
+        {
+          "title": "走账号授权",
+          "copy": "账号授权 · 新手推荐：连接 Z.ai 或 BigModel，按官方页面授权。不用手填接口地址。",
+          "value": "account",
+          "icon": "lock",
+          "next": 18
+        },
+        {
+          "title": "走 API 配置",
+          "copy": "API Key · 按需选择：已有模型平台 Key，或需要添加第三方模型时，走手动配置。",
+          "value": "api",
+          "icon": "key",
+          "next": 19
+        }
+      ]
+    },
+    {
+      "id": "zcode-account",
+      "short": "账号授权",
+      "caption": "新手推荐，免填地址",
+      "title": "ZCode · 用账号授权快速连接",
+      "html": "<ol>\n<li>在供应商列表选择 <strong>BigModel</strong> 或 <strong>Z.ai</strong>，以你实际使用的平台为准。</li>\n<li>按页面完成账号授权。</li>\n<li>返回模型设置，打开对应供应商的“启用”开关。</li>\n<li>在对话输入框的模型选择器中，选择账号实际可用的模型。</li>\n</ol>\n<p>默认通过编程套餐连接时会自动选择通道，不需要手填地址。若提示团队套餐未分配，需要团队管理员分配席位；这不是重新安装软件能解决的问题。</p>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 18,
+      "phase": 3,
+      "kind": "info",
+      "next": 22,
+      "entryAnswers": {
+        "1": "zcode",
+        "17": "account"
+      }
+    },
+    {
+      "id": "zcode-api-prepare",
+      "short": "准备 API 信息",
+      "caption": "地址、Key 与模型 ID",
+      "title": "ZCode · 准备 API 的三项信息",
+      "html": "<p>在你购买或开通模型服务的官方平台准备：</p>\n<ul>\n<li><strong>Base URL / 接口地址</strong>：请求发到哪里。</li>\n<li><strong>API Key</strong>：只粘贴到本机模型设置，不发给教程、群聊或公开截图。</li>\n<li><strong>模型 ID</strong>：具体调用哪个模型，以平台当前列表为准。</li>\n</ul>\n<p>软件可以免费下载，不代表 API 免费。先核对余额、额度和计费方式，再保存配置。ChatGPT Plus 等订阅也不等于自动附送 OpenAI API 额度。</p>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 19,
+      "phase": 3,
+      "kind": "info",
+      "next": 20,
+      "entryAnswers": {
+        "1": "zcode",
+        "17": "api"
+      }
+    },
+    {
+      "id": "zcode-api-bigmodel",
+      "short": "填写接口地址",
+      "caption": "套餐和端点要对应",
+      "title": "ZCode · BigModel / Z.ai 填对接口地址",
+      "html": "<p>在对应供应商页右上角把连接方式切换为 <strong>API Key</strong>，然后按实际套餐填写。</p>\n<p><strong>Coding Plan · BigModel（OpenAI 协议）</strong></p>\n<pre><code class=\"language-text\">https://open.bigmodel.cn/api/coding/paas/v4\n</code></pre>\n<p><strong>Coding Plan · Z.ai（OpenAI 协议）</strong></p>\n<pre><code class=\"language-text\">https://api.z.ai/api/coding/paas/v4\n</code></pre>\n<p><strong>资源包 / 充值余额 · BigModel</strong></p>\n<pre><code class=\"language-text\">https://open.bigmodel.cn/api/paas/v4\n</code></pre>\n<p><strong>资源包 / 充值余额 · Z.ai</strong></p>\n<pre><code class=\"language-text\">https://api.z.ai/api/paas/v4\n</code></pre>\n<div class=\"note warn\">\n<p>Coding Plan 用 <code>/api/coding/paas/v4</code>，资源包或充值余额用 <code>/api/paas/v4</code>。两类端点不能随意互换，额度也不互通。</p>\n</div>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 20,
+      "phase": 3,
+      "kind": "info",
+      "next": 21,
+      "entryAnswers": {
+        "1": "zcode",
+        "17": "api"
+      }
+    },
+    {
+      "id": "zcode-api-custom",
+      "short": "第三方供应商",
+      "caption": "协议与模型 ID 按官方资料",
+      "title": "ZCode · 添加第三方供应商",
+      "html": "<p>通用路径：<strong>模型设置 → 添加供应商 → 填名称、协议、接口地址和 API Key → 保存 → 添加模型 ID → 启用</strong>。</p>\n<p>例如 DeepSeek 的 OpenAI 兼容接口：</p>\n<pre><code class=\"language-text\">Base URL：https://api.deepseek.com/v1\n模型 ID：deepseek-chat\n</code></pre>\n<p>也可按平台需要使用 <code>deepseek-reasoner</code>。API Key 到 DeepSeek 官方平台申请，不是 ZCode 自动生成的。</p>\n<p>其他服务不要随意套用这个地址。接口协议、URL 和模型名都以对应平台官方文档为准。</p>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 21,
+      "phase": 3,
+      "kind": "info",
+      "next": 22,
+      "entryAnswers": {
+        "1": "zcode",
+        "17": "api"
+      }
+    },
+    {
+      "id": "zcode-verify",
+      "short": "实际验证",
+      "caption": "选中模型并发送任务",
+      "title": "ZCode · 选中模型并实际验证",
+      "html": "<ol>\n<li>保存并启用刚配置的供应商或账号。</li>\n<li>回到对话输入框，打开模型选择器。</li>\n<li>选中刚配置的通道和模型。</li>\n<li>发送下面这句话：</li>\n</ol>\n<pre><code class=\"language-text\">请只回复：连接成功。\n</code></pre>\n<p>收到稳定回复后，再做一个小任务：</p>\n<pre><code class=\"language-text\">请告诉我当前工作区的用途，并建议我先做哪一个无风险练习。不要修改任何文件。\n</code></pre>\n<p>能正常回复才说明这条连接基本可用。模型自述的名称不能作为唯一验证依据，要看实际选择和请求结果。</p>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 22,
+      "phase": 3,
+      "kind": "info",
+      "next": 23,
+      "entryAnswers": {
+        "1": "zcode",
+        "17": "account"
+      }
+    },
+    {
+      "id": "zcode-troubleshoot",
+      "short": "连接排错",
+      "caption": "按错误类型逐项核对",
+      "title": "ZCode · 报错时按这个顺序检查",
+      "html": "<ol>\n<li><strong>401 / 403</strong>：核对 Key 是否属于这个平台，账号是否有权限、余额或有效套餐。</li>\n<li><strong>模型不存在</strong>：补全准确的模型 ID，并确认已启用、在选择器中选中。</li>\n<li><strong>Coding Plan 异常</strong>：检查是否误用了普通 <code>/api/paas/v4</code> 端点。</li>\n<li><strong>第三方模型无响应</strong>：同时检查协议、Base URL、Key 和模型 ID，不只重填 Key。</li>\n<li><strong>代理修改未生效</strong>：按官方说明重启 ZCode；登录、SSH 等功能并不一定走该代理。</li>\n<li><strong>DeepSeek 最高思考档返回 400</strong>：部分部署不接受 <code>max</code>，可改选 <code>high</code>。</li>\n</ol>\n<p>官方排错入口：<a href=\"https://zcode.z.ai/cn/docs/qa\" target=\"_blank\" rel=\"noopener noreferrer\">ZCode 常见问题</a>。发求助截图时遮住 Key、邮箱和个人文件内容。</p>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 23,
+      "phase": 3,
+      "kind": "info",
+      "next": 24,
+      "entryAnswers": {
+        "1": "zcode",
+        "17": "account"
+      }
+    },
+    {
+      "id": "zcode-check",
+      "short": "完成核对",
+      "caption": "配置与使用边界",
+      "title": "ZCode · 完成核对",
+      "html": "\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 24,
+      "phase": 3,
+      "kind": "checks",
+      "checks": [
+        "我从官网下载了匹配系统的版本，并创建了练习工作区。",
+        "我通过账号授权或 API 配置启用了模型。",
+        "我在模型选择器中选中它，并收到实际回复。",
+        "我知道重要文件要先备份，API Key 不出现在截图和群聊里。",
+        "如果使用 Coding Plan，我已核对专用端点；不使用则可跳过此项。"
+      ],
+      "checksTitle": "完成本路线前，逐项核对",
+      "button": "完成并查看收尾",
+      "hint": "按实际情况勾选后继续",
+      "next": 25,
+      "entryAnswers": {
+        "1": "zcode",
+        "17": "account"
+      }
+    },
+    {
+      "id": "finish",
+      "short": "完成",
+      "caption": "背景、材料、格式、限制",
+      "title": "第一次体验已经完成",
+      "html": "<p>你不需要一次掌握所有功能。现在已经完成了一款工具的下载、登录、第一次任务，以及按需的模型连接。</p>\n<div class=\"box block\">\n<h3>以后每次给 AI 布置任务，记住四件事</h3>\n<ol>\n<li><strong>背景</strong>：我要做什么。</li>\n<li><strong>材料</strong>：根据哪些内容处理。</li>\n<li><strong>格式</strong>：希望怎样输出。</li>\n<li><strong>限制</strong>：哪些内容不能猜，哪些操作必须先问我。</li>\n</ol>\n</div>\n<div class=\"list-hint\">\n<p>想理解提示词、上下文和 Token，可继续看站内《AI 入门：第一次和大语言模型对话》；需要管理多个模型来源时，再看《Magpie 安装与模型切换》。以教程导航中实际上线的页面为准。</p>\n</div>\n<p>本教程整理于 2026-10-31。软件界面、模型、费用和资格以各自官方页面为准；教程不收集账号或 API Key。</p>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"choose\">重新选择工具</button></p>",
+      "index": 25,
+      "phase": 4,
+      "kind": "done"
+    }
+  ]
+};
+</script>
+<script src="../assets/g-engine.js?v=42c616d414" defer></script>
+</body>
+</html>

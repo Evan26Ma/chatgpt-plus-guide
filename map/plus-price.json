@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "country": "PH",
+  "plan": "plus",
+  "period": "month",
+  "php": "982.14",
+  "php_including_tax": "1100.00",
+  "cny": "102.55",
+  "tax": "exclusive",
+  "updated_at": "2026-11-03T04:00:00+08:00",
+  "fx_date": "2026-11-02",
+  "source": "https://gptsub.linusx.dev/",
+  "price_api": "https://gptsub.linusx.dev/api/proxy/configs/PH",
+  "exchange_api": "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json",
+  "update_schedule": "每天早上4:00（北京时间）"
+}

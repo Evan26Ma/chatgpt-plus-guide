@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Claude 账号环境配置：设备位置、出口、代理、身份与支付。每一步配截图，跟着做就行。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#6459d9">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='18' fill='%236459d9' stroke='%231a1830' stroke-width='4'/%3E%3Cpath d='M20 24h24M20 32h24M20 40h14' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>Claude 账号环境配置 · Plus Guide</title>
+<link rel="preload" href="../assets/pg-heading-900.woff2?v=c11862cc4b" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/g-guide.css?v=74702c1566">
+</head>
+<!--
+  G 风格教程页外壳。由 ai-guides/_src/build.py --g 生成，不要直接改生成后的页面：
+  样式改 ai-guides/assets/g-guide.css，交互改 ai-guides/assets/g-engine.js，
+  这个外壳改 ai-guides/assets/g-page.html，内容改 ai-guides/guides/<slug>.js。
+-->
+<body>
+<div id="guideShell">
+<a class="skip" href="#stepTitle">跳到当前步骤</a>
+<header class="top">
+  <div class="top-in">
+    <a class="mark" id="homeLink" href="../" aria-label="Plus Guide 首页">plus<i>.</i>guide</a>
+    <span class="crumb"><span class="cat"><a id="catLink" href="../"></a> / </span><b id="guideTitle">Claude 账号环境配置</b></span>
+    <div class="top-actions">
+      <a class="btn btn-sm" id="allLink" href="../#tutorials" aria-label="全部教程"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>全部教程</span></a>
+    </div>
+  </div>
+</header>
+
+<details class="mobile-toc" id="mobileToc">
+  <summary><span id="mProgText">第 1 步</span><span class="track" aria-hidden="true"><span class="fill" id="mFill" style="display:block"></span></span><span>步骤</span></summary>
+  <nav class="toc" id="mToc" aria-label="本篇步骤"></nav>
+</details>
+
+<div class="layout">
+  <aside class="side" aria-label="本篇步骤">
+    <div class="side-inner">
+      <div class="prog">
+        <div class="prog-row"><span>进度</span><b id="progText">第 1 步</b></div>
+        <div class="track" role="progressbar" id="progBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="教程进度"><div class="fill" id="fill"></div></div>
+      </div>
+      <nav class="toc first" id="toc" aria-label="步骤目录"></nav>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="main-in">
+
+      <article class="step" id="step" aria-live="polite"><h1 id="stepTitle" tabindex="-1">Claude 账号环境配置</h1><p class="intro">正在加载内容……如果这行字一直在，说明页面脚本没跑起来，刷新一次试试。</p></article>
+    </div>
+  </main>
+
+  <aside class="rail" aria-label="帮助">
+    <div class="rail-inner">
+      <section class="box box-coach" id="coachBox">
+        <span class="tag" aria-hidden="true"><span class="sticker">小提示</span></span>
+        <h2>这一步的小提示</h2>
+        <p id="coach"></p>
+      </section>
+      <section class="box box-help">
+        <span class="tag" aria-hidden="true"><span class="sticker">别硬扛</span></span>
+        <h2>卡住了？</h2>
+        <p>进群说明教程名、做到第几步和报错，截图先遮住邮箱、密码和验证码。</p>
+        <a class="btn btn-ink btn-sm" href="https://t.me/+_lOsXtUCD9MxNzY1" target="_blank" rel="noopener noreferrer">打开 Telegram 群</a>
+        <details><summary>扫码进群</summary><img src="../ai-group-qr.png?v=5c146bd70c" alt="AI 交流群二维码" width="200" height="200" loading="lazy"></details>
+      </section>
+      <section class="box">
+        <h2>本机记录</h2>
+        <p class="save" id="saveStatus"><i aria-hidden="true"></i>进度自动保存在这个浏览器</p>
+        <div class="reset-row" id="resetRow"><button class="btn btn-sm" type="button" id="resetBtn">重新开始</button></div>
+      </section>
+    </div>
+  </aside>
+</div>
+</div>
+
+<main class="access" id="accessPanel" hidden></main>
+<dialog class="gate-dialog" id="gateDialog" aria-labelledby="gateTitle" aria-describedby="gateLead"></dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog class="img-dialog" id="imgDialog" aria-labelledby="imgCaption">
+  <div class="img-bar"><span id="imgCaption"></span><button class="btn btn-sm" type="button" id="imgClose">关闭</button></div>
+  <div class="img-scroll"><img id="imgFull" alt=""></div>
+</dialog>
+
+<script>
+window.AI_GUIDE_SLUG = 'claude-account-env';
+window.AI_GUIDE = {category: "account",
+  index: '13',
+  slug: 'claude-account-env',
+  title: 'Claude 账号环境配置',
+  subtitle: '设备位置、出口、代理、身份与支付',
+  phases: [
+    { title: '先了解风险', copy: '配置目标与风险边界' },
+    { title: '设备放哪儿', copy: '使用位置、旧痕迹、时区' },
+    { title: '配置家宽出口', copy: '稳定机场中转 + 住宅 IP' },
+    { title: '代理与痕迹', copy: 'TUN、残留、断线、泄露' },
+    { title: '身份与支付', copy: '邮箱、手机号、付钱' },
+    { title: '用起来', copy: '节奏、信号、验收' }
+  ],
+  inputs: [],
+  steps: [
+    {
+      phase: 0,
+      kind: 'info',
+      short: '这篇在做什么',
+      title: '先看风险提示，再开始配置',
+      intro: '这篇面向中国大陆地区用户，按设备、网络、账号和支付几个环节整理配置与自检步骤。先确认自己用的是本机还是远程设备，再逐项检查配置；任何单项设置都不能当作账号安全的保证。',
+      facts: [
+        ['适合谁', '需要整理 Claude 使用环境、排查配置问题的中国大陆用户'],
+        ['要检查什么', '设备设置、网络连接、账号状态、支付方式和日常使用情况'],
+        ['配置的目标', '减少环境异常和配置冲突，方便持续排查问题'],
+        ['不能承诺什么', '不能保证百分百不封号，也不能给出可靠的封号概率降幅'],
+        ['大概要多久', '首次整理 1–2 小时，其中搭海外环境和验线路最花时间']
+      ],
+      bullets: [
+        '风控是叠加判断的：风险 IP 标记、DNS、邮件追踪器、语言与时区、WebRTC 暴露，加上对会话内容的自动巡检，任何一项异常都可能把你标出来。',
+        '平台的判定还可能涉及账号历史、付款状态和使用行为。不能根据一个检查结果，推断账号一定不会被限制。',
+        '遇到身份校验（KYC）时，以账号实际收到的官方提示为准。是否出现验证，不能单凭教程或网络检测分数预测。'
+      ],
+      warn: '现在没有任何教程能保证百分百不封号。配置的目的是尽量降低环境异常带来的封号风险，实际效果因账号、使用情况和平台判定而异。随着 Anthropic 风控升级，之前有用的方法也可能失效，配置完成后仍需留意账号状态。',
+      coach: '先明确风险边界，再按自己的设备和网络情况逐项核对。',
+      button: '看明白了，开始'
+    },
+    {
+      phase: 0,
+      kind: 'info',
+      short: '了解封号风险',
+      title: '第 1 步：先了解封号风险，再开始配置',
+      intro: '任何一项配置都不能保证账号不会被限制。平台的判定可能涉及网络环境、账号历史、付款状态和使用行为，规则和判定手段也会变化。配置完成后，仍需留意账号状态，遇到验证或限制时以官方提示为准。',
+      bullets: [
+        '线路方面：已经按家宽 IP 教程配置好出口的，直接继续后面的步骤。',
+        '还没有配置出口的，先打开家宽 IP 教程，配置并验证线路后再回来。'
+      ],
+      seeAlso: [
+        { title: '美国静态住宅 IP（家宽 IP）配置教程', url: 'https://ip.plus-guide.fun/', why: '还没有配置出口时，从这篇开始：选择线路、获取连接参数、配置客户端并验证出口', icon: 'globe' }
+      ],
+      warn: '现在没有任何教程能保证百分百不封号。配置的目的是尽量降低环境异常带来的封号风险，实际效果因账号、使用情况和平台判定而异。随着 Anthropic 风控升级，之前有用的方法也可能失效。',
+      coach: '先了解风险边界；出口没配好的话，先按家宽 IP 教程完成配置。',
+      button: '了解风险，继续'
+    },
+    {
+      phase: 1,
+      kind: 'choice',
+      short: '设备放哪儿',
+      title: '第 2 步：Claude 在哪台设备上跑？',
+      intro: '先选你实际准备使用的设备：远程设备或本机。两条路线的安装位置、维护方式和排查范围不同，后面按对应步骤检查。',
+      choices: [
+        { title: '放进一台海外设备里跑', copy: '在海外 VPS 或云电脑安装所需软件，通过本机远程操作；配置和维护主要在远程设备上完成', value: 'remote', icon: 'server', next: 3 },
+        { title: '还是在我自己的电脑上跑', copy: '在自己的电脑安装和运行，按后面的步骤检查本机设置与网络连接', value: 'local', icon: 'grid', next: 4 }
+      ],
+      hint: '选好会自动进对应的步骤，两条路后面都汇合到同一套网络配置',
+      note: '按日常使用和维护习惯选择；远程设备或本机都不能保证账号不会被限制。',
+      coach: '选好实际使用的设备，再按对应流程检查。',
+      button: '继续'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '搭海外使用环境',
+      title: '路径一：在海外设备上搭一套完整的使用环境',
+      intro: '思路是：把「用 Claude 的那台设备」整体放到海外去。你在本地只是通过远程桌面或 SSH 连过去操作，真正连上 Claude 的是那台海外机器。',
+      bullets: [
+        '机器放在美国，系统时区设成美国东部（纽约）时间，不需要修改系统语言。',
+        '在上面装好浏览器（或一套桌面环境），让它能自己收邮件、打开 Claude 网站。',
+        '装之前先用「Cloudflare 用户检测」这类页面看一遍：如果出口 IP、DNS、WebRTC 都指向这台机器的位置，分数应该接近满分。',
+        '注册、收验证邮件、登录、日常使用，全程都在这台机器上完成，不要在本地和它之间来回切。',
+        '要调试代码或跑任务，就扩大这台机器的配置（内存、CPU），或者让它上面的 Agent 去连你要调试的其他服务器——不要把 Claude Code 装回自己电脑。',
+        '嫌自己配太麻烦，也可以在云电脑类的服务里开一台桌面，做法一样：那台机器在哪儿，你在平台眼里就在哪儿。'
+      ],
+      seeAlso: [
+        { title: 'Grok Bot 云电脑运行 Claude Code', url: 'https://map.plus-guide.fun/guides/11-grok-orca.html', why: '云电脑上跑 Claude Code、本地只当遥控器，和这一步是同一个思路；不想自己配桌面环境可以先看它', icon: 'cloud' }
+      ],
+      warn: '全程在海外设备上操作，不等于可以随便搞：蒸馏、批量调用、中转站这类行为，无论设备在哪都会被处理。',
+      coach: '这一步确认软件实际运行的位置，以及你是否能持续维护这台设备。',
+      next: 7,
+      button: '环境搭好了'
+    },
+    {
+      phase: 1,
+      kind: 'choice',
+      short: '是否清理旧痕迹',
+      title: '第 3 步：这台电脑以前装过 Claude 吗？',
+      intro: 'Claude Code 和 Claude 桌面版都算。装过就进入本机清理；从没装过，直接检查后面的时区与网络。',
+      choices: [
+        { title: '装过 Claude Code 或桌面版', copy: '清理设备标识、登录凭据和本地缓存，再继续后面的配置', value: 'clean', icon: 'refresh', next: 5 },
+        { title: '两个都没装过', copy: '这台电脑没有旧客户端痕迹，不需要执行本机清理', value: 'skip-clean', icon: 'arrow', next: 6 }
+      ],
+      coach: '按实际安装情况选择，没装过就直接下一步。',
+      button: '继续'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: '清理本机残留',
+      title: '装过的话，清掉本机上的旧痕迹',
+      intro: 'Claude Code 或桌面版以前登录过旧账号，本地可能留下设备标识、账号关联、登录凭据和缓存。Windows 用户可以把下面的仓库交给本地 AI，让它按预览后再执行的方式清理。',
+      bullets: [
+        '先退出 Claude Code 和 Claude 桌面版，避免清理时客户端仍在读写配置。',
+        'Windows：让本地 AI 使用 claude-cleaner 的 Claude-Reset.ps1，先运行 Dry Run 预检，把结果给你确认后再执行默认清理。',
+        '默认清理会处理设备标识、账号关联、登录凭据和遥测缓存；本地会话和项目历史默认保留，不要加 --full。',
+        'macOS：除了 .claude 配置目录，还要检查钥匙串（Keychain）里的 Claude 凭据。',
+        '清理完成后再登录账号；本地清理不能保证账号不会被限制。'
+      ],
+      agentPrompt: {
+        title: 'Windows：把清理仓库交给本地 AI',
+        intro: '把下面这段发给本机的 AI 助手。它会先阅读仓库说明和脚本，再做预检；你确认预检结果后才执行默认清理。',
+        text: '请使用 https://github.com/RengoCode/claude-cleaner 帮我清理这台 Windows 电脑上的 Claude Code 和 Claude 桌面版本地痕迹。先阅读仓库的 README.md 和 Claude-Reset.ps1，确认适用范围与脚本行为，再退出 Claude Code 和 Claude 桌面版。请先以 powershell -ExecutionPolicy Bypass -File .\\Claude-Reset.ps1 -DryRun -Auto 做预检，只把预检结果和准备执行的操作告诉我，不要修改任何文件。等我确认后，再运行不带 --full 的默认清理。不要使用 --full，不要删除 claude-code-sessions 或 ~/.claude/projects/，保留本地会话、项目历史和书签。',
+        hint: '这个仓库提供的是 PowerShell 脚本工具，不是标准 Skill；AI 可以先克隆或下载仓库，再按说明预检和执行。'
+      },
+      seeAlso: [
+        { title: 'claude-cleaner · Windows 清理工具', url: 'https://github.com/RengoCode/claude-cleaner', why: 'Windows 10 / 11 的 Claude 本地清理脚本，支持 Dry Run 预检；默认保留会话和项目历史', icon: 'grid' }
+      ],
+      warn: '清理会重置本地设备标识并清除登录凭据，之后需要重新登录。只使用默认清理，不要使用会删除本地会话的 --full。',
+      coach: 'Windows 先看 Dry Run 结果，确认后再让 AI 执行默认清理。',
+      button: '本机清理完成'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: 'Windows 纽约时区',
+      title: '第 4 步：Windows 设成纽约时间',
+      intro: '本教程按美区环境配置。Windows 电脑和海外 Windows 设备都把时区固定为美国东部（纽约）时间，不需要修改系统语言。',
+      facts: [
+        ['要设置的地区', '美国 · 纽约'],
+        ['系统里的时区名称', '(UTC-05:00) 东部时间（美国和加拿大）']
+      ],
+      bullets: [
+        '按 Win + I 打开「设置」，进入「时间和语言」→「日期和时间」。',
+        '关闭「自动设置时区」。',
+        '在「时区」下拉框中选择「(UTC-05:00) 东部时间（美国和加拿大）」。',
+        '回到日期和时间页面，确认显示的时区已经变成东部时间。'
+      ],
+      note: '选择纽约所在的美东时区即可，不需要手动计算时差；夏令时期间系统会按该时区规则调整。这里不修改系统语言。',
+      coach: 'Windows 只改这一项：时区选择东部时间（美国和加拿大）。',
+      button: 'Windows 时区已设置'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: 'Mac 纽约时区',
+      title: 'Mac 也设成纽约时间',
+      intro: '使用 Mac 或海外 macOS 设备时，把系统时区固定为纽约，不需要修改系统语言。',
+      bullets: [
+        '打开「系统设置」→「通用」→「日期与时间」。',
+        '关闭「使用你的当前位置自动设定时区」。',
+        '在时区设置里搜索 New York，选择「纽约 - 美国」。',
+        '回到「系统设置」→「隐私与安全性」→「定位服务」→「系统服务」，关闭「设定时区」，避免系统按当前位置自动改回去。'
+      ],
+      note: '纽约属于美国东部时区。只检查时区，不需要修改 Mac 的系统语言。',
+      coach: 'Mac 搜索 New York，并关闭定位服务里的自动设定时区。',
+      button: 'Mac 时区已设置'
+    },
+    {
+      phase: 1,
+      kind: 'task',
+      short: 'iPhone 纽约时区',
+      title: 'iPhone 最后也统一成纽约时间',
+      intro: '需要在这台 iPhone 上使用 Claude 时，把手机时区也固定为纽约；不用手机的话可以看完直接继续。',
+      bullets: [
+        '打开「设置」→「通用」→「日期与时间」。',
+        '关闭「自动设置」。',
+        '点进「时区」，搜索 New York，选择「纽约」。',
+        '回到「设置」→「隐私与安全性」→「定位服务」→「系统服务」，关闭「设定时区」。'
+      ],
+      note: '纽约属于美国东部时区。这里只设置时区，不需要修改 iPhone 语言。',
+      coach: '手机也选纽约，避免电脑和手机显示不同的地区信号。',
+      button: '纽约时区设置完成'
+    },
+    {
+      phase: 2,
+      kind: 'task',
+      short: '配置家宽出口',
+      title: '第 5 步：稳定机场负责中转，住宅 IP 负责出口',
+      intro: '这里不需要自己买 VPS 搭服务器。用稳定的机场改善连接，再让 Claude 最终从已经配置好的美国住宅 IP 出去，通常比 VPS 更省事、成本也更低。',
+      facts: [
+        ['稳定机场', '负责前置中转和连接稳定性，不直接作为 Claude 的最终出口'],
+        ['美国住宅 IP', '负责最终出口；归属、类型和历史使用情况看住宅 IP 本身'],
+        ['VPS 是什么', '云服务商提供的海外虚拟服务器，常用于搭节点，主要影响线路稳定性']
+      ],
+      bullets: [
+        'VPS 通常是机房 IP；服务器只由你使用，不代表它的 IP 类型纯净，也不代表没有被平台标记。',
+        '这条路线不拿 VPS 的机房 IP 当最终出口，也不需要专门为了 Claude 购买和维护 VPS。',
+        '已经按第 1 步的家宽教程配好出口的，核对一次最终出口仍是原来的美国住宅 IP，然后继续。',
+        '还没配好的，打开下面的家宽教程，完成线路选择、连接参数配置和出口验证后再回来。'
+      ],
+      seeAlso: [
+        { title: '去美国住宅 IP（家宽）教程配置出口', url: 'https://ip.plus-guide.fun/', why: '机场只负责中转，最终出口在这篇里配置：选择住宅线路、填写连接参数并验证 IP', icon: 'globe' }
+      ],
+      note: '机场负责稳定连接，住宅 IP 负责最终出口；两者分工不同，不能用 VPS 是否独享来判断 IP 纯净度。',
+      coach: '不折腾 VPS。确认最终出口是美国住宅 IP，再继续后面的客户端配置。',
+      button: '家宽出口已配置'
+    },
+    {
+      phase: 3,
+      kind: 'task',
+      short: '配置 Claude 代理',
+      title: '第 6 步：让本地 AI 配好 Claude 的 TUN 和断线保护',
+      intro: '把下面的完整指令发给本地 AI，替换方括号里的系统和客户端名称。让它直接执行并完成断网实测，不要只看客户端里显示「已开启」。',
+      links: [
+        { label: 'Niva · 稳定、快（有谷歌邮箱用这家）', url: 'https://niva.page/register?invite_code=qxYarFgs' },
+        { label: 'btcr · 没有谷歌邮箱 / 移动用户可用', url: 'https://go.btcr.cc/i/roxy123' },
+        { label: '低门槛机场 · 备用选择', url: 'https://go.btcr.cc/i/roxy123' }
+      ],
+      bullets: [
+        '需要前置中转或下载访问时，可以选上面三家机场。有谷歌邮箱用 Niva，稳定、快——注册页要先开梯子访问；移动的用户不要买 Niva！没有谷歌邮箱、或者运营商是移动的，用 btcr：它有菲律宾的节点，需要买套餐。另一家门槛低，稳定性可能比 Niva 稍差。机场只负责中转，Claude 最终出口必须是上一步配置的美国住宅 IP。',
+        'Claude Code CLI 不会自动走系统代理，必须用 TUN 接管流量。只打开浏览器网页能通，不代表 Claude Code 也走了代理。',
+        'claude.ai、api.anthropic.com、statsig.anthropic.com 等域名必须走固定的住宅出口；不能落到 DIRECT，也不能让默认直连兜底。',
+        '开启客户端支持的 TUN、Auto Route、Strict Route 和原生 Kill Switch。客户端没有 Kill Switch 就如实说明，不要假装已经实现断线即断网。',
+        '最终结果必须通过实测：正常时出口是美国住宅 IP；代理断开后 Claude 请求立即失败，不能经真实公网 IP 成功。测试期间不要运行 Claude 任务。'
+      ],
+      code: [
+        { lang: 'sh', caption: '自检：任何一处不为空、不为 0，就要手动清掉', text: '# 1. 系统代理：正常应全部为 0\nscutil --proxy | grep -E "HTTPEnable|HTTPSEnable|SOCKSEnable"\n\n# 2. 当前终端里的代理环境变量\nenv | grep -iE "proxy"\n\n# 3. 启动文件里有没有写死的代理\ngrep -iE "proxy" ~/.zshrc ~/.bashrc ~/.profile ~/.zshenv 2>/dev/null\n\n# 4. npm / git 的代理配置\nnpm config get proxy\nnpm config get https-proxy\ngit config --global --get http.proxy\ngit config --global --get https.proxy\n\n# 5. Claude 自己的配置文件\ncat ~/.claude/settings.json 2>/dev/null | grep -iE "proxy|base_url|anthropic_"\n\n# 6. 所有 anthropic / claude 相关的环境变量\nenv | grep -iE "anthropic|claude"' }
+      ],
+      agentPrompt: {
+        title: '复制给本地 AI：直接配置并实测',
+        intro: '把【Windows/macOS】和【Clash Verge Rev / 其他客户端名称】替换成你的实际环境，再整段发送。执行前退出 Claude，别一边跑任务一边改网络。',
+        text: '请在我的【Windows/macOS】电脑上自动配置【Clash Verge Rev / 其他客户端名称】，确保 Claude 的所有流量只走代理，包括 claude.ai 网页版、Claude Code CLI、桌面客户端和相关 API 请求（api.anthropic.com、statsig.anthropic.com 等）。最终出口使用我已配置的美国住宅 IP，不要用机场节点或 VPS 机房 IP 替代它。代理异常断开时，这些流量必须立即中断，绝不回退到我的真实公网 IP。\n\n请直接执行，不要只给教程：\n1. 识别客户端版本和配置文件位置，备份现有配置，保留我的节点、订阅和分流规则。\n2. 开启 TUN 模式、Auto Route、Strict Route，以及客户端原生的 Kill Switch（断线自动断网）。\n3. 检查并修正分流规则，确保 anthropic.com、claude.ai 及其子域名走指定的住宅代理节点，没有任何 DIRECT 直连或漏配；检查终端环境变量、npm、git 和 Claude 配置里的旧代理残留。\n4. 如果客户端不支持 Kill Switch，如实告诉我；未经我确认，不改系统防火墙、路由表，不装其他软件。\n5. 配置完成后实测：访问 ipinfo.io，确认出口是我指定的美国住宅代理 IP；打开 Claude 网页版，确认能正常对话；同时检查 Claude Code 的实际请求出口。\n6. 模拟代理断开（停止核心或禁用节点），立即刷新 Claude 页面并尝试发请求，验证请求直接失败，而不是经真实网络成功；同时确认 DNS 和 WebRTC 没有泄漏。\n7. 恢复代理，再次确认 Claude 可用、出口住宅 IP 和地区与之前一致。\n8. 报告修改了哪些配置、备份位置、回滚方法和测试结果。\n\n特别提醒：Claude Code 这类命令行工具不吃「系统代理」，必须靠 TUN 接管；anthropic.com 走 DIRECT 或漏配到默认直连，开 TUN 也不算通过；固定使用同一个美国住宅出口，别自动切换节点。让 AI 测完「断线即断网」再继续用 Claude，别边跑 Claude 任务边改网络配置。这些只能降低 IP 泄漏和出口漂移风险，不能保证不被封号。测试结果必须真实，任何一项不支持或没有实测都要明确告诉我。',
+        hint: '验收重点不是 AI 回复「已配置」，而是它给出出口 IP、断线失败和恢复后的实测结果。'
+      },
+      warn: '必须用 TUN，必须实测结果正确。网页能打开但 Claude Code 未走住宅出口、代理断开后仍能请求成功、出口地区发生变化，都算没有配置完成。',
+      coach: '复制完整指令给本地 AI；确认 TUN、住宅出口、无 DIRECT、断线即断网四项结果后再继续。',
+      button: '代理配置和实测都通过'
+    },
+    {
+      phase: 3,
+      kind: 'task',
+      short: '检查出口与指纹',
+      title: '第 7 步：注册前，再用两个检测页交叉检查',
+      intro: '上一步的断网实测通过后，再检查住宅出口和浏览器区域指纹。两个页面看的东西不同，不能只看一个分数就认定账号安全。',
+      links: [
+        { label: 'Net.Coffee · Claude IP 风险检测', url: 'https://ip.net.coffee/claude/' },
+        { label: 'Claude Check · 区域指纹检测', url: 'https://www.claudecheck.top/zh/' }
+      ],
+      bullets: [
+        'Net.Coffee：确认 Claude 出口是上一步的美国住宅 IP，检查住宅/机房属性、DNS、UDP/WebRTC 和系统时区；结果与实际配置不符就先回去排查。',
+        'Claude Check：查看时区、UTC 偏移、浏览器语言、Intl 区域、中文字体和 Emoji 等区域指纹。它能辅助发现不一致，但不是 Anthropic 官方检测。',
+        'Claude Check 高分不代表一定封号，低分也不代表安全；住宅 IP 质量、断线实测和账号状态仍要单独判断。',
+        '系统语言在前面没有强制修改；这里如果语言或字体提示不一致，把它当作参考信号，不必为了追分随意改完整套系统。'
+      ],
+      warn: '第三方检测页的评分不是官方结论。检测结果正常不等于账号不会被限制，异常时优先核对出口 IP、DNS、WebRTC 和纽约时区。',
+      coach: '两个页面都看过，出口和时区没有明显矛盾，再注册或登录账号。',
+      button: '检测完成'
+    },
+    {
+      phase: 4,
+      kind: 'task',
+      short: '老 Gmail 注册养号',
+      title: '第 8 步：用老 Gmail 注册，Claude 账号先养一个月',
+      intro: '优先使用本人注册满一个月以上、一直能正常登录和收信的 Gmail 注册 Claude。账号注册后先正常使用至少一个月，再考虑充值和开通 Pro。',
+      bullets: [
+        'Gmail 必须是本人长期持有的，不买成品邮箱，也不为了注册 Claude 临时批量创建新邮箱。',
+        '在已经配置并通过检测的美国住宅环境里注册；注册邮件、验证邮件和登录提醒也只在这个环境里打开。',
+        '注册 Claude 后，以正常的个人使用节奏使用免费功能，避免刚注册就高频调用、频繁换设备或反复测试限制。',
+        '建议至少养一个月再开通 Pro。这是降低账号环境突变的使用建议，不是平台保证，也不意味着满一个月后一定不会触发验证。',
+        '需要手机号时，使用本人长期持有、能收短信的号码，不使用一次性接码号。'
+      ],
+      note: '养号不能替代网络配置或规避平台规则；账号是否可用、是否要求验证，以实际官方提示为准。',
+      coach: '老 Gmail 注册，正常用满至少一个月，再进入充值和 Pro 开通。',
+      button: '账号已到充值阶段'
+    },
+    {
+      phase: 4,
+      kind: 'task',
+      short: '手机环境可选增强',
+      title: '第 9 步：手机登录是可选增强，不是必要条件',
+      intro: '如果准备在手机 Claude App 上登录或付款，可优先使用美版 iPhone 等海外版手机，并让手机的 Apple 账号地区、住宅 IP 地区和纽约时区保持一致。没有手机也可以继续后面的虚拟卡路线。',
+      bullets: [
+        'Apple 账号使用美区；本教程时区选择纽约，所以地区配置也统一为美国。语言尽量保持一致，但不作为强制项。',
+        '给手机配置链式代理：前置负责稳定连接，最终出口与电脑使用同一个美国住宅 IP。登录、收邮件和付款都在这个环境里完成。',
+        '不要一边电脑走美国住宅出口、手机走国内直连；也不要频繁切换 Apple 账号地区或手机出口。',
+        '对 SIM 卡信息有顾虑时，可以在登录前拔卡，或使用没有国内 SIM 卡的海外版手机。这只是可选的额外措施，并非必须。',
+        '平台是否实际读取、如何使用 SIM 卡信息，不能仅凭推测下结论；手机登录同样不能保证账号安全。'
+      ],
+      warn: '这一步是可选项。没有海外版手机，不代表不能注册或使用 Claude；不要为了做这一步频繁更换手机、账号和地区。',
+      coach: '有手机就统一美区 Apple 账号、纽约时区和同一条住宅出口；没有就直接进入支付。',
+      button: '手机环境已确认'
+    },
+    {
+      phase: 4,
+      kind: 'task',
+      short: '苹果礼品卡开 Pro',
+      title: '路线一：美区 Apple 账号充值，再开通 Claude Pro',
+      intro: '准备走 App 内购时，在美区 Apple 账号里兑换 20 美元礼品卡余额，确认实际 Pro 价格和账号提示后再付款。礼品卡先充到 Apple 账号，不是直接兑换成 Claude 会员。',
+      links: [
+        { label: 'Pockyt Shop · 第三方苹果礼品卡商店', url: 'https://shop.pockyt.io/' },
+        { label: 'Apple 官方礼品卡页面', url: 'https://www.apple.com/shop/gift-cards' }
+      ],
+      bullets: [
+        '购买前确认 Apple 账号是美区、手机最终出口是美国住宅 IP、时区是纽约，语言尽量一致。',
+        '第三方可选 Pockyt Shop，认准 shop.pockyt.io，选择 20 美元美区 App Store / Apple 礼品卡；它不是 Apple 官网，购买前核对卡种和售后规则。',
+        '也可以把 Roogoo 虚拟卡绑定到 App Store / Apple Pay，再购买美区 Apple 礼品卡并充入自己的 Apple 账号。是否支持以付款页面为准。',
+        '相比购买来源不明的低价二手卡，自己付款购卡能减少遇到黑卡的渠道风险，但不能保证绝不触发审核。',
+        '余额到账后，在 Claude App 内选择 Pro，核对价格、扣款账户和订阅周期，再确认开通。'
+      ],
+      warn: '不要把 Apple 礼品卡充值和 Claude 充值混为一谈：先充 Apple 账号，再在 Claude App 内购 Pro。不要购买来源不明的低价卡。',
+      coach: '先确认美区账号和美国住宅环境，再充值 Apple 余额，最后从 Claude App 内开 Pro。',
+      button: 'Apple 路线已了解'
+    },
+    {
+      phase: 4,
+      kind: 'task',
+      short: 'Roogoo 与护照 KYC',
+      title: '路线二：Roogoo 美区虚拟卡，也可能触发 KYC',
+      intro: '不走 Apple 内购时，可以使用本人开通的 Roogoo 美区虚拟卡订阅。美区虚拟卡、住宅 IP、纽约时区和语言尽量一致，仍不等于不会触发 KYC。',
+      bullets: [
+        '虚拟卡由本人开通，一张卡只用于一个 Claude 账号，余额留够，账单地址按卡片要求填写。',
+        '平台可能检查卡头和付款信息；即使网络、时区和卡所属地区一致，也仍可能弹出 KYC。',
+        '实际遇到 KYC 时，按账号里的官方流程，使用本人有效护照完成验证；不要借用他人的身份材料。',
+        '是否通过由平台审核决定。住宅环境、养号时间和支付方式都不能作为免于 KYC 或保证通过的理由。',
+        '开通前再次核对 Pro 套餐、金额和扣款账号，避免在支付失败后连续重复尝试。'
+      ],
+      seeAlso: [
+        { title: 'Roogoo 虚拟卡开通教程', url: 'https://plus-guide.fun/roogoo-card.html', why: '从开卡、充值到支付的完整流程，以及账单地址填写方式', icon: 'card' }
+      ],
+      warn: 'Roogoo 美区虚拟卡也可能触发 KYC。只在官方验证流程里使用本人有效护照，不保证审核结果。',
+      coach: '虚拟卡路线也要准备接受官方 KYC；按本人真实信息和实际提示操作。',
+      button: 'Pro 支付已完成'
+    },
+    {
+      phase: 5,
+      kind: 'task',
+      short: '使用节奏',
+      title: '第 10 步：环境干净了，用起来也别太张扬',
+      intro: '环境只是入场券，行为本身也在被记录。新号头一两个星期是最容易被盯上的阶段。',
+      bullets: [
+        '别一上来就顶配。先开基础档，用一段时间没问题再往上加，比第一天就拉满更稳。',
+        '最高档的密集用量账号，本来就是平台上最「不划算」的用户类型，别在刚注册的时候就长成那样。',
+        '不要反复去试它已经明确拒绝的事：被拒绝的行为会被记录，反复试探就是在给自己加分。',
+        '使用过程中如果弹出安全守卫警告、或者突然被要求验证，这是「加强审查」的信号。先停下来逐项检查环境，别再拿它做敏感或高强度的事。',
+        '收到 KYC、付款审核或账号验证提示时，先看清官方要求，不要把出现验证直接等同于即将封号。',
+        '不要拿它做蒸馏、批量调用、中转站这类事——那是官方明确列为滥用的行为，环境再干净也救不了。',
+        '原则就一句：让平台看到的这个号，像一个正常人一样在干净地用。'
+      ],
+      note: '这里说的是降低被盯上的概率，不是保证。真被封了走官方申诉渠道，别指望第三方的「解封服务」。',
+      coach: '前期的目标是「看起来平平无奇」，不是「用尽额度」。',
+      button: '记住了'
+    },
+    {
+      phase: 5,
+      kind: 'checks',
+      short: '上线前总验收',
+      title: '第 11 步：全部走完的验收清单',
+      intro: '前面每一步都过了一遍之后，用这张清单做最后一次确认。',
+      checks: [
+        '使用位置：要么全程在海外设备上操作，要么本机的出口、时区、DNS、WebRTC 都对齐了目标地区',
+        '设备：以前装过 Claude Code 或桌面版的，已清理本机旧痕迹',
+        '时区：使用中的电脑、海外设备和手机都已设成美国东部（纽约）时间，没有修改系统语言',
+        '网络：出口独占且位置固定；TUN 模式已开；系统代理为空；断线不直连已实测',
+        '泄露：出口 IP、DNS、WebRTC 三项都没有漏出国内或本机地址',
+        '邮件：我知道 Claude 发来的邮件不能在国内网络下打开',
+        '身份：使用本人注册满一个月以上的 Gmail 注册，Claude 已正常使用至少一个月',
+        '手机：如使用手机，已统一美区 Apple 账号、纽约时区和同一个美国住宅出口',
+        '支付：Apple 礼品卡或 Roogoo 路线本人可用；知道虚拟卡也可能要求护照 KYC',
+        '使用：按正常节奏慢慢加档，不碰蒸馏、批量调用、中转站这类被明确列为滥用的行为'
+      ],
+      coach: '这张清单是对自己环境的交代，不是对平台的承诺——它的作用是让你知道哪里还没收拾。',
+      button: '全部确认'
+    },
+    {
+      phase: 5,
+      kind: 'done',
+      short: '完成与问答',
+      title: '到这里，这套环境就算立起来了',
+      intro: '你已经检查设备、网络、账号和支付几个环节。配置完成后仍可能遇到验证、限制或封号；留意 Anthropic 的规则与风控变化，发现异常时记录具体提示，再逐项排查。',
+      seeAlso: [
+        { title: 'ChatGPT Plus 开通向导', url: 'https://plus-guide.fun/', why: '这套环境同样适用于其他海外订阅；如果接下来要开 ChatGPT Plus，从这里走', icon: 'card' }
+      ],
+      doneGroups: [
+        {
+          title: '收尾：只有你能确认的几件事',
+          items: [
+            '把每一步用到的账号、卡、号码归属记在一个只有你能看到的地方，方便以后对账和申诉',
+            '记下当前出口 IP 的归属地，之后每次续费或换节点都对照一下有没有变',
+            '给节点和支付方式设一个续费提醒：到期断线比配置错误更容易让人翻车',
+            '环境有变动（换设备、换线路、换卡）时，按这篇的顺序重新过一遍'
+          ]
+        }
+      ],
+      faqGroups: [
+        {
+          label: '使用方式与风险',
+          items: [
+            { q: '这篇面向哪些用户？', a: '这篇面向中国大陆地区用户，整理设备、网络、账号和支付的配置与自检。阅读时按自己的实际使用方式选择本机或远程设备。' },
+            { q: '一定要把 Claude 放到海外机器上跑吗？', a: '教程保留远程设备和本机两条路线，按实际使用方式选择。远程设备也不能保证不封号，仍需要检查账号状态和平台提示。' },
+            { q: '在本机运行时先检查什么？', a: '先确认实际安装位置、需要保留的配置和当前网络设置，再按本机路线检查。不要把某一项设置正常当作账号安全的证明。' },
+            { q: '照做就一定不会封吗？', a: '现在没有任何教程能保证百分百不封号。配置的目的是尽量降低环境异常带来的封号风险，实际效果因账号、使用情况和平台判定而异。随着 Anthropic 风控升级，之前有用的方法也可能失效，配置完成后仍需留意账号状态。' }
+          ]
+        },
+        {
+          label: '网络与泄露',
+          items: [
+            { q: '机场和住宅 IP 分别负责什么？', a: '稳定机场只负责前置中转和连接稳定性，Claude 的最终出口必须是美国住宅 IP。机场节点或 VPS 机房 IP 不替代住宅出口，VPS 是否独享也不能证明 IP 纯净。' },
+            { q: 'TUN 模式和系统代理到底差在哪？', a: 'Claude Code 这类命令行工具不会自动走系统代理，因此必须用 TUN 接管。开 TUN 后仍要确认 Claude 域名没有 DIRECT 或默认直连，并实测断线后请求会直接失败。' },
+            { q: 'DNS 和 WebRTC 泄露是什么？', a: 'DNS 泄露指域名解析走了本地网络，WebRTC 泄露指浏览器暴露本机真实地址。用上一步的 Net.Coffee 检测出口、DNS 和 UDP/WebRTC；检测正常也不等于官方账号安全保证。' },
+            { q: '怎么判断代理配置没有完成？', a: '网页能打开但 Claude Code 没走住宅出口、代理断开后仍能请求成功、出现 DIRECT 或默认直连、恢复后出口地区改变，都说明还需要继续排查。' },
+            { q: '节点到期换了一个 IP，要紧吗？', a: '需要重新核对。教程要求固定使用同一个美国住宅出口；IP 或地区发生变化时，先按家宽教程恢复并重新完成断网和泄露测试，再登录或付款。' }
+          ]
+        },
+        {
+          label: '身份与支付',
+          items: [
+            { q: '为什么邮件也要挑地方打开？', a: '邮件里带追踪器，点开就会把你的网络位置报上去。在国内网络下打开，等于自己把证据交出去。要在已经配好的干净环境里、或者在那台海外设备上再打开。' },
+            { q: 'KYC 被要求验证说明什么？', a: '说明平台要求进一步验证账号或付款信息，具体原因以官方提示为准。Roogoo 美区虚拟卡也可能触发 KYC；实际遇到时按官方流程使用本人有效护照，不保证审核结果。' },
+            { q: '虚拟卡可以用来订阅吗？', a: '可以。要点是这张卡由本人开通、只用于这一个账号、余额留够、账单地址按卡片要求填写。美区虚拟卡、住宅 IP、时区和语言尽量一致，仍不能保证免于 KYC。' },
+            { q: '一张卡能绑几个账号？', a: '不建议一卡多号。同一张卡出现在多个账号上，是最容易被串起来识别的特征之一。' },
+            { q: '手机号一定要美国的吗？', a: '不一定非要美国，但必须是你能长期持有、能收短信，且归属地和你整体设定不冲突的号。用完就丢的接码号能过注册，却很容易在后续风控里被标记。' },
+            { q: '蒸馏、中转站这些是什么？', a: '官方明确列为「危险使用 / 滥用」的行为：提取思维链做蒸馏、把账号做成多人共用的中转、做前沿模型训练、网络攻击等。无论设备在哪、环境多干净，做了就会被处理。' }
+          ]
+        }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../assets/g-engine.js?v=42c616d414" defer></script>
+</body>
+</html>

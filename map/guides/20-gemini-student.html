@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Gemini 学生优惠领取指南：准备好账号后领取优惠，每次只看眼前这一步。。每一步配截图，跟着做就行。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#6459d9">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='18' fill='%236459d9' stroke='%231a1830' stroke-width='4'/%3E%3Cpath d='M20 24h24M20 32h24M20 40h14' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>Gemini 学生优惠领取指南 · Plus Guide</title>
+<link rel="preload" href="../assets/pg-heading-900.woff2?v=c11862cc4b" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/g-guide.css?v=74702c1566">
+</head>
+<!--
+  G 风格教程页外壳。由 ai-guides/_src/build.py --g 生成，不要直接改生成后的页面：
+  样式改 ai-guides/assets/g-guide.css，交互改 ai-guides/assets/g-engine.js，
+  这个外壳改 ai-guides/assets/g-page.html，内容改 ai-guides/guides/<slug>.js。
+-->
+<body>
+<div id="guideShell">
+<a class="skip" href="#stepTitle">跳到当前步骤</a>
+<header class="top">
+  <div class="top-in">
+    <a class="mark" id="homeLink" href="../" aria-label="Plus Guide 首页">plus<i>.</i>guide</a>
+    <span class="crumb"><span class="cat"><a id="catLink" href="../"></a> / </span><b id="guideTitle">Gemini 学生优惠领取指南</b></span>
+    <div class="top-actions">
+      <a class="btn btn-sm" id="allLink" href="../#tutorials" aria-label="全部教程"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>全部教程</span></a>
+    </div>
+  </div>
+</header>
+
+<details class="mobile-toc" id="mobileToc">
+  <summary><span id="mProgText">第 1 步</span><span class="track" aria-hidden="true"><span class="fill" id="mFill" style="display:block"></span></span><span>步骤</span></summary>
+  <nav class="toc" id="mToc" aria-label="本篇步骤"></nav>
+</details>
+
+<div class="layout">
+  <aside class="side" aria-label="本篇步骤">
+    <div class="side-inner">
+      <div class="prog">
+        <div class="prog-row"><span>进度</span><b id="progText">第 1 步</b></div>
+        <div class="track" role="progressbar" id="progBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="教程进度"><div class="fill" id="fill"></div></div>
+      </div>
+      <nav class="toc first" id="toc" aria-label="步骤目录"></nav>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="main-in">
+
+      <article class="step" id="step" aria-live="polite"><h1 id="stepTitle" tabindex="-1">Gemini 学生优惠领取指南</h1><p class="intro">正在加载内容……如果这行字一直在，说明页面脚本没跑起来，刷新一次试试。</p></article>
+    </div>
+  </main>
+
+  <aside class="rail" aria-label="帮助">
+    <div class="rail-inner">
+      <section class="box box-coach" id="coachBox">
+        <span class="tag" aria-hidden="true"><span class="sticker">小提示</span></span>
+        <h2>这一步的小提示</h2>
+        <p id="coach"></p>
+      </section>
+      <section class="box box-help">
+        <span class="tag" aria-hidden="true"><span class="sticker">别硬扛</span></span>
+        <h2>卡住了？</h2>
+        <p>进群说明教程名、做到第几步和报错，截图先遮住邮箱、密码和验证码。</p>
+        <a class="btn btn-ink btn-sm" href="https://t.me/+_lOsXtUCD9MxNzY1" target="_blank" rel="noopener noreferrer">打开 Telegram 群</a>
+        <details><summary>扫码进群</summary><img src="../ai-group-qr.png?v=5c146bd70c" alt="AI 交流群二维码" width="200" height="200" loading="lazy"></details>
+      </section>
+      <section class="box">
+        <h2>本机记录</h2>
+        <p class="save" id="saveStatus"><i aria-hidden="true"></i>进度自动保存在这个浏览器</p>
+        <div class="reset-row" id="resetRow"><button class="btn btn-sm" type="button" id="resetBtn">重新开始</button></div>
+      </section>
+    </div>
+  </aside>
+</div>
+</div>
+
+<main class="access" id="accessPanel" hidden></main>
+<dialog class="gate-dialog" id="gateDialog" aria-labelledby="gateTitle" aria-describedby="gateLead"></dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog class="img-dialog" id="imgDialog" aria-labelledby="imgCaption">
+  <div class="img-bar"><span id="imgCaption"></span><button class="btn btn-sm" type="button" id="imgClose">关闭</button></div>
+  <div class="img-scroll"><img id="imgFull" alt=""></div>
+</dialog>
+
+<script>
+window.AI_GUIDE_SLUG = 'gemini-student';
+window.AI_GUIDE = {
+  "index": "20",
+  "slug": "gemini-student",
+  "category": "account",
+  "title": "Gemini 学生优惠领取指南",
+  "subtitle": "准备好账号后领取优惠，每次只看眼前这一步。",
+  "legacyStorageKeys": [
+    "plusGuideGeminiStudentV1"
+  ],
+  "legacyStepIds": {
+    "register-*": "account-ready"
+  },
+  "migrateProgress": function migrateGeminiProgress(value, key) {
+  if (key !== 'plusGuideGeminiStudentV1' || !value || typeof value !== 'object' || Array.isArray(value)) return {};
+  const byId = new Map(this.steps.map((step, index) => [step.id, index]));
+  const at = id => typeof id === 'string' ? byId.get(id.startsWith('register-') ? 'account-ready' : id) : undefined;
+  const indices = list => Array.isArray(list) ? list.map(at).filter(Number.isInteger) : [];
+  return {
+    current: at(value.current) ?? 0,
+    history: indices(value.history).slice(-80),
+    done: Object.fromEntries(indices(value.read).map(index => [index, true])),
+    answers: {},
+    checks: { [byId.get('checkout')]: ['plan', 'charge', 'renewal'].map(name => value.checks?.[name] === true) },
+    ticks: {},
+    values: {}
+  };
+},
+  "phases": [
+    {
+      "title": "开始前",
+      "copy": "选你的起点"
+    },
+    {
+      "title": "检查 IP",
+      "copy": "位置、住宅属性、纯净度"
+    },
+    {
+      "title": "准备账号",
+      "copy": "确认登录账号与地区"
+    },
+    {
+      "title": "检查资格",
+      "copy": "地区和付款方式先准备"
+    },
+    {
+      "title": "进入优惠",
+      "copy": "认准蓝框里的免费 Pro"
+    },
+    {
+      "title": "学生验证",
+      "copy": "完成 SheerID 验证"
+    },
+    {
+      "title": "领取与升级",
+      "copy": "先免费，按需考虑组合"
+    },
+    {
+      "title": "核对扣款",
+      "copy": "金额和日期对了再订阅"
+    },
+    {
+      "title": "阅读收尾",
+      "copy": "订阅状态回账号确认"
+    }
+  ],
+  "steps": [
+    {
+      "id": "start",
+      "stage": 0,
+      "title": "先选你的起点",
+      "html": "<p>准备好 Google 账号后，从检查 IP、确认账号，到完成 SheerID 验证、领取 <strong>Google AI Pro 12 个月免费版</strong>，按七步走完。谷歌账号注册已拆成 <a href=\"https://map.plus-guide.fun/guides/28-google-account.html\" target=\"_blank\" rel=\"noopener noreferrer\">独立教程</a>，本篇从已有账号开始。</p>\n<div class=\"note tip\">\n<p><strong>已经有学生会员？</strong> 直接从第 6 步查看领取和升级选项。</p>\n</div>\n<div class=\"box block\">\n<h3>开始前准备</h3>\n<ul>\n<li><strong>可登录的 Google 个人账号</strong>。没有账号的先完成 <a href=\"https://map.plus-guide.fun/guides/28-google-account.html\" target=\"_blank\" rel=\"noopener noreferrer\">谷歌账号注册</a>；已有账号的，第 2 步检查当前账号及地区。</li>\n<li><strong>美区住宅 IP</strong>：先测位置、IP 属性和纯净度。</li>\n<li><strong>付款方式</strong>：最好提前添加，后面领免费版和升级都会用到。</li>\n</ul>\n</div>\n<p><button class=\"btn\" type=\"button\" data-action=\"goto\" data-step=\"claim\">已有学生会员，从第 6 步开始</button></p>",
+      "index": 0,
+      "phase": 0,
+      "kind": "info",
+      "short": "选择起点",
+      "next": 1,
+      "button": "从第 1 步开始"
+    },
+    {
+      "id": "network",
+      "stage": 1,
+      "title": "第 1 步：先检查 IP 地址和纯净度",
+      "html": "<p>打开 <a href=\"https://ippure.com/\" target=\"_blank\" rel=\"noopener noreferrer\">IPPure</a>，先看当前出口是不是 <strong>美国、住宅 IP、极度纯净</strong>。</p>\n<figure class=\"shot\"><button  type=\"button\" aria-label=\"放大查看：IPPure 显示美国位置、住宅 IP，以及 4% 极度纯净评级\" data-cap=\"图 1 · 重点看位置、IP 属性和 IPPure 系数。\" data-img=\"../assets/guides/gemini-student/01-ippure.webp?v=18158005db\"><img src=\"../assets/guides/gemini-student/01-ippure.webp?v=18158005db\" alt=\"IPPure 显示美国位置、住宅 IP，以及 4% 极度纯净评级\" loading=\"lazy\" decoding=\"async\"><span class=\"zoom\" aria-hidden=\"true\">点击放大</span></button><figcaption>图 1 · 重点看位置、IP 属性和 IPPure 系数。</figcaption></figure>\n<div class=\"box block\">\n<ul>\n<li><strong>位置</strong>：截图中的数据库都显示美国。</li>\n<li><strong>IP 属性</strong>：住宅 IP，也就是家宽出口。</li>\n<li><strong>纯净度</strong>：截图显示“4% 极度纯净”。</li>\n</ul>\n</div>\n<p>需要美国家宽 IP，可以到 <a href=\"https://t.me/+_lOsXtUCD9MxNzY1\" target=\"_blank\" rel=\"noopener noreferrer\">Telegram 交流群</a> 询问。</p>",
+      "index": 1,
+      "phase": 1,
+      "kind": "info",
+      "short": "检查 IP",
+      "next": 2
+    },
+    {
+      "id": "account-ready",
+      "stage": 2,
+      "title": "第 2 步：确认 Google 账号已准备好",
+      "html": "<p>本篇从 <strong>已有可登录的 Google 个人账号</strong> 开始，注册操作已拆成独立教程。</p>\n<ul>\n<li><strong>没有账号</strong>：先看 <a href=\"https://map.plus-guide.fun/guides/28-google-account.html\" target=\"_blank\" rel=\"noopener noreferrer\">《谷歌账号注册》</a>，完成注册和验证后回到本页继续。</li>\n<li><strong>已有账号、关联地区符合活动要求</strong>：核对当前登录邮箱，点下方 <strong>“账号已准备好，去第 3 步”</strong>，继续检查优惠资格。</li>\n<li><strong>已有账号、需要处理关联地区</strong>：查看 <a href=\"#region-change\">本篇的改区分支</a> 或 <a href=\"https://map.plus-guide.fun/guides/21-google-region.html\" target=\"_blank\" rel=\"noopener noreferrer\">《谷歌账号改区》独立教程</a>，再按账号实际状态继续。</li>\n</ul>\n<p>后面的资格检查、学生验证和领取订阅，要使用 <strong>同一个 Google 账号</strong>。账号注册完成不等于获得学生优惠资格，最终以活动页面和验证结果为准。</p>\n<p><button class=\"btn btn-sm\" type=\"button\" data-action=\"goto\" data-step=\"eligibility\">账号已准备好，去第 3 步</button></p>",
+      "index": 2,
+      "phase": 2,
+      "kind": "info",
+      "short": "准备账号",
+      "next": 3,
+      "button": "查看改区分支"
+    },
+    {
+      "id": "region-change",
+      "stage": 2,
+      "title": "第 2 步分支：账号地区不是美国，先提交改区",
+      "html": "<p>第 3 步的资格检查和后面的免费 Pro，都跟着 <strong>账号关联地区</strong> 走。注册账号并不保证关联到美国，已有账号也要先核对当前地区；按账号实际情况处理后再往下走。改区从提交到生效要花几天，放在这一步办最稳。</p>\n<p>改区申请要用 <strong>美国住宅 IP</strong> 提交，和第 1 步同一个出口。先回到 <a href=\"https://ippure.com/\" target=\"_blank\" rel=\"noopener noreferrer\">IPPure</a> 确认还是美国、住宅、原生、纯净。</p>\n<figure class=\"shot\"><button  type=\"button\" aria-label=\"放大查看：IPPure 显示美国住宅原生 IP，极度纯净\" data-cap=\"图 2 · 提交改区前的 IP 检查：美国、住宅、原生、极度纯净。\" data-img=\"../assets/guides/gemini-student/12-region-ippure.webp?v=ace4fc2eac\"><img src=\"../assets/guides/gemini-student/12-region-ippure.webp?v=ace4fc2eac\" alt=\"IPPure 显示美国住宅原生 IP，极度纯净\" loading=\"lazy\" decoding=\"async\"><span class=\"zoom\" aria-hidden=\"true\">点击放大</span></button><figcaption>图 2 · 提交改区前的 IP 检查：美国、住宅、原生、极度纯净。</figcaption></figure>\n<p>打开 <a href=\"https://policies.google.com/country-association-form\" target=\"_blank\" rel=\"noopener noreferrer\">Google 账号关联地区更改表单</a>，登录要改区的账号。表单开头会写明当前关联的地区，示例账号是中国。</p>\n<figure class=\"shot\"><button  type=\"button\" aria-label=\"放大查看：改区表单开头写明当前关联地区为中国\" data-cap=\"图 3 · 表单开头会回显当前关联地区，示例账号是中国。\" data-img=\"../assets/guides/gemini-student/13-region-form.webp?v=50691f24f7\"><img src=\"../assets/guides/gemini-student/13-region-form.webp?v=50691f24f7\" alt=\"改区表单开头写明当前关联地区为中国\" loading=\"lazy\" decoding=\"async\"><span class=\"zoom\" aria-hidden=\"true\">点击放大</span></button><figcaption>图 3 · 表单开头会回显当前关联地区，示例账号是中国。</figcaption></figure>\n<p>按下面两处填，然后提交：</p>\n<ol>\n<li><strong>您的账号应改为与哪个地区关联？</strong> 国家选 <strong>美国</strong>；选了美区会多出一栏州，填 <strong>免税州</strong>，示例用的俄勒冈州。</li>\n<li><strong>为什么您的账号应与这个地区关联？</strong> 随便勾几项就行。示例勾的是“我的工作地/学习地和居住地分属不同的地区”“我经常旅行”“我经常使用虚拟专用网 (VPN)”这三项。</li>\n</ol>\n<figure class=\"shot\"><button  type=\"button\" aria-label=\"放大查看：国家选美国、州选俄勒冈州的改区表单\" data-cap=\"图 4 · 国家选美国；美区要再选一个州，示例用免税州俄勒冈。\" data-img=\"../assets/guides/gemini-student/14-region-country.webp?v=c0d1ff8afe\"><img src=\"../assets/guides/gemini-student/14-region-country.webp?v=c0d1ff8afe\" alt=\"国家选美国、州选俄勒冈州的改区表单\" loading=\"lazy\" decoding=\"async\"><span class=\"zoom\" aria-hidden=\"true\">点击放大</span></button><figcaption>图 4 · 国家选美国；美区要再选一个州，示例用免税州俄勒冈。</figcaption></figure>\n<figure class=\"shot\"><button  type=\"button\" aria-label=\"放大查看：关联原因复选框勾了三项后准备提交\" data-cap=\"图 5 · 原因项按示例随便勾几项，就可以提交了。\" data-img=\"../assets/guides/gemini-student/15-region-reason.webp?v=dec497c295\"><img src=\"../assets/guides/gemini-student/15-region-reason.webp?v=dec497c295\" alt=\"关联原因复选框勾了三项后准备提交\" loading=\"lazy\" decoding=\"async\"><span class=\"zoom\" aria-hidden=\"true\">点击放大</span></button><figcaption>图 5 · 原因项按示例随便勾几项，就可以提交了。</figcaption></figure>\n<p>提交后页面会回显 <strong>“您的请求已提交”</strong> 和你填的目标地区。</p>\n<figure class=\"shot\"><button  type=\"button\" aria-label=\"放大查看：提交成功页面显示请求已提交，目标地区为美国俄勒冈州\" data-cap=\"图 6 · 提交后回显“您的请求已提交”和目标地区。\" data-img=\"../assets/guides/gemini-student/16-region-submit.webp?v=aa4289abd6\"><img src=\"../assets/guides/gemini-student/16-region-submit.webp?v=aa4289abd6\" alt=\"提交成功页面显示请求已提交，目标地区为美国俄勒冈州\" loading=\"lazy\" decoding=\"async\"><span class=\"zoom\" aria-hidden=\"true\">点击放大</span></button><figcaption>图 6 · 提交后回显“您的请求已提交”和目标地区。</figcaption></figure>\n<div class=\"note\">\n<p><strong>改区不是立即生效。</strong> 提交后一般过几天会收到 Google 的改区确认邮件，账号地区才会变过来，所以放在第 2 步就提交。等生效的这几天，正好把第 3 步要用的付款方式准备好。示例截图里登录账号的邮箱已打码。</p>\n</div>\n<div class=\"list-hint\">\n<p><strong>改区流程也出了单篇版。</strong> 不领学生优惠、只想改区的，直接看 <a href=\"https://map.plus-guide.fun/guides/21-google-region.html\" target=\"_blank\" rel=\"noopener noreferrer\">《谷歌账号改区》教程</a>。</p>\n</div>",
+      "index": 3,
+      "phase": 2,
+      "kind": "info",
+      "short": "账号改区分支",
+      "next": 4
+    },
+    {
+      "id": "eligibility",
+      "stage": 3,
+      "title": "第 3 步：检查优惠资格",
+      "html": "<p>登录准备好的账号，打开 <a href=\"https://goo.gle/freepro\" target=\"_blank\" rel=\"noopener noreferrer\">goo.gle/freepro</a>，看账号有没有学生优惠资格。</p>\n<p>如果想先确认地区和付款条件，把这三项准备好：</p>\n<div class=\"block\">\n<h3>验证前先确认</h3>\n<ol>\n<li><strong>账号国家改成美国。</strong> 还没改区的，回 <a href=\"#region-change\">第 2 步的改区分支</a> 提交申请；提交后一般几天内收到确认邮件，生效需要时间，提前办。</li>\n<li><strong>提前添加付款方式。</strong> 免费版也可能要求付款方式，不要等到付款页才处理。</li>\n<li><strong>确认是美区 IP。</strong> 没资格时先检查自己是不是美区 IP，一般就是 IP 有问题。美区学生优惠是 <strong>Google AI Pro</strong>，所以更推荐美区。</li>\n</ol>\n</div>\n<div class=\"list-hint\">\n<p><strong>没有付款方式？</strong> 先看 <a href=\"https://plus-guide.fun/roogoo-card.html\" target=\"_blank\" rel=\"noopener noreferrer\">Roogoo 虚拟卡开通与海外支付教程</a>。账单地址最好用美国免税区；付款前把卡和地址都准备好。</p>\n</div>",
+      "index": 4,
+      "phase": 3,
+      "kind": "info",
+      "short": "检查资格",
+      "next": 5
+    },
+    {
+      "id": "offer",
+      "stage": 4,
+      "title": "第 4 步：进入学生优惠，认出免费方案",
+      "html": "<p>打开 <a href=\"https://gemini.google/students/\" target=\"_blank\" rel=\"noopener noreferrer\">Gemini 学生优惠官网</a>，点击 <strong>获取学生优惠</strong>。进入优惠页后，认准左侧蓝框里的 <strong>Google AI Pro 免费畅享 12 个月</strong>。</p>\n<figure class=\"shot\"><button  type=\"button\" aria-label=\"放大查看：大学生专属优惠页面，左侧蓝框是免费 12 个月 Google AI Pro，右侧是 8.99 美元的 YouTube Premium 组合套餐\" data-cap=\"图 7 · 左侧蓝框是 12 个月免费 Pro；右侧是含 YouTube Premium 的付费组合。\" data-img=\"../assets/guides/gemini-student/08-offer.webp?v=4b3c0c15f2\"><img src=\"../assets/guides/gemini-student/08-offer.webp?v=4b3c0c15f2\" alt=\"大学生专属优惠页面，左侧蓝框是免费 12 个月 Google AI Pro，右侧是 8.99 美元的 YouTube Premium 组合套餐\" loading=\"lazy\" decoding=\"async\"><span class=\"zoom\" aria-hidden=\"true\">点击放大</span></button><figcaption>图 7 · 左侧蓝框是 12 个月免费 Pro；右侧是含 YouTube Premium 的付费组合。</figcaption></figure>\n<ul>\n<li>第一次领取，先点左侧蓝框里的 <strong>获取学生优惠</strong>。</li>\n<li>右侧 <strong>US$8.99/月</strong> 的 YouTube Premium 组合留到第 6 步再看。</li>\n<li>免费 Pro 不含 YouTube Premium，两个方案别点混。</li>\n</ul>",
+      "index": 5,
+      "phase": 4,
+      "kind": "info",
+      "short": "进入优惠",
+      "next": 6
+    },
+    {
+      "id": "verification",
+      "stage": 5,
+      "title": "第 5 步：完成 SheerID 验证",
+      "html": "<p>点“获取学生优惠”后，会进入 SheerID 验证页。把浏览器地址栏里的 <strong>完整验证链接</strong> 复制下来。</p>\n<figure class=\"shot\"><button  type=\"button\" aria-label=\"放大查看：SheerID 学生身份验证页面和需要复制的浏览器地址栏\" data-cap=\"图 8 · 复制地址栏里的完整 SheerID 验证链接。\" data-img=\"../assets/guides/gemini-student/09-sheerid.webp?v=c5ec1f6780\"><img src=\"../assets/guides/gemini-student/09-sheerid.webp?v=c5ec1f6780\" alt=\"SheerID 学生身份验证页面和需要复制的浏览器地址栏\" loading=\"lazy\" decoding=\"async\"><span class=\"zoom\" aria-hidden=\"true\">点击放大</span></button><figcaption>图 8 · 复制地址栏里的完整 SheerID 验证链接。</figcaption></figure>\n<h3>用 Telegram 机器人</h3>\n<p>打开 <a href=\"https://t.me/gemin_sheerid_pass_bot?start=ref_7722801284\" target=\"_blank\" rel=\"noopener noreferrer\">SheerID 验证机器人</a>，把刚才复制的链接放在 <code>/verify</code> 后面发送：</p>\n<pre><code class=\"language-text\">/verify 你刚才复制的SheerID验证链接\n</code></pre>\n<p>把中文占位文字替换成完整链接，中间保留一个空格，然后等待机器人返回结果。</p>",
+      "index": 6,
+      "phase": 5,
+      "kind": "info",
+      "short": "学生验证",
+      "next": 7
+    },
+    {
+      "id": "claim",
+      "stage": 6,
+      "title": "第 6 步：先领免费 12 个月，再决定要不要升级",
+      "html": "<p>完成学生验证后，回到优惠页，先领取 <strong>Google AI Pro 12 个月免费版</strong>。已经有学生会员的，从这里看当前套餐和升级选项。</p>\n<div class=\"facts\">\n<div class=\"fact\">\n<h3>先领取：免费 Pro</h3>\n<p><strong>12 个月免费试用</strong></p>\n<p>包含 Google AI Pro，<strong>不含 YouTube Premium</strong>。领取时按页面要求确认付款方式。</p>\n</div>\n<div class=\"fact\">\n<h3>按需升级：组合套餐</h3>\n<p><strong>截图示例 US$8.99/月</strong></p>\n<p>Google AI Pro + YouTube Premium。需要 YouTube Premium 再升级；不需要就保留免费版。</p>\n</div>\n</div>\n<h3>先免费，后升级，顺序别反</h3>\n<ol>\n<li><strong>先领取免费 12 个月 Pro</strong>，按第 7 步核对结算页后再确认。</li>\n<li>回到 Google One，确认免费 12 个月已经生效。</li>\n<li>需要 YouTube Premium，再打开 <strong>US$8.99/月</strong> 的组合套餐。</li>\n<li>升级前再看一次第 7 步，确认首次扣款日期和金额。</li>\n</ol>\n<div class=\"note warn\">\n<p><strong>721 天提示：美国地区的 721 天疑似已经修复，8.99 开一年属于 bug，会被谷歌秋后算账。</strong> 顺序仍然是先领 12 个月免费版、再叠 US$8.99 套餐；但别把 721 天当成稳定能拿的权益。<strong>9 美元一个月可以用 Gemini 4 Argon 和 Claude Opus 5.5，性价比仍然很高。</strong></p>\n</div>\n<div class=\"note\">\n<p><strong>据反馈，升级 Paid Pro 后还可能解锁 Antigravity 里的高级模型。</strong> 升级后可以自己去 Antigravity 看实际模型列表。</p>\n</div>",
+      "index": 7,
+      "phase": 6,
+      "kind": "info",
+      "short": "领取与升级",
+      "next": 8,
+      "button": "看第 7 步，核对结算"
+    },
+    {
+      "id": "checkout",
+      "stage": 7,
+      "title": "第 7 步：确认首次扣款日期和金额，再付款",
+      "html": "<p>下面两张图是 <strong>两次不同的订阅</strong>：一张是免费 Pro，一张是含 YouTube Premium 的 US$8.99 组合。先确认自己现在点的是哪一个。</p>\n<div class=\"gallery\">\n<figure class=\"shot\"><button  type=\"button\" aria-label=\"放大查看：免费 Google AI Pro 的 Google Play 结算页，今天开始免费试用 12 个月，2027 年 10 月 22 日开始每月 19.99 美元\" data-cap=\"图 9 · 免费版：今天开始免费试用 12 个月，2027-10-22 起 US$19.99/月。\" data-img=\"../assets/guides/gemini-student/10-free-checkout.webp?v=cd1752ca9e\"><img src=\"../assets/guides/gemini-student/10-free-checkout.webp?v=cd1752ca9e\" alt=\"免费 Google AI Pro 的 Google Play 结算页，今天开始免费试用 12 个月，2027 年 10 月 22 日开始每月 19.99 美元\" loading=\"lazy\" decoding=\"async\"><span class=\"zoom\" aria-hidden=\"true\">点击放大</span></button><figcaption>图 9 · 免费版：今天开始免费试用 12 个月，2027-10-22 起 US$19.99/月。</figcaption></figure>\n<figure class=\"shot\"><button  type=\"button\" aria-label=\"放大查看：含 YouTube Premium 的 Google AI Pro 结算页，今天起每月 8.99 美元\" data-cap=\"图 10 · 付费组合：今天起 US$8.99/月，包含 YouTube Premium。\" data-img=\"../assets/guides/gemini-student/11-paid-checkout.webp?v=3a9f7046b3\"><img src=\"../assets/guides/gemini-student/11-paid-checkout.webp?v=3a9f7046b3\" alt=\"含 YouTube Premium 的 Google AI Pro 结算页，今天起每月 8.99 美元\" loading=\"lazy\" decoding=\"async\"><span class=\"zoom\" aria-hidden=\"true\">点击放大</span></button><figcaption>图 10 · 付费组合：今天起 US$8.99/月，包含 YouTube Premium。</figcaption></figure>\n</div>\n<table>\n<thead>\n<tr>\n<th>先核对什么</th>\n<th>领取免费 Pro</th>\n<th>升级含 YouTube Premium 的组合</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>套餐名称</td>\n<td>Google AI Pro (5 TB)</td>\n<td>Google AI Pro (5 TB) with YouTube Premium</td>\n</tr>\n<tr>\n<td>首次开始时间</td>\n<td>今天开始免费试用 12 个月</td>\n<td>截图显示今天开始收费</td>\n</tr>\n<tr>\n<td>金额</td>\n<td>试用期免费；到期按结算页续费</td>\n<td>截图显示 US$8.99/month</td>\n</tr>\n<tr>\n<td>后续收费</td>\n<td>截图为 2027-10-22 起 US$19.99/月</td>\n<td>看自己页面的续费条款</td>\n</tr>\n</tbody>\n</table>\n<p><strong>确认首次扣款日期和金额，符合预期再点“订阅”。</strong></p>\n<h3>付款前再看这几条</h3>\n<div class=\"note warn\">\n<p><strong>学生优惠账号千万别加家庭组。</strong> 评论区看到有人开家庭共享被连坐限号；风控会关联同一付款资料或家庭组下的账号，一封封一片。学生优惠账号单独用，不要拼家庭组。</p>\n</div>\n<ul>\n<li><strong>8.99 开一年是 bug，会被谷歌秋后算账。</strong> 721 天疑似已经修复，不要为了长期权益付款。</li>\n<li>$9/月本身仍可用 Gemini 4 Argon 和 Claude Opus 5.5，按月用性价比很高。</li>\n<li>不需要 YouTube Premium 就不用升级。</li>\n<li>提前把付款方式加好，账单地址用美国免税区最好。</li>\n<li>付款后到 Google One / Google Play 订阅管理页核对状态，保存确认邮件，记下下次扣款日期。</li>\n</ul>\n<div class=\"note\">\n<p>两张付款截图里的卡片信息已遮盖。</p>\n</div>",
+      "index": 8,
+      "phase": 7,
+      "kind": "checks",
+      "short": "核对扣款",
+      "next": 9,
+      "checksTitle": "点“订阅”前，逐项对一遍",
+      "checks": [
+        "套餐名称和是否包含 YouTube Premium，与我的选择一致。",
+        "我已确认首次扣款日期和金额，符合预期再付款。",
+        "我已知美国地区 721 天疑似修复，8.99 开一年是 bug，可能被谷歌秋后算账。"
+      ],
+      "button": "已核对，查看收尾",
+      "hint": "核对清楚后，再去 Google 页面确认订阅。"
+    },
+    {
+      "id": "finish",
+      "stage": 0,
+      "title": "领取后回账号确认",
+      "html": "<p>这里记录的是教程阅读进度。订阅是否领取成功、有没有扣费，以你的 Google 账号为准。</p>\n<h3>领取后看这三处</h3>\n<ul>\n<li><strong>Google One</strong>：会员名称、试用期和套餐是否与预期一致。</li>\n<li><strong>订阅和付款记录</strong>：首次扣款、下次扣款日期和金额。</li>\n<li><strong>YouTube Premium</strong>：只有升级了含 Premium 的组合，才需要核对这一项。</li>\n</ul>\n<p>已经领取免费 Pro、又不需要 YouTube Premium 的，到这里就可以结束。</p>\n<h3>官方入口</h3>\n<ul>\n<li><a href=\"https://gemini.google/students/\" target=\"_blank\" rel=\"noopener noreferrer\">Gemini 学生优惠官网</a></li>\n<li><a href=\"https://one.google.com/ai-student\" target=\"_blank\" rel=\"noopener noreferrer\">Google One 学生优惠</a></li>\n<li><a href=\"https://support.google.com/googleone/answer/17422238?hl=zh-Hans\" target=\"_blank\" rel=\"noopener noreferrer\">Google 学生优惠帮助</a></li>\n</ul>",
+      "index": 9,
+      "phase": 8,
+      "kind": "done",
+      "short": "账号确认"
+    }
+  ]
+};
+</script>
+<script src="../assets/g-engine.js?v=42c616d414" defer></script>
+</body>
+</html>

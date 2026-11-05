@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Plus、API 和 Agent：个人怎么用更划算：先分清费用，再选官方、可控的使用方式。每一步配截图，跟着做就行。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#6459d9">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='18' fill='%236459d9' stroke='%231a1830' stroke-width='4'/%3E%3Cpath d='M20 24h24M20 32h24M20 40h14' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>Plus、API 和 Agent：个人怎么用更划算 · Plus Guide</title>
+<link rel="preload" href="../assets/pg-heading-900.woff2?v=c11862cc4b" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/g-guide.css?v=74702c1566">
+</head>
+<!--
+  G 风格教程页外壳。由 ai-guides/_src/build.py --g 生成，不要直接改生成后的页面：
+  样式改 ai-guides/assets/g-guide.css，交互改 ai-guides/assets/g-engine.js，
+  这个外壳改 ai-guides/assets/g-page.html，内容改 ai-guides/guides/<slug>.js。
+-->
+<body>
+<div id="guideShell">
+<a class="skip" href="#stepTitle">跳到当前步骤</a>
+<header class="top">
+  <div class="top-in">
+    <a class="mark" id="homeLink" href="../" aria-label="Plus Guide 首页">plus<i>.</i>guide</a>
+    <span class="crumb"><span class="cat"><a id="catLink" href="../"></a> / </span><b id="guideTitle">Plus、API 和 Agent：个人怎么用更划算</b></span>
+    <div class="top-actions">
+      <a class="btn btn-sm" id="allLink" href="../#tutorials" aria-label="全部教程"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>全部教程</span></a>
+    </div>
+  </div>
+</header>
+
+<details class="mobile-toc" id="mobileToc">
+  <summary><span id="mProgText">第 1 步</span><span class="track" aria-hidden="true"><span class="fill" id="mFill" style="display:block"></span></span><span>步骤</span></summary>
+  <nav class="toc" id="mToc" aria-label="本篇步骤"></nav>
+</details>
+
+<div class="layout">
+  <aside class="side" aria-label="本篇步骤">
+    <div class="side-inner">
+      <div class="prog">
+        <div class="prog-row"><span>进度</span><b id="progText">第 1 步</b></div>
+        <div class="track" role="progressbar" id="progBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="教程进度"><div class="fill" id="fill"></div></div>
+      </div>
+      <nav class="toc first" id="toc" aria-label="步骤目录"></nav>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="main-in">
+
+      <article class="step" id="step" aria-live="polite"><h1 id="stepTitle" tabindex="-1">Plus、API 和 Agent：个人怎么用更划算</h1><p class="intro">正在加载内容……如果这行字一直在，说明页面脚本没跑起来，刷新一次试试。</p></article>
+    </div>
+  </main>
+
+  <aside class="rail" aria-label="帮助">
+    <div class="rail-inner">
+      <section class="box box-coach" id="coachBox">
+        <span class="tag" aria-hidden="true"><span class="sticker">小提示</span></span>
+        <h2>这一步的小提示</h2>
+        <p id="coach"></p>
+      </section>
+      <section class="box box-help">
+        <span class="tag" aria-hidden="true"><span class="sticker">别硬扛</span></span>
+        <h2>卡住了？</h2>
+        <p>进群说明教程名、做到第几步和报错，截图先遮住邮箱、密码和验证码。</p>
+        <a class="btn btn-ink btn-sm" href="https://t.me/+_lOsXtUCD9MxNzY1" target="_blank" rel="noopener noreferrer">打开 Telegram 群</a>
+        <details><summary>扫码进群</summary><img src="../ai-group-qr.png?v=5c146bd70c" alt="AI 交流群二维码" width="200" height="200" loading="lazy"></details>
+      </section>
+      <section class="box">
+        <h2>本机记录</h2>
+        <p class="save" id="saveStatus"><i aria-hidden="true"></i>进度自动保存在这个浏览器</p>
+        <div class="reset-row" id="resetRow"><button class="btn btn-sm" type="button" id="resetBtn">重新开始</button></div>
+      </section>
+    </div>
+  </aside>
+</div>
+</div>
+
+<main class="access" id="accessPanel" hidden></main>
+<dialog class="gate-dialog" id="gateDialog" aria-labelledby="gateTitle" aria-describedby="gateLead"></dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog class="img-dialog" id="imgDialog" aria-labelledby="imgCaption">
+  <div class="img-bar"><span id="imgCaption"></span><button class="btn btn-sm" type="button" id="imgClose">关闭</button></div>
+  <div class="img-scroll"><img id="imgFull" alt=""></div>
+</dialog>
+
+<script>
+window.AI_GUIDE_SLUG = 'plus-api-agent-cost';
+window.AI_GUIDE = {category: "tools",
+  index: '25',
+  slug: 'plus-api-agent-cost',
+  title: 'Plus、API 和 Agent：个人怎么用更划算',
+  subtitle: '先分清费用，再选官方、可控的使用方式',
+  phases: [
+    { title: '认识 API', copy: '订阅、接口与使用需求' },
+    { title: '算清成本', copy: 'Agent 消耗与官方 Plus 的适用场景' },
+    { title: '安全开通', copy: '避开不明渠道，本人账号本人付款' }
+  ],
+  inputs: [],
+  steps: [
+    {
+      phase: 0, kind: 'info', short: '订阅不等于 API',
+      title: 'Plus 会员和 API，是两种不同的使用方式',
+      intro: 'ChatGPT Plus 是面向个人的 ChatGPT 产品订阅；API 是给软件调用的接口。两者可能都使用同品牌模型，但入口、额度和计费通常独立，不要把会员当成一笔通用 API 余额。',
+      facts: [
+        ['官方 Plus', '本人账号在官方网页或应用中使用，功能与额度按当前套餐'],
+        ['官方 API', '程序按接口提交请求，用于开发、批量处理与系统集成'],
+        ['分别核对', 'Plus 不自动附带通用 API 额度；API Key 也不是 ChatGPT 登录密码'],
+        ['本篇目标', '日常个人选对入口，理解 Agent 成本，并避开不明购买渠道']
+      ],
+      note: '价格、额度、功能、地区与付款条件会变化，以官方当前页面为准。',
+      coach: '先弄清楚买到的是产品订阅还是调用接口，再比较价格才有意义。',
+      button: '继续认识 API'
+    },
+    {
+      phase: 0, kind: 'task', short: 'API 是什么',
+      title: 'API 是软件调用服务的约定，不是会员账号',
+      intro: 'API（应用程序编程接口）让程序按规定格式发送请求、接收结果。配置客户端时常见的 Base URL、API Key 和模型 ID，分别决定请求地址、调用身份和所用模型。',
+      facts: [
+        ['Base URL', '请求发往的服务地址，按实际服务官方文档填写'],
+        ['API Key', '识别调用者与计费归属的凭据，不能贴进群聊、截图或公开仓库'],
+        ['模型 ID', '本次请求使用的模型，以账户实际可用列表为准'],
+        ['用量', '输入、输出和工具等如何计费，按服务商当前规则']
+      ],
+      code: [{ lang: 'text', caption: 'API 调用的简化过程，不是需要运行的命令', text: '你的程序：按规定格式提交输入、模型 ID 和 API Key\n服务：验证请求并处理\n你的程序：接收结构化结果，检查错误，再放进自己的应用\n\nAPI 只提供调用入口；文件管理、工具、记忆和 Agent 工作流需要另外实现。' }],
+      warn: '本篇不需要你提供或粘贴真实 API Key。密钥只放在实际服务指定的受控位置。',
+      coach: 'API 让程序能调用，不会自动变成一个完整的智能体。',
+      button: 'API 概念已分清'
+    },
+    {
+      phase: 0, kind: 'task', short: '什么时候需要 API',
+      title: '有开发或批量需求，再考虑 API',
+      intro: '需要把 AI 接入网站、应用或内部系统，或要稳定批量处理并自行控制输入、输出、日志与重试时，API 才有明显价值。普通写作和日常问答不必先承担这些工作。',
+      bullets: [
+        '开发集成：使用官方文档，确认模型、接口、额度和数据规则。',
+        '批量任务：先用无敏感信息的小样例验证结果，再逐步扩大。',
+        '低频调用：核对按量费用和维护投入，可能无需购买固定订阅。',
+        '个人学习、写作、总结：优先使用现成官方产品，不必为了“显得专业”配置 API。'
+      ],
+      seeAlso: [{ title: '网页聊天、API 和 Agent 怎么选', url: './20-web-chat-comparison.html', why: '需要按输入、工具、流程与验收比较入口时阅读', icon: 'book' }],
+      coach: 'API 的优势是可控集成，不是所有个人都更省钱。',
+      button: '知道何时该用 API'
+    },
+    {
+      phase: 1, kind: 'task', short: 'Agent 成本',
+      title: 'Agent 不是只问一次：多轮行动会累积消耗',
+      intro: '普通对话可能只调用一次模型；Agent 为完成目标，会反复规划、调用工具、读取结果并调整下一步。在按量计费的环境中，一个任务的成本因此更难预估。',
+      facts: [
+        ['多轮推理', '步骤越多，模型调用次数通常越多'],
+        ['上下文与工具结果', '文件、网页、日志与之前的结果进入后续请求，处理量继续增加'],
+        ['失败与重试', '工具报错、计划走偏和结果返工会带来额外消耗'],
+        ['运行与维护', '检索、浏览器、代码环境、存储、人工验收与异常处理也是成本']
+      ],
+      bullets: [
+        '先缩小任务范围，减少无关文件与工具，用小样本验证流程。',
+        '设置预算、额度和停止条件，失败时先检查原因，不盲目重跑。',
+        '不能绝对说 Agent 一定更贵：部分套餐会包含 Agent 功能，但仍可能有额度限制。',
+        '是否按量、包含多少额度、工具是否另收费，以当前产品和账户规则为准。'
+      ],
+      seeAlso: [{ title: 'Agent 入门：让 AI 用工具完成任务', url: './17-agent-basics.html', why: '先理解目标—计划—行动—观察循环和权限边界', icon: 'grid' }],
+      coach: 'Agent 省的是部分操作时间，不代表没有模型、工具和维护成本。',
+      button: '成本来源已看懂'
+    },
+    {
+      phase: 1, kind: 'task', short: '日常首选官方 Plus',
+      title: '个人高频自用，优先官方 ChatGPT Plus',
+      intro: '如果主要用于个人学习、写作、总结、读资料和日常问答，本站优先推荐本人账号通过官方渠道开通 ChatGPT Plus。对这类高频自用场景，它是本站的性价比首选。',
+      facts: [
+        ['开箱即用', '不必自行组合 API、密钥、客户端与 Agent 工作流'],
+        ['成本更好预估', '订阅费用比多轮按量 Agent 任务更容易安排；套餐仍有额度与规则'],
+        ['账号自己管理', '会话、订阅与付款由本人控制，有官方入口可核对'],
+        ['时间也值钱', '把配置和维护的时间省下来，用于真实学习和工作']
+      ],
+      bullets: [
+        '只偶尔使用，先看官方免费功能是否已经够用。',
+        '明确开发、批量或系统集成需求时，再比较官方 API，不必盲目订阅。',
+        'Plus 不等于无限量、所有功能无限制，也不附带通用 API 额度。'
+      ],
+      links: [{ label: '进入 ChatGPT Plus 官方开通教程', url: './17-plus.html' }],
+      coach: '对日常个人来说，好用、可控和少走弯路，都是性价比的一部分。',
+      button: '继续看渠道风险'
+    },
+    {
+      phase: 2, kind: 'task', short: '三类渠道不推荐',
+      title: '不明中转站、买号商和代充，本站不推荐',
+      intro: '普通个人不要为了低标价，把账号、聊天内容和付款过程交给来路不明的第三方。低价不能弥补数据泄露、账号失控和服务中断的风险。',
+      facts: [
+        ['不明中转站', '实际服务来源、提示词与文件日志、额度来源和持续服务难以仅凭宣传核实'],
+        ['买号商 / 共享号', '账号可能被找回或被他人访问，私人会话和文件不应放在其中'],
+        ['代充', '索取密码、验证码、session 或支付资料，会让账号控制与付款过程脱离本人掌握']
+      ],
+      bullets: [
+        '“官方同款”“永久稳定”等广告词，不是可验证的安全保证。',
+        '不要把隐私、公司资料或真实密钥放入不可信服务。',
+        '付款争议、异常扣款或账号问题时，本人可能难以核查和处理。',
+        '本站劝阻的是普通个人购买不明第三方服务，不是否定官方 API 或合法授权的自研集成。'
+      ],
+      warn: '不向号商或代充提供密码、验证码、session、登录令牌或支付资料；官方 Plus 不等于把账号交给别人低价代开。',
+      coach: '便宜只是标价，账号、数据和售后出问题，都是你要承担的成本。',
+      button: '风险已看清'
+    },
+    {
+      phase: 2, kind: 'checks', short: '官方开通前核对',
+      title: '本人账号、官方渠道、本人付款',
+      intro: '准备订阅时逐项核对。需要具体操作，再进入现有官方 Plus 开通向导，按账户实际情况完成。',
+      checks: [
+        '使用本人注册并控制的账号，不购买成品号或共享号',
+        '从官方应用或网页进入订阅，核对域名、登录账号与套餐',
+        '本人查看价格、续费、税费、地区和付款条件，并本人完成支付',
+        '不向卖家或代充提供密码、验证码、session、登录令牌或支付资料',
+        '知道在哪里查看套餐状态、使用额度和续费设置',
+        '不把 Plus 当作通用 API 额度，也不把套餐内 Agent 功能当成无限使用'
+      ],
+      links: [{ label: 'ChatGPT Plus 官方开通教程', url: './17-plus.html' }],
+      coach: '只在官方渠道由本人操作，不把付款教程变成私下转账指南。',
+      button: '全部确认，完成选择'
+    },
+    {
+      phase: 2, kind: 'done', short: '完成与 FAQ',
+      title: '按真实需求选，不按低价宣传选',
+      intro: '日常个人高频自用，优先本人账号的官方 ChatGPT Plus；开发集成再考虑官方 API；Agent 要额外核算多轮调用、工具和维护成本。远离不明中转、买号和代充。',
+      doneGroups: [
+        { title: '你的选择卡', items: ['个人学习、写作、总结与日常问答：官方 Plus，本站性价比首选', '偶尔体验：先核对官方免费功能是否够用', '开发、批量、系统集成：官方 API，小样例试跑并控制用量', '多步工具任务：核对 Agent 计费，限制范围、预算和权限', '低价中转、买号、共享号和代充：不推荐'] },
+        { title: '最后确认', items: ['知道 Plus 与 API 的额度和计费通常独立', '能说出 Agent 成本容易增加的具体原因', '使用本人控制的官方账号与支付渠道', '价格、功能与额度以官方当前页面为准'] }
+      ],
+      seeAlso: [
+        { title: 'ChatGPT Plus 官方开通教程', url: './17-plus.html', why: '已决定官方订阅，需要按账户情况完成付款与核对时阅读', icon: 'card' },
+        { title: '网页聊天、API 和 Agent 怎么选', url: './20-web-chat-comparison.html', why: '需要按任务比较使用入口时阅读', icon: 'book' },
+        { title: 'Agent 入门：让 AI 用工具完成任务', url: './17-agent-basics.html', why: '需要理解 Agent 的工具调用与权限边界时阅读', icon: 'grid' }
+      ],
+      faqGroups: [
+        { label: '套餐与费用', items: [
+          { q: 'Plus 开通后，就能拿 API Key 免费调用吗？', a: '不能把两者混为一谈。ChatGPT 订阅与 API 账户、额度及计费是不同入口，以 OpenAI 当前官方说明为准。' },
+          { q: 'Agent 一定比网页聊天贵吗？', a: '不一定。套餐可能包含一定 Agent 额度；按量环境中则常因多轮调用、长上下文和工具使用而更难预估成本。实际看产品规则和任务。' },
+          { q: 'Plus 是不是任何人都应该买？', a: '不是。本站推荐给高频日常自用的个人；偶尔使用先看官方免费功能，开发集成则比较官方 API。按真实需求选择。' }
+        ] },
+        { label: '渠道与账号', items: [
+          { q: '中转站价格更低，为什么不推荐？', a: '低标价不等于低总成本。账号与数据安全、额度真实性、服务持续性、售后和迁移成本都要考虑，普通个人优先自己控制的官方渠道。' },
+          { q: '代充只要求密码，不给验证码可以吗？', a: '不建议提供任何登录凭据。密码、验证码、session、登录令牌和支付资料都不应交给代充或号商。' },
+          { q: '已经买了共享号，应该怎么办？', a: '停止上传私人材料或用于重要工作，改用自己控制的官方账号；按服务允许的方式导出需要保留的内容，并检查账号安全设置。不要继续共享或转卖账号。' }
+        ] }
+      ]
+    }
+  ]
+};
+</script>
+<script src="../assets/g-engine.js?v=42c616d414" defer></script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Magpie 安装与模型切换：给顺手的 AI 工具，换一个可用的模型。每一步配截图，跟着做就行。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#6459d9">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='18' fill='%236459d9' stroke='%231a1830' stroke-width='4'/%3E%3Cpath d='M20 24h24M20 32h24M20 40h14' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>Magpie 安装与模型切换 · Plus Guide</title>
+<link rel="preload" href="../assets/pg-heading-900.woff2?v=c11862cc4b" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/g-guide.css?v=74702c1566">
+</head>
+<!--
+  G 风格教程页外壳。由 ai-guides/_src/build.py --g 生成，不要直接改生成后的页面：
+  样式改 ai-guides/assets/g-guide.css，交互改 ai-guides/assets/g-engine.js，
+  这个外壳改 ai-guides/assets/g-page.html，内容改 ai-guides/guides/<slug>.js。
+-->
+<body>
+<div id="guideShell">
+<a class="skip" href="#stepTitle">跳到当前步骤</a>
+<header class="top">
+  <div class="top-in">
+    <a class="mark" id="homeLink" href="../" aria-label="Plus Guide 首页">plus<i>.</i>guide</a>
+    <span class="crumb"><span class="cat"><a id="catLink" href="../"></a> / </span><b id="guideTitle">Magpie 安装与模型切换</b></span>
+    <div class="top-actions">
+      <a class="btn btn-sm" id="allLink" href="../#tutorials" aria-label="全部教程"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>全部教程</span></a>
+    </div>
+  </div>
+</header>
+
+<details class="mobile-toc" id="mobileToc">
+  <summary><span id="mProgText">第 1 步</span><span class="track" aria-hidden="true"><span class="fill" id="mFill" style="display:block"></span></span><span>步骤</span></summary>
+  <nav class="toc" id="mToc" aria-label="本篇步骤"></nav>
+</details>
+
+<div class="layout">
+  <aside class="side" aria-label="本篇步骤">
+    <div class="side-inner">
+      <div class="prog">
+        <div class="prog-row"><span>进度</span><b id="progText">第 1 步</b></div>
+        <div class="track" role="progressbar" id="progBar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="教程进度"><div class="fill" id="fill"></div></div>
+      </div>
+      <nav class="toc first" id="toc" aria-label="步骤目录"></nav>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="main-in">
+
+      <article class="step" id="step" aria-live="polite"><h1 id="stepTitle" tabindex="-1">Magpie 安装与模型切换</h1><p class="intro">正在加载内容……如果这行字一直在，说明页面脚本没跑起来，刷新一次试试。</p></article>
+    </div>
+  </main>
+
+  <aside class="rail" aria-label="帮助">
+    <div class="rail-inner">
+      <section class="box box-coach" id="coachBox">
+        <span class="tag" aria-hidden="true"><span class="sticker">小提示</span></span>
+        <h2>这一步的小提示</h2>
+        <p id="coach"></p>
+      </section>
+      <section class="box box-help">
+        <span class="tag" aria-hidden="true"><span class="sticker">别硬扛</span></span>
+        <h2>卡住了？</h2>
+        <p>进群说明教程名、做到第几步和报错，截图先遮住邮箱、密码和验证码。</p>
+        <a class="btn btn-ink btn-sm" href="https://t.me/+_lOsXtUCD9MxNzY1" target="_blank" rel="noopener noreferrer">打开 Telegram 群</a>
+        <details><summary>扫码进群</summary><img src="../ai-group-qr.png?v=5c146bd70c" alt="AI 交流群二维码" width="200" height="200" loading="lazy"></details>
+      </section>
+      <section class="box">
+        <h2>本机记录</h2>
+        <p class="save" id="saveStatus"><i aria-hidden="true"></i>进度自动保存在这个浏览器</p>
+        <div class="reset-row" id="resetRow"><button class="btn btn-sm" type="button" id="resetBtn">重新开始</button></div>
+      </section>
+    </div>
+  </aside>
+</div>
+</div>
+
+<main class="access" id="accessPanel" hidden></main>
+<dialog class="gate-dialog" id="gateDialog" aria-labelledby="gateTitle" aria-describedby="gateLead"></dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog class="img-dialog" id="imgDialog" aria-labelledby="imgCaption">
+  <div class="img-bar"><span id="imgCaption"></span><button class="btn btn-sm" type="button" id="imgClose">关闭</button></div>
+  <div class="img-scroll"><img id="imgFull" alt=""></div>
+</dialog>
+
+<script>
+window.AI_GUIDE_SLUG = 'magpie';
+window.AI_GUIDE = {category: "tools",
+  index: '12',
+  slug: 'magpie',
+  title: 'Magpie 安装与模型切换',
+  subtitle: '给顺手的 AI 工具，换一个可用的模型',
+  phases: [
+    { title: '准备', copy: '认清工具、模型和费用' },
+    { title: '安装', copy: '下载与保留原配置' },
+    { title: '接入', copy: '添加一个模型来源' },
+    { title: '验证', copy: '换模型、开新会话' },
+    { title: '用起来', copy: '用量、上下文与可选路由' },
+    { title: '维护', copy: '恢复默认与排错' }
+  ],
+  inputs: [],
+  steps: [
+    {
+      phase: 0, kind: 'info', short: '先看能做什么',
+      title: '工具用顺手的，模型自己选',
+      intro: 'Claude Code、Codex、Gemini CLI 这些是安排任务的工具；GPT、Claude、Kimi、DeepSeek 是负责回答的模型。Magpie 把模型来源放在一起，让你给每个工具选择模型，需要时通过本机网关转换接口。',
+      links: [
+        { label: 'Magpie 官方网站与下载', url: 'https://usemagpie.ai/zh/' },
+        { label: 'yetone 的开源仓库', url: 'https://github.com/yetone/magpie' },
+        { label: '中文快速上手文档', url: 'https://usemagpie.ai/docs/zh/start' },
+        { label: 'Niva · 稳定、快（有谷歌邮箱用这家）', url: 'https://niva.page/register?invite_code=qxYarFgs' },
+        { label: 'btcr · 没有谷歌邮箱 / 移动用户可用', url: 'https://go.btcr.cc/i/roxy123' },
+        { label: '低门槛机场 · 备用选择', url: 'https://go.btcr.cc/i/roxy123' }
+      ],
+      facts: [
+        ['这一篇做什么', '安装 Magpie，添加一个来源，给一个已安装的 Agent 换模型，再验证和恢复'],
+        ['运行在哪里', '你的 Windows、macOS 或 Linux 电脑；本机网关转发到你选择的来源'],
+        ['费用', 'Magpie 是 MIT 开源项目；API 用量、订阅和第三方服务按各自规则收费'],
+        ['资料日期', '2026-10-10，结合作者公开帖子与当前官方文档；页面功能已测试，未使用真实订阅做模型实测']
+      ],
+      images: [{ src: "../assets/guides/magpie/agents-zh-light.webp?v=4c54f60694", alt: 'Magpie 官方 Agent 总览示例', caption: '官方示例：左边是工具，右边是模型。图中模型名、方案和数据用于说明界面，以你安装的版本和账号为准。' }],
+      note: '下载、授权或访问供应商时需要机场，可以选上面三家。有谷歌邮箱用 Niva，稳定、快——注册页要先开梯子访问；移动的用户不要买 Niva！没有谷歌邮箱、或者运营商是移动的，用 btcr：它有菲律宾的节点，需要买套餐。另一家门槛低，稳定性可能比 Niva 稍差。',
+      bullets: ['先只接入一个工具，跑通后再扩展。', '本机网关在本地运行；调用云模型时，消息仍发给对应供应商。', '本教程不收集 API Key、登录凭据或账号密码。所有授权在你自己的 Magpie 和供应商页面完成。'],
+      coach: '不用一次学完所有功能，先做到一个工具能正常使用一个来源。',
+      button: '开始准备'
+    },
+    {
+      phase: 0, kind: 'checks', short: '准备清单',
+      title: '先确认这几件事',
+      intro: 'Magpie 管理模型接入，不代替 Claude Code、Codex 等 Agent 本身。至少准备一个已能启动的工具，以及一种自己有权使用的模型来源。',
+      checks: ['这台电脑已有一个能正常启动的 Agent，例如 Claude Code、Codex 或 Gemini CLI', '我有可用的 API Key、受支持订阅，或准备导入已有来源', '我能访问官方下载页和所选供应商的服务', '我知道订阅与 API 是不同的计费方式，接入前会核对额度和服务条件'],
+      coach: '还没有 Agent 就先按它自己的官方说明安装，装好后再回来。',
+      button: '准备好了'
+    },
+    {
+      phase: 1, kind: 'choice', short: '选择系统',
+      title: '你在哪个系统安装？',
+      intro: '按 Agent 实际运行的环境选择。Windows 原生和 WSL 是不同环境，先不要把两边的路径与配置混在一起。',
+      choices: [
+        { value: 'windows', title: 'Windows 桌面', copy: '下载官方桌面版，跟着界面完成配置。', icon: 'grid', next: 3 },
+        { value: 'unix', title: 'macOS / Linux', copy: '官网下载安装，或使用官方安装脚本。', icon: 'terminal', next: 4 }
+      ],
+      coach: 'Agent 在 WSL 运行时，可先读官方 WSL 说明；本篇主线是同一环境的桌面接入。'
+    },
+    {
+      phase: 1, kind: 'task', short: '安装 Windows 版',
+      title: '下载并启动 Windows 桌面版',
+      intro: 'Windows 10 或更新版本，从官网下载与架构相符的桌面 EXE，直接运行，无需安装向导。桌面版使用系统 WebView2；纯 CLI 包是另一种用途。',
+      links: [
+        { label: '官网下载', url: 'https://usemagpie.ai/zh/' },
+        { label: '官方发布包与更新记录', url: 'https://github.com/yetone/magpie-releases/releases/latest' }
+      ],
+      bullets: ['从官网进入最新发布页，核对发布者和与你系统架构相符的文件。不要从不明网盘下载。', '打开桌面应用，确认能看到 Agent、供应商、网关等页面。界面名称可能随版本变化。', 'Windows 构建目前未签名，SmartScreen 首次可能提示；先核实文件来源与发布信息，不要关闭整个系统的安全防护。', '若使用命令行，magpie.exe 与纯终端包支持同一套 CLI 命令；命令找不到时先确认文件位置和 PATH。'],
+      note: '首次打开不需要把所有账号都加进去。先能看到应用界面，再进入下一步。',
+      coach: '本步完成标志是应用正常打开，不是模型已经能调用。',
+      next: 5, button: '应用已打开'
+    },
+    {
+      phase: 1, kind: 'task', short: '安装 Mac / Linux 版',
+      title: '从官网下载，或运行官方安装脚本',
+      intro: '桌面安装包在官网按系统选择；习惯终端的读者也可以使用下面这条官方命令。',
+      links: [{ label: '官网下载与系统说明', url: 'https://usemagpie.ai/zh/' }],
+      code: [{ lang: 'sh', caption: '官方安装脚本（macOS / Linux）', text: 'curl -fsSL https://usemagpie.ai/install.sh | sh', note: '命令会下载并执行官方安装脚本，确认域名与来源后再运行。' }, { lang: 'sh', caption: '安装后，在新终端查看版本', text: 'magpie version' }],
+      bullets: ['安装脚本把命令放在 ~/.local/bin；macOS 应用放到 /Applications，Linux 提供应用菜单入口。', '终端找不到 magpie 时，重新开终端，并检查 ~/.local/bin 是否在 PATH 中。', 'Linux 桌面需要 GTK 3 / WebKitGTK 4.1；缺少相关环境时安装器会装 CLI。想跟着后面的图形操作，就运行 magpie web，在本机浏览器打开它显示的完整地址；不要分享带访问凭据的链接。', '下载失败先检查网络、系统和官方发布状态，不要反复粘贴不明镜像脚本。'],
+      coach: '先确认安装结果，后面的配置在应用里完成。',
+      button: '安装完成'
+    },
+    {
+      phase: 1, kind: 'task', short: '保留原配置',
+      title: '选一个工具试用，并保留原来的设置',
+      intro: '记下这次要接入的 Agent，以及它原来使用的模型与来源。切换前备份对应配置文件，先不卸载现有配置管理工具。',
+      facts: [['Claude Code', '~/.claude/settings.json'], ['Codex', '~/.codex/config.toml'], ['Windows 路径', '~ 表示当前用户目录；在对应用户环境中查找 .claude 或 .codex']],
+      bullets: ['若文件存在，复制一份带日期的备份；备份可能含密钥，只放在自己的受控目录。', '先结束重要任务再换设置。Magpie 修改配置后，运行中的旧会话通常继续使用启动时的模型。', '避免同时让多个管理器反复修改同一个 Agent 的设置。一次由一个工具负责切换，出问题更容易定位。', '不要把配置或备份上传到教程、截图、公开仓库或聊天记录中。'],
+      coach: '只试一个 Agent，并记住怎么恢复；这样改错了也能退回。',
+      button: '原配置已保留'
+    },
+    {
+      phase: 2, kind: 'choice', short: '选择模型来源',
+      title: '你准备怎么接入模型？',
+      intro: '进入「供应商 / Providers」，点「添加供应商」。按你已有的服务选择一条路线；API Key、订阅登录和旧配置导入不需要同时做。',
+      choices: [
+        { value: 'api', title: '我有 API Key', copy: '选择供应商预设；自定义兼容接口填地址和密钥。', icon: 'key', next: 7 },
+        { value: 'subscription', title: '我有支持的订阅', copy: '在 Magpie 中打开供应商的登录流程，由本人授权。', icon: 'user', next: 8 },
+        { value: 'import', title: '我已经配好其他工具', copy: '导入已有供应商配置，核对后再选择模型。', icon: 'grid', next: 9 }
+      ],
+      coach: 'ChatGPT Plus 订阅不会自动附送 OpenAI API Key，别把两种入口混用。'
+    },
+    {
+      phase: 2, kind: 'task', short: '添加 API 来源',
+      title: '选供应商，填密钥，再检查模型列表',
+      intro: '在添加供应商页找到你实际购买的 API 服务。预设会提供对应接口；自定义服务才需要按它的说明填写地址。',
+      images: [{ src: "../assets/guides/magpie/add-zh-light.webp?v=997043f83b", alt: 'Magpie 官方添加供应商页面', caption: '官方示例：顶部是订阅登录，中间是 API 供应商，底部是本机模型与自定义接口。选你实际持有服务的一项。' }],
+      bullets: ['点对应供应商卡片，粘贴你自己的 API Key 并保存。密钥只填在本机应用里。', '同品牌的国内与国际平台可能使用不同端点和密钥，按实际账户选择，不要只看品牌名。', '自定义服务：OpenAI 兼容地址按官方说明通常以 /v1 结尾；Anthropic 兼容地址用服务要求的根地址。支持哪种协议就填哪种。', '添加后展开来源，确认拉到模型列表；有「测试 / Test」入口时先测试。失败先核对账户余额、接口和密钥。', '模型名以当前列表为准，不照抄截图中的示例名称。'],
+      coach: '先让来源本身可用，再把它分配给 Agent。',
+      next: 10, button: '来源和模型已确认'
+    },
+    {
+      phase: 2, kind: 'task', short: '添加订阅来源',
+      title: '从 Magpie 发起登录，由本人完成授权',
+      intro: '在添加供应商页选择受支持的订阅卡片，例如 ChatGPT、Claude 或 Copilot。登录流程在供应商自己的页面完成；不需要在这个教程里输入账号。',
+      images: [{ src: "../assets/guides/magpie/add-zh-light.webp?v=997043f83b", alt: 'Magpie 官方订阅登录入口示例', caption: '官方示例：上方「订阅」区域是登录入口。卡片与资格会随版本和上游服务变化。' }],
+      bullets: ['点你已有订阅的卡片，核对浏览器打开的供应商域名，再本人完成登录和授权。', 'Copilot 等服务可能先显示设备码；仅在它指向的官方验证页输入。', '已有本机 Agent 登录可被识别为来源；未自动出现时，使用 Magpie 的账号添加入口，不复制令牌到教程中。', 'Claude 订阅接入会调用本机真实的 claude 程序；按应用提示确认 Claude Code 已安装并可用。', '登录成功后确认来源出现、模型列表能打开、账户额度可用。'],
+      warn: '额度、地区、模型资格和服务条件由上游决定；Magpie 不增加订阅额度，也不保证第三方接入长期可用。',
+      coach: '来源是哪个订阅，选到的模型就按那个订阅的资格和额度工作。',
+      next: 10, button: '账号已授权，模型可见'
+    },
+    {
+      phase: 2, kind: 'task', short: '导入已有来源',
+      title: '导入你已配置好的供应商',
+      intro: '添加供应商面板的「导入…」可以读取受支持的本机来源。按界面提供的 CC Switch、Claude Code、Codex、Alma 等入口操作，先检查内容再确认。',
+      bullets: ['打开 Providers → 添加供应商 → 导入，选择应用实际检测到的配置来源。', '勾选这次要试的供应商，核对名称、地址、模型和认证方式；确认后检查是否出现在 Magpie 列表。', '这一步导入的是支持的来源配置，不代表 MCP、Skills 和历史会话都完整迁移。', '「添加到 Magpie」网页链接是另一种导入方式；来自链接的地址和密钥仍须本人核对。', '导入完成后先测试来源，再去 Agent 页换模型。'],
+      note: '如果当前版本没有识别到原配置，走前面的 API 或订阅路线手动添加，不要删掉原设置。',
+      coach: '导入减少重复填写，不能替你判断服务是否可信。',
+      next: 10, button: '导入内容已核对'
+    },
+    {
+      phase: 3, kind: 'task', short: '给 Agent 换模型',
+      title: '找到刚才那个工具，选择一个可用模型',
+      intro: '进入 Agent 页，找到要试用的那一行，点右侧当前模型名。在选择器里按来源或模型搜索，选你刚添加且已验证的模型。',
+      images: [{ src: "../assets/guides/magpie/picker-light.webp?v=3d19f61b04", alt: 'Magpie 官方模型选择器，显示 Default 与 via magpie', caption: '官方示例，英文界面：via magpie 表示经过 Magpie；Default 是恢复工具默认设置的入口。图中模型名仅演示选择位置。' }],
+      bullets: ['只改这次要试的一个 Agent，暂时保留其他工具的原设置。', '模型目录使用 provider/model 这样的标识；来源相同不代表每个模型都有相同能力。', 'Magpie 会把所需设置写入 Agent 自己的配置文件，不需要把供应商密钥重复填到每个工具里。', '需要工具调用、图片或长上下文时，选支持这些能力的模型，并用实际任务验证。'],
+      coach: '选择器里选到模型，只证明配置已选好；下一步还要让 Agent 重新读取。',
+      button: '模型已选好'
+    },
+    {
+      phase: 3, kind: 'task', short: '开新会话',
+      title: '保持网关运行，再启动新的 Agent 会话',
+      intro: '切换后结束测试用的旧会话，再开一个新会话。Codex 会在启动时读取配置和模型目录，需要时退出应用和已打开的 codex 会话后重新启动。',
+      bullets: ['先检查 Magpie「网关」页显示服务在运行，地址以页面实际显示为准。', '关窗口通常会留在托盘；从菜单彻底退出 Magpie 会停止网关，使用它的 Agent 也就连不上。', '打开新会话，查看 Agent 当前模型或设置页面是否显示刚选的来源。', '不要用「你是什么模型」的回答当作唯一证据；模型自己说的名字可能不可靠。'],
+      code: [{ lang: 'sh', caption: '可选：终端里查看 Magpie 检测到的 Agent 和模型目录', text: 'magpie ls\nmagpie models' }],
+      coach: '正在工作的旧会话不会因为你点了一次菜单就自动换模型。',
+      button: '已开新会话'
+    },
+    {
+      phase: 3, kind: 'checks', short: '实际验收',
+      title: '做一个小任务，确认接入真的可用',
+      intro: '在没有凭据的练习目录打开新会话，让 Agent 读一个普通文件并给出修改建议。确认简单对话、读取工具和用量记录，再安排重要任务。',
+      checks: ['新会话能正常回复，没有鉴权、模型不存在或连接错误', '练习任务中至少一个文件读取或工具调用正常完成', 'Magpie 路由或用量页面出现这次请求，并显示预期的来源或模型', '我知道怎样从模型选择器恢复 Default；原配置备份仍在'],
+      coach: '工具能正常干活，加上网关记录出现，才是这次接入的验收。',
+      button: '验证通过'
+    },
+    {
+      phase: 4, kind: 'task', short: '读懂用量',
+      title: '打开 Usage，看这次请求用了什么',
+      intro: '进入「用量 / Usage」，先选今天或较短时间范围，核对刚才的 Agent、来源和模型。',
+      images: [{ src: "../assets/guides/magpie/usage-zh-light.webp?v=fedd4e527a", alt: 'Magpie 官方用量页面示例', caption: '官方示例：余额、Token、缓存和调用次数分开展示。图中的金额、次数与缓存命中率不是本教程实测。' }],
+      bullets: ['Token 是模型处理输入、输出等内容的计量单位；缓存命中与费用要结合供应商规则看。', '显示的「标价」是按模型价格估算的用量价值，不等于订阅用户又收到一张同额账单。', '只统计经过 Magpie 网关的调用；绕开网关直接请求上游的用量不会自动出现在这里。', '供应商是否提供余额和套餐额度信息各不相同；缺少数据不代表免费或无限额。'],
+      code: [{ lang: 'sh', caption: '可选：查看近期用量与可获取的订阅额度', text: 'magpie usage 7d\nmagpie quota' }],
+      coach: '先看请求有没有出现，再看归属与费用口径。',
+      button: '用量能看懂了'
+    },
+    {
+      phase: 4, kind: 'task', short: '检查上下文',
+      title: 'Usage → Context：看看上下文被谁占满',
+      intro: '作者在 10 月 8 日介绍了 Context 分析。打开用量页的 Context 入口，选择有记录的 Agent、会话或请求，查看各部分占用。',
+      links: [{ label: '作者的 Context 功能原帖', url: 'https://x.com/yetone/status/2107968356620091474' }],
+      bullets: ['查看系统提示、工具 / MCP、指令与 Skills、读取的文件、工具输出和对话分别占多少。', '悬停在区块上检查名称和占用；先找最大的一项，再判断是否确实需要它。', '读入大量无关文件时，先缩小任务目录；工具定义很多时，按任务减少不需要的工具。', '占用分项包含估算；评分与标签反映缓存、起步负担、增长和可靠性等记录，不是模型能力的统一排名。', '官方说明 Context 持久化记录存名称、计数和度量，不保存完整提示词正文；云端推理仍按你选择的来源发送请求。', '刚装好没有数据时，先运行一次经过网关的会话；版本或入口不同就对照当前文档。'],
+      note: '发现占用大的内容后，一次只调整一项再比较；别为了追分删掉任务必需的说明。',
+      coach: 'Context 用来找具体负担，不用拿分数判断谁的 Agent 绝对更好。',
+      button: '知道从哪里检查了'
+    },
+    {
+      phase: 4, kind: 'choice', short: '要不要进阶',
+      title: '基本接入完成，要继续设置路由吗？',
+      intro: '一个来源已经够用，就直接看恢复和排错。手上有多个已验证来源、需要按任务选模型时，再看路由和插件。',
+      choices: [
+        { value: 'basic', title: '先用这套基础配置', copy: '跳过进阶功能，了解恢复默认和日常维护。', icon: 'check', next: 19 },
+        { value: 'advanced', title: '继续看路由与插件', copy: '学习组、意图分类和扩展入口；不要求现在全部启用。', icon: 'grid', next: 16 }
+      ],
+      coach: '没有备用来源时，不需要先给自己安排一套复杂路由。'
+    },
+    {
+      phase: 4, kind: 'task', short: '建立路由组',
+      title: '先把两个已验证模型放进一个组',
+      intro: '进入「路由 / Routing」，建立一个组，例如 daily。添加你已有的可用模型，再选择调度方式并保存。',
+      images: [{ src: "../assets/guides/magpie/intent-rules-zh-light.webp?v=2bc2c5b4f3", alt: 'Magpie 官方路由组配置示例', caption: '官方示例：上方是组名和成员，中间是路由与会话保持，下方才是匹配规则。图片里的 Coder 和模型用于示范。' }],
+      bullets: ['新手先用「按顺序 / order」：主用模型放前面，备用模型放后面。', 'smart 会考虑可用额度和重置时间；rotate 轮流分配；usage 考虑使用量；pace 按剩余额度和重置节奏安排。', '默认会话保持可以先不改。切换来源可能影响缓存、费用和功能，先验证普通任务。', '保存后回 Agent 页，选对应的 group/组标识，再开新会话。只建组但没选它，不会影响这个 Agent。', '看路由记录确认谁实际回答。故障切换不保证所有错误都能续跑，已开始输出的请求尤其需要检查。'],
+      coach: '每个成员先单独跑通，才放进备用组。',
+      button: '路由组用法明白了'
+    },
+    {
+      phase: 4, kind: 'task', short: '可选意图路由',
+      title: '按任务选模型：先试一条简单规则',
+      intro: '在组里添加意图规则，例如「简单提问」优先用低成本模型；再指定一个你已接入的分类模型。先少量测试，再决定是否保留。',
+      links: [{ label: '官方意图路由说明', url: 'https://usemagpie.ai/docs/zh/intent' }],
+      images: [{ src: "../assets/guides/magpie/intent-trace-zh-light.webp?v=33c19ad5c1", alt: 'Magpie 官方意图路由决策记录', caption: '官方示例：这里解释命中哪条规则、哪个模型排第一、谁实际回答。图中耗时和请求数只属于上游演示。' }],
+      bullets: ['描述一种明确任务，选择组内优先模型，再选择分类模型并保存。规则按顺序匹配。', 'Agent 仍需选择这个路由组；新一轮用户消息才会按规则判断，工具往返沿用这一轮的选择。', '发一个符合规则的问题，在「最近请求」记录检查分类结果和最终回答模型。', '分类有额外延迟与费用；官方说明只把最新用户文本和候选意图发给分类模型，不发完整历史和工具定义。', '分类失败或超时会回落到其他匹配条件与默认组路由；判断错了就改规则或关闭意图条件。'],
+      coach: '用真实记录验收分类，不把“自动”理解成一定选对。',
+      button: '意图路由用法明白了'
+    },
+    {
+      phase: 4, kind: 'task', short: '插件与资源库',
+      title: '需要时再加插件、MCP 和 Skills',
+      intro: '作者的插件帖介绍了 OpenCode 登录插件和 pi 扩展包支持。插件可以扩展来源；资源库可以管理指令、MCP 与 Skills。基础模型已跑通后再按需求添加。',
+      links: [{ label: '作者插件原帖', url: 'https://x.com/yetone/status/2106462626285048265' }, { label: '官方插件说明', url: 'https://usemagpie.ai/docs/zh/plugins' }, { label: '官方社区插件仓库', url: 'https://github.com/magpie-community/plugins' }],
+      bullets: ['先确认目标服务确实需要插件，检查包作者、代码和安装说明，再安装你信任的插件。', '插件代码在本机执行；登录插件处理认证和请求，中间件可以处理经过网关的数据。', '某些插件首次运行需要下载 Bun，网络失败先按官方错误排查，不随意换来源。', '资源库里的指令、MCP、Skills 按实际任务启用，检查写入了哪个 Agent，不要一次装满所有扩展。', '本教程不提供未经验证的第三方登录包命令；照当前官方文档走对应流程。'],
+      coach: '先增加一种能力，再跑一次任务，看是否真的需要它。',
+      button: '进阶入口已记下'
+    },
+    {
+      phase: 5, kind: 'task', short: '恢复与维护',
+      title: '不想走 Magpie 时，先恢复 Default',
+      intro: '回到 Agent 模型选择器，选「Default / 默认」或该工具自己的原生选项，再重启会话。确认恢复正常后，才完全退出 Magpie 或卸载。',
+      code: [{ lang: 'sh', caption: '可选：给支持的 Agent 恢复默认（只执行你试用的那一条）', text: 'magpie claude default\nmagpie codex default' }, { lang: 'sh', caption: '基础配置跑通后，可保存和重新应用方案', text: 'magpie save work\nmagpie use work', note: 'use 会应用保存的多个 Agent 设置，执行前确认这就是你要恢复的方案。' }],
+      bullets: ['恢复默认会撤去 Magpie 接入；如果切换前原配置有特殊设置，再对照你的备份检查。', '完全退出 Magpie 前先确认 Agent 不再指向它的网关，否则会出现连接失败。', '更新前保留配置与版本信息，看发布记录；更新后用同一个练习任务复验。', '账号和密钥备份含敏感信息，导出或同步前核对目标位置与访问权限；官方备份不包含订阅登录，换机要重新登录。', '发布版默认有每日匿名统计，可在设置 → 隐私中关闭；不要把本机网关理解成软件完全不联网。'],
+      coach: '先恢复客户端，再退出网关；不要把删除软件当作自动恢复配置。',
+      button: '看完成清单与排错'
+    },
+    {
+      phase: 5, kind: 'done', short: '完成与排错',
+      title: '一个 Agent 的 Magpie 接入已经走完',
+      intro: '你完成了安装、来源添加、模型选择和实际验收，也知道从哪里查看用量、上下文，以及怎样恢复默认。其他 Agent 可以按同样顺序逐个接入。',
+      doneGroups: [
+        { title: '最后确认', items: ['Magpie 网关运行，新会话能正常回答与使用工具', '请求记录中的来源和模型符合预期', '理解 API 与订阅的计费区别，知道额度从哪里检查', '原配置有备份，知道 Default 与完全退出的区别'] },
+        { title: '来源与验证范围', items: ['教程根据 yetone 原帖与当前开源文档整理；不是作者原文全文转载', '六张配图来自 MIT 许可的官方仓库示例，不是本教材账户实测', '安装和云模型调用仍需在自己的系统、版本及账号实际验收'] }
+      ],
+      faqGroups: [
+        { label: '接入与生效', items: [
+          { q: '买了 ChatGPT Plus，为什么没有 OpenAI API Key？', a: '订阅与 API 是不同产品。订阅走受支持的登录入口；API Key 从对应 API 平台获取，并按 API 规则计费。' },
+          { q: 'Agent 列表里没有我的工具？', a: '确认工具在当前用户环境安装或配置过，重新打开 Magpie。Windows、WSL 和不同用户的配置分开；未被直接支持的工具需按官方网关说明接入，不能保证所有能力兼容。' },
+          { q: '选了模型，旧会话为什么没变？', a: 'Agent 通常启动时读取配置。开新会话；Codex 如未刷新，再退出应用及已开的 codex 会话后启动。' },
+          { q: '模型列表里找不到截图那一项？', a: '截图是官方示例。以你的来源实际返回的可用模型和账户资格为准，不要求购买或添加图中每个来源。' }
+        ] },
+        { label: '连接与账单', items: [
+          { q: '报 401、403 或模型不存在？', a: '先在 Providers 测试来源，核对账号授权、API Key、余额、端点和模型 ID。订阅也要检查地区与服务资格，不用反复修改 Agent 的无关设置。' },
+          { q: '完全退出 Magpie 后 Agent 连不上？', a: 'Agent 仍指向它的网关。重新启动 Magpie，或在退出前恢复 Default 并开新会话。关闭窗口留托盘与完全退出不是同一种操作。' },
+          { q: '用量标价是不是又扣了一笔钱？', a: '标价是按模型价格折算的估计值，不等于订阅账单。API 实际费用、订阅额度和余额以供应商页面为准。' },
+          { q: '用了 Magpie 就不用买模型了吗？', a: '仍需自己有权使用的订阅、API 或本机模型。Magpie 负责接入和调度，不提供无限额资源。' }
+        ] },
+        { label: '进阶与恢复', items: [
+          { q: 'Context 没数据或没有入口？', a: '先确认已安装支持此功能的版本，并用新会话发送经过网关的请求。再按当前官方文档查看 Usage → Context；不要拿无记录的空页面作评分比较。' },
+          { q: '路由组为什么没有改变回答模型？', a: '确认 Agent 选择的是 group/对应组，然后开新会话。检查成员可用性、规则顺序和实际决策记录；不能只凭回答风格判断。' },
+          { q: '能把本机网关直接开放给互联网吗？', a: '基础教程只使用本机。局域网分享和远端部署需要按官方说明配置身份验证、客户端密钥、权限及网络访问，本篇不要求开放公网端口。' },
+          { q: '怎么恢复试用前的配置？', a: '先对试用 Agent 选择 Default 并重启验证；如果需要恢复切换前的特殊值，对照备份逐项恢复。不要直接覆盖仍在工作的其他 Agent 配置。' }
+        ] }
+      ],
+      links: [{ label: '继续查当前官方文档', url: 'https://usemagpie.ai/docs/zh/start' }, { label: '查看版本发布记录', url: 'https://github.com/yetone/magpie-releases/releases' }]
+    }
+  ]
+};
+</script>
+<script src="../assets/g-engine.js?v=42c616d414" defer></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+map.plus-guide.fun {
+	root * /var/www/map.plus-guide.fun
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		-Server
+	}
+
+	@documents path / /*.html /guides/*.html
+	header @documents Cache-Control "no-cache"
+
+	@tutorialSuggestions path /api/suggestions
+	handle @tutorialSuggestions {
+		reverse_proxy 127.0.0.1:18093
+	}
+
+	handle {
+		file_server
+	}
+}
